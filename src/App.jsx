@@ -1,5 +1,6 @@
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
+import Mission from './components/Mission.jsx'
 import Problem from './components/Problem.jsx'
 import BioBuilder from './components/BioBuilder.jsx'
 import Course from './components/Course.jsx'
@@ -11,20 +12,21 @@ import Footer from './components/Footer.jsx'
 export default function App() {
   return (
     <>
-      {/* Noise grain overlay */}
       <div className="noise" aria-hidden="true"/>
       <Nav/>
       <main>
         <Hero/>
-        <hr className="divider"/>
+        <hr className="rule"/>
+        <Mission/>
+        <hr className="rule"/>
         <Problem/>
-        <hr className="divider"/>
+        <hr className="rule"/>
         <BioBuilder/>
-        <hr className="divider"/>
+        <hr className="rule"/>
         <Course/>
-        <hr className="divider"/>
+        <hr className="rule"/>
         <Book/>
-        <hr className="divider"/>
+        <hr className="rule"/>
         <Community/>
         <Team/>
       </main>

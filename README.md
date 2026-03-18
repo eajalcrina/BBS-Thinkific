@@ -1,37 +1,71 @@
-# Bio Business School — Landing Page
+# Bio Business School — Landing Page v6
 
 Plataforma de inteligencia para bionegocios rentables en América Latina.
+
+## Concepto de diseño: "Bioluminiscencia Estratégica"
+
+La biodiversidad de LATAM emite luz en la oscuridad — como organismos bioluminiscentes.
+Los colores lima y rose son puntos de luz que emergen de un fondo profundo oscuro.
 
 ## Stack
 
 - **React 18** + **Vite 5**
-- **Framer Motion** — animaciones de entrada y micro-interacciones
-- **Barlow Condensed** + **Barlow** (Google Fonts)
-- Sin dependencias de UI externas — CSS propio con variables
+- **Framer Motion 11** — animaciones de entrada y SVG animado
+- **Outfit** (display/títulos) — geométrica moderna, weight 300/600
+- **DM Sans** (cuerpo) — humanista y legible
+- **Barlow Condensed** — logo y labels, mantenida como referencia de marca
 
-## Estructura
+## Paleta de colores
+
+```
+--lime:   #C8F000   Verde lima BBS — acento primario (bioluminiscencia)
+--rose:   #F32769   Magenta BBS — exclusivo Sprint 01 + énfasis secundario
+--bg:     #070810   Fondo near-black con tinte índigo profundo
+--bg2:    #0C0C1A   Superficie de sección
+--bg3:    #101024   Superficie elevada
+Glassmorphism: rgba(12,12,26,0.7) + backdrop-filter: blur(12px)
+```
+
+## Estructura de secciones
+
+```
+1. Hero          — orbes bioluminiscentes CSS animados, stats panel glassmorphism
+2. Mission       — diagrama Venn SVG animado (del deck de BBS)
+3. Problem       — 4 fallas del modelo actual, cards glassmorphism
+4. BioBuilder    — diagrama radial orbiting SVG + tabla MBA vs BioBuilder
+5. Course        — Biotech Sprint 01 con rose #F32769 como color dominante
+6. Book          — Bio Business Playbook, precio $25 prominente, mockup con foto real
+7. Community     — Starter gratis + PRO + formulario de captación
+8. Team          — Eddie y Lorenzo con LinkedIn, sección bg diferenciado
+9. Footer        — logo verde, links organizados
+```
+
+## Archivos del proyecto
 
 ```
 bbs-react/
 ├── public/
-│   ├── book-cover.jpg       # Portada del Bio Business Playbook
-│   └── book-stack.jpg       # Foto de la pila de libros
+│   ├── logo-green.png    # Logo verde (nav + footer)
+│   ├── logo-red.png      # Logo rojo (sección Sprint 01)
+│   ├── book-cover.jpg    # Portada del Playbook
+│   └── book-stack.jpg    # Foto de la pila de libros (mockup)
 ├── src/
 │   ├── components/
-│   │   ├── Nav.jsx          # Navegación sticky con scroll detection
-│   │   ├── Hero.jsx         # Hero animado con stats panel
-│   │   ├── Problem.jsx      # 4 fallas del modelo actual
-│   │   ├── BioBuilder.jsx   # Diagrama radial SVG animado + tabla comparativa
-│   │   ├── Course.jsx       # Biotech Sprint 01 (color #f32769)
-│   │   ├── Book.jsx         # Bio Business Playbook — layout editorial
-│   │   ├── Community.jsx    # Membresía Starter (gratis) + formulario
-│   │   ├── Team.jsx         # Equipo fundador + LinkedIn
-│   │   ├── Footer.jsx       # Footer
-│   │   └── FadeIn.jsx       # Wrapper de animación con IntersectionObserver
+│   │   ├── Nav.jsx       # Sticky nav con blur + scroll detection
+│   │   ├── Hero.jsx      # Hero con orbes animados + stats panel
+│   │   ├── Mission.jsx   # Venn diagram SVG animado
+│   │   ├── Problem.jsx   # 4 cards glassmorphism
+│   │   ├── BioBuilder.jsx# Diagrama orbital + tabla comparativa
+│   │   ├── Course.jsx    # Sprint 01 con rose dominante
+│   │   ├── Book.jsx      # Libro con precio $25 prominente
+│   │   ├── Community.jsx # Membresía gratis + formulario
+│   │   ├── Team.jsx      # Equipo con LinkedIn
+│   │   ├── Footer.jsx    # Footer completo
+│   │   └── FadeIn.jsx    # Wrapper animación scroll-triggered
 │   ├── App.jsx
 │   ├── main.jsx
-│   └── index.css            # Variables CSS + estilos globales + animaciones
-├── index.html
+│   └── index.css         # Sistema de diseño completo
+├── index.html            # Entrada con fuentes precargadas
 ├── package.json
 ├── vite.config.js
 ├── vercel.json
@@ -43,49 +77,58 @@ bbs-react/
 ```bash
 npm install
 npm run dev
+# → http://localhost:5173
 ```
 
-## Deploy en Vercel
+## Deploy en Vercel desde GitHub
 
-El proyecto está configurado para deploy automático en Vercel:
+```bash
+# 1. Descomprime y entra al directorio
+unzip bbs-react.zip && cd bbs-react
 
-1. Sube todos los archivos al repositorio GitHub `BBS-Thinkific`
-2. En Vercel, importa el repositorio
-3. Vercel detecta automáticamente el framework (Vite)
-4. Los parámetros del `vercel.json` configuran el build y routing SPA
+# 2. Inicializa git y conecta con tu repositorio
+git init
+git remote add origin https://github.com/eajalcrina/BBS-Thinkific.git
+git add .
+git commit -m "feat: v6 - Bioluminiscencia Estratégica, Outfit+DM Sans, Venn animado"
+git push origin main --force
 
-**Build command:** `npm run build`  
-**Output directory:** `dist`  
-**Install command:** `npm install`
-
-## Personalización
-
-### Colores principales (en `src/index.css`)
-```css
---lime:  #C5FC00   /* Verde lima — color dominante */
---rose:  #f32769   /* Magenta — sección Biotech Sprint 01 */
---bg:    #0C0C12   /* Fondo near-black con tinte índigo */
+# 3. Vercel despliega automáticamente al detectar el push
 ```
 
-### Actualizar URLs de productos
-Busca los `href="#"` en `Course.jsx`, `Book.jsx` y `Community.jsx` y reemplázalos con las URLs reales de Thinkific.
+## Personalización de URLs
 
-### Conectar el formulario
-En `Community.jsx`, la función `submit` actualmente solo cambia el estado local. Para conectarlo a un CRM:
+Busca los `href` de estos botones y actualiza con las URLs reales:
+
+| Botón | Archivo | URL actual |
+|-------|---------|-----------|
+| Inscribirme al Sprint 01 | Course.jsx | `https://biobusinessschool.org/sprint01` |
+| Comprar Playbook digital | Book.jsx | `https://biobusinessschool.org/playbook` |
+| LinkedIn Eddie | Team.jsx | `https://www.linkedin.com/in/eddieajalcrina/` |
+| LinkedIn Lorenzo | Team.jsx | `https://www.linkedin.com/in/lorenzoo/` ← verificar handle |
+
+## Conectar formulario de comunidad
+
+En `Community.jsx`, reemplaza la función `submit`:
 
 ```js
-// Reemplazar en Community.jsx
 const submit = async () => {
-  // validación...
-  await fetch('TU_ENDPOINT', {
+  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  if (!name || !ok) { setErr(true); return }
+  
+  // Ejemplo con Mailchimp, ConvertKit, HubSpot, Zapier o tu endpoint propio:
+  await fetch('https://tu-endpoint.com/subscribe', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, email, country, plan })
   })
+  
+  setErr(false)
   setDone(true)
 }
 ```
 
 ## Créditos
 
-Bio Business School — [biobusinessschool.org](https://biobusinessschool.org)  
+Bio Business School — [biobusinessschool.org](https://biobusinessschool.org)
 Powered by Redesign Lab — [redesignlab.org](https://redesignlab.org)

@@ -10,21 +10,25 @@ import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
-    <div className="grain">
-      <Nav />
-      <Hero />
-      <hr className="rule" />
-      <Problem />
-      <hr className="rule" />
-      <BioBuilder />
-      <hr className="rule" />
-      <Course />
-      <hr className="rule" />
-      <Book />
-      <hr className="rule" />
-      <Community />
-      <Team />
-      <Footer />
-    </div>
+    <>
+      {/* Noise grain overlay */}
+      <div className="noise" aria-hidden="true"/>
+      <Nav/>
+      <main>
+        <Hero/>
+        <hr className="divider"/>
+        <Problem/>
+        <hr className="divider"/>
+        <BioBuilder/>
+        <hr className="divider"/>
+        <Course/>
+        <hr className="divider"/>
+        <Book/>
+        <hr className="divider"/>
+        <Community/>
+        <Team/>
+      </main>
+      <Footer/>
+    </>
   )
 }

@@ -1,21 +1,14 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-export default function FadeIn({ children, delay = 0, y = 24, className = '', style = {} }) {
+export default function FadeIn({ children, delay = 0, y = 28, x = 0, className = '', style = {}, once = true }) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
-
+  const inView = useInView(ref, { once, margin: '-60px' })
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-      style={style}
-    >
-      {children}
-    </motion.div>
+    <motion.div ref={ref} className={className} style={style}
+      initial={{ opacity: 0, y, x }}
+      animate={inView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y, x }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+    >{children}</motion.div>
   )
 }

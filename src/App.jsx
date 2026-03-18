@@ -12,21 +12,14 @@ import Footer from './components/Footer.jsx'
 export default function App() {
   return (
     <>
-      <div className="noise" aria-hidden="true"/>
       <Nav/>
       <main>
         <Hero/>
-        <hr className="rule"/>
         <Mission/>
-        <hr className="rule"/>
         <Problem/>
-        <hr className="rule"/>
         <BioBuilder/>
-        <hr className="rule"/>
         <Course/>
-        <hr className="rule"/>
         <Book/>
-        <hr className="rule"/>
         <Community/>
         <Team/>
       </main>

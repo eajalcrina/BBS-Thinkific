@@ -17,6 +17,8 @@ const COUNTRY_CODES = [
   { code: '+34', flag: '🇪🇸', name: 'ES' },
 ]
 
+const WHATSAPP_URL = 'https://chat.whatsapp.com/GSDVsK013hnErk7SWgUIqB?mode=gi_t'
+
 export default function Community() {
   const [firstName, setFirstName] = useState('')
   const [lastName,  setLastName]  = useState('')
@@ -28,8 +30,10 @@ export default function Community() {
   const [done,      setDone]      = useState(false)
   const [loading,   setLoading]   = useState(false)
 
+  const normalizedEmail = email.trim().toLowerCase()
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
+
   const submit = async () => {
-    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     if (!firstName || !lastName || !validEmail) { setErr(true); return }
 
     setLoading(true)
@@ -41,7 +45,7 @@ export default function Community() {
         body: JSON.stringify({
           firstName,
           lastName,
-          email,
+          email: normalizedEmail,
           phone: phone ? `${dialCode}${phone}` : '',
           country
         })
@@ -51,6 +55,10 @@ export default function Community() {
 
       setErr(false)
       setDone(true)
+
+      setTimeout(() => {
+        window.open(WHATSAPP_URL, '_blank')
+      }, 2500)
 
     } catch {
       setErr(true)
@@ -131,7 +139,6 @@ export default function Community() {
                 <p style={{ fontSize:'0.85rem', color:'var(--t-dark2)', marginBottom:'1.3rem' }}>Empieza con la membresía Starter sin costo. Te contactamos con los accesos.</p>
 
                 <div style={{ display:'flex', flexDirection:'column', gap:'0.65rem' }}>
-
                   <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.65rem' }}>
                     <input
                       type="text"
@@ -154,7 +161,7 @@ export default function Community() {
                     value={email}
                     onChange={e=>{ setEmail(e.target.value); setErr(false) }}
                     placeholder="Correo electrónico"
-                    className={`field${err && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? ' field-err' : ''}`}
+                    className={`field${err && !validEmail ? ' field-err' : ''}`}
                   />
 
                   <div style={{ display:'flex', gap:'0.5rem' }}>
@@ -208,6 +215,15 @@ export default function Community() {
                 <div style={{ width:60, height:60, borderRadius:'50%', background:'var(--lime)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.6rem' }}>✓</div>
                 <strong style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:600, color:'var(--dark)' }}>¡Bienvenido/a a los Biobuilders!</strong>
                 <p style={{ fontSize:'0.9rem', color:'var(--t-dark2)', lineHeight:1.65 }}>Recibimos tus datos. En las próximas 48h te enviamos tus accesos a la comunidad Starter.</p>
+                <p style={{ fontSize:'0.82rem', color:'var(--t-dark3)' }}>Redirigiendo al grupo de WhatsApp...</p>
+                
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-dark btn-lg"
+                >
+                  Ir al grupo ahora →
+                </a>
               </div>
             )}
           </div>

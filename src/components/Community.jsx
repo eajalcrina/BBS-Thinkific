@@ -86,7 +86,7 @@ export default function Community() {
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
                 <div>
                   <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.35rem' }}>
-                    <span style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:700, color:'var(--dark)' }}>Emprendedores</span>
+                    <span style={{ fontFamily:'var(--fout)', fontSize:'1.55rem', fontWeight:700, color:'var(--dark)', lineHeight:1.1 }}>Emprendedores</span>
                     <span className="badge badge-lime">Gratis</span>
                   </div>
                   <div style={{ fontFamily:'var(--fbc)', fontSize:'2rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>
@@ -111,16 +111,16 @@ export default function Community() {
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
                 <div>
                   <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.35rem' }}>
-                    <span style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:700, color:'var(--white)' }}>Empresarios</span>
+                    <span style={{ fontFamily:'var(--fout)', fontSize:'1.55rem', fontWeight:700, color:'var(--white)', lineHeight:1.1 }}>Empresarios</span>
                     <span style={{ fontFamily:'var(--fbc)', fontSize:'0.6rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--lime)', opacity:0.85 }}>↗ WA</span>
                   </div>
                   {/* Venta personalizada en lugar de precio */}
                   <div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:700, color:'var(--lime)', letterSpacing:'0.06em', textTransform:'uppercase', lineHeight:1 }}>
-                    Venta personalizada
+                    Asesoría personalizada
                   </div>
                 </div>
               </div>
-              <p style={{ fontSize:'0.82rem', color:'var(--t-white2)', lineHeight:1.65, margin:0 }}>
+              <p style={{ fontSize:'0.82rem', color:'rgba(255,255,255,0.88)', lineHeight:1.65, margin:0 }}>
                 Dirigido a empresarios que enfrentan a diario los desafíos de sacar adelante sus bionegocios y lograr ventas a nivel nacional e internacional.
               </p>
               {/* Footer indicador */}
@@ -134,7 +134,7 @@ export default function Community() {
           {!done ? (
             <div>
               <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginBottom:'0.85rem' }}>
-                <span style={{ background:'var(--dark)', color:'var(--lime)', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'0.3rem 0.9rem', borderRadius:50, whiteSpace:'nowrap' }}>← Formulario Emprendedores</span>
+                <span style={{ background:'var(--dark)', color:'var(--lime)', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'0.3rem 0.9rem', borderRadius:50, whiteSpace:'nowrap' }}>Formulario Emprendedores</span>
                 <span style={{ fontSize:'0.78rem', color:'var(--t-dark2)' }}>Empieza hoy sin costo</span>
               </div>
               <div style={{ background:'var(--white)', borderRadius:20, padding:'2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)' }}>

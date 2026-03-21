@@ -53,12 +53,9 @@ export default function Community() {
 
       if (!res.ok) { setErr(true); setLoading(false); return }
 
-      setErr(false)
-      setDone(true)
-
-      setTimeout(() => {
-        window.open(WHATSAPP_URL, '_blank')
-      }, 2500)
+     setErr(false)
+setDone(true)
+window.location.href = 'https://chat.whatsapp.com/GSDVsK013hnErk7SWgUIqB?mode=gi_t'
 
     } catch {
       setErr(true)

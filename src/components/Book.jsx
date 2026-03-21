@@ -20,10 +20,10 @@ export default function Book() {
         <FadeIn><div className="label dark" style={{ marginBottom:'1rem' }}>Publicación · Vol. 1 de 3</div></FadeIn>
 
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'4rem', alignItems:'center' }} className="book-grid">
+
           {/* Left: content */}
           <div>
             <FadeIn delay={0.06}>
-              {/* Giant price */}
               <div style={{ marginBottom:'1.8rem' }}>
                 <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.2em', textTransform:'uppercase', color:'var(--t-dark3)', marginBottom:'0.2rem' }}>Precio digital</div>
                 <div style={{ display:'flex', alignItems:'baseline', gap:'0.4rem' }}>
@@ -56,36 +56,83 @@ export default function Book() {
                 <span>La copia impresa está disponible <strong style={{ color:'var(--dark)' }}>previo registro</strong>. Déjanos tu correo y te avisamos cuando esté lista para envío.</span>
               </div>
               <div style={{ display:'flex', gap:'0.75rem', flexWrap:'wrap' }}>
-                <a href="https://biobusinessschool.org/playbook" className="btn btn-rose btn-lg">Comprar digital →</a>
-                <a href="#comunidad" className="btn btn-outline btn-lg">Reservar impreso</a>
+                
+                  href="https://mpago.la/17jbnkb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-rose btn-lg"
+                >
+                  Comprar digital →
+                </a>
+                
+                  href="https://mpago.la/1dgbgiT"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-lg"
+                >
+                  Reservar impreso
+                </a>
               </div>
             </FadeIn>
           </div>
 
-          {/* Right: book image */}
+          {/* Right: book image — sin marco, imagen protagonista */}
           <FadeIn delay={0.2}>
-            <div style={{ position:'relative' }}>
-              <motion.div
-                style={{ background:'var(--lime)', borderRadius:24, padding:'2rem', paddingBottom:'0', overflow:'hidden', boxShadow:'0 30px 80px rgba(193,244,0,0.35), 0 8px 24px rgba(14,14,14,0.12)' }}
-                whileHover={{ y:-6 }} transition={{ duration:0.3 }}
-              >
-                <motion.img
-                  src="/book-stack.jpg"
-                  alt="Bio Business Playbook"
-                  style={{ width:'100%', borderRadius:'12px 12px 0 0', display:'block', filter:'brightness(0.95) saturate(1.1)' }}
-                  initial={{ scale:1.05, opacity:0 }}
-                  whileInView={{ scale:1, opacity:1 }}
-                  viewport={{ once:true }}
-                  transition={{ duration:1.0, ease:[0.22,1,0.36,1] }}
-                />
-              </motion.div>
-              {/* Floating badge */}
-              <div style={{ position:'absolute', top:-16, right:-16, background:'var(--rose)', color:'var(--white)', borderRadius:12, padding:'0.8rem 1rem', textAlign:'center', boxShadow:'0 8px 24px rgba(243,39,105,0.4)', minWidth:90 }}>
+            <div style={{ position:'relative', padding:'1.5rem 1.5rem 0 1.5rem' }}>
+
+              {/* Sombra decorativa detrás */}
+              <div style={{
+                position:'absolute',
+                inset:'1.5rem 0.5rem 0 0.5rem',
+                borderRadius:20,
+                background:'rgba(14,14,14,0.12)',
+                filter:'blur(28px)',
+                transform:'translateY(16px)',
+                zIndex:0,
+              }}/>
+
+              {/* Imagen principal */}
+              <motion.img
+                src="/book-stack.jpg"
+                alt="Bio Business Playbook"
+                style={{
+                  position:'relative',
+                  zIndex:1,
+                  width:'100%',
+                  borderRadius:16,
+                  display:'block',
+                  objectFit:'cover',
+                  boxShadow:'0 32px 72px rgba(14,14,14,0.22), 0 8px 24px rgba(14,14,14,0.14)',
+                  filter:'brightness(1.02) saturate(1.08) contrast(1.02)',
+                }}
+                initial={{ scale:1.04, opacity:0, y:16 }}
+                whileInView={{ scale:1, opacity:1, y:0 }}
+                whileHover={{ scale:1.02, y:-4 }}
+                viewport={{ once:true }}
+                transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}
+              />
+
+              {/* Badge flotante $25 */}
+              <div style={{
+                position:'absolute',
+                top:4,
+                right:4,
+                zIndex:2,
+                background:'var(--rose)',
+                color:'var(--white)',
+                borderRadius:12,
+                padding:'0.8rem 1rem',
+                textAlign:'center',
+                boxShadow:'0 8px 24px rgba(243,39,105,0.45)',
+                minWidth:90,
+              }}>
                 <div style={{ fontFamily:'var(--fbc)', fontSize:'1.8rem', fontWeight:800, lineHeight:1 }}>$25</div>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', opacity:0.8, marginTop:'0.15rem' }}>USD</div>
+                <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', opacity:0.85, marginTop:'0.15rem' }}>USD</div>
               </div>
+
             </div>
           </FadeIn>
+
         </div>
       </div>
       <style>{`@media(max-width:860px){.book-grid{grid-template-columns:1fr!important}}`}</style>

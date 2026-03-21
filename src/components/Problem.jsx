@@ -9,30 +9,30 @@ const items = [
 ]
 
 const orbsLime = [
-  {x:8,y:8,r:2.5,f:'rgba(193,244,0,0.38)'},{x:18,y:6,r:2,f:'rgba(193,244,0,0.30)'},
-  {x:21,y:16,r:3,f:'rgba(193,244,0,0.28)'},{x:8,y:19,r:2,f:'rgba(193,244,0,0.34)'},
-  {x:14,y:14,r:1.5,f:'rgba(193,244,0,0.20)'}
+  {x:6,y:6,r:2.2,f:'rgba(193,244,0,0.38)'},{x:15,y:5,r:1.6,f:'rgba(193,244,0,0.30)'},
+  {x:16,y:14,r:2.5,f:'rgba(193,244,0,0.28)'},{x:6,y:15,r:1.8,f:'rgba(193,244,0,0.34)'},
+  {x:11,y:11,r:1.4,f:'rgba(193,244,0,0.20)'}
 ]
 
 export default function Problem() {
   return (
     <section className="sec on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      {/* CÉLULA COMPLETA izquierda — núcleo descentrado */}
-      <div style={{ position:'absolute', top:'-18%', left:'2%', width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.13)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+      {/* CÉLULA COMPLETA izquierda — visible top:8% */}
+      <div style={{ position:'absolute', top:'8%', left:'3%', width:105, height:105, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.14)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
         <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
-          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:26, height:26, borderRadius:'50%', overflow:'hidden' }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-            <circle cx="13" cy="13" r="12" fill="rgba(193,244,0,0.55)"/>
+          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:24, height:24, borderRadius:'50%', overflow:'hidden' }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="12" cy="12" r="11" fill="rgba(193,244,0,0.55)"/>
             {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
           </svg>
         </motion.div>
       </div>
 
-      {/* Burbuja pequeña suelta DERECHA */}
-      <div style={{ position:'absolute', bottom:'-14%', right:'5%', width:68, height:68, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.10)', animation:'spin-cw 38s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6.5, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'26%', right:'8%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.6)', zIndex:2, pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta derecha — visible */}
+      <div style={{ position:'absolute', bottom:'10%', right:'4%', width:62, height:62, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.10)', animation:'spin-cw 38s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:5, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', top:'30%', right:'12%', width:10, height:10, borderRadius:'50%', background:'rgba(193,244,0,0.6)', pointerEvents:'none' }}/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El problema</div></FadeIn>

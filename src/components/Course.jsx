@@ -13,9 +13,9 @@ const included = ['8 módulos en video','Sesiones en vivo con mentores','Framewo
 const WHATSAPP_SPRINT = 'https://wa.me/51974620309?text=Hola%2C%20estoy%20interesado%20en%20el%20curso%20Biotech%20Sprint%2001'
 
 const orbsLime = [
-  {x:10,y:9,r:3,f:'rgba(193,244,0,0.22)'},{x:23,y:8,r:2,f:'rgba(193,244,0,0.18)'},
-  {x:26,y:20,r:3.5,f:'rgba(193,244,0,0.16)'},{x:11,y:23,r:2.5,f:'rgba(193,244,0,0.20)'},
-  {x:17,y:16,r:1.8,f:'rgba(193,244,0,0.13)'}
+  {x:8,y:8,r:2.5,f:'rgba(193,244,0,0.22)'},{x:21,y:7,r:1.8,f:'rgba(193,244,0,0.18)'},
+  {x:23,y:19,r:3,f:'rgba(193,244,0,0.16)'},{x:8,y:21,r:2.2,f:'rgba(193,244,0,0.20)'},
+  {x:15,y:14,r:1.5,f:'rgba(193,244,0,0.13)'}
 ]
 
 const LogoCourse = () => (
@@ -29,21 +29,21 @@ export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
 
-      {/* CÉLULA COMPLETA izquierda — núcleo descentrado */}
-      <div style={{ position:'absolute', top:'-18%', left:'-2%', width:145, height:145, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+      {/* CÉLULA COMPLETA izquierda — visible top:6% */}
+      <div style={{ position:'absolute', top:'6%', left:'3%', width:135, height:135, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
         <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
-          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:32, height:32, borderRadius:'50%', overflow:'hidden' }}>
-          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-            <circle cx="16" cy="16" r="15" fill="rgba(193,244,0,0.28)"/>
+          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:30, height:30, borderRadius:'50%', overflow:'hidden' }}>
+          <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="15" cy="15" r="14" fill="rgba(193,244,0,0.28)"/>
             {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
           </svg>
         </motion.div>
       </div>
 
-      {/* Burbuja pequeña suelta DERECHA */}
-      <div style={{ position:'absolute', bottom:'-16%', right:'4%', width:82, height:82, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.18)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta derecha — visible */}
+      <div style={{ position:'absolute', bottom:'12%', right:'4%', width:72, height:72, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.18)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'28%', right:'8%', width:13, height:13, borderRadius:'50%', background:'rgba(193,244,0,0.45)', zIndex:2, pointerEvents:'none' }}/>
+        style={{ position:'absolute', top:'25%', right:'10%', width:11, height:11, borderRadius:'50%', background:'rgba(193,244,0,0.45)', pointerEvents:'none' }}/>
 
       <div className="wrap sec" style={{ position:'relative', paddingTop:'5rem', zIndex:3 }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'2.5rem', flexWrap:'wrap', gap:'1rem' }}>
@@ -66,22 +66,11 @@ export default function Course() {
               </div>
               <div style={{ padding:'1.5rem' }}>
                 <div style={{ display:'flex', flexDirection:'column', gap:0, marginBottom:'1.4rem', border:'1px solid rgba(14,14,14,0.08)', borderRadius:12, overflow:'hidden' }}>
-                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem', background:'var(--cream)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Precio regular</div>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, color:'var(--t-dark3)', textDecoration:'line-through' }}>$55</div>
-                  </div>
-                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1rem', background:'rgba(193,244,0,0.08)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}>
-                    <div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>Early Bird</div><div style={{ fontSize:'0.7rem', color:'var(--t-dark3)', marginTop:'0.1rem' }}>Precio especial de lanzamiento</div></div>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'2.8rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>$40</div>
-                  </div>
-                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem' }}>
-                    <div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Comunidad 404 & Starter</div><div style={{ fontSize:'0.68rem', color:'var(--t-dark3)', marginTop:'0.1rem', lineHeight:1.4 }}>Miembros 404 y Biobuilders Starter</div></div>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--rose)', lineHeight:1 }}>$35</div>
-                  </div>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem', background:'var(--cream)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Precio regular</div><div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, color:'var(--t-dark3)', textDecoration:'line-through' }}>$55</div></div>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1rem', background:'rgba(193,244,0,0.08)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}><div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>Early Bird</div><div style={{ fontSize:'0.7rem', color:'var(--t-dark3)', marginTop:'0.1rem' }}>Precio especial de lanzamiento</div></div><div style={{ fontFamily:'var(--fbc)', fontSize:'2.8rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>$40</div></div>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem' }}><div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Comunidad 404 & Starter</div><div style={{ fontSize:'0.68rem', color:'var(--t-dark3)', marginTop:'0.1rem', lineHeight:1.4 }}>Miembros 404 y Biobuilders Starter</div></div><div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--rose)', lineHeight:1 }}>$35</div></div>
                 </div>
-                <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>
-                  {included.map(inc=>(<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}
-                </ul>
+                <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>{included.map(inc=>(<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}</ul>
                 <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>Inscribirme al Sprint 01 →</a>
                 <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Cupos limitados · Primera cohorte Q2 2026</p>
               </div>

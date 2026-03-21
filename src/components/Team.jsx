@@ -9,26 +9,26 @@ const founders = [
 ]
 
 const orbsRose = [
-  {x:9,y:8,r:2.5,f:'rgba(243,39,105,0.34)'},{x:19,y:7,r:1.8,f:'rgba(243,39,105,0.28)'},
-  {x:21,y:17,r:3,f:'rgba(243,39,105,0.26)'},{x:8,y:19,r:2,f:'rgba(243,39,105,0.30)'},
-  {x:14,y:14,r:1.5,f:'rgba(243,39,105,0.18)'}
+  {x:5,y:6,r:2.2,f:'rgba(243,39,105,0.34)'},{x:16,y:5,r:1.6,f:'rgba(243,39,105,0.28)'},
+  {x:17,y:15,r:2.5,f:'rgba(243,39,105,0.26)'},{x:5,y:16,r:1.8,f:'rgba(243,39,105,0.30)'},
+  {x:11,y:11,r:1.4,f:'rgba(243,39,105,0.18)'}
 ]
 
 export default function Team() {
   return (
     <section id="equipo" className="sec-t on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      {/* Burbuja pequeña suelta IZQUIERDA */}
-      <div style={{ position:'absolute', top:'-16%', left:'3%', width:75, height:75, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.18)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'28%', left:'6%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.55)', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta izquierda — visible top:8% */}
+      <div style={{ position:'absolute', top:'8%', left:'3%', width:68, height:68, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.18)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', bottom:'24%', left:'10%', width:10, height:10, borderRadius:'50%', background:'rgba(193,244,0,0.55)', pointerEvents:'none' }}/>
 
-      {/* CÉLULA COMPLETA derecha — núcleo descentrado */}
-      <div style={{ position:'absolute', top:'-18%', right:'2%', width:112, height:112, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+      {/* CÉLULA COMPLETA derecha — visible top:5% */}
+      <div style={{ position:'absolute', top:'5%', right:'3%', width:108, height:108, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
         <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut', delay:0.6 }}
-          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:26, height:26, borderRadius:'50%', overflow:'hidden' }}>
-          <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-            <circle cx="13" cy="13" r="12" fill="rgba(243,39,105,0.50)"/>
+          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:24, height:24, borderRadius:'50%', overflow:'hidden' }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="12" cy="12" r="11" fill="rgba(243,39,105,0.50)"/>
             {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
           </svg>
         </motion.div>
@@ -54,14 +54,9 @@ export default function Team() {
                     <div style={{ position:'absolute', top:0, right:0, bottom:0, width:40, background:'linear-gradient(to right, transparent, rgba(14,14,14,0.85))' }}/>
                   </div>
                   <div style={{ padding:'1.6rem 1.6rem 1.6rem 1.4rem', display:'flex', flexDirection:'column', gap:'0.9rem' }}>
-                    <div>
-                      <h3 style={{ fontFamily:'var(--fout)', fontSize:'1.25rem', fontWeight:700, color:'var(--white)', marginBottom:'0.2rem', lineHeight:1.2 }}>{f.name}</h3>
-                      <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:f.accent }}>{f.role}</div>
-                    </div>
+                    <div><h3 style={{ fontFamily:'var(--fout)', fontSize:'1.25rem', fontWeight:700, color:'var(--white)', marginBottom:'0.2rem', lineHeight:1.2 }}>{f.name}</h3><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:f.accent }}>{f.role}</div></div>
                     <p style={{ fontSize:'0.83rem', color:'var(--t-white2)', lineHeight:1.65 }}>{f.bio}</p>
-                    <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem' }}>
-                      {f.credentials.map((c,ci)=>(<li key={ci} style={{ display:'flex', alignItems:'flex-start', gap:'0.5rem', fontSize:'0.78rem', color:'var(--t-white3)', lineHeight:1.5 }}><span style={{ color:f.accent, fontWeight:700, flexShrink:0, marginTop:'0.05rem' }}>—</span>{c}</li>))}
-                    </ul>
+                    <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem' }}>{f.credentials.map((c,ci)=>(<li key={ci} style={{ display:'flex', alignItems:'flex-start', gap:'0.5rem', fontSize:'0.78rem', color:'var(--t-white3)', lineHeight:1.5 }}><span style={{ color:f.accent, fontWeight:700, flexShrink:0, marginTop:'0.05rem' }}>—</span>{c}</li>))}</ul>
                     <div style={{ marginTop:'auto', paddingTop:'0.5rem' }}>
                       <a href={f.li} target="_blank" rel="noopener noreferrer"
                         style={{ display:'inline-flex', alignItems:'center', gap:'0.45rem', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', textDecoration:'none', color:f.accent, border:`1px solid ${f.accent}`, padding:'0.35rem 0.85rem', borderRadius:50, background:f.accentBg, transition:'all 0.2s' }}>

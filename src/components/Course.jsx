@@ -10,22 +10,43 @@ const features = [
   'Red de pares y contactos en América Latina',
 ]
 const included = ['8 módulos en video','Sesiones en vivo con mentores','Frameworks propietarios BBS','Certificado BBS + 404 Tech Found','Membresía Starter incluida']
-
 const WHATSAPP_SPRINT = 'https://wa.me/51974620309?text=Hola%2C%20estoy%20interesado%20en%20el%20curso%20Biotech%20Sprint%2001'
 
 const LogoCourse = () => (
-  <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1rem', letterSpacing: '0.04em', lineHeight: 1, userSelect: 'none' }}>
-    <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.9)' }}>BIO_BUSINESS</span>
-    <span style={{ fontWeight: 400, fontStyle: 'italic', color: 'var(--lime)', marginLeft: '0.3em' }}>SCHOOL</span>
+  <span style={{ fontFamily:"'Barlow Condensed', sans-serif", fontSize:'1rem', letterSpacing:'0.04em', lineHeight:1, userSelect:'none' }}>
+    <span style={{ fontWeight:700, color:'rgba(255,255,255,0.9)' }}>BIO_BUSINESS</span>
+    <span style={{ fontWeight:400, fontStyle:'italic', color:'var(--lime)', marginLeft:'0.3em' }}>SCHOOL</span>
   </span>
 )
+
+const orbsLime = [
+  {x:11,y:10,r:3.5,f:'rgba(193,244,0,0.22)'},{x:25,y:9,r:2.5,f:'rgba(193,244,0,0.18)'},
+  {x:28,y:22,r:4,f:'rgba(193,244,0,0.16)'},{x:12,y:25,r:3,f:'rgba(193,244,0,0.20)'},
+  {x:19,y:18,r:2,f:'rgba(193,244,0,0.13)'}
+]
 
 export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
       <div style={{ position:'absolute', top:'-20%', right:'-5%', width:500, height:500, borderRadius:'50%', background:'rgba(255,255,255,0.06)', pointerEvents:'none' }}/>
       <div style={{ position:'absolute', bottom:'-15%', left:'-8%', width:400, height:400, borderRadius:'50%', background:'rgba(255,255,255,0.04)', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', top:'15%', right:'12%', width:120, height:120, borderRadius:'50%', background:'var(--lime)', opacity:0.15, pointerEvents:'none' }} className="float-y"/>
+
+      {/* Burbujas punteadas — derecha arriba, izquierda abajo */}
+      <div style={{ position:'absolute', top:'-18%', right:'3%', width:150, height:150, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none', zIndex:1 }}/>
+      <div style={{ position:'absolute', bottom:'-16%', left:'4%', width:90, height:90, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.20)', animation:'spin-cw 38s linear infinite', transformOrigin:'center', pointerEvents:'none', zIndex:1 }}/>
+
+      {/* Célula mediana — IZQUIERDA */}
+      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', top:'20%', left:'5%', width:40, height:40, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
+        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+          <circle cx="20" cy="20" r="19" fill="rgba(193,244,0,0.28)"/>
+          {orbsLime.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+        </svg>
+      </motion.div>
+
+      {/* Punto pequeño — derecha */}
+      <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', bottom:'28%', right:'8%', width:13, height:13, borderRadius:'50%', background:'rgba(193,244,0,0.45)', zIndex:2, pointerEvents:'none' }}/>
 
       <div style={{ position:'absolute', top:-1, left:0, right:0 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
@@ -33,51 +54,23 @@ export default function Course() {
         </svg>
       </div>
 
-      <div className="wrap sec" style={{ position:'relative', paddingTop:'6rem' }}>
+      <div className="wrap sec" style={{ position:'relative', paddingTop:'6rem', zIndex:3 }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'2.5rem', flexWrap:'wrap', gap:'1rem' }}>
           <FadeIn><div className="label white">Curso especializado · Lanzamiento 2026</div></FadeIn>
-          <FadeIn delay={0.1}>
-            <div style={{ display:'flex', alignItems:'center', gap:'0.6rem' }}>
-              <LogoCourse />
-              <span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:500, letterSpacing:'0.08em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>× 404 Tech Found</span>
-            </div>
-          </FadeIn>
+          <FadeIn delay={0.1}><div style={{ display:'flex', alignItems:'center', gap:'0.6rem' }}><LogoCourse /><span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:500, letterSpacing:'0.08em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>× 404 Tech Found</span></div></FadeIn>
         </div>
-
         <div style={{ display:'grid', gridTemplateColumns:'1fr 340px', gap:'3rem', alignItems:'start' }} className="course-grid">
           <div>
-            <FadeIn>
-              <div style={{ display:'flex', gap:'0.6rem', marginBottom:'1.4rem', flexWrap:'wrap' }}>
-                <span className="badge badge-lime">⚡ Early Bird</span>
-                <span className="badge badge-white">8 semanas · Online</span>
-                <span className="badge badge-white">DeepTech + Business</span>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <h2 style={{ fontFamily:'var(--fout)', fontWeight:300, fontSize:'clamp(2.4rem,5vw,4.5rem)', lineHeight:0.9, color:'var(--white)', marginBottom:'0.35rem', letterSpacing:'-0.02em' }}>
-                BIOTECH<br/><strong style={{ fontWeight:800, color:'var(--lime)' }}>SPRINT 01</strong>
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.12}>
-              <p style={{ fontFamily:'var(--fbc)', fontSize:'0.9rem', letterSpacing:'0.1em', textTransform:'uppercase', color:'rgba(255,255,255,0.6)', marginBottom:'1.6rem' }}>Del laboratorio al mercado</p>
-            </FadeIn>
-            <FadeIn delay={0.16}>
-              <p style={{ fontSize:'1rem', color:'rgba(255,255,255,0.82)', lineHeight:1.75, marginBottom:'1.8rem', maxWidth:500, fontWeight:300 }}>
-                Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables. Diseñado para científicos, emprendedores y profesionales de LATAM.
-              </p>
-            </FadeIn>
+            <FadeIn><div style={{ display:'flex', gap:'0.6rem', marginBottom:'1.4rem', flexWrap:'wrap' }}><span className="badge badge-lime">⚡ Early Bird</span><span className="badge badge-white">8 semanas · Online</span><span className="badge badge-white">DeepTech + Business</span></div></FadeIn>
+            <FadeIn delay={0.08}><h2 style={{ fontFamily:'var(--fout)', fontWeight:300, fontSize:'clamp(2.4rem,5vw,4.5rem)', lineHeight:0.9, color:'var(--white)', marginBottom:'0.35rem', letterSpacing:'-0.02em' }}>BIOTECH<br/><strong style={{ fontWeight:800, color:'var(--lime)' }}>SPRINT 01</strong></h2></FadeIn>
+            <FadeIn delay={0.12}><p style={{ fontFamily:'var(--fbc)', fontSize:'0.9rem', letterSpacing:'0.1em', textTransform:'uppercase', color:'rgba(255,255,255,0.6)', marginBottom:'1.6rem' }}>Del laboratorio al mercado</p></FadeIn>
+            <FadeIn delay={0.16}><p style={{ fontSize:'1rem', color:'rgba(255,255,255,0.82)', lineHeight:1.75, marginBottom:'1.8rem', maxWidth:500, fontWeight:300 }}>Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables. Diseñado para científicos, emprendedores y profesionales de LATAM.</p></FadeIn>
             <FadeIn delay={0.2}>
               <ul className="feat on-rose-bg">
-                {features.map(f=>(
-                  <li key={f}>
-                    <span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span>
-                    <span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span>
-                  </li>
-                ))}
+                {features.map(f => (<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}
               </ul>
             </FadeIn>
           </div>
-
           <FadeIn delay={0.15}>
             <div style={{ background:'var(--white)', borderRadius:20, overflow:'hidden', boxShadow:'0 24px 64px rgba(14,14,14,0.25)' }}>
               <div style={{ background:'var(--lime)', padding:'0.7rem 1.4rem', display:'flex', justifyContent:'space-between', alignItems:'center' }}>
@@ -91,30 +84,18 @@ export default function Course() {
                     <div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, color:'var(--t-dark3)', textDecoration:'line-through' }}>$55</div>
                   </div>
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1rem', background:'rgba(193,244,0,0.08)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}>
-                    <div>
-                      <div style={{ fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>Early Bird</div>
-                      <div style={{ fontSize:'0.7rem', color:'var(--t-dark3)', marginTop:'0.1rem' }}>Precio especial de lanzamiento</div>
-                    </div>
+                    <div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>Early Bird</div><div style={{ fontSize:'0.7rem', color:'var(--t-dark3)', marginTop:'0.1rem' }}>Precio especial de lanzamiento</div></div>
                     <div style={{ fontFamily:'var(--fbc)', fontSize:'2.8rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>$40</div>
                   </div>
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem' }}>
-                    <div>
-                      <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Comunidad 404 & Starter</div>
-                      <div style={{ fontSize:'0.68rem', color:'var(--t-dark3)', marginTop:'0.1rem', lineHeight:1.4 }}>Miembros 404 y Biobuilders Starter</div>
-                    </div>
+                    <div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Comunidad 404 & Starter</div><div style={{ fontSize:'0.68rem', color:'var(--t-dark3)', marginTop:'0.1rem', lineHeight:1.4 }}>Miembros 404 y Biobuilders Starter</div></div>
                     <div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--rose)', lineHeight:1 }}>$35</div>
                   </div>
                 </div>
                 <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>
-                  {included.map(inc=>(
-                    <li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}>
-                      <span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}
-                    </li>
-                  ))}
+                  {included.map(inc => (<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}
                 </ul>
-                <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>
-                  Inscribirme al Sprint 01 →
-                </a>
+                <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>Inscribirme al Sprint 01 →</a>
                 <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Cupos limitados · Primera cohorte Q2 2026</p>
               </div>
             </div>
@@ -122,7 +103,7 @@ export default function Course() {
         </div>
       </div>
 
-      <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
+      <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
           <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
         </svg>

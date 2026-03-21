@@ -19,27 +19,37 @@ const NODES = [
   { cx:78,  cy:115, lines:['CONOC.','TERRIT.'],  type:'rose' },
 ]
 
+const orbsRose = [
+  {x:11,y:11,r:3,f:'rgba(243,39,105,0.36)'},{x:22,y:9,r:2,f:'rgba(243,39,105,0.30)'},
+  {x:25,y:21,r:3.5,f:'rgba(243,39,105,0.26)'},{x:11,y:23,r:2.5,f:'rgba(243,39,105,0.32)'},
+  {x:17,y:17,r:1.8,f:'rgba(243,39,105,0.20)'}
+]
+
 export default function BioBuilder() {
   return (
     <section id="biobuilder" className="sec" style={{ background:'var(--cream)', position:'relative', overflow:'hidden' }}>
-      {/* Lime blob */}
-      <div style={{ position:'absolute', top:'-10%', right:'-5%', width:500, height:500, borderRadius:'50%',
-        background:'radial-gradient(circle, rgba(193,244,0,0.3) 0%, transparent 65%)', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', bottom:'0', left:'-5%', width:300, height:300, borderRadius:'50%',
-        background:'radial-gradient(circle, rgba(243,39,105,0.1) 0%, transparent 65%)', pointerEvents:'none' }}/>
+
+      {/* Burbujas punteadas — izquierda arriba, derecha abajo */}
+      <div style={{ position:'absolute', top:'-10%', left:'-3%', width:200, height:200, borderRadius:'50%', background:'rgba(14,14,14,0.03)', border:'2px dashed rgba(14,14,14,0.11)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      <div style={{ position:'absolute', bottom:'-8%', right:'-2%', width:120, height:120, borderRadius:'50%', background:'rgba(243,39,105,0.04)', border:'2px dashed rgba(243,39,105,0.14)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+
+      {/* Célula mediana con orgánulos rose — DERECHA */}
+      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5, repeat:Infinity, ease:'easeInOut', delay:0.8 }}
+        style={{ position:'absolute', top:'28%', right:'4%', width:36, height:36, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
+        <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+          <circle cx="18" cy="18" r="17" fill="rgba(243,39,105,0.52)"/>
+          {orbsRose.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+        </svg>
+      </motion.div>
+
+      {/* Punto pequeño — izquierda */}
+      <motion.div animate={{ y:[0,-9,0] }} transition={{ duration:7, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', bottom:'22%', left:'6%', width:12, height:12, borderRadius:'50%', background:'rgba(243,39,105,0.55)', pointerEvents:'none' }}/>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label" style={{ marginBottom:'1rem' }}>La solución</div></FadeIn>
-        <FadeIn delay={0.08}>
-          <h2 className="t-out t-lg" style={{ marginBottom:'0.9rem', color:'var(--dark)' }}>
-            Formamos <em style={{ fontStyle:'normal', color:'var(--rose)', fontWeight:700 }}>BioBuilders</em>, no MBAs
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.14}>
-          <p className="lead" style={{ color:'var(--t-dark2)', maxWidth:580, marginBottom:'3rem' }}>
-            El BioBuilder es un líder híbrido: domina la ciencia, la tecnología y las finanzas de impacto. El perfil que América Latina necesita para transformar su abundancia biológica en economía real.
-          </p>
-        </FadeIn>
+        <FadeIn delay={0.08}><h2 className="t-out t-lg" style={{ marginBottom:'0.9rem', color:'var(--dark)' }}>Formamos <em style={{ fontStyle:'normal', color:'var(--rose)', fontWeight:700 }}>BioBuilders</em>, no MBAs</h2></FadeIn>
+        <FadeIn delay={0.14}><p className="lead" style={{ color:'var(--t-dark2)', maxWidth:580, marginBottom:'3rem' }}>El BioBuilder es un líder híbrido: domina la ciencia, la tecnología y las finanzas de impacto. El perfil que América Latina necesita para transformar su abundancia biológica en economía real.</p></FadeIn>
 
         <div style={{ display:'grid', gridTemplateColumns:'400px 1fr', gap:'3.5rem', alignItems:'start' }} className="bb-grid">
           <FadeIn delay={0.1}>
@@ -49,37 +59,20 @@ export default function BioBuilder() {
                 <filter id="fl4"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                 <filter id="fr4"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
               </defs>
-              <g className="ring-cw" style={{ transformOrigin:'210px 210px' }}>
-                <circle cx="210" cy="210" r="152" fill="none" stroke="rgba(14,14,14,0.1)" strokeWidth="1.5" strokeDasharray="5 9"/>
-              </g>
-              <g className="ring-ccw" style={{ transformOrigin:'210px 210px' }}>
-                <circle cx="210" cy="210" r="95" fill="none" stroke="rgba(14,14,14,0.15)" strokeWidth="1.5" strokeDasharray="2 7"/>
-              </g>
-              {NODES.map((n,i)=>(
-                <line key={i} x1="210" y1="210" x2={n.cx} y2={n.cy}
-                  stroke={n.type==='lime'?'rgba(14,14,14,0.12)':'rgba(243,39,105,0.2)'}
-                  strokeWidth="1.2" strokeDasharray="3 6"/>
-              ))}
+              <g className="ring-cw" style={{ transformOrigin:'210px 210px' }}><circle cx="210" cy="210" r="152" fill="none" stroke="rgba(14,14,14,0.1)" strokeWidth="1.5" strokeDasharray="5 9"/></g>
+              <g className="ring-ccw" style={{ transformOrigin:'210px 210px' }}><circle cx="210" cy="210" r="95" fill="none" stroke="rgba(14,14,14,0.15)" strokeWidth="1.5" strokeDasharray="2 7"/></g>
+              {NODES.map((n,i) => (<line key={i} x1="210" y1="210" x2={n.cx} y2={n.cy} stroke={n.type==='lime'?'rgba(14,14,14,0.12)':'rgba(243,39,105,0.2)'} strokeWidth="1.2" strokeDasharray="3 6"/>))}
               <circle cx="210" cy="210" r="72" fill="url(#gCl)" className="gpulse"/>
               <circle cx="210" cy="210" r="60" fill="var(--lime)" stroke="var(--dark)" strokeWidth="2" filter="url(#fl4)"/>
               <text x="210" y="200" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="15" fill="var(--dark)" letterSpacing="2">BIO</text>
               <text x="210" y="218" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="15" fill="var(--dark)" letterSpacing="2">BUILDER</text>
               <text x="210" y="234" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="400" fontSize="8.5" fill="rgba(14,14,14,0.55)" letterSpacing="1">LÍDER HÍBRIDO</text>
-              {NODES.map((n,i)=>{
-                const isL=n.type==='lime'
-                const nodeFill=isL?'var(--lime)':'var(--rose)'
-                const nodeStroke=isL?'var(--dark)':'var(--white)'
-                const textFill=isL?'var(--dark)':'var(--white)'
-                const gf=isL?'url(#fl4)':'url(#fr4)'
+              {NODES.map((n,i) => {
+                const isL = n.type==='lime'
                 return (
                   <g key={i} className="npulse" style={{ animationDelay:`${i*0.4}s`, transformOrigin:`${n.cx}px ${n.cy}px` }}>
-                    <circle cx={n.cx} cy={n.cy} r="30" fill={nodeFill} stroke={nodeStroke} strokeWidth="1.5" filter={gf}/>
-                    {n.lines.map((line,li)=>(
-                      <text key={li} x={n.cx} y={n.cy - 5 + li*13}
-                        textAnchor="middle" fontFamily="Barlow Condensed,sans-serif"
-                        fontWeight="700" fontSize="9.5" fill={textFill} letterSpacing="0.8"
-                      >{line}</text>
-                    ))}
+                    <circle cx={n.cx} cy={n.cy} r="30" fill={isL?'var(--lime)':'var(--rose)'} stroke={isL?'var(--dark)':'var(--white)'} strokeWidth="1.5" filter={isL?'url(#fl4)':'url(#fr4)'}/>
+                    {n.lines.map((line,li) => (<text key={li} x={n.cx} y={n.cy - 5 + li*13} textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="9.5" fill={isL?'var(--dark)':'var(--white)'} letterSpacing="0.8">{line}</text>))}
                   </g>
                 )
               })}
@@ -89,21 +82,16 @@ export default function BioBuilder() {
               <text x="262" y="408" fontFamily="Barlow Condensed,sans-serif" fontSize="9.5" fill="var(--t-dark2)">Conservación territorial</text>
             </svg>
           </FadeIn>
-
           <FadeIn delay={0.18}>
             <div style={{ background:'var(--white)', borderRadius:16, overflow:'hidden', border:'1px solid rgba(14,14,14,0.08)', boxShadow:'0 4px 32px rgba(14,14,14,0.08)' }}>
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', background:'var(--cream)' }}>
                 <div style={{ padding:'0.85rem 1.1rem', fontFamily:'var(--fbc)', fontSize:'0.78rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--t-dark3)', borderRight:'1px solid rgba(14,14,14,0.08)' }}>MBA Tradicional</div>
                 <div style={{ padding:'0.85rem 1.1rem', fontFamily:'var(--fbc)', fontSize:'0.78rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>BioBuilder BBS</div>
               </div>
-              {compare.map(([mba,bb],i)=>(
+              {compare.map(([mba,bb],i) => (
                 <div key={i} style={{ display:'grid', gridTemplateColumns:'1fr 1fr', borderTop:'1px solid rgba(14,14,14,0.06)' }}>
-                  <div style={{ padding:'0.82rem 1.1rem', fontSize:'0.83rem', lineHeight:1.52, color:'var(--t-dark3)', display:'flex', alignItems:'flex-start', gap:'0.4rem', borderRight:'1px solid rgba(14,14,14,0.06)' }}>
-                    <span style={{ color:'rgba(14,14,14,0.25)', flexShrink:0 }}>—</span>{mba}
-                  </div>
-                  <div style={{ padding:'0.82rem 1.1rem', fontSize:'0.83rem', lineHeight:1.52, color:'var(--t-dark)', background:i%2===0?'rgba(193,244,0,0.04)':'rgba(193,244,0,0.02)', display:'flex', alignItems:'flex-start', gap:'0.4rem' }}>
-                    <span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>→</span>{bb}
-                  </div>
+                  <div style={{ padding:'0.82rem 1.1rem', fontSize:'0.83rem', lineHeight:1.52, color:'var(--t-dark3)', display:'flex', alignItems:'flex-start', gap:'0.4rem', borderRight:'1px solid rgba(14,14,14,0.06)' }}><span style={{ color:'rgba(14,14,14,0.25)', flexShrink:0 }}>—</span>{mba}</div>
+                  <div style={{ padding:'0.82rem 1.1rem', fontSize:'0.83rem', lineHeight:1.52, color:'var(--t-dark)', background:i%2===0?'rgba(193,244,0,0.04)':'rgba(193,244,0,0.02)', display:'flex', alignItems:'flex-start', gap:'0.4rem' }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>→</span>{bb}</div>
                 </div>
               ))}
             </div>

@@ -8,6 +8,12 @@ const items = [
   { n:'04', title:'Capital en fuga', body:'El capital abandona la región por falta de valor agregado y marcos de gobernanza claros.' },
 ]
 
+const orbsLime = [
+  {x:9,y:9,r:3,f:'rgba(193,244,0,0.38)'},{x:20,y:7,r:2,f:'rgba(193,244,0,0.30)'},
+  {x:23,y:17,r:3.5,f:'rgba(193,244,0,0.28)'},{x:9,y:20,r:2.5,f:'rgba(193,244,0,0.34)'},
+  {x:15,y:15,r:1.8,f:'rgba(193,244,0,0.20)'}
+]
+
 export default function Problem() {
   return (
     <section className="sec on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
@@ -17,8 +23,22 @@ export default function Problem() {
         </svg>
       </div>
 
-      <div style={{ position:'absolute', top:'20%', right:'-5%', width:400, height:400, borderRadius:'50%',
-        background:'radial-gradient(circle, rgba(193,244,0,0.08) 0%, transparent 70%)', pointerEvents:'none' }}/>
+      {/* Burbujas punteadas — derecha arriba, izquierda abajo */}
+      <div style={{ position:'absolute', top:'-16%', right:'4%', width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.13)', animation:'spin-cw 24s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      <div style={{ position:'absolute', bottom:'-14%', left:'5%', width:80, height:80, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.10)', animation:'spin-ccw 32s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+
+      {/* Célula mediana — IZQUIERDA para balance */}
+      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', top:'28%', left:'5%', width:34, height:34, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
+        <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+          <circle cx="17" cy="17" r="16" fill="rgba(193,244,0,0.55)"/>
+          {orbsLime.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+        </svg>
+      </motion.div>
+
+      {/* Punto pequeño — derecha */}
+      <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6.5, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', bottom:'25%', right:'8%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.6)', zIndex:2, pointerEvents:'none' }}/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El problema</div></FadeIn>
@@ -35,11 +55,8 @@ export default function Problem() {
         <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'1.5rem' }} className="prob-grid">
           {items.map((p,i) => (
             <FadeIn key={p.n} delay={0.08*i}>
-              <motion.div
-                whileHover={{ y:-6, background:'rgba(193,244,0,0.06)' }}
-                transition={{ duration:0.2 }}
-                style={{ background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.08)', borderRadius:16, padding:'1.8rem 1.5rem', height:'100%', display:'flex', flexDirection:'column', gap:'0.7rem', cursor:'default', transition:'background 0.2s' }}
-              >
+              <motion.div whileHover={{ y:-6, background:'rgba(193,244,0,0.06)' }} transition={{ duration:0.2 }}
+                style={{ background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.08)', borderRadius:16, padding:'1.8rem 1.5rem', height:'100%', display:'flex', flexDirection:'column', gap:'0.7rem', cursor:'default', transition:'background 0.2s' }}>
                 <div style={{ fontFamily:'var(--fbc)', fontSize:'2.5rem', fontWeight:700, color:'rgba(193,244,0,0.18)', lineHeight:1 }}>{p.n}</div>
                 <h3 style={{ fontFamily:'var(--fout)', fontSize:'0.95rem', fontWeight:600, color:'var(--white)', lineHeight:1.35 }}>{p.title}</h3>
                 <p style={{ fontSize:'0.85rem', lineHeight:1.65, color:'var(--t-white3)' }}>{p.body}</p>

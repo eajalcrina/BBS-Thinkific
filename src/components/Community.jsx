@@ -1,12 +1,36 @@
 import { useState } from 'react'
 import FadeIn from './FadeIn.jsx'
 
+const COUNTRY_CODES = [
+  { code: '+51', flag: '🇵🇪', name: 'PE' },
+  { code: '+57', flag: '🇨🇴', name: 'CO' },
+  { code: '+56', flag: '🇨🇱', name: 'CL' },
+  { code: '+52', flag: '🇲🇽', name: 'MX' },
+  { code: '+54', flag: '🇦🇷', name: 'AR' },
+  { code: '+55', flag: '🇧🇷', name: 'BR' },
+  { code: '+593', flag: '🇪🇨', name: 'EC' },
+  { code: '+591', flag: '🇧🇴', name: 'BO' },
+  { code: '+595', flag: '🇵🇾', name: 'PY' },
+  { code: '+598', flag: '🇺🇾', name: 'UY' },
+  { code: '+58', flag: '🇻🇪', name: 'VE' },
+  { code: '+1',  flag: '🇺🇸', name: 'US' },
+  { code: '+34', flag: '🇪🇸', name: 'ES' },
+]
+
 export default function Community() {
-  const [name,setName]=useState(''), [email,setEmail]=useState(''), [country,setCountry]=useState(''), [plan,setPlan]=useState(''), [err,setErr]=useState(false), [done,setDone]=useState(false), [loading,setLoading]=useState(false)
+  const [firstName, setFirstName] = useState('')
+  const [lastName,  setLastName]  = useState('')
+  const [email,     setEmail]     = useState('')
+  const [dialCode,  setDialCode]  = useState('+51')
+  const [phone,     setPhone]     = useState('')
+  const [country,   setCountry]   = useState('')
+  const [err,       setErr]       = useState(false)
+  const [done,      setDone]      = useState(false)
+  const [loading,   setLoading]   = useState(false)
 
   const submit = async () => {
-    const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    if(!name||!ok){setErr(true);return}
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    if (!firstName || !lastName || !validEmail) { setErr(true); return }
 
     setLoading(true)
 
@@ -14,14 +38,16 @@ export default function Community() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, country, plan })
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone: phone ? `${dialCode}${phone}` : '',
+          country
+        })
       })
 
-      if(!res.ok){
-        setErr(true)
-        setLoading(false)
-        return
-      }
+      if (!res.ok) { setErr(true); setLoading(false); return }
 
       setErr(false)
       setDone(true)
@@ -59,6 +85,7 @@ export default function Community() {
 
         <FadeIn delay={0.18}>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'2rem', alignItems:'start' }} className="comm-grid">
+
             <div style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
               <div style={{ background:'var(--white)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 32px rgba(14,14,14,0.1)', border:'2px solid transparent', transition:'border-color 0.2s' }}
                 onMouseEnter={e=>e.currentTarget.style.borderColor='var(--lime-d)'}
@@ -102,21 +129,66 @@ export default function Community() {
               <div style={{ background:'var(--white)', borderRadius:20, padding:'2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)' }}>
                 <div style={{ fontFamily:'var(--fout)', fontSize:'1.3rem', fontWeight:600, color:'var(--dark)', marginBottom:'0.25rem' }}>Regístrate gratis</div>
                 <p style={{ fontSize:'0.85rem', color:'var(--t-dark2)', marginBottom:'1.3rem' }}>Empieza con la membresía Starter sin costo. Te contactamos con los accesos.</p>
+
                 <div style={{ display:'flex', flexDirection:'column', gap:'0.65rem' }}>
-                  <input type="text" value={name} onChange={e=>{setName(e.target.value);setErr(false)}} placeholder="Nombre completo" className="field"/>
-                  <input type="email" value={email} onChange={e=>{setEmail(e.target.value);setErr(false)}} placeholder="Correo electrónico" className={`field${err&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)?' field-err':''}`}/>
-                  <input type="text" value={country} onChange={e=>setCountry(e.target.value)} placeholder="País" className="field"/>
-                  <select value={plan} onChange={e=>setPlan(e.target.value)} className="field" style={{ WebkitAppearance:'none', color:plan?'var(--dark)':'rgba(14,14,14,0.35)' }}>
-                    <option value="" disabled>¿Qué te interesa?</option>
-                    <option value="starter">Membresía Starter (gratis)</option>
-                    <option value="pro">Membresía PRO — $87/mes</option>
-                    <option value="curso">Curso Biotech Sprint 01</option>
-                    <option value="todo">Todo lo anterior</option>
-                  </select>
+
+                  <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.65rem' }}>
+                    <input
+                      type="text"
+                      value={firstName}
+                      onChange={e=>{ setFirstName(e.target.value); setErr(false) }}
+                      placeholder="Nombres"
+                      className={`field${err && !firstName ? ' field-err' : ''}`}
+                    />
+                    <input
+                      type="text"
+                      value={lastName}
+                      onChange={e=>{ setLastName(e.target.value); setErr(false) }}
+                      placeholder="Apellidos"
+                      className={`field${err && !lastName ? ' field-err' : ''}`}
+                    />
+                  </div>
+
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e=>{ setEmail(e.target.value); setErr(false) }}
+                    placeholder="Correo electrónico"
+                    className={`field${err && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? ' field-err' : ''}`}
+                  />
+
+                  <div style={{ display:'flex', gap:'0.5rem' }}>
+                    <select
+                      value={dialCode}
+                      onChange={e=>setDialCode(e.target.value)}
+                      className="field"
+                      style={{ width:110, flexShrink:0, WebkitAppearance:'none', paddingRight:'0.5rem' }}
+                    >
+                      {COUNTRY_CODES.map(c=>(
+                        <option key={c.code+c.name} value={c.code}>{c.flag} {c.code}</option>
+                      ))}
+                    </select>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={e=>setPhone(e.target.value.replace(/\D/g,''))}
+                      placeholder="Celular"
+                      className="field"
+                      style={{ flex:1 }}
+                    />
+                  </div>
+
+                  <input
+                    type="text"
+                    value={country}
+                    onChange={e=>setCountry(e.target.value)}
+                    placeholder="País"
+                    className="field"
+                  />
 
                   {err && (
                     <p style={{ fontSize:'0.78rem', color:'var(--rose)', margin:'0.1rem 0' }}>
-                      Revisa tu nombre y correo antes de continuar.
+                      Completa nombres, apellidos y correo para continuar.
                     </p>
                   )}
 

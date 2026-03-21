@@ -41,21 +41,11 @@ export default function Hero() {
             No somos una escuela de negocios. Somos la plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en activos económicos de impacto global.
           </motion.p>
 
-          <motion.div variants={it} style={{ display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'3.5rem' }}>
+          <motion.div variants={it} style={{ display:'flex', gap:'1rem', flexWrap:'wrap' }}>
             <a href="#curso" className="btn btn-rose btn-lg">Ver Biotech Sprint 01 →</a>
             <a href="#libro" className="btn btn-outline btn-lg">Descubre el Bio Business Playbook vol. 1</a>
           </motion.div>
 
-          <motion.div variants={it}
-            style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'0', background:'rgba(14,14,14,0.08)', borderRadius:16, overflow:'hidden', maxWidth:560 }}
-          >
-            {[['$55','Precio regular'],['$0','Membresía Starter'],['Q2 2026','Primera cohorte']].map(([v,l],i) => (
-              <div key={v} style={{ padding:'1.2rem 1.4rem', borderRight: i<2 ? '1px solid rgba(14,14,14,0.1)' : 'none' }}>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--dark)', lineHeight:1, marginBottom:'0.18rem' }}>{v}</div>
-                <div style={{ fontSize:'0.75rem', color:'var(--t-dark2)' }}>{l}</div>
-              </div>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
 

@@ -13,6 +13,13 @@ const included = ['8 módulos en video','Sesiones en vivo con mentores','Framewo
 
 const WHATSAPP_SPRINT = 'https://wa.me/51974620309?text=Hola%2C%20estoy%20interesado%20en%20el%20curso%20Biotech%20Sprint%2001'
 
+const LogoCourse = () => (
+  <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1rem', letterSpacing: '0.04em', lineHeight: 1, userSelect: 'none' }}>
+    <span style={{ fontWeight: 700, color: 'rgba(255,255,255,0.9)' }}>BIO_BUSINESS</span>
+    <span style={{ fontWeight: 400, fontStyle: 'italic', color: 'var(--lime)', marginLeft: '0.3em' }}>SCHOOL</span>
+  </span>
+)
+
 export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
@@ -31,7 +38,7 @@ export default function Course() {
           <FadeIn><div className="label white">Curso especializado · Lanzamiento 2026</div></FadeIn>
           <FadeIn delay={0.1}>
             <div style={{ display:'flex', alignItems:'center', gap:'0.6rem' }}>
-              <img src="/logo-red.png" alt="BBS" style={{ height:19, width:'auto', filter:'brightness(0) invert(1)', opacity:0.9 }}/>
+              <LogoCourse />
               <span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:500, letterSpacing:'0.08em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>× 404 Tech Found</span>
             </div>
           </FadeIn>
@@ -77,7 +84,6 @@ export default function Course() {
                 <span style={{ fontFamily:'var(--fbc)', fontSize:'0.7rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--dark)' }}>Precios de lanzamiento</span>
                 <span style={{ fontFamily:'var(--fbc)', fontSize:'0.7rem', fontWeight:600, color:'var(--dark)', opacity:0.6 }}>Q2 2026</span>
               </div>
-
               <div style={{ padding:'1.5rem' }}>
                 <div style={{ display:'flex', flexDirection:'column', gap:0, marginBottom:'1.4rem', border:'1px solid rgba(14,14,14,0.08)', borderRadius:12, overflow:'hidden' }}>
                   <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem', background:'var(--cream)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}>
@@ -99,7 +105,6 @@ export default function Course() {
                     <div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--rose)', lineHeight:1 }}>$35</div>
                   </div>
                 </div>
-
                 <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>
                   {included.map(inc=>(
                     <li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}>
@@ -107,14 +112,7 @@ export default function Course() {
                     </li>
                   ))}
                 </ul>
-
-                <a
-                  href={WHATSAPP_SPRINT}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-dark btn-full btn-lg"
-                  style={{ marginBottom:'0.5rem' }}
-                >
+                <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>
                   Inscribirme al Sprint 01 →
                 </a>
                 <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Cupos limitados · Primera cohorte Q2 2026</p>

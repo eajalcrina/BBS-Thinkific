@@ -1,9 +1,18 @@
+const LogoFooter = () => (
+  <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.15rem', letterSpacing: '0.04em', lineHeight: 1, userSelect: 'none' }}>
+    <span style={{ fontWeight: 700, color: 'var(--lime)' }}>BIO_BUSINESS</span>
+    <span style={{ fontWeight: 400, fontStyle: 'italic', color: 'rgba(255,255,255,0.6)', marginLeft: '0.3em' }}>SCHOOL</span>
+  </span>
+)
+
 export default function Footer() {
   return (
     <footer style={{ background: 'var(--dark)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
       <div className="wrap" style={{ padding: '3rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
         <div>
-          <img src="/logo-bbs-green.svg" alt="Bio Business School" style={{ height: 22, width: 'auto', marginBottom: '0.5rem' }} />
+          <div style={{ marginBottom: '0.5rem' }}>
+            <LogoFooter />
+          </div>
           <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.35)' }}>Powered by Redesign Lab · redesignlab.org</div>
         </div>
         <div style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }} className="footer-cols">

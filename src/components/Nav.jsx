@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
+const Logo = ({ onLime }) => (
+  <span style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: '1.15rem', letterSpacing: '0.04em', lineHeight: 1, userSelect: 'none' }}>
+    <span style={{ fontWeight: 700, color: onLime ? 'var(--dark)' : 'var(--dark)' }}>BIO_BUSINESS</span>
+    <span style={{ fontWeight: 400, fontStyle: 'italic', color: onLime ? 'var(--dark)' : 'var(--rose)', marginLeft: '0.3em' }}>SCHOOL</span>
+  </span>
+)
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -24,16 +31,13 @@ export default function Nav() {
     >
       <div className="wrap" style={{ height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '2rem' }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-          <img
-            src={scrolled ? '/logo-bbs-green.svg' : '/logo-bbs.svg'}
-            alt="Bio Business School"
-            style={{ height: 22, width: 'auto' }}
-          />
+          <Logo onLime={!scrolled} />
         </a>
         <ul style={{ display: 'flex', gap: '1.8rem', listStyle: 'none' }} className="nav-ul">
           {[['#biobuilder','BioBuilder'],['#curso','Sprint 01'],['#libro','Playbook'],['#comunidad','Comunidad'],['#equipo','Equipo']].map(([h, l]) => (
             <li key={h}>
-              <a href={h} style={{ fontFamily: 'var(--fbc)', fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: scrolled ? 'rgba(14,14,14,0.65)' : 'rgba(14,14,14,0.7)', textDecoration: 'none', transition: 'color 0.18s' }}
+              <a href={h}
+                style={{ fontFamily: 'var(--fbc)', fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: scrolled ? 'rgba(14,14,14,0.65)' : 'rgba(14,14,14,0.7)', textDecoration: 'none', transition: 'color 0.18s' }}
                 onMouseEnter={e => e.target.style.color = 'var(--dark)'}
                 onMouseLeave={e => e.target.style.color = scrolled ? 'rgba(14,14,14,0.65)' : 'rgba(14,14,14,0.7)'}
               >{l}</a>

@@ -13,9 +13,9 @@ const included = ['8 módulos en video','Sesiones en vivo con mentores','Framewo
 const WHATSAPP_SPRINT = 'https://wa.me/51974620309?text=Hola%2C%20estoy%20interesado%20en%20el%20curso%20Biotech%20Sprint%2001'
 
 const orbsLime = [
-  {x:11,y:10,r:3.5,f:'rgba(193,244,0,0.22)'},{x:25,y:9,r:2.5,f:'rgba(193,244,0,0.18)'},
-  {x:28,y:22,r:4,f:'rgba(193,244,0,0.16)'},{x:12,y:25,r:3,f:'rgba(193,244,0,0.20)'},
-  {x:19,y:18,r:2,f:'rgba(193,244,0,0.13)'}
+  {x:10,y:9,r:3,f:'rgba(193,244,0,0.22)'},{x:23,y:8,r:2,f:'rgba(193,244,0,0.18)'},
+  {x:26,y:20,r:3.5,f:'rgba(193,244,0,0.16)'},{x:11,y:23,r:2.5,f:'rgba(193,244,0,0.20)'},
+  {x:17,y:16,r:1.8,f:'rgba(193,244,0,0.13)'}
 ]
 
 const LogoCourse = () => (
@@ -28,20 +28,20 @@ const LogoCourse = () => (
 export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
-      {/* SIN ola superior — BioBuilder ya hace la transición cream→rose */}
 
-      {/* BLOQUE IZQUIERDA: burbuja punteada + célula con orgánulos */}
-      <div style={{ position:'absolute', top:'-18%', left:'-2%', width:150, height:150, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', top:'22%', left:'5%', width:40, height:40, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
-        <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-          <circle cx="20" cy="20" r="19" fill="rgba(193,244,0,0.28)"/>
-          {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-        </svg>
-      </motion.div>
+      {/* CÉLULA COMPLETA izquierda — núcleo descentrado */}
+      <div style={{ position:'absolute', top:'-18%', left:'-2%', width:145, height:145, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+        <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
+          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:32, height:32, borderRadius:'50%', overflow:'hidden' }}>
+          <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="16" cy="16" r="15" fill="rgba(193,244,0,0.28)"/>
+            {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          </svg>
+        </motion.div>
+      </div>
 
-      {/* Burbuja pequeña sola DERECHA */}
-      <div style={{ position:'absolute', bottom:'-16%', right:'4%', width:85, height:85, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.18)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta DERECHA */}
+      <div style={{ position:'absolute', bottom:'-16%', right:'4%', width:82, height:82, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.18)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
         style={{ position:'absolute', bottom:'28%', right:'8%', width:13, height:13, borderRadius:'50%', background:'rgba(193,244,0,0.45)', zIndex:2, pointerEvents:'none' }}/>
 
@@ -56,11 +56,7 @@ export default function Course() {
             <FadeIn delay={0.08}><h2 style={{ fontFamily:'var(--fout)', fontWeight:300, fontSize:'clamp(2.4rem,5vw,4.5rem)', lineHeight:0.9, color:'var(--white)', marginBottom:'0.35rem', letterSpacing:'-0.02em' }}>BIOTECH<br/><strong style={{ fontWeight:800, color:'var(--lime)' }}>SPRINT 01</strong></h2></FadeIn>
             <FadeIn delay={0.12}><p style={{ fontFamily:'var(--fbc)', fontSize:'0.9rem', letterSpacing:'0.1em', textTransform:'uppercase', color:'rgba(255,255,255,0.6)', marginBottom:'1.6rem' }}>Del laboratorio al mercado</p></FadeIn>
             <FadeIn delay={0.16}><p style={{ fontSize:'1rem', color:'rgba(255,255,255,0.82)', lineHeight:1.75, marginBottom:'1.8rem', maxWidth:500, fontWeight:300 }}>Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables. Diseñado para científicos, emprendedores y profesionales de LATAM.</p></FadeIn>
-            <FadeIn delay={0.2}>
-              <ul className="feat on-rose-bg">
-                {features.map(f=>(<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}
-              </ul>
-            </FadeIn>
+            <FadeIn delay={0.2}><ul className="feat on-rose-bg">{features.map(f=>(<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}</ul></FadeIn>
           </div>
           <FadeIn delay={0.15}>
             <div style={{ background:'var(--white)', borderRadius:20, overflow:'hidden', boxShadow:'0 24px 64px rgba(14,14,14,0.25)' }}>
@@ -94,10 +90,11 @@ export default function Course() {
         </div>
       </div>
 
-      {/* Ola inferior: rose → white (limpia, sin franja verde) */}
+      {/* TRANSICIÓN FUSIONADA: rose → white */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
-        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
+        <svg viewBox="0 0 1440 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:110, display:'block' }}>
+          <path d="M0,28 C200,90 440,5 720,68 C1000,105 1240,22 1440,55 L1440,110 L0,110 Z" fill="rgba(255,255,255,0.30)"/>
+          <path d="M0,18 C220,85 455,2 725,62 C1005,100 1240,16 1440,46 L1440,110 L0,110 Z" fill="var(--white)"/>
         </svg>
       </div>
       <style>{`@media(max-width:860px){.course-grid{grid-template-columns:1fr!important}}`}</style>

@@ -9,30 +9,30 @@ const founders = [
 ]
 
 const orbsRose = [
-  {x:10,y:9,r:3,f:'rgba(243,39,105,0.34)'},{x:21,y:8,r:2,f:'rgba(243,39,105,0.28)'},
-  {x:23,y:19,r:3.5,f:'rgba(243,39,105,0.26)'},{x:9,y:21,r:2.5,f:'rgba(243,39,105,0.30)'},
-  {x:15,y:15,r:1.8,f:'rgba(243,39,105,0.18)'}
+  {x:9,y:8,r:2.5,f:'rgba(243,39,105,0.34)'},{x:19,y:7,r:1.8,f:'rgba(243,39,105,0.28)'},
+  {x:21,y:17,r:3,f:'rgba(243,39,105,0.26)'},{x:8,y:19,r:2,f:'rgba(243,39,105,0.30)'},
+  {x:14,y:14,r:1.5,f:'rgba(243,39,105,0.18)'}
 ]
 
 export default function Team() {
   return (
     <section id="equipo" className="sec-t on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
-      {/* SIN ola superior — Community ya hace la transición lime→dark */}
 
-      {/* Burbuja pequeña sola IZQUIERDA */}
-      <div style={{ position:'absolute', top:'-16%', left:'3%', width:80, height:80, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.18)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta IZQUIERDA */}
+      <div style={{ position:'absolute', top:'-16%', left:'3%', width:75, height:75, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.18)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
         style={{ position:'absolute', bottom:'28%', left:'6%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.55)', pointerEvents:'none' }}/>
 
-      {/* BLOQUE DERECHA: burbuja punteada + célula con orgánulos */}
-      <div style={{ position:'absolute', top:'-18%', right:'2%', width:115, height:115, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut', delay:0.6 }}
-        style={{ position:'absolute', top:'24%', right:'5%', width:34, height:34, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
-        <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-          <circle cx="17" cy="17" r="16" fill="rgba(243,39,105,0.50)"/>
-          {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-        </svg>
-      </motion.div>
+      {/* CÉLULA COMPLETA derecha — núcleo descentrado */}
+      <div style={{ position:'absolute', top:'-18%', right:'2%', width:112, height:112, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+        <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut', delay:0.6 }}
+          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:26, height:26, borderRadius:'50%', overflow:'hidden' }}>
+          <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="13" cy="13" r="12" fill="rgba(243,39,105,0.50)"/>
+            {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          </svg>
+        </motion.div>
+      </div>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El equipo</div></FadeIn>

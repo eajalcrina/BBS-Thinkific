@@ -7,32 +7,31 @@ const features = [
   'Gobernanza de origen y protección de biodiversidad',
   'Casos reales de la Amazonía y ecosistemas críticos',
 ]
-
 const orbsRose = [
-  {x:8,y:8,r:2.5,f:'rgba(243,39,105,0.34)'},{x:18,y:6,r:2,f:'rgba(243,39,105,0.28)'},
-  {x:21,y:17,r:3,f:'rgba(243,39,105,0.26)'},{x:8,y:19,r:2,f:'rgba(243,39,105,0.30)'},
-  {x:14,y:14,r:1.5,f:'rgba(243,39,105,0.18)'}
+  {x:7,y:7,r:2,f:'rgba(243,39,105,0.34)'},{x:16,y:6,r:1.5,f:'rgba(243,39,105,0.28)'},
+  {x:19,y:15,r:2.5,f:'rgba(243,39,105,0.26)'},{x:7,y:17,r:1.8,f:'rgba(243,39,105,0.30)'},
+  {x:13,y:12,r:1.2,f:'rgba(243,39,105,0.18)'}
 ]
 
 export default function Book() {
   return (
     <section id="libro" className="sec-t" style={{ background:'var(--white)', position:'relative', overflow:'hidden' }}>
-      {/* SIN franja lime top, SIN ola superior — Course ya hace la transición rose→white */}
 
-      {/* Burbuja pequeña sola IZQUIERDA */}
-      <div style={{ position:'absolute', top:'-12%', left:'-2%', width:80, height:80, borderRadius:'50%', background:'rgba(193,244,0,0.04)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-ccw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta IZQUIERDA */}
+      <div style={{ position:'absolute', top:'-12%', left:'-2%', width:75, height:75, borderRadius:'50%', background:'rgba(193,244,0,0.04)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-ccw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
         style={{ position:'absolute', bottom:'30%', left:'4%', width:11, height:11, borderRadius:'50%', background:'rgba(243,39,105,0.45)', pointerEvents:'none' }}/>
 
-      {/* BLOQUE DERECHA: burbuja punteada + célula con orgánulos */}
-      <div style={{ position:'absolute', bottom:'-18%', right:'-1%', width:130, height:130, borderRadius:'50%', background:'rgba(193,244,0,0.07)', border:'2px dashed rgba(193,244,0,0.28)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:7, repeat:Infinity, ease:'easeInOut', delay:0.5 }}
-        style={{ position:'absolute', top:'22%', right:'5%', width:32, height:32, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
-        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-          <circle cx="16" cy="16" r="15" fill="rgba(243,39,105,0.52)"/>
-          {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-        </svg>
-      </motion.div>
+      {/* CÉLULA COMPLETA derecha — núcleo centrado */}
+      <div style={{ position:'absolute', bottom:'-18%', right:'-1%', width:125, height:125, borderRadius:'50%', background:'rgba(193,244,0,0.07)', border:'2px dashed rgba(193,244,0,0.28)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+        <motion.div animate={{ y:[0,-9,0] }} transition={{ duration:7, repeat:Infinity, ease:'easeInOut', delay:0.5 }}
+          style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:26, height:26, borderRadius:'50%', overflow:'hidden' }}>
+          <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="13" cy="13" r="12" fill="rgba(243,39,105,0.52)"/>
+            {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          </svg>
+        </motion.div>
+      </div>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label dark" style={{ marginBottom:'1rem' }}>Publicación · Vol. 1 de 3</div></FadeIn>
@@ -75,16 +74,15 @@ export default function Book() {
                 style={{ position:'relative', zIndex:1, width:'100%', borderRadius:16, display:'block', objectFit:'cover', boxShadow:'0 32px 72px rgba(14,14,14,0.22), 0 8px 24px rgba(14,14,14,0.14)', filter:'brightness(1.02) saturate(1.08) contrast(1.02)' }}
                 initial={{ scale:1.04, opacity:0, y:16 }} whileInView={{ scale:1, opacity:1, y:0 }} whileHover={{ scale:1.02, y:-4 }}
                 viewport={{ once:true }} transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}/>
-              {/* SIN badge $25 flotante — precio ya está en el texto */}
             </div>
           </FadeIn>
         </div>
       </div>
 
-      {/* Ola inferior: white → lime gradient */}
+      {/* Ola simple white → lime (Community es lime sólido, transición limpia) */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--lime)"/>
+          <path d="M0,30 C360,50 1080,10 1440,30 L1440,60 L0,60 Z" fill="var(--lime)"/>
         </svg>
       </div>
       <style>{`@media(max-width:860px){.book-grid{grid-template-columns:1fr!important}}`}</style>

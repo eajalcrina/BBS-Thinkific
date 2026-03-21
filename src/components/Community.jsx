@@ -11,9 +11,9 @@ const COUNTRY_CODES = [
 const WHATSAPP_URL = 'https://chat.whatsapp.com/GSDVsK013hnErk7SWgUIqB?mode=gi_t'
 
 const orbsRose = [
-  {x:10,y:10,r:3,f:'rgba(243,39,105,0.22)'},{x:22,y:8,r:2,f:'rgba(243,39,105,0.18)'},
-  {x:24,y:20,r:3.5,f:'rgba(243,39,105,0.16)'},{x:10,y:22,r:2.5,f:'rgba(243,39,105,0.20)'},
-  {x:16,y:16,r:1.8,f:'rgba(243,39,105,0.13)'}
+  {x:9,y:9,r:2.5,f:'rgba(243,39,105,0.22)'},{x:20,y:8,r:1.8,f:'rgba(243,39,105,0.18)'},
+  {x:22,y:18,r:3,f:'rgba(243,39,105,0.16)'},{x:9,y:20,r:2,f:'rgba(243,39,105,0.20)'},
+  {x:15,y:14,r:1.5,f:'rgba(243,39,105,0.13)'}
 ]
 
 export default function Community() {
@@ -41,20 +41,21 @@ export default function Community() {
   }
 
   return (
-    <section id="comunidad" style={{ background:'linear-gradient(160deg, var(--lime) 0%, #E8FF80 40%, var(--lime-lt) 100%)', position:'relative', overflow:'hidden' }}>
-      {/* SIN ola superior — Book ya hace la transición white→lime */}
+    <section id="comunidad" style={{ background:'var(--lime)', position:'relative', overflow:'hidden' }}>
+      {/* Fondo lime PLANO — sin gradiente para transición limpia con Book */}
 
-      {/* BLOQUE IZQUIERDA: burbuja punteada + célula con orgánulos */}
-      <div style={{ position:'absolute', top:'6%', left:'2%', width:130, height:130, borderRadius:'50%', background:'rgba(255,255,255,0.09)', border:'2px dashed rgba(255,255,255,0.46)', animation:'spin-cw 26s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', top:'12%', left:'18%', width:36, height:36, borderRadius:'50%', overflow:'hidden', animation:'float-y 5s ease-in-out infinite', pointerEvents:'none' }}>
-        <svg width="36" height="36" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-          <circle cx="18" cy="18" r="17" fill="rgba(243,39,105,0.30)"/>
-          {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-        </svg>
+      {/* CÉLULA COMPLETA izquierda — núcleo centrado */}
+      <div style={{ position:'absolute', top:'5%', left:'2%', width:118, height:118, borderRadius:'50%', background:'rgba(255,255,255,0.09)', border:'2px dashed rgba(255,255,255,0.46)', animation:'spin-cw 26s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
+        <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:26, height:26, borderRadius:'50%', overflow:'hidden', animation:'float-y 5s ease-in-out infinite' }}>
+          <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+            <circle cx="13" cy="13" r="12" fill="rgba(243,39,105,0.30)"/>
+            {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          </svg>
+        </div>
       </div>
 
-      {/* Burbuja pequeña sola DERECHA */}
-      <div style={{ position:'absolute', bottom:'-10%', right:'5%', width:65, height:65, borderRadius:'50%', background:'rgba(14,14,14,0.03)', border:'2px dashed rgba(14,14,14,0.10)', animation:'spin-ccw 38s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña suelta DERECHA */}
+      <div style={{ position:'absolute', bottom:'-10%', right:'5%', width:62, height:62, borderRadius:'50%', background:'rgba(14,14,14,0.03)', border:'2px dashed rgba(14,14,14,0.10)', animation:'spin-ccw 38s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <div style={{ position:'absolute', bottom:'18%', right:'8%', width:12, height:12, borderRadius:'50%', background:'rgba(14,14,14,0.18)', animation:'float-x 6s ease-in-out infinite', pointerEvents:'none' }}/>
 
       <div className="wrap sec" style={{ position:'relative', paddingTop:'5rem' }}>
@@ -113,10 +114,11 @@ export default function Community() {
         </FadeIn>
       </div>
 
-      {/* Ola inferior: lime → dark */}
+      {/* TRANSICIÓN FUSIONADA: lime → dark */}
       <div style={{ position:'relative', marginTop:60 }}>
-        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--dark)"/>
+        <svg viewBox="0 0 1440 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:110, display:'block' }}>
+          <path d="M0,72 C200,20 440,92 720,38 C1000,2 1240,78 1440,48 L1440,110 L0,110 Z" fill="rgba(14,14,14,0.28)"/>
+          <path d="M0,84 C220,40 455,100 740,52 C1020,18 1260,88 1440,60 L1440,110 L0,110 Z" fill="var(--dark)"/>
         </svg>
       </div>
       <style>{`@media(max-width:860px){.comm-grid{grid-template-columns:1fr!important}}`}</style>

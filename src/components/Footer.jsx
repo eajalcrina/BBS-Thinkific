@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
           <div>
             <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.15em', textTransform:'uppercase', color:'rgba(255,255,255,0.3)', marginBottom:'0.6rem' }}>Contacto</div>
-            <div style={{ marginBottom:'0.35rem' }}><a href="mailto:bbs@redesignlab.org" style={{ fontSize:'0.82rem', color:'var(--lime)', textDecoration:'none' }}>bbs@redesignlab.org</a></div>
+            <div style={{ marginBottom:'0.35rem' }}><a href="mailto:bbs@redesignlab.org" style={{ fontSize:'0.82rem', color:'var(--lime)', textDecoration:'none' }}>biobusiness@redesignlab.org</a></div>
             <div style={{ fontSize:'0.82rem', color:'rgba(255,255,255,0.6)' }}>biobusinessschool.org</div>
             <div style={{ fontSize:'0.75rem', color:'rgba(255,255,255,0.3)', marginTop:'0.6rem' }}>© 2026 Bio Business School</div>
           </div>

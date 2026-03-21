@@ -10,35 +10,29 @@ const items = [
 
 const orbsLime = [
   {x:9,y:9,r:3,f:'rgba(193,244,0,0.38)'},{x:20,y:7,r:2,f:'rgba(193,244,0,0.30)'},
-  {x:23,y:17,r:3.5,f:'rgba(193,244,0,0.28)'},{x:9,y:20,r:2.5,f:'rgba(193,244,0,0.34)'},
+  {x:23,y:18,r:3.5,f:'rgba(193,244,0,0.28)'},{x:9,y:21,r:2.5,f:'rgba(193,244,0,0.34)'},
   {x:15,y:15,r:1.8,f:'rgba(193,244,0,0.20)'}
 ]
 
 export default function Problem() {
   return (
     <section className="sec on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
-      <div style={{ position:'absolute', top:-1, left:0, right:0, zIndex:1 }}>
-        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="var(--white)"/>
-        </svg>
-      </div>
+      {/* SIN ola superior — Hero ya hace la transición lime→dark */}
 
-      {/* Burbujas punteadas — derecha arriba, izquierda abajo */}
-      <div style={{ position:'absolute', top:'-16%', right:'4%', width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.13)', animation:'spin-cw 24s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', bottom:'-14%', left:'5%', width:80, height:80, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.10)', animation:'spin-ccw 32s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-
-      {/* Célula mediana — IZQUIERDA para balance */}
+      {/* BLOQUE IZQUIERDA: burbuja punteada + célula con orgánulos */}
+      <div style={{ position:'absolute', top:'-16%', left:'2%', width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.13)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', top:'28%', left:'5%', width:34, height:34, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
+        style={{ position:'absolute', top:'30%', left:'5%', width:34, height:34, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
         <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
           <circle cx="17" cy="17" r="16" fill="rgba(193,244,0,0.55)"/>
-          {orbsLime.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
         </svg>
       </motion.div>
 
-      {/* Punto pequeño — derecha */}
+      {/* Burbuja pequeña sola DERECHA */}
+      <div style={{ position:'absolute', bottom:'-14%', right:'5%', width:72, height:72, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(255,255,255,0.10)', animation:'spin-cw 38s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6.5, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'25%', right:'8%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.6)', zIndex:2, pointerEvents:'none' }}/>
+        style={{ position:'absolute', bottom:'26%', right:'8%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.6)', zIndex:2, pointerEvents:'none' }}/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El problema</div></FadeIn>
@@ -53,7 +47,7 @@ export default function Problem() {
           </p>
         </FadeIn>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'1.5rem' }} className="prob-grid">
-          {items.map((p,i) => (
+          {items.map((p,i)=>(
             <FadeIn key={p.n} delay={0.08*i}>
               <motion.div whileHover={{ y:-6, background:'rgba(193,244,0,0.06)' }} transition={{ duration:0.2 }}
                 style={{ background:'rgba(255,255,255,0.04)', border:'1px solid rgba(255,255,255,0.08)', borderRadius:16, padding:'1.8rem 1.5rem', height:'100%', display:'flex', flexDirection:'column', gap:'0.7rem', cursor:'default', transition:'background 0.2s' }}>
@@ -66,9 +60,10 @@ export default function Problem() {
         </div>
       </div>
 
+      {/* Ola inferior: dark → cream */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
+          <path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="var(--cream)"/>
         </svg>
       </div>
       <style>{`

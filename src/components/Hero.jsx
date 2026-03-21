@@ -3,13 +3,6 @@ import { motion } from 'framer-motion'
 const st = { hidden:{}, show:{ transition:{ staggerChildren:0.08, delayChildren:0.15 } } }
 const it = { hidden:{ opacity:0, y:36 }, show:{ opacity:1, y:0, transition:{ duration:0.7, ease:[0.22,1,0.36,1] } } }
 
-const CellSvg = ({ size, fill, orbs }) => (
-  <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-    <circle cx={size/2} cy={size/2} r={size/2 - 1} fill={fill}/>
-    {orbs.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-  </svg>
-)
-
 const heroOrbs = [
   {x:14,y:14,r:4.5,f:'rgba(14,14,14,0.32)'},{x:30,y:12,r:3,f:'rgba(14,14,14,0.28)'},
   {x:34,y:28,r:5,f:'rgba(14,14,14,0.26)'},{x:16,y:32,r:3.5,f:'rgba(14,14,14,0.30)'},
@@ -20,20 +13,20 @@ export default function Hero() {
   return (
     <section style={{ background:'var(--lime)', position:'relative', overflow:'hidden', minHeight:'92vh', display:'flex', alignItems:'center' }}>
 
-      {/* Burbujas punteadas giratorias */}
-      <div style={{ position:'absolute', top:'-14%', right:'2%', width:240, height:240, borderRadius:'50%', background:'rgba(255,255,255,0.09)', border:'2px dashed rgba(255,255,255,0.52)', animation:'spin-cw 24s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', bottom:'-8%', left:'2%', width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.35)', animation:'spin-ccw 32s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', bottom:'12%', right:'36%', width:65, height:65, borderRadius:'50%', background:'rgba(255,255,255,0.05)', border:'2px dashed rgba(255,255,255,0.25)', animation:'spin-cw 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-
-      {/* Célula mediana con orgánulos — derecha */}
+      {/* BLOQUE DERECHA: burbuja punteada grande + célula con orgánulos */}
+      <div style={{ position:'absolute', top:'-14%', right:'1%', width:240, height:240, borderRadius:'50%', background:'rgba(255,255,255,0.09)', border:'2px dashed rgba(255,255,255,0.52)', animation:'spin-cw 24s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ y:[0,-12,0] }} transition={{ duration:5, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', top:'22%', right:'16%', width:46, height:46, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
-        <CellSvg size={46} fill="rgba(14,14,14,0.42)" orbs={heroOrbs}/>
+        style={{ position:'absolute', top:'22%', right:'16%', width:46, height:46, borderRadius:'50%', overflow:'hidden', pointerEvents:'none', zIndex:2 }}>
+        <svg width="46" height="46" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+          <circle cx="23" cy="23" r="22" fill="rgba(14,14,14,0.42)"/>
+          {heroOrbs.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+        </svg>
       </motion.div>
 
-      {/* Punto pequeño rojo — izquierda media */}
+      {/* BLOQUE IZQUIERDA: burbuja pequeña sola + punto rojo */}
+      <div style={{ position:'absolute', bottom:'-10%', left:'2%', width:90, height:90, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.35)', animation:'spin-ccw 32s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,9,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'20%', left:'8%', width:14, height:14, borderRadius:'50%', background:'#F32769', pointerEvents:'none' }}/>
+        style={{ position:'absolute', bottom:'22%', left:'8%', width:14, height:14, borderRadius:'50%', background:'#F32769', pointerEvents:'none' }}/>
 
       {/* Dot grid */}
       <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(14,14,14,0.15) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none', maskImage:'linear-gradient(to right, transparent, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.4) 70%, transparent)' }}/>
@@ -64,9 +57,10 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
+      {/* Ola inferior: lime → dark (transición directa limpia) */}
+      <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:5 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--dark)"/>
         </svg>
       </div>
     </section>

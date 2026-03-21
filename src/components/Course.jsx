@@ -12,6 +12,12 @@ const features = [
 const included = ['8 módulos en video','Sesiones en vivo con mentores','Frameworks propietarios BBS','Certificado BBS + 404 Tech Found','Membresía Starter incluida']
 const WHATSAPP_SPRINT = 'https://wa.me/51974620309?text=Hola%2C%20estoy%20interesado%20en%20el%20curso%20Biotech%20Sprint%2001'
 
+const orbsLime = [
+  {x:11,y:10,r:3.5,f:'rgba(193,244,0,0.22)'},{x:25,y:9,r:2.5,f:'rgba(193,244,0,0.18)'},
+  {x:28,y:22,r:4,f:'rgba(193,244,0,0.16)'},{x:12,y:25,r:3,f:'rgba(193,244,0,0.20)'},
+  {x:19,y:18,r:2,f:'rgba(193,244,0,0.13)'}
+]
+
 const LogoCourse = () => (
   <span style={{ fontFamily:"'Barlow Condensed', sans-serif", fontSize:'1rem', letterSpacing:'0.04em', lineHeight:1, userSelect:'none' }}>
     <span style={{ fontWeight:700, color:'rgba(255,255,255,0.9)' }}>BIO_BUSINESS</span>
@@ -19,45 +25,30 @@ const LogoCourse = () => (
   </span>
 )
 
-const orbsLime = [
-  {x:11,y:10,r:3.5,f:'rgba(193,244,0,0.22)'},{x:25,y:9,r:2.5,f:'rgba(193,244,0,0.18)'},
-  {x:28,y:22,r:4,f:'rgba(193,244,0,0.16)'},{x:12,y:25,r:3,f:'rgba(193,244,0,0.20)'},
-  {x:19,y:18,r:2,f:'rgba(193,244,0,0.13)'}
-]
-
 export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
-      <div style={{ position:'absolute', top:'-20%', right:'-5%', width:500, height:500, borderRadius:'50%', background:'rgba(255,255,255,0.06)', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', bottom:'-15%', left:'-8%', width:400, height:400, borderRadius:'50%', background:'rgba(255,255,255,0.04)', pointerEvents:'none' }}/>
+      {/* SIN ola superior — BioBuilder ya hace la transición cream→rose */}
 
-      {/* Burbujas punteadas — derecha arriba, izquierda abajo */}
-      <div style={{ position:'absolute', top:'-18%', right:'3%', width:150, height:150, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none', zIndex:1 }}/>
-      <div style={{ position:'absolute', bottom:'-16%', left:'4%', width:90, height:90, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.20)', animation:'spin-cw 38s linear infinite', transformOrigin:'center', pointerEvents:'none', zIndex:1 }}/>
-
-      {/* Célula mediana — IZQUIERDA */}
+      {/* BLOQUE IZQUIERDA: burbuja punteada + célula con orgánulos */}
+      <div style={{ position:'absolute', top:'-18%', left:'-2%', width:150, height:150, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', top:'20%', left:'5%', width:40, height:40, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
+        style={{ position:'absolute', top:'22%', left:'5%', width:40, height:40, borderRadius:'50%', overflow:'hidden', zIndex:2, pointerEvents:'none' }}>
         <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
           <circle cx="20" cy="20" r="19" fill="rgba(193,244,0,0.28)"/>
-          {orbsLime.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
         </svg>
       </motion.div>
 
-      {/* Punto pequeño — derecha */}
+      {/* Burbuja pequeña sola DERECHA */}
+      <div style={{ position:'absolute', bottom:'-16%', right:'4%', width:85, height:85, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.18)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
         style={{ position:'absolute', bottom:'28%', right:'8%', width:13, height:13, borderRadius:'50%', background:'rgba(193,244,0,0.45)', zIndex:2, pointerEvents:'none' }}/>
 
-      <div style={{ position:'absolute', top:-1, left:0, right:0 }}>
-        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="var(--cream)"/>
-        </svg>
-      </div>
-
-      <div className="wrap sec" style={{ position:'relative', paddingTop:'6rem', zIndex:3 }}>
+      <div className="wrap sec" style={{ position:'relative', paddingTop:'5rem', zIndex:3 }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'2.5rem', flexWrap:'wrap', gap:'1rem' }}>
           <FadeIn><div className="label white">Curso especializado · Lanzamiento 2026</div></FadeIn>
-          <FadeIn delay={0.1}><div style={{ display:'flex', alignItems:'center', gap:'0.6rem' }}><LogoCourse /><span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:500, letterSpacing:'0.08em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>× 404 Tech Found</span></div></FadeIn>
+          <FadeIn delay={0.1}><div style={{ display:'flex', alignItems:'center', gap:'0.6rem' }}><LogoCourse/><span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:500, letterSpacing:'0.08em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>× 404 Tech Found</span></div></FadeIn>
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 340px', gap:'3rem', alignItems:'start' }} className="course-grid">
           <div>
@@ -67,7 +58,7 @@ export default function Course() {
             <FadeIn delay={0.16}><p style={{ fontSize:'1rem', color:'rgba(255,255,255,0.82)', lineHeight:1.75, marginBottom:'1.8rem', maxWidth:500, fontWeight:300 }}>Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables. Diseñado para científicos, emprendedores y profesionales de LATAM.</p></FadeIn>
             <FadeIn delay={0.2}>
               <ul className="feat on-rose-bg">
-                {features.map(f => (<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}
+                {features.map(f=>(<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}
               </ul>
             </FadeIn>
           </div>
@@ -93,7 +84,7 @@ export default function Course() {
                   </div>
                 </div>
                 <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>
-                  {included.map(inc => (<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}
+                  {included.map(inc=>(<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}
                 </ul>
                 <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>Inscribirme al Sprint 01 →</a>
                 <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Cupos limitados · Primera cohorte Q2 2026</p>
@@ -103,9 +94,10 @@ export default function Course() {
         </div>
       </div>
 
+      {/* Ola inferior: rose → white (limpia, sin franja verde) */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
+          <path d="M0,30 C360,0 1080,60 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
         </svg>
       </div>
       <style>{`@media(max-width:860px){.course-grid{grid-template-columns:1fr!important}}`}</style>

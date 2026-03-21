@@ -17,25 +17,22 @@ const orbsRose = [
 export default function Book() {
   return (
     <section id="libro" className="sec-t" style={{ background:'var(--white)', position:'relative', overflow:'hidden' }}>
-      <div style={{ position:'absolute', top:0, left:0, right:0, height:4, background:'var(--lime)' }}/>
+      {/* SIN franja lime top, SIN ola superior — Course ya hace la transición rose→white */}
 
-      {/* Burbuja punteada — derecha abajo, discreta */}
-      <div style={{ position:'absolute', bottom:'-18%', right:'-1%', width:130, height:130, borderRadius:'50%', background:'rgba(193,244,0,0.07)', border:'2px dashed rgba(193,244,0,0.30)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      {/* Burbuja punteada izquierda — balance */}
-      <div style={{ position:'absolute', top:'-12%', left:'-2%', width:90, height:90, borderRadius:'50%', background:'rgba(193,244,0,0.04)', border:'2px dashed rgba(193,244,0,0.18)', animation:'spin-ccw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      {/* Burbuja pequeña sola IZQUIERDA */}
+      <div style={{ position:'absolute', top:'-12%', left:'-2%', width:80, height:80, borderRadius:'50%', background:'rgba(193,244,0,0.04)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-ccw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
+        style={{ position:'absolute', bottom:'30%', left:'4%', width:11, height:11, borderRadius:'50%', background:'rgba(243,39,105,0.45)', pointerEvents:'none' }}/>
 
-      {/* Célula mediana — DERECHA */}
+      {/* BLOQUE DERECHA: burbuja punteada + célula con orgánulos */}
+      <div style={{ position:'absolute', bottom:'-18%', right:'-1%', width:130, height:130, borderRadius:'50%', background:'rgba(193,244,0,0.07)', border:'2px dashed rgba(193,244,0,0.28)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:7, repeat:Infinity, ease:'easeInOut', delay:0.5 }}
         style={{ position:'absolute', top:'22%', right:'5%', width:32, height:32, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
           <circle cx="16" cy="16" r="15" fill="rgba(243,39,105,0.52)"/>
-          {orbsRose.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+          {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
         </svg>
       </motion.div>
-
-      {/* Punto pequeño — izquierda */}
-      <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'30%', left:'4%', width:11, height:11, borderRadius:'50%', background:'rgba(243,39,105,0.45)', pointerEvents:'none' }}/>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label dark" style={{ marginBottom:'1rem' }}>Publicación · Vol. 1 de 3</div></FadeIn>
@@ -58,7 +55,7 @@ export default function Book() {
             <FadeIn delay={0.16}>
               <p className="body" style={{ color:'var(--t-dark2)', marginBottom:'0.9rem' }}>América Latina ha operado durante siglos como la despensa del mundo. Este libro cambia esa ecuación.</p>
               <p className="body" style={{ color:'var(--t-dark2)', marginBottom:'1.8rem' }}>Eddie Ajalcriña y Lorenzo Ortiz desglosan la ingeniería de negocios para construir empresas que destaquen y dominen el mercado global desde la biodiversidad de la región.</p>
-              <ul className="feat on-light" style={{ marginBottom:'2rem' }}>{features.map(f => <li key={f}>{f}</li>)}</ul>
+              <ul className="feat on-light" style={{ marginBottom:'2rem' }}>{features.map(f=><li key={f}>{f}</li>)}</ul>
             </FadeIn>
             <FadeIn delay={0.2}>
               <div style={{ background:'rgba(193,244,0,0.15)', border:'1.5px solid rgba(193,244,0,0.4)', borderRadius:12, padding:'0.9rem 1.1rem', marginBottom:'1.5rem', fontSize:'0.82rem', lineHeight:1.6, color:'var(--t-dark2)', display:'flex', gap:'0.65rem', alignItems:'flex-start' }}>
@@ -78,13 +75,17 @@ export default function Book() {
                 style={{ position:'relative', zIndex:1, width:'100%', borderRadius:16, display:'block', objectFit:'cover', boxShadow:'0 32px 72px rgba(14,14,14,0.22), 0 8px 24px rgba(14,14,14,0.14)', filter:'brightness(1.02) saturate(1.08) contrast(1.02)' }}
                 initial={{ scale:1.04, opacity:0, y:16 }} whileInView={{ scale:1, opacity:1, y:0 }} whileHover={{ scale:1.02, y:-4 }}
                 viewport={{ once:true }} transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}/>
-              <div style={{ position:'absolute', top:4, right:4, zIndex:2, background:'var(--rose)', color:'var(--white)', borderRadius:12, padding:'0.8rem 1rem', textAlign:'center', boxShadow:'0 8px 24px rgba(243,39,105,0.45)', minWidth:90 }}>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'1.8rem', fontWeight:800, lineHeight:1 }}>$25</div>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', opacity:0.85, marginTop:'0.15rem' }}>USD</div>
-              </div>
+              {/* SIN badge $25 flotante — precio ya está en el texto */}
             </div>
           </FadeIn>
         </div>
+      </div>
+
+      {/* Ola inferior: white → lime gradient */}
+      <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
+        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
+          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--lime)"/>
+        </svg>
       </div>
       <style>{`@media(max-width:860px){.book-grid{grid-template-columns:1fr!important}}`}</style>
     </section>

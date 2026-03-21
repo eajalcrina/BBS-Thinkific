@@ -5,7 +5,7 @@ const LiIcon = () => <svg viewBox="0 0 24 24" width="12" height="12" fill="curre
 
 const founders = [
   { name:'Eddie Ajalcriña', role:'CEO & Co-Fundador', photo:'/eddie.jpg', bio:'Estratega con +18 años liderando bionegocios rentables en la Amazonía y ecosistemas críticos de América Latina.', credentials:['MBA ESAN · Maestría Biocomercio PUCP','+18 años en compañías regionales, inversión de impacto y Go-to-Market','Ex-Coordinador Unión Europea en Perú'], li:'https://www.linkedin.com/in/eddieajalcrina/', accent:'var(--rose)', accentBg:'rgba(243,39,105,0.12)', glowColor:'rgba(243,39,105,0.25)' },
-  { name:'Lorenzo Ortiz', role:'COO & Co-Fundador', photo:'/lorenzo.png', bio:'Estratega e inversionista con visión única para construir bionegocios de impacto regional integrando finanzas y territorio.', credentials:['MIT Business Analytics · Ing. Industrial UNT','+12 años en dirección de operaciones, estrategia y finanzas','Singularity University LATAM Fellow'], li:'https://www.linkedin.com/in/lorenzoortiz/', accent:'var(--lime)', accentBg:'rgba(193,244,0,0.10)', glowColor:'rgba(193,244,0,0.20)' },
+  { name:'Lorenzo Ortiz', role:'COO & Co-Fundador', photo:'/lorenzo.jpg', bio:'Estratega e inversionista con visión única para construir bionegocios de impacto regional integrando finanzas y territorio.', credentials:['MIT Business Analytics · Ing. Industrial UNT','+12 años en dirección de operaciones, estrategia y finanzas','Singularity University LATAM Fellow'], li:'https://www.linkedin.com/in/lorenzoortiz/', accent:'var(--lime)', accentBg:'rgba(193,244,0,0.10)', glowColor:'rgba(193,244,0,0.20)' },
 ]
 
 const orbsRose = [
@@ -17,36 +17,34 @@ const orbsRose = [
 export default function Team() {
   return (
     <section id="equipo" className="sec-t on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
+      {/* SIN ola superior — Community ya hace la transición lime→dark */}
 
-      {/* Burbujas punteadas — izquierda arriba, derecha abajo */}
-      <div style={{ position:'absolute', top:'-16%', left:'2%', width:120, height:120, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.20)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <div style={{ position:'absolute', bottom:'-14%', right:'4%', width:80, height:80, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-
-      {/* Célula mediana — DERECHA */}
-      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut', delay:0.6 }}
-        style={{ position:'absolute', top:'22%', right:'5%', width:34, height:34, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
-        <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-          <circle cx="17" cy="17" r="16" fill="rgba(243,39,105,0.50)"/>
-          {orbsRose.map((o,i) => <circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-        </svg>
-      </motion.div>
-
-      {/* Punto pequeño — izquierda */}
+      {/* Burbuja pequeña sola IZQUIERDA */}
+      <div style={{ position:'absolute', top:'-16%', left:'3%', width:80, height:80, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.18)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
         style={{ position:'absolute', bottom:'28%', left:'6%', width:12, height:12, borderRadius:'50%', background:'rgba(193,244,0,0.55)', pointerEvents:'none' }}/>
+
+      {/* BLOQUE DERECHA: burbuja punteada + célula con orgánulos */}
+      <div style={{ position:'absolute', top:'-18%', right:'2%', width:115, height:115, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
+      <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut', delay:0.6 }}
+        style={{ position:'absolute', top:'24%', right:'5%', width:34, height:34, borderRadius:'50%', overflow:'hidden', pointerEvents:'none' }}>
+        <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
+          <circle cx="17" cy="17" r="16" fill="rgba(243,39,105,0.50)"/>
+          {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
+        </svg>
+      </motion.div>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El equipo</div></FadeIn>
         <FadeIn delay={0.08}><h2 className="t-out t-md" style={{ marginBottom:'0.8rem', color:'var(--white)' }}>Hacemos que invertir en negocios sostenibles sea <em style={{ fontStyle:'normal', color:'var(--lime)', fontWeight:700 }}>buen negocio</em></h2></FadeIn>
         <FadeIn delay={0.14}><p className="lead" style={{ color:'var(--t-white2)', maxWidth:520, marginBottom:'2.5rem' }}>Emprendedores, estrategas e inversionistas. Hemos estado en ambos lados de la mesa.</p></FadeIn>
-
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem' }} className="team-grid">
-          {founders.map((f,i) => (
+          {founders.map((f,i)=>(
             <FadeIn key={f.name} delay={0.1+i*0.12}>
               <motion.div whileHover={{ y:-6 }} transition={{ duration:0.3, ease:[0.22,1,0.36,1] }}
                 style={{ background:'rgba(255,255,255,0.03)', border:'1px solid rgba(255,255,255,0.07)', borderRadius:24, overflow:'hidden', cursor:'default' }}
-                onMouseEnter={e => e.currentTarget.style.boxShadow=`0 20px 60px ${f.glowColor}`}
-                onMouseLeave={e => e.currentTarget.style.boxShadow='none'}>
+                onMouseEnter={e=>e.currentTarget.style.boxShadow=`0 20px 60px ${f.glowColor}`}
+                onMouseLeave={e=>e.currentTarget.style.boxShadow='none'}>
                 <div style={{ height:3, background:f.accent }}/>
                 <div style={{ display:'grid', gridTemplateColumns:'180px 1fr' }} className="founder-inner">
                   <div style={{ position:'relative', overflow:'hidden', minHeight:260 }}>
@@ -62,7 +60,7 @@ export default function Team() {
                     </div>
                     <p style={{ fontSize:'0.83rem', color:'var(--t-white2)', lineHeight:1.65 }}>{f.bio}</p>
                     <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem' }}>
-                      {f.credentials.map((c,ci) => (<li key={ci} style={{ display:'flex', alignItems:'flex-start', gap:'0.5rem', fontSize:'0.78rem', color:'var(--t-white3)', lineHeight:1.5 }}><span style={{ color:f.accent, fontWeight:700, flexShrink:0, marginTop:'0.05rem' }}>—</span>{c}</li>))}
+                      {f.credentials.map((c,ci)=>(<li key={ci} style={{ display:'flex', alignItems:'flex-start', gap:'0.5rem', fontSize:'0.78rem', color:'var(--t-white3)', lineHeight:1.5 }}><span style={{ color:f.accent, fontWeight:700, flexShrink:0, marginTop:'0.05rem' }}>—</span>{c}</li>))}
                     </ul>
                     <div style={{ marginTop:'auto', paddingTop:'0.5rem' }}>
                       <a href={f.li} target="_blank" rel="noopener noreferrer"

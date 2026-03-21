@@ -6,17 +6,15 @@ const it = { hidden:{ opacity:0, y:36 }, show:{ opacity:1, y:0, transition:{ dur
 export default function Hero() {
   return (
     <section style={{ background:'var(--lime)', position:'relative', overflow:'hidden', minHeight:'92vh', display:'flex', alignItems:'center' }}>
-      {/* Decorative shapes - inspired by Con.qr */}
       <motion.div initial={{ opacity:0, scale:0 }} animate={{ opacity:1, scale:1 }} transition={{ delay:0.8, duration:0.6, ease:[0.22,1,0.36,1] }}
         style={{ position:'absolute', top:'12%', right:'8%', width:320, height:320, borderRadius:'50%', background:'rgba(243,39,105,0.12)', pointerEvents:'none' }} className="float-y"/>
       <motion.div initial={{ opacity:0, scale:0 }} animate={{ opacity:1, scale:1 }} transition={{ delay:0.9, duration:0.6, ease:[0.22,1,0.36,1] }}
-        style={{ position:'absolute', bottom:'8%', right:'20%', width:180, height:180, borderRadius:'50%', background:'rgba(243,39,105,0.18)', pointerEvents:'none' }} className="float-y" style2={{ animationDelay:'1.5s' }}/>
+        style={{ position:'absolute', bottom:'8%', right:'20%', width:180, height:180, borderRadius:'50%', background:'rgba(243,39,105,0.18)', pointerEvents:'none' }} className="float-y"/>
       <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.2 }}
         style={{ position:'absolute', top:'25%', right:'15%', width:60, height:60, background:'var(--rose)', borderRadius:'50%', pointerEvents:'none' }} className="float-x"/>
       <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.4 }}
         style={{ position:'absolute', bottom:'30%', right:'10%', width:20, height:20, background:'var(--dark)', borderRadius:'50%', pointerEvents:'none' }}/>
 
-      {/* Dot grid pattern */}
       <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(14,14,14,0.15) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none', maskImage:'linear-gradient(to right, transparent, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.4) 70%, transparent)' }}/>
 
       <div className="wrap" style={{ width:'100%', position:'relative', paddingTop:'3rem', paddingBottom:'3rem' }}>
@@ -45,10 +43,9 @@ export default function Hero() {
 
           <motion.div variants={it} style={{ display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'3.5rem' }}>
             <a href="#curso" className="btn btn-rose btn-lg">Ver Biotech Sprint 01 →</a>
-            <a href="#mision" className="btn btn-outline btn-lg">Conocer BBS</a>
+            <a href="#libro" className="btn btn-outline btn-lg">Descubre el Bio Business Playbook vol. 1</a>
           </motion.div>
 
-          {/* Stats strip */}
           <motion.div variants={it}
             style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'0', background:'rgba(14,14,14,0.08)', borderRadius:16, overflow:'hidden', maxWidth:560 }}
           >
@@ -62,7 +59,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Bottom wave */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
           <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>

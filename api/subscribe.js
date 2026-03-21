@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, country, plan } = req.body
+  const { firstName, lastName, email, phone, country } = req.body
 
   try {
     const response = await fetch('https://api.brevo.com/v3/contacts', {
@@ -15,9 +15,10 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email,
         attributes: {
-          FIRSTNAME: name,
-          COUNTRY: country,
-          PLAN: plan
+          FIRSTNAME: firstName,
+          LASTNAME: lastName,
+          SMS: phone,
+          COUNTRY: country
         },
         listIds: [2],
         updateEnabled: true

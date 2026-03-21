@@ -18,6 +18,7 @@ const COUNTRY_CODES = [
 ]
 
 const WHATSAPP_URL = 'https://chat.whatsapp.com/GSDVsK013hnErk7SWgUIqB?mode=gi_t'
+const WHATSAPP_PRO = 'https://wa.me/51974620309?text=Hola%2C%20equipo%20Bio%20Business%20School%2C%20estoy%20interesado%20en%20escalar%20mi%20bionegocio'
 
 export default function Community() {
   const [firstName, setFirstName] = useState('')
@@ -51,7 +52,7 @@ export default function Community() {
       if (!res.ok) { setErr(true); setLoading(false); return }
       setErr(false)
       setDone(true)
-      window.location.href = 'https://chat.whatsapp.com/GSDVsK013hnErk7SWgUIqB?mode=gi_t'
+      window.location.href = WHATSAPP_URL
     } catch {
       setErr(true)
     } finally {
@@ -87,6 +88,8 @@ export default function Community() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start' }} className="comm-grid">
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+
+              {/* Starter */}
               <div
                 style={{ background: 'var(--white)', borderRadius: 20, padding: '1.5rem', boxShadow: '0 8px 32px rgba(14,14,14,0.1)', border: '2px solid transparent', transition: 'border-color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--lime-d)'}
@@ -107,35 +110,39 @@ export default function Community() {
                 </div>
               </div>
 
-              href="https://wa.me/51974620309?text=Hola%2C%20equipo%20Bio%20Business%20School%2C%20estoy%20interesado%20en%20escalar%20mi%20bionegocio"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{ textDecoration:'none', display:'block' }}
->
-  <div style={{ background:'var(--dark)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 32px rgba(14,14,14,0.2)', border:'2px solid transparent', transition:'border-color 0.2s, transform 0.2s', cursor:'pointer' }}
-    onMouseEnter={e=>{ e.currentTarget.style.borderColor='var(--lime)'; e.currentTarget.style.transform='translateY(-3px)' }}
-    onMouseLeave={e=>{ e.currentTarget.style.borderColor='transparent'; e.currentTarget.style.transform='translateY(0)' }}
-  >
-    <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'0.9rem' }}>
-      <div>
-        <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.3rem' }}>
-          <div style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:600, color:'var(--white)' }}>PRO</div>
-          <span style={{ background:'var(--lime)', color:'var(--dark)', fontFamily:'var(--fbc)', fontSize:'0.58rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', padding:'0.2rem 0.6rem', borderRadius:50 }}>Contáctanos →</span>
-        </div>
-        <div style={{ fontSize:'0.8rem', color:'var(--t-white2)', lineHeight:1.5 }}>4h/mes consultoría 1:1, Investment Matchmaking, Masterclasses avanzadas, podcast privado.</div>
-      </div>
-      <div style={{ textAlign:'right', flexShrink:0, marginLeft:'1rem' }}>
-        <div style={{ fontFamily:'var(--fbc)', fontSize:'2rem', fontWeight:800, color:'var(--lime)', lineHeight:1 }}>$87</div>
-        <div style={{ fontSize:'0.72rem', color:'var(--t-white3)' }}>/mes</div>
-      </div>
-    </div>
-    <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', background:'rgba(193,244,0,0.08)', borderRadius:10, padding:'0.6rem 0.9rem', marginTop:'0.3rem' }}>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--lime)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      <span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:600, color:'var(--lime)', letterSpacing:'0.08em', textTransform:'uppercase' }}>Escribir por WhatsApp</span>
-    </div>
-  </div>
-</a>
+              {/* PRO */}
+              
+                href={WHATSAPP_PRO}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', display: 'block' }}
+              >
+                <div
+                  style={{ background: 'var(--dark)', borderRadius: 20, padding: '1.5rem', boxShadow: '0 8px 32px rgba(14,14,14,0.2)', border: '2px solid transparent', transition: 'border-color 0.2s, transform 0.2s', cursor: 'pointer' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--lime)'; e.currentTarget.style.transform = 'translateY(-3px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)' }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.9rem' }}>
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem' }}>
+                        <div style={{ fontFamily: 'var(--fout)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--white)' }}>PRO</div>
+                        <span style={{ background: 'var(--lime)', color: 'var(--dark)', fontFamily: 'var(--fbc)', fontSize: '0.58rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.2rem 0.6rem', borderRadius: 50 }}>Contáctanos →</span>
+                      </div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--t-white2)', lineHeight: 1.5 }}>4h/mes consultoría 1:1, Investment Matchmaking, Masterclasses avanzadas, podcast privado.</div>
+                    </div>
+                    <div style={{ textAlign: 'right', flexShrink: 0, marginLeft: '1rem' }}>
+                      <div style={{ fontFamily: 'var(--fbc)', fontSize: '2rem', fontWeight: 800, color: 'var(--lime)', lineHeight: 1 }}>$87</div>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--t-white3)' }}>/mes</div>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(193,244,0,0.08)', borderRadius: 10, padding: '0.6rem 0.9rem' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--lime)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span style={{ fontFamily: 'var(--fbc)', fontSize: '0.72rem', fontWeight: 600, color: 'var(--lime)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Escribir por WhatsApp</span>
+                  </div>
+                </div>
+              </a>
 
+              {/* Nota Sprint */}
               <div style={{ background: 'rgba(14,14,14,0.08)', borderRadius: 12, padding: '1rem 1.2rem', fontSize: '0.82rem', lineHeight: 1.6, color: 'var(--t-dark2)', display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
                 <span style={{ color: 'var(--dark)', fontWeight: 700, flexShrink: 0 }}>→</span>
                 Todo suscriptor al Sprint 01 se integra automáticamente a la comunidad Starter, sin costo adicional.

@@ -1,6 +1,5 @@
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
-import Mission from './components/Mission.jsx'
 import Problem from './components/Problem.jsx'
 import BioBuilder from './components/BioBuilder.jsx'
 import Course from './components/Course.jsx'
@@ -15,7 +14,6 @@ export default function App() {
       <Nav/>
       <main>
         <Hero/>
-        <Mission/>
         <Problem/>
         <BioBuilder/>
         <Course/>

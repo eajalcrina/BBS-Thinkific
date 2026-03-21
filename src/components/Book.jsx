@@ -17,12 +17,12 @@ export default function Book() {
   return (
     <section id="libro" className="sec-t" style={{ background:'var(--white)', position:'relative', overflow:'hidden' }}>
 
-      {/* Burbuja pequeña suelta izquierda — visible top:8% */}
+      {/* Burbuja suelta izquierda */}
       <div style={{ position:'absolute', top:'8%', left:'3%', width:65, height:65, borderRadius:'50%', background:'rgba(193,244,0,0.04)', border:'2px dashed rgba(193,244,0,0.18)', animation:'spin-ccw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
         style={{ position:'absolute', bottom:'22%', left:'10%', width:10, height:10, borderRadius:'50%', background:'rgba(243,39,105,0.45)', pointerEvents:'none' }}/>
 
-      {/* CÉLULA COMPLETA derecha — visible bottom:8% */}
+      {/* CÉLULA derecha visible */}
       <div style={{ position:'absolute', bottom:'8%', right:'4%', width:112, height:112, borderRadius:'50%', background:'rgba(193,244,0,0.07)', border:'2px dashed rgba(193,244,0,0.28)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
         <motion.div animate={{ y:[0,-9,0] }} transition={{ duration:7, repeat:Infinity, ease:'easeInOut', delay:0.5 }}
           style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:24, height:24, borderRadius:'50%', overflow:'hidden' }}>
@@ -47,12 +47,30 @@ export default function Book() {
                 <div style={{ fontFamily:'var(--fbc)', fontSize:'0.7rem', fontWeight:500, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--t-dark3)', marginTop:'0.15rem' }}>Pago único · Acceso inmediato</div>
               </div>
             </FadeIn>
-            <FadeIn delay={0.12}><h2 className="t-out t-lg" style={{ marginBottom:'0.5rem', color:'var(--dark)' }}>Bio Business <em style={{ fontStyle:'normal', color:'var(--rose)', fontWeight:700 }}>Playbook</em></h2><p style={{ fontFamily:'var(--fbc)', fontSize:'0.82rem', fontWeight:500, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--t-dark3)', marginBottom:'1.5rem' }}>Vol. 1 — Design</p></FadeIn>
-            <FadeIn delay={0.16}><p className="body" style={{ color:'var(--t-dark2)', marginBottom:'0.9rem' }}>América Latina ha operado durante siglos como la despensa del mundo. Este libro cambia esa ecuación.</p><p className="body" style={{ color:'var(--t-dark2)', marginBottom:'1.8rem' }}>Eddie Ajalcriña y Lorenzo Ortiz desglosan la ingeniería de negocios para construir empresas que destaquen y dominen el mercado global desde la biodiversidad de la región.</p><ul className="feat on-light" style={{ marginBottom:'2rem' }}>{features.map(f=><li key={f}>{f}</li>)}</ul></FadeIn>
+            <FadeIn delay={0.12}>
+              <h2 className="t-out t-lg" style={{ marginBottom:'0.5rem', color:'var(--dark)' }}>
+                Bio Business <em style={{ fontStyle:'normal', color:'var(--rose)', fontWeight:700 }}>Playbook</em>
+              </h2>
+              <p style={{ fontFamily:'var(--fbc)', fontSize:'0.82rem', fontWeight:500, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--t-dark3)', marginBottom:'1.5rem' }}>Vol. 1 — Design</p>
+            </FadeIn>
+            <FadeIn delay={0.16}>
+              <p className="body" style={{ color:'var(--t-dark2)', marginBottom:'0.9rem' }}>
+                América Latina ha operado durante siglos como la despensa del mundo. Este libro cambia esa ecuación.
+              </p>
+              <p className="body" style={{ color:'var(--t-dark2)', marginBottom:'1.8rem' }}>
+                Eddie Ajalcriña y Lorenzo Ortiz desglosan la ingeniería de negocios para construir empresas que destaquen y dominen el mercado global desde la biodiversidad de la región.
+              </p>
+              <ul className="feat on-light" style={{ marginBottom:'2rem' }}>
+                {features.map(f=><li key={f}>{f}</li>)}
+              </ul>
+            </FadeIn>
             <FadeIn delay={0.2}>
-              <div style={{ background:'rgba(193,244,0,0.15)', border:'1.5px solid rgba(193,244,0,0.4)', borderRadius:12, padding:'0.9rem 1.1rem', marginBottom:'1.5rem', fontSize:'0.82rem', lineHeight:1.6, color:'var(--t-dark2)', display:'flex', gap:'0.65rem', alignItems:'flex-start' }}>
+              {/* TEXTO ACTUALIZADO: bajo demanda + 15 de Abril + caja de regalo */}
+              <div style={{ background:'rgba(193,244,0,0.15)', border:'1.5px solid rgba(193,244,0,0.4)', borderRadius:12, padding:'0.9rem 1.1rem', marginBottom:'1.5rem', fontSize:'0.82rem', lineHeight:1.7, color:'var(--t-dark2)', display:'flex', gap:'0.65rem', alignItems:'flex-start' }}>
                 <span style={{ color:'var(--lime-dk)', flexShrink:0, marginTop:'0.05rem', fontWeight:700 }}>★</span>
-                <span>La copia impresa está disponible <strong style={{ color:'var(--dark)' }}>previo registro</strong>. Déjanos tu correo y te avisamos cuando esté lista para envío.</span>
+                <span>
+                  La copia impresa está disponible <strong style={{ color:'var(--dark)' }}>bajo demanda</strong>. Compra el libro físico y espera recibirlo el <strong style={{ color:'var(--dark)' }}>15 de Abril</strong> en una caja de regalo con una <strong style={{ color:'var(--rose)' }}>sorpresa especial</strong>.
+                </span>
               </div>
               <div style={{ display:'flex', gap:'0.75rem', flexWrap:'wrap' }}>
                 <a href="https://mpago.la/17jbnkb" target="_blank" rel="noopener noreferrer" className="btn btn-rose btn-lg">Comprar digital →</a>

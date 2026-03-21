@@ -37,13 +37,7 @@ export default function Community() {
       const res=await fetch('/api/subscribe',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          firstName,
-          lastName,
-          email:normalizedEmail,
-          phone:phone?`${dialCode}${phone}`:'',
-          country
-        })
+        body:JSON.stringify({ firstName, lastName, email:normalizedEmail, phone:phone?`${dialCode}${phone}`:'', country })
       })
       if(!res.ok){setErr(true);setLoading(false);return}
       setErr(false);setDone(true)
@@ -54,7 +48,7 @@ export default function Community() {
   return (
     <section id="comunidad" style={{ background:'var(--lime)', position:'relative', overflow:'hidden' }}>
 
-      {/* CÉLULA COMPLETA izquierda — visible top:8% */}
+      {/* CÉLULA izquierda visible */}
       <div style={{ position:'absolute', top:'8%', left:'3%', width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,0.09)', border:'2px dashed rgba(255,255,255,0.46)', animation:'spin-cw 26s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
         <div style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:24, height:24, borderRadius:'50%', overflow:'hidden', animation:'float-y 5s ease-in-out infinite' }}>
           <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
@@ -64,7 +58,7 @@ export default function Community() {
         </div>
       </div>
 
-      {/* Burbuja pequeña suelta derecha */}
+      {/* Burbuja suelta derecha */}
       <div style={{ position:'absolute', bottom:'10%', right:'4%', width:58, height:58, borderRadius:'50%', background:'rgba(14,14,14,0.03)', border:'2px dashed rgba(14,14,14,0.10)', animation:'spin-ccw 38s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
       <div style={{ position:'absolute', top:'28%', right:'11%', width:10, height:10, borderRadius:'50%', background:'rgba(14,14,14,0.20)', animation:'float-x 6s ease-in-out infinite', pointerEvents:'none' }}/>
 
@@ -77,103 +71,105 @@ export default function Community() {
         </FadeIn>
         <FadeIn delay={0.14}>
           <p className="lead" style={{ color:'var(--t-dark2)', maxWidth:540, marginBottom:'2.5rem' }}>
-            La membresía <strong style={{ color:'var(--dark)', fontWeight:700 }}>Emprendedores</strong> es gratuita. Forma parte de la red de bio-builders de América Latina.
+            Elige tu perfil y forma parte de la red de bio-builders de América Latina.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.18}>
-          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'2rem', alignItems:'start' }} className="comm-grid">
+          {/* DOS CARDS con igual peso visual — grid 1:1 */}
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.25rem', marginBottom:'1.25rem' }} className="comm-cards">
 
-            {/* IZQUIERDA: cards */}
-            <div style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
-
-              {/* EMPRENDEDORES (ex Starter) */}
-              <div style={{ background:'var(--white)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 32px rgba(14,14,14,0.1)', border:'2px solid transparent', transition:'border-color 0.2s' }}
-                onMouseEnter={e=>e.currentTarget.style.borderColor='var(--lime-d)'}
-                onMouseLeave={e=>e.currentTarget.style.borderColor='transparent'}>
-                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'0.6rem' }}>
-                  <div style={{ flex:1 }}>
-                    <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.4rem' }}>
-                      <span style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:600, color:'var(--dark)' }}>Emprendedores</span>
-                      <span className="badge badge-lime">Gratis</span>
-                    </div>
-                    <p style={{ fontSize:'0.8rem', color:'var(--t-dark2)', lineHeight:1.6, margin:0 }}>
-                      Dirigido a jóvenes y no tan jóvenes que están iniciando su camino como emprendedores de bionegocios y buscan herramientas que los ayuden a vender desde el primer día.
-                    </p>
+            {/* EMPRENDEDORES */}
+            <div style={{ background:'var(--white)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 28px rgba(14,14,14,0.10)', border:'2px solid transparent', transition:'border-color 0.2s', display:'flex', flexDirection:'column', gap:'0.75rem' }}
+              onMouseEnter={e=>e.currentTarget.style.borderColor='rgba(193,244,0,0.6)'}
+              onMouseLeave={e=>e.currentTarget.style.borderColor='transparent'}>
+              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
+                <div>
+                  <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.35rem' }}>
+                    <span style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:700, color:'var(--dark)' }}>Emprendedores</span>
+                    <span className="badge badge-lime">Gratis</span>
                   </div>
-                  <div style={{ textAlign:'right', flexShrink:0, marginLeft:'1rem' }}>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'2rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>$0</div>
-                    <div style={{ fontSize:'0.72rem', color:'var(--t-dark3)' }}>/mes</div>
+                  <div style={{ fontFamily:'var(--fbc)', fontSize:'2rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>
+                    $0<span style={{ fontSize:'0.9rem', fontWeight:400, color:'var(--t-dark3)', marginLeft:3 }}>/mes</span>
                   </div>
                 </div>
               </div>
-
-              {/* EMPRESARIOS (ex PRO) — sin precio, clickeable → WhatsApp */}
-              <a href={WHATSAPP_PRO} target="_blank" rel="noopener noreferrer"
-                style={{ textDecoration:'none', display:'block', background:'var(--dark)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 32px rgba(14,14,14,0.2)', transition:'all 0.25s', cursor:'pointer' }}
-                onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.boxShadow='0 16px 40px rgba(14,14,14,0.32)'; }}
-                onMouseLeave={e=>{ e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='0 8px 32px rgba(14,14,14,0.2)'; }}>
-                <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'0.6rem' }}>
-                  <div style={{ flex:1 }}>
-                    <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.4rem' }}>
-                      <span style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:600, color:'var(--white)' }}>Empresarios</span>
-                      <span style={{ fontFamily:'var(--fbc)', fontSize:'0.6rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--lime)', opacity:0.8 }}>↗ WhatsApp</span>
-                    </div>
-                    <p style={{ fontSize:'0.8rem', color:'var(--t-white2)', lineHeight:1.6, margin:0 }}>
-                      Dirigido a empresarios que enfrentan a diario los desafíos de sacar adelante sus bionegocios y lograr ventas a nivel nacional e internacional.
-                    </p>
-                  </div>
-                </div>
-                <div style={{ fontSize:'0.72rem', color:'rgba(255,255,255,0.38)', marginTop:'0.5rem', display:'flex', alignItems:'center', gap:'0.4rem' }}>
-                  <span>💬</span> Toca para consultar por WhatsApp
-                </div>
-              </a>
-
+              <p style={{ fontSize:'0.82rem', color:'var(--t-dark2)', lineHeight:1.65, margin:0 }}>
+                Dirigido a jóvenes y no tan jóvenes que están iniciando su camino como emprendedores de bionegocios y buscan herramientas que los ayuden a vender desde el primer día.
+              </p>
+              {/* Footer indicador */}
+              <div style={{ marginTop:'auto', paddingTop:'0.75rem', borderTop:'1px dashed rgba(14,14,14,0.10)', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'rgba(100,140,0,0.8)', display:'flex', alignItems:'center', gap:'0.4rem' }}>
+                <span>↓</span> Regístrate abajo sin costo
+              </div>
             </div>
 
-            {/* DERECHA: formulario con flecha indicadora */}
-            {!done ? (
-              <div>
-                {/* Flecha indicadora */}
-                <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginBottom:'0.85rem' }}>
-                  <span style={{ background:'var(--dark)', color:'var(--lime)', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'0.3rem 0.9rem', borderRadius:50, whiteSpace:'nowrap' }}>← Únete aquí gratis</span>
-                  <span style={{ fontSize:'0.78rem', color:'var(--t-dark2)' }}>Empieza hoy como Emprendedor</span>
-                </div>
-
-                <div style={{ background:'var(--white)', borderRadius:20, padding:'2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)' }}>
-                  <div style={{ fontFamily:'var(--fout)', fontSize:'1.3rem', fontWeight:600, color:'var(--dark)', marginBottom:'0.25rem' }}>Regístrate gratis</div>
-                  <p style={{ fontSize:'0.85rem', color:'var(--t-dark2)', marginBottom:'1.3rem' }}>Empieza con la membresía Emprendedores sin costo. Te contactamos con los accesos.</p>
-                  <div style={{ display:'flex', flexDirection:'column', gap:'0.65rem' }}>
-                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.65rem' }}>
-                      <input type="text" value={firstName} onChange={e=>{setFirstName(e.target.value);setErr(false)}} placeholder="Nombres" className={`field${err&&!firstName?' field-err':''}`}/>
-                      <input type="text" value={lastName} onChange={e=>{setLastName(e.target.value);setErr(false)}} placeholder="Apellidos" className={`field${err&&!lastName?' field-err':''}`}/>
-                    </div>
-                    <input type="email" value={email} onChange={e=>{setEmail(e.target.value);setErr(false)}} placeholder="Correo electrónico" className={`field${err&&!validEmail?' field-err':''}`}/>
-                    <div style={{ display:'flex', gap:'0.5rem' }}>
-                      <select value={dialCode} onChange={e=>setDialCode(e.target.value)} className="field" style={{ width:110, flexShrink:0, WebkitAppearance:'none', paddingRight:'0.5rem' }}>
-                        {COUNTRY_CODES.map(c=>(<option key={c.code+c.name} value={c.code}>{c.flag} {c.code}</option>))}
-                      </select>
-                      <input type="tel" value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,''))} placeholder="Celular" className="field" style={{ flex:1 }}/>
-                    </div>
-                    <input type="text" value={country} onChange={e=>setCountry(e.target.value)} placeholder="País" className="field"/>
-                    {err&&<p style={{ fontSize:'0.78rem', color:'var(--rose)', margin:'0.1rem 0' }}>Completa nombres, apellidos y correo para continuar.</p>}
-                    <button className="btn btn-rose btn-full btn-lg" onClick={submit} disabled={loading} style={{ opacity:loading?0.7:1, cursor:loading?'not-allowed':'pointer' }}>
-                      {loading?'Enviando...':'Unirme a los Biobuilders →'}
-                    </button>
-                    <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Sin spam · Sin tarjeta · Solo bionegocios</p>
+            {/* EMPRESARIOS — mismo peso, misma estructura, clickeable */}
+            <a href={WHATSAPP_PRO} target="_blank" rel="noopener noreferrer"
+              style={{ textDecoration:'none', background:'var(--dark)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 28px rgba(14,14,14,0.20)', display:'flex', flexDirection:'column', gap:'0.75rem', transition:'all 0.25s', cursor:'pointer' }}
+              onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.boxShadow='0 16px 40px rgba(14,14,14,0.32)'; }}
+              onMouseLeave={e=>{ e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='0 8px 28px rgba(14,14,14,0.20)'; }}>
+              <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start' }}>
+                <div>
+                  <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginBottom:'0.35rem' }}>
+                    <span style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:700, color:'var(--white)' }}>Empresarios</span>
+                    <span style={{ fontFamily:'var(--fbc)', fontSize:'0.6rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--lime)', opacity:0.85 }}>↗ WA</span>
+                  </div>
+                  {/* Venta personalizada en lugar de precio */}
+                  <div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:700, color:'var(--lime)', letterSpacing:'0.06em', textTransform:'uppercase', lineHeight:1 }}>
+                    Venta personalizada
                   </div>
                 </div>
               </div>
-            ) : (
-              <div style={{ background:'var(--white)', borderRadius:20, padding:'3rem 2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)', display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center', gap:'1rem' }}>
-                <div style={{ width:60, height:60, borderRadius:'50%', background:'var(--lime)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.6rem' }}>✓</div>
-                <strong style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:600, color:'var(--dark)' }}>¡Bienvenido/a a los Biobuilders!</strong>
-                <p style={{ fontSize:'0.9rem', color:'var(--t-dark2)', lineHeight:1.65 }}>Recibimos tus datos. En las próximas 48h te enviamos tus accesos a la comunidad Emprendedores.</p>
-                <p style={{ fontSize:'0.82rem', color:'var(--t-dark3)' }}>Redirigiendo al grupo de WhatsApp...</p>
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-lg">Ir al grupo ahora →</a>
+              <p style={{ fontSize:'0.82rem', color:'var(--t-white2)', lineHeight:1.65, margin:0 }}>
+                Dirigido a empresarios que enfrentan a diario los desafíos de sacar adelante sus bionegocios y lograr ventas a nivel nacional e internacional.
+              </p>
+              {/* Footer indicador */}
+              <div style={{ marginTop:'auto', paddingTop:'0.75rem', borderTop:'1px dashed rgba(255,255,255,0.12)', fontSize:'0.72rem', color:'rgba(255,255,255,0.38)', display:'flex', alignItems:'center', gap:'0.4rem' }}>
+                <span>💬</span> Toca para consultar por WhatsApp
               </div>
-            )}
+            </a>
           </div>
+
+          {/* FORMULARIO — bloque separado conectado a Emprendedores */}
+          {!done ? (
+            <div>
+              <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginBottom:'0.85rem' }}>
+                <span style={{ background:'var(--dark)', color:'var(--lime)', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'0.3rem 0.9rem', borderRadius:50, whiteSpace:'nowrap' }}>← Formulario Emprendedores</span>
+                <span style={{ fontSize:'0.78rem', color:'var(--t-dark2)' }}>Empieza hoy sin costo</span>
+              </div>
+              <div style={{ background:'var(--white)', borderRadius:20, padding:'2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)' }}>
+                <div style={{ fontFamily:'var(--fout)', fontSize:'1.3rem', fontWeight:600, color:'var(--dark)', marginBottom:'0.25rem' }}>Regístrate gratis</div>
+                <p style={{ fontSize:'0.85rem', color:'var(--t-dark2)', marginBottom:'1.3rem' }}>Empieza con la membresía Emprendedores sin costo. Te contactamos con los accesos.</p>
+                <div style={{ display:'flex', flexDirection:'column', gap:'0.65rem' }}>
+                  <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.65rem' }}>
+                    <input type="text" value={firstName} onChange={e=>{setFirstName(e.target.value);setErr(false)}} placeholder="Nombres" className={`field${err&&!firstName?' field-err':''}`}/>
+                    <input type="text" value={lastName} onChange={e=>{setLastName(e.target.value);setErr(false)}} placeholder="Apellidos" className={`field${err&&!lastName?' field-err':''}`}/>
+                  </div>
+                  <input type="email" value={email} onChange={e=>{setEmail(e.target.value);setErr(false)}} placeholder="Correo electrónico" className={`field${err&&!validEmail?' field-err':''}`}/>
+                  <div style={{ display:'flex', gap:'0.5rem' }}>
+                    <select value={dialCode} onChange={e=>setDialCode(e.target.value)} className="field" style={{ width:110, flexShrink:0, WebkitAppearance:'none', paddingRight:'0.5rem' }}>
+                      {COUNTRY_CODES.map(c=>(<option key={c.code+c.name} value={c.code}>{c.flag} {c.code}</option>))}
+                    </select>
+                    <input type="tel" value={phone} onChange={e=>setPhone(e.target.value.replace(/\D/g,''))} placeholder="Celular" className="field" style={{ flex:1 }}/>
+                  </div>
+                  <input type="text" value={country} onChange={e=>setCountry(e.target.value)} placeholder="País" className="field"/>
+                  {err&&<p style={{ fontSize:'0.78rem', color:'var(--rose)', margin:'0.1rem 0' }}>Completa nombres, apellidos y correo para continuar.</p>}
+                  <button className="btn btn-rose btn-full btn-lg" onClick={submit} disabled={loading} style={{ opacity:loading?0.7:1, cursor:loading?'not-allowed':'pointer' }}>
+                    {loading?'Enviando...':'Unirme a los Biobuilders →'}
+                  </button>
+                  <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Sin spam · Sin tarjeta · Solo bionegocios</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div style={{ background:'var(--white)', borderRadius:20, padding:'3rem 2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)', display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center', gap:'1rem' }}>
+              <div style={{ width:60, height:60, borderRadius:'50%', background:'var(--lime)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.6rem' }}>✓</div>
+              <strong style={{ fontFamily:'var(--fout)', fontSize:'1.2rem', fontWeight:600, color:'var(--dark)' }}>¡Bienvenido/a a los Biobuilders!</strong>
+              <p style={{ fontSize:'0.9rem', color:'var(--t-dark2)', lineHeight:1.65 }}>Recibimos tus datos. En las próximas 48h te enviamos tus accesos a la comunidad Emprendedores.</p>
+              <p style={{ fontSize:'0.82rem', color:'var(--t-dark3)' }}>Redirigiendo al grupo de WhatsApp...</p>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-lg">Ir al grupo ahora →</a>
+            </div>
+          )}
         </FadeIn>
       </div>
 
@@ -184,7 +180,9 @@ export default function Community() {
           <path d="M0,84 C220,40 455,100 740,52 C1020,18 1260,88 1440,60 L1440,110 L0,110 Z" fill="var(--dark)"/>
         </svg>
       </div>
-      <style>{`@media(max-width:860px){.comm-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        @media(max-width:860px){.comm-cards{grid-template-columns:1fr!important}}
+      `}</style>
     </section>
   )
 }

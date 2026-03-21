@@ -2,16 +2,39 @@ import { useState } from 'react'
 import FadeIn from './FadeIn.jsx'
 
 export default function Community() {
-  const [name,setName]=useState(''), [email,setEmail]=useState(''), [country,setCountry]=useState(''), [plan,setPlan]=useState(''), [err,setErr]=useState(false), [done,setDone]=useState(false)
-  const submit = () => {
+  const [name,setName]=useState(''), [email,setEmail]=useState(''), [country,setCountry]=useState(''), [plan,setPlan]=useState(''), [err,setErr]=useState(false), [done,setDone]=useState(false), [loading,setLoading]=useState(false)
+
+  const submit = async () => {
     const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
     if(!name||!ok){setErr(true);return}
-    setErr(false);setDone(true)
+
+    setLoading(true)
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, country, plan })
+      })
+
+      if(!res.ok){
+        setErr(true)
+        setLoading(false)
+        return
+      }
+
+      setErr(false)
+      setDone(true)
+
+    } catch {
+      setErr(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <section id="comunidad" style={{ background:'linear-gradient(160deg, var(--lime) 0%, #E8FF80 40%, var(--lime-lt) 100%)', position:'relative', overflow:'hidden' }}>
-      {/* Top wave from white */}
       <div style={{ position:'absolute', top:-1, left:0, right:0 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
           <path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="var(--white)"/>
@@ -36,9 +59,7 @@ export default function Community() {
 
         <FadeIn delay={0.18}>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'2rem', alignItems:'start' }} className="comm-grid">
-            {/* Plans */}
             <div style={{ display:'flex', flexDirection:'column', gap:'1rem' }}>
-              {/* Starter */}
               <div style={{ background:'var(--white)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 32px rgba(14,14,14,0.1)', border:'2px solid transparent', transition:'border-color 0.2s' }}
                 onMouseEnter={e=>e.currentTarget.style.borderColor='var(--lime-d)'}
                 onMouseLeave={e=>e.currentTarget.style.borderColor='transparent'}
@@ -58,7 +79,6 @@ export default function Community() {
                 </div>
               </div>
 
-              {/* PRO */}
               <div style={{ background:'var(--dark)', borderRadius:20, padding:'1.5rem', boxShadow:'0 8px 32px rgba(14,14,14,0.2)' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'0.9rem' }}>
                   <div>
@@ -72,14 +92,12 @@ export default function Community() {
                 </div>
               </div>
 
-              {/* Funnel note */}
               <div style={{ background:'rgba(14,14,14,0.08)', borderRadius:12, padding:'1rem 1.2rem', fontSize:'0.82rem', lineHeight:1.6, color:'var(--t-dark2)', display:'flex', gap:'0.6rem', alignItems:'flex-start' }}>
                 <span style={{ color:'var(--dark)', fontWeight:700, flexShrink:0 }}>→</span>
                 Todo suscriptor al Sprint 01 se integra automáticamente a la comunidad Starter, sin costo adicional.
               </div>
             </div>
 
-            {/* Form */}
             {!done ? (
               <div style={{ background:'var(--white)', borderRadius:20, padding:'2rem', boxShadow:'0 16px 48px rgba(14,14,14,0.12)' }}>
                 <div style={{ fontFamily:'var(--fout)', fontSize:'1.3rem', fontWeight:600, color:'var(--dark)', marginBottom:'0.25rem' }}>Regístrate gratis</div>
@@ -95,8 +113,20 @@ export default function Community() {
                     <option value="curso">Curso Biotech Sprint 01</option>
                     <option value="todo">Todo lo anterior</option>
                   </select>
-                  <button className="btn btn-rose btn-full btn-lg" onClick={submit}>
-                    Unirme a los Biobuilders →
+
+                  {err && (
+                    <p style={{ fontSize:'0.78rem', color:'var(--rose)', margin:'0.1rem 0' }}>
+                      Revisa tu nombre y correo antes de continuar.
+                    </p>
+                  )}
+
+                  <button
+                    className="btn btn-rose btn-full btn-lg"
+                    onClick={submit}
+                    disabled={loading}
+                    style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
+                  >
+                    {loading ? 'Enviando...' : 'Unirme a los Biobuilders →'}
                   </button>
                   <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Sin spam · Sin tarjeta · Solo bionegocios</p>
                 </div>
@@ -112,7 +142,6 @@ export default function Community() {
         </FadeIn>
       </div>
 
-      {/* Bottom wave */}
       <div style={{ position:'relative', marginTop:60 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
           <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--dark)"/>

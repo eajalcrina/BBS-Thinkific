@@ -35,9 +35,7 @@ export default function Community() {
 
   const submit = async () => {
     if (!firstName || !lastName || !validEmail) { setErr(true); return }
-
     setLoading(true)
-
     try {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
@@ -50,16 +48,10 @@ export default function Community() {
           country
         })
       })
-
       if (!res.ok) { setErr(true); setLoading(false); return }
-
       setErr(false)
       setDone(true)
-
-      setTimeout(() => {
-        window.open(WHATSAPP_URL, '_blank')
-      }, 2500)
-
+      setTimeout(() => { window.open(WHATSAPP_URL, '_blank') }, 2500)
     } catch {
       setErr(true)
     } finally {
@@ -138,74 +130,27 @@ export default function Community() {
               <div style={{ background: 'var(--white)', borderRadius: 20, padding: '2rem', boxShadow: '0 16px 48px rgba(14,14,14,0.12)' }}>
                 <div style={{ fontFamily: 'var(--fout)', fontSize: '1.3rem', fontWeight: 600, color: 'var(--dark)', marginBottom: '0.25rem' }}>Regístrate gratis</div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--t-dark2)', marginBottom: '1.3rem' }}>Empieza con la membresía Starter sin costo. Te contactamos con los accesos.</p>
-
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
-                    <input
-                      type="text"
-                      value={firstName}
-                      onChange={e => { setFirstName(e.target.value); setErr(false) }}
-                      placeholder="Nombres"
-                      className={`field${err && !firstName ? ' field-err' : ''}`}
-                    />
-                    <input
-                      type="text"
-                      value={lastName}
-                      onChange={e => { setLastName(e.target.value); setErr(false) }}
-                      placeholder="Apellidos"
-                      className={`field${err && !lastName ? ' field-err' : ''}`}
-                    />
+                    <input type="text" value={firstName} onChange={e => { setFirstName(e.target.value); setErr(false) }} placeholder="Nombres" className={`field${err && !firstName ? ' field-err' : ''}`} />
+                    <input type="text" value={lastName} onChange={e => { setLastName(e.target.value); setErr(false) }} placeholder="Apellidos" className={`field${err && !lastName ? ' field-err' : ''}`} />
                   </div>
-
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={e => { setEmail(e.target.value); setErr(false) }}
-                    placeholder="Correo electrónico"
-                    className={`field${err && !validEmail ? ' field-err' : ''}`}
-                  />
-
+                  <input type="email" value={email} onChange={e => { setEmail(e.target.value); setErr(false) }} placeholder="Correo electrónico" className={`field${err && !validEmail ? ' field-err' : ''}`} />
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <select
-                      value={dialCode}
-                      onChange={e => setDialCode(e.target.value)}
-                      className="field"
-                      style={{ width: 110, flexShrink: 0, WebkitAppearance: 'none', paddingRight: '0.5rem' }}
-                    >
+                    <select value={dialCode} onChange={e => setDialCode(e.target.value)} className="field" style={{ width: 110, flexShrink: 0, WebkitAppearance: 'none', paddingRight: '0.5rem' }}>
                       {COUNTRY_CODES.map(c => (
                         <option key={c.code + c.name} value={c.code}>{c.flag} {c.code}</option>
                       ))}
                     </select>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={e => setPhone(e.target.value.replace(/\D/g, ''))}
-                      placeholder="Celular"
-                      className="field"
-                      style={{ flex: 1 }}
-                    />
+                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value.replace(/\D/g, ''))} placeholder="Celular" className="field" style={{ flex: 1 }} />
                   </div>
-
-                  <input
-                    type="text"
-                    value={country}
-                    onChange={e => setCountry(e.target.value)}
-                    placeholder="País"
-                    className="field"
-                  />
-
+                  <input type="text" value={country} onChange={e => setCountry(e.target.value)} placeholder="País" className="field" />
                   {err && (
                     <p style={{ fontSize: '0.78rem', color: 'var(--rose)', margin: '0.1rem 0' }}>
                       Completa nombres, apellidos y correo para continuar.
                     </p>
                   )}
-
-                  <button
-                    className="btn btn-rose btn-full btn-lg"
-                    onClick={submit}
-                    disabled={loading}
-                    style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
-                  >
+                  <button className="btn btn-rose btn-full btn-lg" onClick={submit} disabled={loading} style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
                     {loading ? 'Enviando...' : 'Unirme a los Biobuilders →'}
                   </button>
                   <p style={{ textAlign: 'center', fontSize: '0.72rem', color: 'var(--t-dark3)' }}>Sin spam · Sin tarjeta · Solo bionegocios</p>
@@ -217,14 +162,7 @@ export default function Community() {
                 <strong style={{ fontFamily: 'var(--fout)', fontSize: '1.2rem', fontWeight: 600, color: 'var(--dark)' }}>¡Bienvenido/a a los Biobuilders!</strong>
                 <p style={{ fontSize: '0.9rem', color: 'var(--t-dark2)', lineHeight: 1.65 }}>Recibimos tus datos. En las próximas 48h te enviamos tus accesos a la comunidad Starter.</p>
                 <p style={{ fontSize: '0.82rem', color: 'var(--t-dark3)' }}>Redirigiendo al grupo de WhatsApp...</p>
-                
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-dark btn-lg"
-                >
-                  Ir al grupo ahora →
-                </a>
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-lg">Ir al grupo ahora →</a>
               </div>
             )}
           </div>

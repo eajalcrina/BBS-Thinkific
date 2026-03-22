@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import FadeIn from './FadeIn.jsx'
-import { Halo, Cell, Membrane, Dot, ORBS_ROSE } from './CellSystem.jsx'
+import CellCanvas from './CellCanvas.jsx'
 
 const features = [
   'Diseño de bionegocios rentables desde cero',
@@ -13,26 +13,9 @@ export default function Book() {
   return (
     <section id="libro" className="sec-t" style={{ background:'var(--white)', position:'relative', overflow:'hidden' }}>
 
-      {/* ── Halos ── */}
-      <Halo top="-40%"   left="-10%"  size={230} fill="rgba(193,244,0,.04)"  stroke="rgba(193,244,0,.10)"  delay={1} ccw/>
-      <Halo bottom="-35%" right="-8%" size={165} fill="rgba(243,39,105,.03)" stroke="rgba(243,39,105,.08)" delay={4}/>
+      <CellCanvas palette="white"/>
 
-      {/* ── Células ── */}
-      <Cell top="6%"    left="3%"   size={65}  mb="rgba(193,244,0,.04)" mf="rgba(193,244,0,.18)" spd="spin-ccw 37s"  nb={15} nf="rgba(243,39,105,.46)" orbs={ORBS_ROSE()} delay={0}/>
-      <Cell bottom="6%" right="3%"  size={110} mb="rgba(193,244,0,.06)" mf="rgba(193,244,0,.24)" spd="spin-slow 45s" nb={25} nf="rgba(243,39,105,.48)" orbs={ORBS_ROSE()} delay={1}/>
-      <Cell top="18%"   right="22%" size={55}  mb="rgba(193,244,0,.03)" mf="rgba(193,244,0,.13)" spd="spin-cw 50s"   nb={13} nf="rgba(243,39,105,.34)" orbs={ORBS_ROSE()} delay={2.5}/>
-      <Cell bottom="18%" left="30%" size={38}  mb="rgba(193,244,0,.03)" mf="rgba(193,244,0,.11)" spd="spin-ccw 58s"  nb={9}  nf="rgba(243,39,105,.28)" orbs={ORBS_ROSE()} delay={3.5}/>
-
-      {/* ── Membranas ── */}
-      <Membrane top="42%"  right="38%" size={26} mb="rgba(193,244,0,.025)" mf="rgba(193,244,0,.10)"  spd="spin-slow 64s" delay={2}/>
-      <Membrane top="12%"  left="42%"  size={18} mb="rgba(243,39,105,.02)"mf="rgba(243,39,105,.08)" spd="spin-cw 70s"   delay={5}/>
-
-      {/* ── Puntos ── */}
-      <Dot bottom="28%" left="10%"  size={9} fill="rgba(243,39,105,.40)"  anim="float-y" delay={0.5}/>
-      <Dot top="34%"    left="28%"  size={7} fill="rgba(193,244,0,.45)"   anim="float-x" delay={2}/>
-      <Dot bottom="18%" right="28%" size={6} fill="rgba(243,39,105,.28)"  anim="float-d" delay={3.5}/>
-
-      <div className="wrap" style={{ position:'relative' }}>
+      <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label dark" style={{ marginBottom:'1rem' }}>Publicación · Vol. 1 de 3</div></FadeIn>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'4rem', alignItems:'center' }} className="book-grid">
           <div>
@@ -71,7 +54,7 @@ export default function Book() {
         </div>
       </div>
 
-      <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
+      <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
         <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
           <path d="M0,30 C360,50 1080,10 1440,30 L1440,60 L0,60 Z" fill="var(--lime)"/>
         </svg>

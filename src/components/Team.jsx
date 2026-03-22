@@ -1,6 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
-import { Halo, Cell, Membrane, Dot, ORBS_ROSE, ORBS_LIME } from './CellSystem.jsx'
+import CellCanvas from './CellCanvas.jsx'
 
 const LiIcon = () => <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
 
@@ -13,26 +13,9 @@ export default function Team() {
   return (
     <section id="equipo" className="sec-t on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      {/* ── Halos ── */}
-      <Halo top="-42%"    right="-10%" size={240} fill="rgba(193,244,0,.02)"  stroke="rgba(193,244,0,.06)"  delay={1} ccw/>
-      <Halo bottom="-35%" left="-8%"   size={170} fill="rgba(243,39,105,.02)" stroke="rgba(243,39,105,.07)" delay={5}/>
+      <CellCanvas palette="dark"/>
 
-      {/* ── Células ── */}
-      <Cell top="6%"    right="3%"  size={105} mb="rgba(255,255,255,.02)"  mf="rgba(193,244,0,.15)" spd="spin-slow 45s"  nb={23} nf="rgba(243,39,105,.46)" orbs={ORBS_ROSE()} off delay={0}/>
-      <Cell bottom="8%" left="3%"   size={63}  mb="rgba(255,255,255,.015)" mf="rgba(243,39,105,.14)"spd="spin-cw 34s"    nb={15} nf="rgba(193,244,0,.50)"  orbs={ORBS_LIME()} delay={1.5}/>
-      <Cell top="22%"   left="30%"  size={45}  mb="rgba(255,255,255,.01)"  mf="rgba(193,244,0,.09)" spd="spin-slow 52s"  nb={10} nf="rgba(243,39,105,.36)" orbs={ORBS_ROSE()} delay={2.5}/>
-      <Cell bottom="12%" right="18%" size={34} mb="rgba(255,255,255,.01)"  mf="rgba(193,244,0,.08)" spd="spin-ccw 60s"   nb={8}  nf="rgba(193,244,0,.40)"  orbs={ORBS_LIME()} delay={4}/>
-
-      {/* ── Membranas ── */}
-      <Membrane top="48%"    right="32%" size={24} mb="rgba(255,255,255,.01)" mf="rgba(255,255,255,.06)" spd="spin-cw 65s"   delay={2}/>
-      <Membrane bottom="20%" left="44%"  size={18} mb="rgba(193,244,0,.01)"   mf="rgba(193,244,0,.05)"   spd="spin-slow 72s" delay={6}/>
-
-      {/* ── Puntos ── */}
-      <Dot bottom="28%" left="14%"  size={9} fill="rgba(193,244,0,.50)"   anim="float-y" delay={1}/>
-      <Dot top="38%"    right="22%" size={7} fill="rgba(243,39,105,.42)"  anim="float-x" delay={2}/>
-      <Dot bottom="18%" right="38%" size={6} fill="rgba(255,255,255,.22)" anim="float-d" delay={3.5}/>
-
-      <div className="wrap" style={{ position:'relative' }}>
+      <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El equipo</div></FadeIn>
         <FadeIn delay={0.08}><h2 className="t-out t-md" style={{ marginBottom:'0.8rem', color:'var(--white)' }}>Hacemos que invertir en negocios sostenibles sea <em style={{ fontStyle:'normal', color:'var(--lime)', fontWeight:700 }}>buen negocio</em></h2></FadeIn>
         <FadeIn delay={0.14}><p className="lead" style={{ color:'var(--t-white2)', maxWidth:520, marginBottom:'2.5rem' }}>Emprendedores, estrategas e inversionistas. Hemos estado en ambos lados de la mesa.</p></FadeIn>

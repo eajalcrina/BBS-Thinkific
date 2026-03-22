@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Halo, Cell, Membrane, Dot, ORBS_DARK, ORBS_ROSE } from './CellSystem.jsx'
+import CellCanvas from './CellCanvas.jsx'
 
 const st = { hidden:{}, show:{ transition:{ staggerChildren:0.08, delayChildren:0.15 } } }
 const it = { hidden:{ opacity:0, y:36 }, show:{ opacity:1, y:0, transition:{ duration:0.7, ease:[0.22,1,0.36,1] } } }
@@ -8,27 +8,10 @@ export default function Hero() {
   return (
     <section style={{ background:'var(--lime)', position:'relative', overflow:'hidden', minHeight:'92vh', display:'flex', alignItems:'center' }}>
 
-      {/* ── Halos de fondo ── */}
-      <Halo top="-38%" right="-14%" size={340} fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.14)" delay={0}/>
-      <Halo bottom="-30%" left="-8%" size={210} fill="rgba(255,255,255,.04)" stroke="rgba(14,14,14,.08)" delay={3} ccw/>
-
-      {/* ── Células nucleadas ── */}
-      <Cell top="6%"  right="3%"  size={195} mb="rgba(255,255,255,.09)" mf="rgba(255,255,255,.48)" spd="spin-cw 24s"   nb={42} nf="rgba(14,14,14,.44)"    orbs={ORBS_DARK()} delay={0}/>
-      <Cell bottom="18%" right="25%" size={108} mb="rgba(255,255,255,.07)" mf="rgba(255,255,255,.30)" spd="spin-ccw 34s"  nb={26} nf="rgba(243,39,105,.55)" orbs={ORBS_ROSE()} delay={1.5}/>
-      <Cell bottom="12%" left="3%"  size={72}  mb="rgba(255,255,255,.05)" mf="rgba(255,255,255,.22)" spd="spin-cw 42s"   nb={17} nf="rgba(14,14,14,.36)"   orbs={ORBS_DARK()} delay={2.5}/>
-      <Cell top="42%" right="8%"  size={50}  mb="rgba(255,255,255,.04)" mf="rgba(255,255,255,.20)" spd="spin-ccw 50s"  nb={12} nf="rgba(243,39,105,.42)" orbs={ORBS_ROSE()} delay={4}/>
-
-      {/* ── Membranas sin núcleo ── */}
-      <Membrane top="22%" left="36%" size={36} mb="rgba(255,255,255,.03)" mf="rgba(255,255,255,.18)" spd="spin-slow 55s" delay={1}/>
-      <Membrane top="55%" right="40%" size={24} mb="rgba(255,255,255,.03)" mf="rgba(255,255,255,.14)" spd="spin-cw 48s"   delay={3}/>
-
-      {/* ── Puntos flotantes ── */}
-      <Dot bottom="30%" left="14%"  size={11} fill="#F32769"              anim="float-x" delay={0}/>
-      <Dot top="48%"   left="48%"  size={8}  fill="rgba(14,14,14,.22)"   anim="float-y" delay={1.5}/>
-      <Dot top="28%"   right="36%" size={7}  fill="rgba(14,14,14,.18)"   anim="float-d" delay={2.5}/>
+      <CellCanvas palette="lime"/>
 
       {/* Dot grid */}
-      <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(14,14,14,0.12) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none', maskImage:'linear-gradient(to right, transparent, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.35) 70%, transparent)' }}/>
+      <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(14,14,14,0.10) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none', zIndex:1, maskImage:'linear-gradient(to right, transparent, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.3) 70%, transparent)' }}/>
 
       <div className="wrap" style={{ width:'100%', position:'relative', zIndex:2, paddingTop:'3rem', paddingBottom:'7rem' }}>
         <motion.div variants={st} initial="hidden" animate="show" style={{ maxWidth:780 }}>

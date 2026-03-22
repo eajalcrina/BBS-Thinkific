@@ -1,6 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
-import { Halo, Cell, Membrane, Dot, ORBS_ROSE } from './CellSystem.jsx'
+import CellCanvas from './CellCanvas.jsx'
 
 const compare = [
   ['Maximiza retorno financiero a corto plazo','Diseña rentabilidad que regenera territorio'],
@@ -24,26 +24,9 @@ export default function BioBuilder() {
   return (
     <section id="biobuilder" className="sec" style={{ background:'var(--cream)', position:'relative', overflow:'hidden' }}>
 
-      {/* ── Halos ── */}
-      <Halo bottom="-38%" right="-10%" size={255} fill="rgba(14,14,14,.025)"   stroke="rgba(14,14,14,.06)"    delay={1}/>
-      <Halo top="-30%"   left="-6%"   size={165} fill="rgba(243,39,105,.02)"   stroke="rgba(243,39,105,.06)"  delay={4} ccw/>
+      <CellCanvas palette="cream"/>
 
-      {/* ── Células ── */}
-      <Cell top="5%"    right="3%"  size={118} mb="rgba(14,14,14,.03)"  mf="rgba(14,14,14,.11)"  spd="spin-cw 29s"   nb={27} nf="rgba(243,39,105,.50)" orbs={ORBS_ROSE()} delay={0}/>
-      <Cell bottom="9%" left="3%"  size={72}  mb="rgba(14,14,14,.02)"  mf="rgba(14,14,14,.07)"  spd="spin-ccw 40s"  nb={17} nf="rgba(243,39,105,.40)" orbs={ORBS_ROSE()} delay={1.5}/>
-      <Cell top="28%"   right="22%" size={50}  mb="rgba(14,14,14,.02)"  mf="rgba(14,14,14,.07)"  spd="spin-slow 50s" nb={12} nf="rgba(243,39,105,.34)" orbs={ORBS_ROSE()} delay={2.5}/>
-      <Cell bottom="12%" right="16%" size={36} mb="rgba(14,14,14,.015)" mf="rgba(14,14,14,.06)"  spd="spin-cw 58s"   nb={8}  nf="rgba(243,39,105,.28)" orbs={ORBS_ROSE()} delay={3.5}/>
-
-      {/* ── Membranas ── */}
-      <Membrane top="52%"  left="36%"  size={28} mb="rgba(14,14,14,.015)" mf="rgba(14,14,14,.06)"  spd="spin-ccw 62s"  delay={2}/>
-      <Membrane top="15%"  left="44%"  size={20} mb="rgba(243,39,105,.01)"mf="rgba(243,39,105,.07)" spd="spin-slow 70s" delay={5}/>
-
-      {/* ── Puntos ── */}
-      <Dot bottom="30%" left="12%"  size={10} fill="rgba(243,39,105,.46)" anim="float-y" delay={0.5}/>
-      <Dot top="20%"    left="36%"  size={7}  fill="rgba(14,14,14,.18)"   anim="float-x" delay={2}/>
-      <Dot bottom="18%" right="30%" size={6}  fill="rgba(243,39,105,.30)" anim="float-d" delay={3.5}/>
-
-      <div className="wrap" style={{ position:'relative' }}>
+      <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label" style={{ marginBottom:'1rem' }}>La solución</div></FadeIn>
         <FadeIn delay={0.08}><h2 className="t-out t-lg" style={{ marginBottom:'0.9rem', color:'var(--dark)' }}>Formamos <em style={{ fontStyle:'normal', color:'var(--rose)', fontWeight:700 }}>BioBuilders</em>, no MBAs</h2></FadeIn>
         <FadeIn delay={0.14}><p className="lead" style={{ color:'var(--t-dark2)', maxWidth:580, marginBottom:'3rem' }}>El BioBuilder es un líder híbrido: domina la ciencia, la tecnología y las finanzas de impacto. El perfil que América Latina necesita para transformar su abundancia biológica en economía real.</p></FadeIn>

@@ -1,6 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
-import { Halo, Cell, Membrane, Dot, ORBS_LIME } from './CellSystem.jsx'
+import CellCanvas from './CellCanvas.jsx'
 
 const features = [
   '8 semanas de aprendizaje dual: DeepTech aplicado + Business Design',
@@ -31,26 +31,9 @@ export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
 
-      {/* ── Halos ── */}
-      <Halo top="-36%"    right="-12%" size={290} fill="rgba(255,255,255,.04)"  stroke="rgba(255,255,255,.12)" delay={0}/>
-      <Halo bottom="-30%" left="-8%"   size={180} fill="rgba(193,244,0,.03)"    stroke="rgba(193,244,0,.08)"   delay={4} ccw/>
+      <CellCanvas palette="rose"/>
 
-      {/* ── Células ── */}
-      <Cell top="6%"    left="3%"   size={132} mb="rgba(255,255,255,.05)" mf="rgba(255,255,255,.26)" spd="spin-ccw 27s"  nb={29} nf="rgba(193,244,0,.26)" orbs={ORBS_LIME()} off delay={0}/>
-      <Cell bottom="10%" right="4%" size={80}  mb="rgba(255,255,255,.04)" mf="rgba(255,255,255,.17)" spd="spin-cw 36s"   nb={19} nf="rgba(193,244,0,.22)" orbs={ORBS_LIME()} delay={1.5}/>
-      <Cell top="18%"   right="10%" size={56}  mb="rgba(255,255,255,.03)" mf="rgba(255,255,255,.14)" spd="spin-ccw 44s"  nb={13} nf="rgba(193,244,0,.18)" orbs={ORBS_LIME()} delay={2.5}/>
-      <Cell top="40%"   right="26%" size={38}  mb="rgba(255,255,255,.025)"mf="rgba(255,255,255,.12)" spd="spin-slow 54s" nb={9}  nf="rgba(193,244,0,.14)" orbs={ORBS_LIME()} delay={4}/>
-
-      {/* ── Membranas ── */}
-      <Membrane bottom="22%" left="36%"  size={28} mb="rgba(255,255,255,.025)" mf="rgba(255,255,255,.14)" spd="spin-cw 60s"   delay={2}/>
-      <Membrane top="55%"    right="42%" size={20} mb="rgba(255,255,255,.02)"  mf="rgba(255,255,255,.10)" spd="spin-slow 68s" delay={5}/>
-
-      {/* ── Puntos ── */}
-      <Dot top="30%"    right="8%"  size={10} fill="rgba(193,244,0,.40)"  anim="float-x" delay={1}/>
-      <Dot bottom="24%" left="36%"  size={8}  fill="rgba(255,255,255,.50)" anim="float-y" delay={2}/>
-      <Dot top="55%"    left="48%"  size={6}  fill="rgba(193,244,0,.28)"  anim="float-d" delay={3.5}/>
-
-      <div className="wrap sec" style={{ position:'relative', paddingTop:'5rem', zIndex:3 }}>
+      <div className="wrap sec" style={{ position:'relative', paddingTop:'5rem', zIndex:2 }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'2.5rem', flexWrap:'wrap', gap:'1rem' }}>
           <FadeIn><div className="label white">Curso especializado · Lanzamiento 2026</div></FadeIn>
           <FadeIn delay={0.1}><LogosHeader/></FadeIn>

@@ -1,6 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
-import { Halo, Cell, Membrane, Dot, ORBS_LIME } from './CellSystem.jsx'
+import CellCanvas from './CellCanvas.jsx'
 
 const items = [
   { n:'01', title:'Asimetría de información', body:'La falta de datos curados sobre bionegocios paraliza la inversión en la región.' },
@@ -13,24 +13,7 @@ export default function Problem() {
   return (
     <section className="sec on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      {/* ── Halos ── */}
-      <Halo top="-42%"   left="-10%"  size={270} fill="rgba(193,244,0,.02)"  stroke="rgba(193,244,0,.07)"  delay={2} ccw/>
-      <Halo bottom="-35%" right="-8%" size={180} fill="rgba(255,255,255,.01)" stroke="rgba(255,255,255,.05)" delay={5}/>
-
-      {/* ── Células nucleadas ── */}
-      <Cell top="7%"    left="3%"  size={105} mb="rgba(255,255,255,.02)"  mf="rgba(255,255,255,.14)" spd="spin-ccw 30s"  nb={23} nf="rgba(193,244,0,.55)" orbs={ORBS_LIME()} off delay={0}/>
-      <Cell top="10%"   right="4%" size={75}  mb="rgba(255,255,255,.015)" mf="rgba(255,255,255,.09)" spd="spin-cw 38s"   nb={17} nf="rgba(193,244,0,.44)" orbs={ORBS_LIME()} delay={1}/>
-      <Cell bottom="8%" left="38%" size={52}  mb="rgba(255,255,255,.01)"  mf="rgba(255,255,255,.07)" spd="spin-ccw 46s"  nb={12} nf="rgba(193,244,0,.36)" orbs={ORBS_LIME()} delay={2.5}/>
-      <Cell bottom="8%" right="14%" size={40} mb="rgba(255,255,255,.01)"  mf="rgba(255,255,255,.06)" spd="spin-slow 54s" nb={9}  nf="rgba(193,244,0,.30)" orbs={ORBS_LIME()} delay={3.5}/>
-
-      {/* ── Membranas ── */}
-      <Membrane top="40%"    right="28%" size={30} mb="rgba(255,255,255,.01)" mf="rgba(255,255,255,.06)" spd="spin-cw 60s"   delay={1.5}/>
-      <Membrane bottom="20%" left="20%"  size={22} mb="rgba(193,244,0,.01)"   mf="rgba(193,244,0,.06)"   spd="spin-slow 65s" delay={4}/>
-
-      {/* ── Puntos ── */}
-      <Dot top="40%"    right="8%"  size={9} fill="rgba(193,244,0,.55)"   anim="float-y" delay={1}/>
-      <Dot bottom="22%" left="26%"  size={7} fill="rgba(193,244,0,.38)"   anim="float-x" delay={2}/>
-      <Dot top="60%"    right="34%" size={6} fill="rgba(255,255,255,.20)" anim="float-d" delay={3}/>
+      <CellCanvas palette="dark"/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El problema</div></FadeIn>

@@ -34,7 +34,7 @@ export default function Nav() {
           <Logo onLime={!scrolled} />
         </a>
         <ul style={{ display: 'flex', gap: '1.8rem', listStyle: 'none' }} className="nav-ul">
-          {[['#biobuilder','BioBuilder'],['#curso','Sprint 01'],['#libro','Playbook'],['#comunidad','Comunidad'],['#equipo','Equipo']].map(([h, l]) => (
+          {[['#biobuilder','BioBuilders'],['#curso','Sprint 01'],['#libro','Playbook'],['#comunidad','Comunidad'],['#equipo','Equipo']].map(([h, l]) => (
             <li key={h}>
               <a href={h}
                 style={{ fontFamily: 'var(--fbc)', fontSize: '0.82rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: scrolled ? 'rgba(14,14,14,0.65)' : 'rgba(14,14,14,0.7)', textDecoration: 'none', transition: 'color 0.18s' }}

@@ -30,11 +30,11 @@ export default function Problem() {
         <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'1.5rem' }} className="prob-grid">
           {items.map((p,i)=>(
             <FadeIn key={p.n} delay={0.08*i}>
-              <motion.div whileHover={{ y:-6, background:'rgba(193,244,0,0.10)' }} transition={{ duration:0.2 }}
-                style={{ background:'rgba(255,255,255,0.11)', border:'1px solid rgba(255,255,255,0.14)', borderRadius:16, padding:'1.8rem 1.5rem', height:'100%', display:'flex', flexDirection:'column', gap:'0.6rem', cursor:'default', transition:'background 0.2s' }}>
+              <motion.div whileHover={{ y:-6, background:'rgba(193,244,0,0.18)' }} transition={{ duration:0.2 }}
+                style={{ background:'rgba(255,255,255,0.30)', border:'1px solid rgba(255,255,255,0.36)', borderRadius:16, padding:'1.8rem 1.5rem', height:'100%', display:'flex', flexDirection:'column', gap:'0.6rem', cursor:'default', transition:'background 0.2s' }}>
                 <div style={{ fontFamily:'var(--fbc)', fontSize:'2.8rem', fontWeight:700, color:'rgba(193,244,0,0.30)', lineHeight:0.9 }}>{p.n}</div>
                 <h3 style={{ fontFamily:'var(--fout)', fontSize:'1.05rem', fontWeight:700, color:'var(--white)', lineHeight:1.3 }}>{p.title}</h3>
-                <p style={{ fontSize:'0.85rem', lineHeight:1.65, color:'var(--t-white2)' }}>{p.body}</p>
+                <p style={{ fontSize:'0.85rem', lineHeight:1.65, color:'rgba(255,255,255,0.80)' }}>{p.body}</p>
               </motion.div>
             </FadeIn>
           ))}

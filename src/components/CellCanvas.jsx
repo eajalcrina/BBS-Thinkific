@@ -7,10 +7,10 @@ import { useEffect, useRef } from 'react'
 const PALETTES = {
   lime: {
     bg:'#C1F400',
-    /* membranas blancas — preservan el verde vibrante del fondo */
-    mf:(a)=>`rgba(255,255,255,${(a*0.85).toFixed(3)})`,
-    nc:['rgba(255,255,255,.22)','rgba(255,255,255,.26)','rgba(255,255,255,.30)'],
-    ob:(l)=>`rgba(255,255,255,${[.09,.11,.13][l]})`,
+    /* membranas blancas más visibles — ×2.20 con cap 0.90 */
+    mf:(a)=>`rgba(255,255,255,${Math.min(a*2.20,0.90).toFixed(3)})`,
+    nc:['rgba(255,255,255,.38)','rgba(255,255,255,.44)','rgba(255,255,255,.50)'],
+    ob:(l)=>`rgba(255,255,255,${[.18,.22,.26][l]})`,
   },
   dark: {
     bg:'#0E0E0E',

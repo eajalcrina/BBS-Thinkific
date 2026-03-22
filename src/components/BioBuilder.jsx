@@ -1,5 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
+import { Halo, Cell, Membrane, Dot, ORBS_ROSE } from './CellSystem.jsx'
 
 const compare = [
   ['Maximiza retorno financiero a corto plazo','Diseña rentabilidad que regenera territorio'],
@@ -18,31 +19,29 @@ const NODES = [
   { cx:62,  cy:240, lines:['BIO-','DIVERS.'],    type:'rose' },
   { cx:78,  cy:115, lines:['CONOC.','TERRIT.'],  type:'rose' },
 ]
-const orbsRose = [
-  {x:7,y:7,r:2.2,f:'rgba(243,39,105,0.36)'},{x:19,y:6,r:1.8,f:'rgba(243,39,105,0.28)'},
-  {x:20,y:18,r:2.5,f:'rgba(243,39,105,0.26)'},{x:7,y:19,r:1.8,f:'rgba(243,39,105,0.32)'},
-  {x:13,y:13,r:1.4,f:'rgba(243,39,105,0.18)'}
-]
 
 export default function BioBuilder() {
   return (
     <section id="biobuilder" className="sec" style={{ background:'var(--cream)', position:'relative', overflow:'hidden' }}>
 
-      {/* Burbuja pequeña suelta izquierda — visible */}
-      <div style={{ position:'absolute', bottom:'12%', left:'3%', width:65, height:65, borderRadius:'50%', background:'rgba(14,14,14,0.03)', border:'2px dashed rgba(14,14,14,0.10)', animation:'spin-cw 40s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ y:[0,-9,0] }} transition={{ duration:7, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'28%', left:'10%', width:10, height:10, borderRadius:'50%', background:'rgba(243,39,105,0.55)', pointerEvents:'none' }}/>
+      {/* ── Halos ── */}
+      <Halo bottom="-38%" right="-10%" size={255} fill="rgba(14,14,14,.025)"   stroke="rgba(14,14,14,.06)"    delay={1}/>
+      <Halo top="-30%"   left="-6%"   size={165} fill="rgba(243,39,105,.02)"   stroke="rgba(243,39,105,.06)"  delay={4} ccw/>
 
-      {/* CÉLULA COMPLETA derecha — visible top:5% */}
-      <div style={{ position:'absolute', top:'5%', right:'3%', width:120, height:120, borderRadius:'50%', background:'rgba(14,14,14,0.03)', border:'2px dashed rgba(14,14,14,0.11)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
-        <motion.div animate={{ y:[0,-11,0] }} transition={{ duration:5, repeat:Infinity, ease:'easeInOut', delay:0.8 }}
-          style={{ position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)', width:28, height:28, borderRadius:'50%', overflow:'hidden' }}>
-          <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-            <circle cx="14" cy="14" r="13" fill="rgba(243,39,105,0.52)"/>
-            {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-          </svg>
-        </motion.div>
-      </div>
+      {/* ── Células ── */}
+      <Cell top="5%"    right="3%"  size={118} mb="rgba(14,14,14,.03)"  mf="rgba(14,14,14,.11)"  spd="spin-cw 29s"   nb={27} nf="rgba(243,39,105,.50)" orbs={ORBS_ROSE()} delay={0}/>
+      <Cell bottom="9%" left="3%"  size={72}  mb="rgba(14,14,14,.02)"  mf="rgba(14,14,14,.07)"  spd="spin-ccw 40s"  nb={17} nf="rgba(243,39,105,.40)" orbs={ORBS_ROSE()} delay={1.5}/>
+      <Cell top="28%"   right="22%" size={50}  mb="rgba(14,14,14,.02)"  mf="rgba(14,14,14,.07)"  spd="spin-slow 50s" nb={12} nf="rgba(243,39,105,.34)" orbs={ORBS_ROSE()} delay={2.5}/>
+      <Cell bottom="12%" right="16%" size={36} mb="rgba(14,14,14,.015)" mf="rgba(14,14,14,.06)"  spd="spin-cw 58s"   nb={8}  nf="rgba(243,39,105,.28)" orbs={ORBS_ROSE()} delay={3.5}/>
+
+      {/* ── Membranas ── */}
+      <Membrane top="52%"  left="36%"  size={28} mb="rgba(14,14,14,.015)" mf="rgba(14,14,14,.06)"  spd="spin-ccw 62s"  delay={2}/>
+      <Membrane top="15%"  left="44%"  size={20} mb="rgba(243,39,105,.01)"mf="rgba(243,39,105,.07)" spd="spin-slow 70s" delay={5}/>
+
+      {/* ── Puntos ── */}
+      <Dot bottom="30%" left="12%"  size={10} fill="rgba(243,39,105,.46)" anim="float-y" delay={0.5}/>
+      <Dot top="20%"    left="36%"  size={7}  fill="rgba(14,14,14,.18)"   anim="float-x" delay={2}/>
+      <Dot bottom="18%" right="30%" size={6}  fill="rgba(243,39,105,.30)" anim="float-d" delay={3.5}/>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label" style={{ marginBottom:'1rem' }}>La solución</div></FadeIn>
@@ -83,7 +82,6 @@ export default function BioBuilder() {
         </div>
       </div>
 
-      {/* TRANSICIÓN FUSIONADA: cream → rose */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
         <svg viewBox="0 0 1440 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:110, display:'block' }}>
           <path d="M0,82 C180,30 420,100 720,40 C1020,8 1260,85 1440,58 L1440,110 L0,110 Z" fill="rgba(243,39,105,0.22)"/>

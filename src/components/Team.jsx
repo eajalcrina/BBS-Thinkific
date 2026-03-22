@@ -1,38 +1,36 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
+import { Halo, Cell, Membrane, Dot, ORBS_ROSE, ORBS_LIME } from './CellSystem.jsx'
 
 const LiIcon = () => <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
 
 const founders = [
-  { name:'Eddie Ajalcriña', role:'CEO & Co-Fundador', photo:'/eddie.jpg', bio:'Estratega y fundador experimentado, experto construyendo marcas que conectar la Amazonía con mercados globales.', credentials:['Maestría Biocomercio PUCP · Experto para MIT PE','+18 años en compañías regionales, inversión de impacto y Go-to-Market','Ex-Coordinador Unión Europea en Perú'], li:'https://www.linkedin.com/in/eddieajalcrina/', accent:'var(--rose)', accentBg:'rgba(243,39,105,0.12)', glowColor:'rgba(243,39,105,0.25)' },
-  { name:'Lorenzo Ortiz', role:'COO & Co-Fundador', photo:'/lorenzo.jpg', bio:'Estratega e inversionista con visión única para construir bionegocios de impacto regional integrando finanzas, tecnología y territorio.', credentials:['MIT Business Analytics · Ing. Industrial UNT','+12 años en dirección de operaciones, estrategia y finanzas','Singularity University LATAM Fellow'], li:'https://www.linkedin.com/in/lorenzoortiz/', accent:'var(--lime)', accentBg:'rgba(193,244,0,0.10)', glowColor:'rgba(193,244,0,0.20)' },
-]
-
-const orbsRose = [
-  {x:5,y:6,r:2.2,f:'rgba(243,39,105,0.34)'},{x:16,y:5,r:1.6,f:'rgba(243,39,105,0.28)'},
-  {x:17,y:15,r:2.5,f:'rgba(243,39,105,0.26)'},{x:5,y:16,r:1.8,f:'rgba(243,39,105,0.30)'},
-  {x:11,y:11,r:1.4,f:'rgba(243,39,105,0.18)'}
+  { name:'Eddie Ajalcriña', role:'CEO & Co-Fundador', photo:'/eddie.jpg', bio:'Estratega con +18 años liderando bionegocios rentables en la Amazonía y ecosistemas críticos de América Latina.', credentials:['MBA ESAN · Maestría Biocomercio PUCP','+18 años en compañías regionales, inversión de impacto y Go-to-Market','Ex-Coordinador Unión Europea en Perú'], li:'https://www.linkedin.com/in/eddieajalcrina/', accent:'var(--rose)', accentBg:'rgba(243,39,105,0.12)', glowColor:'rgba(243,39,105,0.25)' },
+  { name:'Lorenzo Ortiz', role:'COO & Co-Fundador', photo:'/lorenzo.jpg', bio:'Estratega e inversionista con visión única para construir bionegocios de impacto regional integrando finanzas y territorio.', credentials:['MIT Business Analytics · Ing. Industrial UNT','+12 años en dirección de operaciones, estrategia y finanzas','Singularity University LATAM Fellow'], li:'https://www.linkedin.com/in/lorenzoortiz/', accent:'var(--lime)', accentBg:'rgba(193,244,0,0.10)', glowColor:'rgba(193,244,0,0.20)' },
 ]
 
 export default function Team() {
   return (
     <section id="equipo" className="sec-t on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      {/* Burbuja pequeña suelta izquierda — visible top:8% */}
-      <div style={{ position:'absolute', top:'8%', left:'3%', width:68, height:68, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(243,39,105,0.18)', animation:'spin-ccw 30s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ y:[0,-8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', bottom:'24%', left:'10%', width:10, height:10, borderRadius:'50%', background:'rgba(193,244,0,0.55)', pointerEvents:'none' }}/>
+      {/* ── Halos ── */}
+      <Halo top="-42%"    right="-10%" size={240} fill="rgba(193,244,0,.02)"  stroke="rgba(193,244,0,.06)"  delay={1} ccw/>
+      <Halo bottom="-35%" left="-8%"   size={170} fill="rgba(243,39,105,.02)" stroke="rgba(243,39,105,.07)" delay={5}/>
 
-      {/* CÉLULA COMPLETA derecha — visible top:5% */}
-      <div style={{ position:'absolute', top:'5%', right:'3%', width:108, height:108, borderRadius:'50%', background:'rgba(255,255,255,0.02)', border:'2px dashed rgba(193,244,0,0.16)', animation:'spin-slow 44s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
-        <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut', delay:0.6 }}
-          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:24, height:24, borderRadius:'50%', overflow:'hidden' }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-            <circle cx="12" cy="12" r="11" fill="rgba(243,39,105,0.50)"/>
-            {orbsRose.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-          </svg>
-        </motion.div>
-      </div>
+      {/* ── Células ── */}
+      <Cell top="6%"    right="3%"  size={105} mb="rgba(255,255,255,.02)"  mf="rgba(193,244,0,.15)" spd="spin-slow 45s"  nb={23} nf="rgba(243,39,105,.46)" orbs={ORBS_ROSE()} off delay={0}/>
+      <Cell bottom="8%" left="3%"   size={63}  mb="rgba(255,255,255,.015)" mf="rgba(243,39,105,.14)"spd="spin-cw 34s"    nb={15} nf="rgba(193,244,0,.50)"  orbs={ORBS_LIME()} delay={1.5}/>
+      <Cell top="22%"   left="30%"  size={45}  mb="rgba(255,255,255,.01)"  mf="rgba(193,244,0,.09)" spd="spin-slow 52s"  nb={10} nf="rgba(243,39,105,.36)" orbs={ORBS_ROSE()} delay={2.5}/>
+      <Cell bottom="12%" right="18%" size={34} mb="rgba(255,255,255,.01)"  mf="rgba(193,244,0,.08)" spd="spin-ccw 60s"   nb={8}  nf="rgba(193,244,0,.40)"  orbs={ORBS_LIME()} delay={4}/>
+
+      {/* ── Membranas ── */}
+      <Membrane top="48%"    right="32%" size={24} mb="rgba(255,255,255,.01)" mf="rgba(255,255,255,.06)" spd="spin-cw 65s"   delay={2}/>
+      <Membrane bottom="20%" left="44%"  size={18} mb="rgba(193,244,0,.01)"   mf="rgba(193,244,0,.05)"   spd="spin-slow 72s" delay={6}/>
+
+      {/* ── Puntos ── */}
+      <Dot bottom="28%" left="14%"  size={9} fill="rgba(193,244,0,.50)"   anim="float-y" delay={1}/>
+      <Dot top="38%"    right="22%" size={7} fill="rgba(243,39,105,.42)"  anim="float-x" delay={2}/>
+      <Dot bottom="18%" right="38%" size={6} fill="rgba(255,255,255,.22)" anim="float-d" delay={3.5}/>
 
       <div className="wrap" style={{ position:'relative' }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El equipo</div></FadeIn>

@@ -1,5 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { motion } from 'framer-motion'
+import { Halo, Cell, Membrane, Dot, ORBS_LIME } from './CellSystem.jsx'
 
 const features = [
   '8 semanas de aprendizaje dual: DeepTech aplicado + Business Design',
@@ -12,13 +13,6 @@ const features = [
 const included = ['8 módulos en video','Sesiones en vivo con mentores','Frameworks propietarios BBS','Certificado BBS + 404 Tech Found','Membresía Emprendedores incluida']
 const WHATSAPP_SPRINT = 'https://wa.me/51974620309?text=Hola%2C%20estoy%20interesado%20en%20el%20curso%20Biotech%20Sprint%2001'
 
-const orbsLime = [
-  {x:8,y:8,r:2.5,f:'rgba(193,244,0,0.22)'},{x:21,y:7,r:1.8,f:'rgba(193,244,0,0.18)'},
-  {x:23,y:19,r:3,f:'rgba(193,244,0,0.16)'},{x:8,y:21,r:2.2,f:'rgba(193,244,0,0.20)'},
-  {x:15,y:14,r:1.5,f:'rgba(193,244,0,0.13)'}
-]
-
-/* Logos BBS × 404 con mismo peso visual — mismo tamaño, mismo tratamiento */
 const LogosHeader = () => (
   <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', flexWrap:'wrap' }}>
     <span style={{ fontFamily:"'Barlow Condensed', sans-serif", fontSize:'1rem', letterSpacing:'0.04em', lineHeight:1 }}>
@@ -37,21 +31,24 @@ export default function Course() {
   return (
     <section id="curso" className="on-rose" style={{ background:'var(--rose)', position:'relative', overflow:'hidden' }}>
 
-      {/* CÉLULA izquierda visible */}
-      <div style={{ position:'absolute', top:'6%', left:'3%', width:135, height:135, borderRadius:'50%', background:'rgba(255,255,255,0.06)', border:'2px dashed rgba(255,255,255,0.28)', animation:'spin-ccw 28s linear infinite', transformOrigin:'center', pointerEvents:'none' }}>
-        <motion.div animate={{ y:[0,-10,0] }} transition={{ duration:5.5, repeat:Infinity, ease:'easeInOut' }}
-          style={{ position:'absolute', top:'35%', left:'38%', transform:'translate(-50%,-50%)', width:30, height:30, borderRadius:'50%', overflow:'hidden' }}>
-          <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" style={{ display:'block' }}>
-            <circle cx="15" cy="15" r="14" fill="rgba(193,244,0,0.28)"/>
-            {orbsLime.map((o,i)=><circle key={i} cx={o.x} cy={o.y} r={o.r} fill={o.f}/>)}
-          </svg>
-        </motion.div>
-      </div>
+      {/* ── Halos ── */}
+      <Halo top="-36%"    right="-12%" size={290} fill="rgba(255,255,255,.04)"  stroke="rgba(255,255,255,.12)" delay={0}/>
+      <Halo bottom="-30%" left="-8%"   size={180} fill="rgba(193,244,0,.03)"    stroke="rgba(193,244,0,.08)"   delay={4} ccw/>
 
-      {/* Burbuja suelta derecha */}
-      <div style={{ position:'absolute', bottom:'12%', right:'4%', width:72, height:72, borderRadius:'50%', background:'rgba(255,255,255,0.04)', border:'2px dashed rgba(255,255,255,0.18)', animation:'spin-cw 36s linear infinite', transformOrigin:'center', pointerEvents:'none' }}/>
-      <motion.div animate={{ x:[0,8,0] }} transition={{ duration:6, repeat:Infinity, ease:'easeInOut' }}
-        style={{ position:'absolute', top:'25%', right:'10%', width:11, height:11, borderRadius:'50%', background:'rgba(193,244,0,0.45)', pointerEvents:'none' }}/>
+      {/* ── Células ── */}
+      <Cell top="6%"    left="3%"   size={132} mb="rgba(255,255,255,.05)" mf="rgba(255,255,255,.26)" spd="spin-ccw 27s"  nb={29} nf="rgba(193,244,0,.26)" orbs={ORBS_LIME()} off delay={0}/>
+      <Cell bottom="10%" right="4%" size={80}  mb="rgba(255,255,255,.04)" mf="rgba(255,255,255,.17)" spd="spin-cw 36s"   nb={19} nf="rgba(193,244,0,.22)" orbs={ORBS_LIME()} delay={1.5}/>
+      <Cell top="18%"   right="10%" size={56}  mb="rgba(255,255,255,.03)" mf="rgba(255,255,255,.14)" spd="spin-ccw 44s"  nb={13} nf="rgba(193,244,0,.18)" orbs={ORBS_LIME()} delay={2.5}/>
+      <Cell top="40%"   right="26%" size={38}  mb="rgba(255,255,255,.025)"mf="rgba(255,255,255,.12)" spd="spin-slow 54s" nb={9}  nf="rgba(193,244,0,.14)" orbs={ORBS_LIME()} delay={4}/>
+
+      {/* ── Membranas ── */}
+      <Membrane bottom="22%" left="36%"  size={28} mb="rgba(255,255,255,.025)" mf="rgba(255,255,255,.14)" spd="spin-cw 60s"   delay={2}/>
+      <Membrane top="55%"    right="42%" size={20} mb="rgba(255,255,255,.02)"  mf="rgba(255,255,255,.10)" spd="spin-slow 68s" delay={5}/>
+
+      {/* ── Puntos ── */}
+      <Dot top="30%"    right="8%"  size={10} fill="rgba(193,244,0,.40)"  anim="float-x" delay={1}/>
+      <Dot bottom="24%" left="36%"  size={8}  fill="rgba(255,255,255,.50)" anim="float-y" delay={2}/>
+      <Dot top="55%"    left="48%"  size={6}  fill="rgba(193,244,0,.28)"  anim="float-d" delay={3.5}/>
 
       <div className="wrap sec" style={{ position:'relative', paddingTop:'5rem', zIndex:3 }}>
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:'2.5rem', flexWrap:'wrap', gap:'1rem' }}>
@@ -60,35 +57,11 @@ export default function Course() {
         </div>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 340px', gap:'3rem', alignItems:'start' }} className="course-grid">
           <div>
-            <FadeIn>
-              <div style={{ display:'flex', gap:'0.6rem', marginBottom:'1.4rem', flexWrap:'wrap' }}>
-                <span className="badge badge-lime">⚡ Early Bird</span>
-                <span className="badge badge-white">8 semanas · Online</span>
-                <span className="badge badge-white">DeepTech + Business</span>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.08}>
-              <h2 style={{ fontFamily:'var(--fout)', fontWeight:300, fontSize:'clamp(2.4rem,5vw,4.5rem)', lineHeight:0.9, color:'var(--white)', marginBottom:'0.35rem', letterSpacing:'-0.02em' }}>
-                BIOTECH<br/><strong style={{ fontWeight:800, color:'var(--lime)' }}>SPRINT 01</strong>
-              </h2>
-            </FadeIn>
-            {/* TEXTO ACTUALIZADO: Combinamos Ciencia + Negocios — más grosor y visibilidad */}
-            <FadeIn delay={0.12}>
-              <p style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'rgba(255,255,255,0.88)', marginBottom:'1.6rem' }}>
-                Combinamos Ciencia + Negocios
-              </p>
-            </FadeIn>
-            {/* DESCRIPCIÓN: font-weight 400, mayor opacidad */}
-            <FadeIn delay={0.16}>
-              <p style={{ fontSize:'1rem', color:'rgba(255,255,255,0.92)', lineHeight:1.75, marginBottom:'1.8rem', maxWidth:500, fontWeight:400 }}>
-                Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables. Diseñado para científicos, emprendedores y profesionales de LATAM.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <ul className="feat on-rose-bg">
-                {features.map(f=>(<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}
-              </ul>
-            </FadeIn>
+            <FadeIn><div style={{ display:'flex', gap:'0.6rem', marginBottom:'1.4rem', flexWrap:'wrap' }}><span className="badge badge-lime">⚡ Early Bird</span><span className="badge badge-white">8 semanas · Online</span><span className="badge badge-white">DeepTech + Business</span></div></FadeIn>
+            <FadeIn delay={0.08}><h2 style={{ fontFamily:'var(--fout)', fontWeight:300, fontSize:'clamp(2.4rem,5vw,4.5rem)', lineHeight:0.9, color:'var(--white)', marginBottom:'0.35rem', letterSpacing:'-0.02em' }}>BIOTECH<br/><strong style={{ fontWeight:800, color:'var(--lime)' }}>SPRINT 01</strong></h2></FadeIn>
+            <FadeIn delay={0.12}><p style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'rgba(255,255,255,0.88)', marginBottom:'1.6rem' }}>Combinamos Ciencia + Negocios</p></FadeIn>
+            <FadeIn delay={0.16}><p style={{ fontSize:'1rem', color:'rgba(255,255,255,0.92)', lineHeight:1.75, marginBottom:'1.8rem', maxWidth:500, fontWeight:400 }}>Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables. Diseñado para científicos, emprendedores y profesionales de LATAM.</p></FadeIn>
+            <FadeIn delay={0.2}><ul className="feat on-rose-bg">{features.map(f=>(<li key={f}><span style={{ color:'var(--lime)', fontWeight:700, flexShrink:0 }}>→</span><span style={{ color:'rgba(255,255,255,0.82)' }}>{f}</span></li>))}</ul></FadeIn>
           </div>
           <FadeIn delay={0.15}>
             <div style={{ background:'var(--white)', borderRadius:20, overflow:'hidden', boxShadow:'0 24px 64px rgba(14,14,14,0.25)' }}>
@@ -98,31 +71,12 @@ export default function Course() {
               </div>
               <div style={{ padding:'1.5rem' }}>
                 <div style={{ display:'flex', flexDirection:'column', gap:0, marginBottom:'1.4rem', border:'1px solid rgba(14,14,14,0.08)', borderRadius:12, overflow:'hidden' }}>
-                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem', background:'var(--cream)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Precio regular</div>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, color:'var(--t-dark3)', textDecoration:'line-through' }}>$55</div>
-                  </div>
-                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1rem', background:'rgba(193,244,0,0.08)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}>
-                    <div>
-                      <div style={{ fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>Early Bird</div>
-                      <div style={{ fontSize:'0.7rem', color:'var(--t-dark3)', marginTop:'0.1rem' }}>Precio especial de lanzamiento</div>
-                    </div>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'2.8rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>$40</div>
-                  </div>
-                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem' }}>
-                    <div>
-                      <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Comunidad 404 & Emprendedores</div>
-                      <div style={{ fontSize:'0.68rem', color:'var(--t-dark3)', marginTop:'0.1rem', lineHeight:1.4 }}>Miembros 404 y Biobuilders Emprendedores</div>
-                    </div>
-                    <div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--rose)', lineHeight:1 }}>$35</div>
-                  </div>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem', background:'var(--cream)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Precio regular</div><div style={{ fontFamily:'var(--fbc)', fontSize:'1rem', fontWeight:600, color:'var(--t-dark3)', textDecoration:'line-through' }}>$55</div></div>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1rem', background:'rgba(193,244,0,0.08)', borderBottom:'1px solid rgba(14,14,14,0.06)' }}><div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--rose)' }}>Early Bird</div><div style={{ fontSize:'0.7rem', color:'var(--t-dark3)', marginTop:'0.1rem' }}>Precio especial de lanzamiento</div></div><div style={{ fontFamily:'var(--fbc)', fontSize:'2.8rem', fontWeight:800, color:'var(--dark)', lineHeight:1 }}>$40</div></div>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'0.9rem 1rem' }}><div><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Comunidad 404 & Emprendedores</div><div style={{ fontSize:'0.68rem', color:'var(--t-dark3)', marginTop:'0.1rem', lineHeight:1.4 }}>Miembros 404 y Biobuilders Emprendedores</div></div><div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--rose)', lineHeight:1 }}>$35</div></div>
                 </div>
-                <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>
-                  {included.map(inc=>(<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}
-                </ul>
-                <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>
-                  Inscribirme al Sprint 01 →
-                </a>
+                <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem', marginBottom:'1.2rem' }}>{included.map(inc=>(<li key={inc} style={{ fontSize:'0.8rem', color:'var(--t-dark2)', display:'flex', alignItems:'flex-start', gap:'0.45rem', lineHeight:1.45 }}><span style={{ color:'var(--rose)', fontWeight:700, flexShrink:0 }}>✓</span>{inc}</li>))}</ul>
+                <a href={WHATSAPP_SPRINT} target="_blank" rel="noopener noreferrer" className="btn btn-dark btn-full btn-lg" style={{ marginBottom:'0.5rem' }}>Inscribirme al Sprint 01 →</a>
                 <p style={{ textAlign:'center', fontSize:'0.72rem', color:'var(--t-dark3)' }}>Cupos limitados · Primera cohorte Q2 2026</p>
               </div>
             </div>
@@ -130,7 +84,6 @@ export default function Course() {
         </div>
       </div>
 
-      {/* TRANSICIÓN FUSIONADA: rose → white */}
       <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:1 }}>
         <svg viewBox="0 0 1440 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:110, display:'block' }}>
           <path d="M0,28 C200,90 440,5 720,68 C1000,105 1240,22 1440,55 L1440,110 L0,110 Z" fill="rgba(255,255,255,0.30)"/>

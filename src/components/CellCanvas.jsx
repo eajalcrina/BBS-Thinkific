@@ -7,9 +7,10 @@ import { useEffect, useRef } from 'react'
 const PALETTES = {
   lime: {
     bg:'#C1F400',
-    mf:(a)=>`rgba(14,14,14,${a.toFixed(3)})`,
-    nc:['rgba(14,14,14,.18)','rgba(14,14,14,.22)','rgba(14,14,14,.26)'],
-    ob:(l)=>`rgba(14,14,14,${[.06,.08,.10][l]})`,
+    /* membranas blancas — preservan el verde vibrante del fondo */
+    mf:(a)=>`rgba(255,255,255,${(a*0.85).toFixed(3)})`,
+    nc:['rgba(255,255,255,.22)','rgba(255,255,255,.26)','rgba(255,255,255,.30)'],
+    ob:(l)=>`rgba(255,255,255,${[.09,.11,.13][l]})`,
   },
   dark: {
     bg:'#0E0E0E',
@@ -19,9 +20,10 @@ const PALETTES = {
   },
   cream: {
     bg:'#F8F6F0',
-    mf:(a)=>`rgba(14,14,14,${a.toFixed(3)})`,
-    nc:['rgba(243,39,105,.16)','rgba(243,39,105,.20)','rgba(243,39,105,.24)'],
-    ob:(l)=>`rgba(243,39,105,${[.05,.07,.09][l]})`,
+    /* líneas muy atenuadas sobre cream — stroke reducido */
+    mf:(a)=>`rgba(14,14,14,${(a*0.40).toFixed(3)})`,
+    nc:['rgba(243,39,105,.14)','rgba(243,39,105,.17)','rgba(243,39,105,.20)'],
+    ob:(l)=>`rgba(243,39,105,${[.04,.06,.08][l]})`,
   },
   rose: {
     bg:'#F32769',
@@ -98,7 +100,7 @@ function initPos(zone, W, H, r, mobile){
 
 /* ══ CLASE CÉLULA ════════════════════════════════════════════════ */
 class Cell {
-  constructor(li, cfg, W, H, mobile, P){
+  constructor(li, cfg, W, H, mobile, P, paletteKey){
     this.W=W; this.H=H; this.li=li; this.mobile=mobile
     this.zone=cfg.zone; this.P=P
     this.r    = cfg.sMin + Math.random()*(cfg.sMax-cfg.sMin)
@@ -112,7 +114,10 @@ class Cell {
     this.orbA = [0,1.57,3.14,4.71].map(a=>a+Math.random()*0.5)
     this.nucR = this.r*(0.13+Math.random()*0.05)
     this.orbR = this.nucR*(0.28+Math.random()*0.12)
-    this.dash = [4+li*2, 5+li*3]
+    /* cream/white: dashes más largos y espaciados para mayor sutileza */
+    this.dash = (paletteKey==='cream'||paletteKey==='white')
+      ? [5+li*2, 7+li*3]
+      : [4+li*2, 5+li*3]
     const pos = initPos(cfg.zone, W, H, this.r, mobile)
     this.x=pos.x; this.y=pos.y
   }
@@ -174,7 +179,7 @@ export default function CellCanvas({ palette='lime', style={} }){
       const layers = mobile ? LAYERS_M : LAYERS_D
       cells = []
       layers.forEach((cfg,li)=>{
-        for(let i=0;i<cfg.cnt;i++) cells.push(new Cell(li,cfg,W,H,mobile,P))
+        for(let i=0;i<cfg.cnt;i++) cells.push(new Cell(li,cfg,W,H,mobile,P,palette))
       })
     }
 

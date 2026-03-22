@@ -23,7 +23,7 @@ export default function Team() {
           {founders.map((f,i)=>(
             <FadeIn key={f.name} delay={0.1+i*0.12}>
               <motion.div whileHover={{ y:-6 }} transition={{ duration:0.3, ease:[0.22,1,0.36,1] }}
-                style={{ background:'rgba(255,255,255,0.03)', border:'1px solid rgba(255,255,255,0.07)', borderRadius:24, overflow:'hidden', cursor:'default' }}
+                style={{ background:'rgba(14,14,14,0.82)', border:'1px solid rgba(255,255,255,0.12)', borderRadius:24, overflow:'hidden', cursor:'default', backdropFilter:'blur(8px)', WebkitBackdropFilter:'blur(8px)' }}
                 onMouseEnter={e=>e.currentTarget.style.boxShadow=`0 20px 60px ${f.glowColor}`}
                 onMouseLeave={e=>e.currentTarget.style.boxShadow='none'}>
                 <div style={{ height:3, background:f.accent }}/>
@@ -37,7 +37,7 @@ export default function Team() {
                   <div style={{ padding:'1.6rem 1.6rem 1.6rem 1.4rem', display:'flex', flexDirection:'column', gap:'0.9rem' }}>
                     <div><h3 style={{ fontFamily:'var(--fout)', fontSize:'1.25rem', fontWeight:700, color:'var(--white)', marginBottom:'0.2rem', lineHeight:1.2 }}>{f.name}</h3><div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:f.accent }}>{f.role}</div></div>
                     <p style={{ fontSize:'0.83rem', color:'var(--t-white2)', lineHeight:1.65 }}>{f.bio}</p>
-                    <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem' }}>{f.credentials.map((c,ci)=>(<li key={ci} style={{ display:'flex', alignItems:'flex-start', gap:'0.5rem', fontSize:'0.78rem', color:'var(--t-white3)', lineHeight:1.5 }}><span style={{ color:f.accent, fontWeight:700, flexShrink:0, marginTop:'0.05rem' }}>—</span>{c}</li>))}</ul>
+                    <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.4rem' }}>{f.credentials.map((c,ci)=>(<li key={ci} style={{ display:'flex', alignItems:'flex-start', gap:'0.5rem', fontSize:'0.78rem', color:'rgba(255,255,255,0.75)', lineHeight:1.5 }}><span style={{ color:f.accent, fontWeight:700, flexShrink:0, marginTop:'0.05rem' }}>—</span>{c}</li>))}</ul>
                     <div style={{ marginTop:'auto', paddingTop:'0.5rem' }}>
                       <a href={f.li} target="_blank" rel="noopener noreferrer"
                         style={{ display:'inline-flex', alignItems:'center', gap:'0.45rem', fontFamily:'var(--fbc)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', textDecoration:'none', color:f.accent, border:`1px solid ${f.accent}`, padding:'0.35rem 0.85rem', borderRadius:50, background:f.accentBg, transition:'all 0.2s' }}>

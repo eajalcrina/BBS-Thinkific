@@ -90,7 +90,7 @@ export default function BioBuilder() {
                 <circle cx="280" cy="55" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="286" cy="48" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="273" cy="52" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="280" y="14" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Bio Estrategia</text>
+                <text x="280" y="14" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Bio Estrategia</text>
               </g>
 
               {/* Nodo 1 — Deep Tech */}
@@ -103,7 +103,7 @@ export default function BioBuilder() {
                 <circle cx="428" cy="123" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="435" cy="115" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="420" cy="118" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="476" y="118" textAnchor="start" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Deep Tech</text>
+                <text x="476" y="118" textAnchor="start" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Deep Tech</text>
               </g>
 
               {/* Nodo 2 — Finanzas Regenerativas */}
@@ -116,8 +116,8 @@ export default function BioBuilder() {
                 <circle cx="465" cy="287" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="472" cy="279" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="457" cy="282" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="509" y="283" textAnchor="start" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Finanzas</text>
-                <text x="509" y="297" textAnchor="start" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Regenerativas</text>
+                <text x="509" y="283" textAnchor="start" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Finanzas</text>
+                <text x="509" y="297" textAnchor="start" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Regenerativas</text>
               </g>
 
               {/* Nodo 3 — Gobernanza */}
@@ -130,7 +130,7 @@ export default function BioBuilder() {
                 <circle cx="371" cy="417" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="378" cy="409" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="363" cy="412" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="371" y="462" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Gobernanza</text>
+                <text x="371" y="462" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Gobernanza</text>
               </g>
 
               {/* Nodo 4 — Branding Regenerativo */}
@@ -143,8 +143,8 @@ export default function BioBuilder() {
                 <circle cx="189" cy="417" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="196" cy="409" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="181" cy="412" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="189" y="462" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Branding</text>
-                <text x="189" y="476" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Regenerativo</text>
+                <text x="189" y="462" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Branding</text>
+                <text x="189" y="476" textAnchor="middle" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Regenerativo</text>
               </g>
 
               {/* Nodo 5 — Biodiversidad */}
@@ -157,7 +157,7 @@ export default function BioBuilder() {
                 <circle cx="95" cy="287" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="102" cy="279" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="87"  cy="282" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="46" y="283" textAnchor="end" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Biodiversidad</text>
+                <text x="46" y="283" textAnchor="end" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Biodiversidad</text>
               </g>
 
               {/* Nodo 6 — Conocimiento Territorial */}
@@ -170,8 +170,8 @@ export default function BioBuilder() {
                 <circle cx="132" cy="123" r="26" fill="#C1F400" stroke="rgba(14,14,14,.28)" strokeWidth="1.5"/>
                 <circle cx="139" cy="115" r="4.5" fill="rgba(14,14,14,.22)"/>
                 <circle cx="124" cy="118" r="3"   fill="rgba(14,14,14,.16)"/>
-                <text x="84" y="118" textAnchor="end" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Conocimiento</text>
-                <text x="84" y="132" textAnchor="end" fontFamily="Barlow Condensed,sans-serif" fontWeight="700" fontSize="12" fill="#0E0E0E" letterSpacing=".3">Territorial</text>
+                <text x="84" y="118" textAnchor="end" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Conocimiento</text>
+                <text x="84" y="132" textAnchor="end" fontFamily="Barlow Condensed,sans-serif" fontWeight="500" fontSize="14" fill="#0E0E0E" letterSpacing=".2">Territorial</text>
               </g>
 
               {/* Nodo central BioBuilder */}

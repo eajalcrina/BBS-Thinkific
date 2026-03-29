@@ -13,22 +13,12 @@ export default function Book() {
   return (
     <section id="libro" className="sec-t" style={{ background:'var(--white)', position:'relative', overflow:'hidden' }}>
 
-      <CellCanvas palette="white"/>
+      <CellCanvas palette="white" density="none"/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label dark" style={{ marginBottom:'1rem' }}>Publicación · Vol. 1 de 3</div></FadeIn>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'4rem', alignItems:'center' }} className="book-grid">
           <div>
-            <FadeIn delay={0.06}>
-              <div style={{ marginBottom:'1.8rem' }}>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.2em', textTransform:'uppercase', color:'var(--t-dark3)', marginBottom:'0.2rem' }}>Precio digital</div>
-                <div style={{ display:'flex', alignItems:'baseline', gap:'0.4rem' }}>
-                  <span style={{ fontFamily:'var(--fout)', fontWeight:800, fontSize:'6rem', color:'var(--rose)', lineHeight:1 }}>$25</span>
-                  <span style={{ fontFamily:'var(--fbc)', fontSize:'1.1rem', fontWeight:400, color:'var(--t-dark3)' }}>USD</span>
-                </div>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'0.7rem', fontWeight:500, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--t-dark3)', marginTop:'0.15rem' }}>Pago único · Acceso inmediato</div>
-              </div>
-            </FadeIn>
             <FadeIn delay={0.12}><h2 className="t-out t-lg" style={{ marginBottom:'0.5rem', color:'var(--dark)' }}>Bio Business <em style={{ fontStyle:'normal', color:'var(--rose)', fontWeight:700 }}>Playbook</em></h2><p style={{ fontFamily:'var(--fbc)', fontSize:'0.82rem', fontWeight:500, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--t-dark3)', marginBottom:'1.5rem' }}>Vol. 1 — Design</p></FadeIn>
             <FadeIn delay={0.16}><p className="body" style={{ color:'var(--t-dark2)', marginBottom:'0.9rem' }}>América Latina ha operado durante siglos como la despensa del mundo. Este libro cambia esa ecuación.</p><p className="body" style={{ color:'var(--t-dark2)', marginBottom:'1.8rem' }}>Eddie Ajalcriña y Lorenzo Ortiz desglosan la ingeniería de negocios para construir empresas que destaquen y dominen el mercado global desde la biodiversidad de la región.</p><ul className="feat on-light" style={{ marginBottom:'2rem' }}>{features.map(f=><li key={f}>{f}</li>)}</ul></FadeIn>
             <FadeIn delay={0.2}>
@@ -49,6 +39,18 @@ export default function Book() {
                 style={{ position:'relative', zIndex:1, width:'100%', borderRadius:16, display:'block', objectFit:'cover', boxShadow:'0 32px 72px rgba(14,14,14,0.22), 0 8px 24px rgba(14,14,14,0.14)' }}
                 initial={{ scale:1.04, opacity:0, y:16 }} whileInView={{ scale:1, opacity:1, y:0 }} whileHover={{ scale:1.02, y:-4 }}
                 viewport={{ once:true }} transition={{ duration:0.9, ease:[0.22,1,0.36,1] }}/>
+              {/* Badge de precio debajo de la foto */}
+              <div style={{ position:'relative', zIndex:2, marginTop:'1rem', display:'flex', alignItems:'center', justifyContent:'center', gap:'0.75rem' }}>
+                <div style={{ display:'flex', alignItems:'baseline', gap:'0.3rem', background:'var(--dark)', borderRadius:50, padding:'0.5rem 1.2rem' }}>
+                  <span style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(255,255,255,.50)' }}>Digital</span>
+                  <span style={{ fontFamily:'var(--fout)', fontWeight:800, fontSize:'1.6rem', color:'var(--lime)', lineHeight:1 }}>$25</span>
+                  <span style={{ fontFamily:'var(--fbc)', fontSize:'0.75rem', fontWeight:400, color:'rgba(255,255,255,.45)' }}>USD</span>
+                </div>
+                <div style={{ display:'flex', alignItems:'center', gap:'0.3rem', background:'rgba(14,14,14,.06)', border:'1px solid rgba(14,14,14,.10)', borderRadius:50, padding:'0.5rem 1.1rem' }}>
+                  <span style={{ fontFamily:'var(--fbc)', fontSize:'0.65rem', fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--t-dark3)' }}>Impreso</span>
+                  <span style={{ fontFamily:'var(--fbc)', fontSize:'0.72rem', fontWeight:500, color:'var(--t-dark3)' }}>bajo demanda</span>
+                </div>
+              </div>
             </div>
           </FadeIn>
         </div>

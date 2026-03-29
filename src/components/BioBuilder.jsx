@@ -5,7 +5,7 @@ export default function BioBuilder() {
   return (
     <section id="biobuilder" className="sec" style={{ background:'var(--cream)', position:'relative', overflow:'hidden' }}>
 
-      <CellCanvas palette="cream"/>
+      <CellCanvas palette="cream" density="none"/>
 
       {/* Animaciones CSS para el diagrama SVG */}
       <style>{`

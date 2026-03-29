@@ -162,9 +162,12 @@ class Cell {
 }
 
 /* ══ COMPONENTE REACT ════════════════════════════════════════════ */
-export default function CellCanvas({ palette='lime', style={} }){
+export default function CellCanvas({ palette='lime', density='full', style={} }){
   const canvasRef = useRef(null)
   const stateRef  = useRef({})
+
+  /* density='none' → no renderizar canvas */
+  if(density === 'none') return null
 
   useEffect(()=>{
     const canvas = canvasRef.current
@@ -172,6 +175,7 @@ export default function CellCanvas({ palette='lime', style={} }){
     const ctx = canvas.getContext('2d')
     const pal = PALETTES[palette] || PALETTES.lime
     const P   = buildPermutation()
+    const densityMult = density === 'half' ? 0.5 : 1.0
     let cells=[], W=0, H=0, aid=null, mobile=false
 
     function build(){
@@ -179,7 +183,8 @@ export default function CellCanvas({ palette='lime', style={} }){
       const layers = mobile ? LAYERS_M : LAYERS_D
       cells = []
       layers.forEach((cfg,li)=>{
-        for(let i=0;i<cfg.cnt;i++) cells.push(new Cell(li,cfg,W,H,mobile,P,palette))
+        const cnt = Math.max(1, Math.ceil(cfg.cnt * densityMult))
+        for(let i=0;i<cnt;i++) cells.push(new Cell(li,cfg,W,H,mobile,P,palette))
       })
     }
 

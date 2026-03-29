@@ -34,7 +34,7 @@ export default function Team() {
     <section id="equipo" className="sec-t on-dark"
       style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      <CellCanvas palette="dark"/>
+      <CellCanvas palette="dark" density="half"/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn>

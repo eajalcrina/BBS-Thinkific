@@ -13,7 +13,7 @@ export default function Problem() {
   return (
     <section className="sec on-dark" style={{ background:'var(--dark)', position:'relative', overflow:'hidden' }}>
 
-      <CellCanvas palette="dark"/>
+      <CellCanvas palette="dark" density="half"/>
 
       <div className="wrap" style={{ position:'relative', zIndex:2 }}>
         <FadeIn><div className="label white" style={{ marginBottom:'1rem' }}>El problema</div></FadeIn>

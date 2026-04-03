@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import CellCanvas from './CellCanvas.jsx'
 
 const st = { hidden:{}, show:{ transition:{ staggerChildren:0.08, delayChildren:0.15 } } }
 const it = { hidden:{ opacity:0, y:36 }, show:{ opacity:1, y:0, transition:{ duration:0.7, ease:[0.22,1,0.36,1] } } }
@@ -6,66 +7,42 @@ const it = { hidden:{ opacity:0, y:36 }, show:{ opacity:1, y:0, transition:{ dur
 export default function Hero() {
   return (
     <section style={{ background:'var(--lime)', position:'relative', overflow:'hidden', minHeight:'92vh', display:'flex', alignItems:'center' }}>
-      {/* Decorative shapes - inspired by Con.qr */}
-      <motion.div initial={{ opacity:0, scale:0 }} animate={{ opacity:1, scale:1 }} transition={{ delay:0.8, duration:0.6, ease:[0.22,1,0.36,1] }}
-        style={{ position:'absolute', top:'12%', right:'8%', width:320, height:320, borderRadius:'50%', background:'rgba(243,39,105,0.12)', pointerEvents:'none' }} className="float-y"/>
-      <motion.div initial={{ opacity:0, scale:0 }} animate={{ opacity:1, scale:1 }} transition={{ delay:0.9, duration:0.6, ease:[0.22,1,0.36,1] }}
-        style={{ position:'absolute', bottom:'8%', right:'20%', width:180, height:180, borderRadius:'50%', background:'rgba(243,39,105,0.18)', pointerEvents:'none' }} className="float-y" style2={{ animationDelay:'1.5s' }}/>
-      <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.2 }}
-        style={{ position:'absolute', top:'25%', right:'15%', width:60, height:60, background:'var(--rose)', borderRadius:'50%', pointerEvents:'none' }} className="float-x"/>
-      <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.4 }}
-        style={{ position:'absolute', bottom:'30%', right:'10%', width:20, height:20, background:'var(--dark)', borderRadius:'50%', pointerEvents:'none' }}/>
 
-      {/* Dot grid pattern */}
-      <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(14,14,14,0.15) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none', maskImage:'linear-gradient(to right, transparent, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.4) 70%, transparent)' }}/>
+      <CellCanvas palette="lime"/>
 
-      <div className="wrap" style={{ width:'100%', position:'relative', paddingTop:'3rem', paddingBottom:'3rem' }}>
+      {/* Dot grid */}
+      <div style={{ position:'absolute', inset:0, backgroundImage:'radial-gradient(rgba(14,14,14,0.10) 1px, transparent 1px)', backgroundSize:'28px 28px', pointerEvents:'none', zIndex:1, maskImage:'linear-gradient(to right, transparent, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.3) 70%, transparent)' }}/>
+
+      <div className="wrap" style={{ width:'100%', position:'relative', zIndex:2, paddingTop:'3rem', paddingBottom:'7rem' }}>
         <motion.div variants={st} initial="hidden" animate="show" style={{ maxWidth:780 }}>
-
           <motion.div variants={it} style={{ marginBottom:'2rem' }}>
             <span className="badge badge-dark">
               <span style={{ width:6, height:6, borderRadius:'50%', background:'var(--lime)', display:'inline-block', animation:'blink 2s infinite' }}/>
               Lanzamiento 2026 · Lima, Perú
             </span>
           </motion.div>
-
           <motion.h1 variants={it} className="t-out t-xl" style={{ marginBottom:'1.8rem', color:'var(--dark)' }}>
             Bionegocios<br/>
             <span style={{ color:'var(--rose)', fontWeight:700 }}>rentables</span><br/>
             para América Latina
           </motion.h1>
-
           <motion.div variants={it}>
             <div style={{ width:80, height:4, background:'var(--dark)', borderRadius:2, marginBottom:'2rem' }}/>
           </motion.div>
-
           <motion.p variants={it} className="lead on-lime" style={{ maxWidth:560, marginBottom:'2.5rem', fontFamily:'var(--fout)' }}>
             No somos una escuela de negocios. Somos la plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en activos económicos de impacto global.
           </motion.p>
-
-          <motion.div variants={it} style={{ display:'flex', gap:'1rem', flexWrap:'wrap', marginBottom:'3.5rem' }}>
+          <motion.div variants={it} style={{ display:'flex', gap:'1rem', flexWrap:'wrap' }}>
             <a href="/sprint01" className="btn btn-rose btn-lg">Descubrir Biotech Sprint 01 →</a>
-            <a href="#mision" className="btn btn-outline btn-lg">Conocer BBS</a>
-          </motion.div>
-
-          {/* Stats strip */}
-          <motion.div variants={it}
-            style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:'0', background:'rgba(14,14,14,0.08)', borderRadius:16, overflow:'hidden', maxWidth:560 }}
-          >
-            {[['$55','Precio regular'],['$0','Membresía Starter'],['Q2 2026','Primera cohorte']].map(([v,l],i) => (
-              <div key={v} style={{ padding:'1.2rem 1.4rem', borderRight: i<2 ? '1px solid rgba(14,14,14,0.1)' : 'none' }}>
-                <div style={{ fontFamily:'var(--fbc)', fontSize:'1.6rem', fontWeight:700, color:'var(--dark)', lineHeight:1, marginBottom:'0.18rem' }}>{v}</div>
-                <div style={{ fontSize:'0.75rem', color:'var(--t-dark2)' }}>{l}</div>
-              </div>
-            ))}
+            <a href="#libro" className="btn btn-outline btn-lg">Descubre el Bio Business Playbook vol. 1</a>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Bottom wave */}
-      <div style={{ position:'absolute', bottom:-1, left:0, right:0 }}>
-        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:60, display:'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--white)"/>
+      <div style={{ position:'absolute', bottom:-1, left:0, right:0, zIndex:5 }}>
+        <svg viewBox="0 0 1440 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width:'100%', height:110, display:'block' }}>
+          <path d="M0,82 C180,30 420,100 720,40 C1020,8 1260,85 1440,58 L1440,110 L0,110 Z" fill="rgba(14,14,14,0.28)"/>
+          <path d="M0,92 C220,48 460,108 740,58 C1020,22 1260,95 1440,68 L1440,110 L0,110 Z" fill="var(--dark)"/>
         </svg>
       </div>
     </section>

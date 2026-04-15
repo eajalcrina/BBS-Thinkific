@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Dashboard evolutivo del ranking AmazonBeEco — evaluación de 25 bionegocios y selección del Top 8 para NESsT Perú.">
+<title>AmazonBeEco · Dashboard de Ranking Evolutivo · Bio Business School</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Barlow',sans-serif;background:#0e0e0e;color:#f0f0f0;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:#F32769;text-decoration:none}
+.header{background:#101010;border-bottom:3px solid #C1F400;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
+.header .logo{font-size:18px;font-weight:700;color:#C1F400;letter-spacing:1px}
+.header .logo i{font-style:italic;font-weight:400}
+.header .project{font-size:13px;color:#888;letter-spacing:2px;text-align:right}
+.main{max-width:1200px;margin:0 auto;padding:24px 32px}
+.tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid #222;padding-bottom:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:10px 20px;font-size:14px;font-family:'Barlow';cursor:pointer;background:transparent;color:#888;border:none;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab:hover{color:#f0f0f0}
+.tab.active{color:#C1F400;border-bottom-color:#F32769}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.kpi-grid-3{grid-template-columns:repeat(3,1fr)}
+.kpi{background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:20px;text-align:center}
+.kpi .n{font-size:32px;font-weight:600;color:#C1F400;line-height:1.1}
+.kpi .l{font-size:12px;color:#888;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+.chart-wrap{position:relative;width:100%;background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:20px;margin-bottom:24px}
+.chart-wrap h3{font-size:14px;color:#888;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.card{background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:16px 20px;margin-bottom:12px;transition:border-color .2s}
+.card:hover{border-color:#F32769}
+.bio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px}
+.bio-card{background:#1a1a1a;border:1px solid #222;border-radius:8px;padding:16px 20px;transition:border-color .2s}
+.bio-card:hover{border-color:#C1F400}
+.bio-card .hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bio-card .badge{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#fff;flex-shrink:0;background:#F32769}
+.bio-card .nm{font-size:15px;font-weight:500;color:#f0f0f0}
+.bio-card .rg{font-size:12px;color:#888}
+.bio-card .inn{font-size:13px;color:#aaa;margin-top:8px;line-height:1.6}
+.bio-card .sc{font-size:12px;color:#666;margin-top:8px}
+.bio-card .evo{font-size:12px;color:#888;margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.bio-card .evo span{padding:2px 8px;border-radius:4px;font-size:11px}
+.rank-tbl{width:100%;font-size:13px;border-collapse:collapse}
+.rank-tbl th{text-align:left;padding:8px 10px;border-bottom:2px solid #F32769;color:#888;font-weight:400;font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.rank-tbl td{padding:7px 10px;border-bottom:1px solid #222}
+.rank-tbl tr:hover{background:#1f1f1f}
+.rank-tbl .cod{font-weight:600;color:#C1F400}
+.zp{font-size:11px;padding:2px 10px;border-radius:4px;font-weight:500;display:inline-block}
+.zt8{background:#1b3a1b;color:#6fcf6f}.zac{background:#3a2e1b;color:#e0a84a}.zrs{background:#3a1f1b;color:#e07a4a}
+.zrj{background:#3a1b1b;color:#e05050}.zel{background:#222;color:#666}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.search-input{width:100%;padding:10px 16px;font-size:14px;font-family:'Barlow';border:1px solid #333;border-radius:8px;background:#111;color:#f0f0f0;margin-bottom:16px;outline:none;transition:border-color .2s}
+.search-input:focus{border-color:#F32769}
+.section-title{font-size:11px;color:#F32769;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.footer{text-align:center;padding:32px;color:#444;font-size:12px;border-top:1px solid #222;margin-top:40px}
+@media(max-width:768px){
+  .header{padding:14px 20px}
+  .header .project{font-size:11px;letter-spacing:1.5px}
+  .main{padding:20px}
+  .kpi-grid,.kpi-grid-3{grid-template-columns:repeat(2,1fr)}
+  .bio-grid,.dist-grid{grid-template-columns:1fr}
+  .kpi .n{font-size:26px}
+  .chart-wrap{padding:16px}
+}
+@media(max-width:480px){
+  .kpi-grid,.kpi-grid-3{grid-template-columns:1fr}
+  .rank-tbl{font-size:12px}
+  .rank-tbl th,.rank-tbl td{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">BIO_BUSINESS <i>SCHOOL</i></div>
+  <div class="project">PROYECTO AMAZONBEECO · NESST PERÚ · 2026</div>
+</div>
+<div class="main">
+  <div class="tabs" id="mainTabs"></div>
+  <div id="content"></div>
+</div>
+<div class="footer">© 2026 Redesign Ventures SAC · Bio Business School · Powered by Redesign Lab</div>
+
+<script>
+const B=[
+{c:"B01",n:"Achuar Shakaim",r:"Loreto",cd:"PFNM",s:60,p:"Achuar",v5:{p:20,s:43.0,z:"ROJA"},v7:{p:17,s:48.8,z:"ROJA"},ns:{z:"TOP 8"},inn:"Línea aceite ungurahui (extracción en frío)",bud:"~USD 6K",ven:"~S/50K",imp:"Aceite cosmético/alimentario. Duplicar ingresos año 1."},
+{c:"B02",n:"AMBNE Esperanza",r:"Loreto",cd:"PFNM",s:54,p:"Mestizo",v5:{p:13,s:56.4,z:"RESERVA"},v7:{p:9,s:58.2,z:"ACCESITARIO"},ns:{z:"EXCLUIDO"},inn:"Deshidratado hojuelas aguaje",bud:"USD 8K",ven:"Exporta aceite a 4 países",imp:"Planta abierta, brecha grande."},
+{c:"B03",n:"Maquisapa Amarena",r:"Loreto",cd:"PFNM",s:12,p:"Indígena",v5:{p:17,s:47.3,z:"ROJA"},v7:{p:16,s:50.4,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Complementación planta NCI",bud:"USD 5-8K",ven:"Bajo",imp:"Planta en construcción. Escala pequeña."},
+{c:"B04",n:"Piñeros San Regis",r:"Loreto",cd:"Frutales",s:17,p:"Mestizo",v5:{p:21,s:39.4,z:"ROJA"},v7:{p:18,s:43.4,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Mermelada piña golden",bud:"N/D",ven:"Bajo",imp:"Fase validación inicial."},
+{c:"B05",n:"Caxacori Studio",r:"Amazonas",cd:"Biomateriales",s:10,p:"Awajún-Wampis",v5:{p:5,s:65.4,z:"TOP 8"},v7:{p:3,s:67.8,z:"TOP 8"},ns:{z:"TOP 8"},inn:"Bisutería premium con Shiringa nativa",bud:"USD 5-8K",ven:"Internacional incipiente (Italia, EEUU)",imp:"Ventas proyectadas USD 15-25K/año. Reserva Comunal Tuntanaín."},
+{c:"B06",n:"CARBONOP",r:"Amazonas",cd:"Café",s:30,p:"Mestizo",v5:{p:24,s:31.0,z:"ROJA"},v7:{p:21,s:36.3,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Café Mujer Resiliente",bud:"USD 20K (excede)",ven:"Sin ventas 2024",imp:"Fundada julio 2024. Madurez insuficiente."},
+{c:"B07",n:"Yakatheo",r:"Amazonas",cd:"Cacao",s:285,p:"Awajún",v5:{p:9,s:59.6,z:"ACCESITARIO"},v7:{p:10,s:58.1,z:"ACCESITARIO"},ns:{z:"TOP 8"},inn:"Línea piloto chocolates Awajún (tostadora, descascarilladora, molino)",bud:"~USD 7K",ven:"Exporta a 5 países",imp:"Margen chocolate 3-5x vs grano. 285 familias. +30-50% ventas año 1."},
+{c:"B08",n:"APAEBAM",r:"Amazonas",cd:"Biomateriales",s:25,p:"Awajún",v5:{p:16,s:47.4,z:"RESERVA"},v7:{p:13,s:52.2,z:"RESERVA"},ns:{z:"EXCLUIDO"},inn:"Desfibradora pseudo tallos plátano",bud:"USD 5K",ven:"Bajo",imp:"Cadena biofibra incipiente."},
+{c:"B09",n:"APAAM",r:"Amazonas",cd:"Procesamiento",s:0,p:"Mestizo",v5:{p:25,s:23.8,z:"ROJA"},v7:{p:22,s:27.7,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Continuidad productiva (sin foco)",bud:"N/D",ven:"Bajo",imp:"Sin propuesta focalizada."},
+{c:"B10",n:"SAKE / Desque",r:"San Martín",cd:"Biomateriales",s:2,p:"Mestizo",v5:{p:12,s:57.8,z:"RESERVA"},v7:{p:6,s:62.5,z:"TOP 8"},ns:{z:"EXCLUIDO"},inn:"Formulación bio-basada shiringa + CITEccal",bud:"USD 5-8K",ven:"USD 90K (40% intl.)",imp:"Excluido NESsT: bajo impacto social (2 socios)."},
+{c:"B11",n:"Kuri Valle",r:"San Martín",cd:"Cacao",s:0,p:"Mestizo",v5:{p:7,s:61.3,z:"TOP 8"},v7:{p:5,s:62.5,z:"TOP 8"},ns:{z:"TOP 8"},inn:"Centro beneficio centralizado cacao",bud:"USD 8K",ven:"N/D",imp:"Mejora precio venta 20-30%. Calidad del grano para premium."},
+{c:"B12",n:"CECAT Tocache",r:"San Martín",cd:"Cacao",s:1000,p:"Mestizo",v5:{p:2,s:73.7,z:"TOP 8"},v7:{p:0,s:0,z:"ELIMINADO"},ns:{z:"ELIMINADO"},inn:"Mucílago cacao (economía circular)",bud:"USD 10.5K",ven:"+1,000 familias",imp:"Eliminado: autosuficiente (acceso a crédito)."},
+{c:"B13",n:"INCACAOPE",r:"San Martín",cd:"Cacao",s:0,p:"Mestizo",v5:{p:14,s:55.5,z:"RESERVA"},v7:{p:11,s:55.6,z:"ACCESITARIO"},ns:{z:"TOP 8"},inn:"Infusiones cascarilla cacao (tea bags)",bud:"USD 5-8K",ven:"N/D (85% capacidad ociosa)",imp:"Activa capacidad ociosa. +25-40% ventas. Economía circular."},
+{c:"B14",n:"Kemito Ene",r:"Junín",cd:"Cacao",s:0,p:"Asháninka",v5:{p:10,s:59.2,z:"ACCESITARIO"},v7:{p:7,s:59.7,z:"TOP 8"},ns:{z:"EXCLUIDO"},inn:"Línea grageados cacao",bud:"S/30K",ven:"N/D",imp:"Excluido NESsT: deuda vigente, capacidad limitada."},
+{c:"B15",n:"Pangoa Youth Coop",r:"Junín",cd:"Cacao+Café",s:305,p:"Asháninka",v5:{p:1,s:80.0,z:"TOP 8"},v7:{p:0,s:0,z:"ELIMINADO"},ns:{z:"ELIMINADO"},inn:"Derivados cacao 'lingote de oro' VRAEM",bud:"USD 6.8K",ven:"S/51M (2025)",imp:"Eliminado: autosuficiente (S/51M, triple certificación)."},
+{c:"B16",n:"Kasankari Kemito",r:"Junín",cd:"Cacao",s:82,p:"Asháninka",v5:{p:6,s:63.4,z:"TOP 8"},v7:{p:0,s:0,z:"ELIMINADO"},ns:{z:"ELIMINADO"},inn:"Secadora fotovoltaica",bud:"S/50K (40% coop)",ven:"S/1.13M (+68%/año)",imp:"Eliminado: contrapartida fuerte (aporta 40%)."},
+{c:"B17",n:"Kemito Sankori",r:"Junín",cd:"Cacao+Miel",s:376,p:"Asháninka",v5:{p:3,s:70.8,z:"TOP 8"},v7:{p:1,s:71.6,z:"TOP 8"},ns:{z:"TOP 8"},inn:"Refinado cacao 12kg + 4 registros sanitarios + empaques + lanzamiento",bud:"~USD 6K",ven:"~S/1.8M",imp:"Desbloquea de 20kg/día a 60-80kg/día. +40-60% ventas. 376 familias."},
+{c:"B18",n:"AGROFCNI",r:"Madre de Dios",cd:"Cacao",s:17,p:"Ese Eja",v5:{p:15,s:49.3,z:"RESERVA"},v7:{p:12,s:53.5,z:"RESERVA"},ns:{z:"EXCLUIDO"},inn:"Go-to-market chocolates WIPA",bud:"USD 5-8K",ven:"Bajo",imp:"Marketing sin cuello de botella productivo."},
+{c:"B19",n:"ASCART Tambopata",r:"Madre de Dios",cd:"Castaña",s:50,p:"Mestizo",v5:{p:4,s:67.5,z:"TOP 8"},v7:{p:2,s:69.9,z:"TOP 8"},ns:{z:"EXCLUIDO"},inn:"Certificación HACCP planta castaña",bud:"USD 6K",ven:"50,000 ha manejo",imp:"Excluido NESsT: autofinanciamiento. HACCP es requisito, no innovación."},
+{c:"B20",n:"AFIMAD",r:"Madre de Dios",cd:"PFNM",s:338,p:"Indígena (13 CN)",v5:{p:18,s:46.6,z:"ROJA"},v7:{p:15,s:50.9,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Manteca huicungo",bud:"S/67.6K (excede)",ven:"Bajo",imp:"Presupuesto excede. Planta no operativa."},
+{c:"B21",n:"Asoconprebiocha",r:"Ucayali",cd:"PFNM",s:0,p:"Mestizo",v5:{p:8,s:60.3,z:"TOP 8"},v7:{p:4,s:62.6,z:"TOP 8"},ns:{z:"TOP 8"},inn:"Filtrantes funcionales uña de gato",bud:"Por definir",ven:"Bajo (volumen real)",imp:"Margen 4-6x vs granel. CITE Pucallpa. +100-200% ventas."},
+{c:"B22",n:"Nii Biri",r:"Ucayali",cd:"Madera FSC",s:11,p:"Shipibo-Konibo",v5:{p:11,s:59.1,z:"ACCESITARIO"},v7:{p:8,s:58.2,z:"TOP 8"},ns:{z:"TOP 8"},inn:"Paneles modulares madera FSC + diseño Kené",bud:"~USD 8K (40% coop)",ven:"N/D (12 años exp.)",imp:"Target CASACOR/EXPODECO. USD 80-150/panel. 35,000 ha FSC."},
+{c:"B23",n:"Sta Rosa Atalaya",r:"Ucayali",cd:"Acuicultura",s:0,p:"Mestizo",v5:{p:22,s:38.5,z:"ROJA"},v7:{p:20,s:41.0,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Laboratorio alevinos",bud:"S/67.6K (excede)",ven:"N/D",imp:"Presupuesto excede. Infraestructura pesada."},
+{c:"B24",n:"Warmi Shinani",r:"Ucayali",cd:"Cacao",s:27,p:"Yine/Asháninka",v5:{p:19,s:46.6,z:"ROJA"},v7:{p:14,s:51.4,z:"RESERVA"},ns:{z:"EXCLUIDO"},inn:"Línea chocolates artesanales",bud:"USD 6.2K",ven:"Bajo",imp:"Fundada marzo 2024. Acceso 22h. Madurez insuficiente."},
+{c:"B25",n:"Sanken Yaka",r:"Ucayali",cd:"Artesanía",s:18,p:"Shipibo-Konibo",v5:{p:23,s:36.6,z:"ROJA"},v7:{p:19,s:42.9,z:"ROJA"},ns:{z:"EXCLUIDO"},inn:"Polos Kené Urbano (branding + marketing)",bud:"USD 8K",ven:"S/14K",imp:"Branding puro. Base de ventas insuficiente."},
+];
+
+const top8ns=["B17","B05","B21","B11","B22","B07","B13","B01"];
+const zCls=z=>({"TOP 8":"zt8","ACCESITARIO":"zac","RESERVA":"zrs","ROJA":"zrj","ELIMINADO":"zel","EXCLUIDO":"zel"}[z]||"zrj");
+const sections=[{id:"overview",label:"Ranking evolutivo"},{id:"top8",label:"Top 8 definitivo"},{id:"profiles",label:"25 perfiles"},{id:"distribution",label:"Distribución"}];
+let activeSection="overview";
+let charts={};
+
+function destroyCharts(){Object.values(charts).forEach(c=>{if(c)c.destroy()});charts={}}
+
+function renderTabs(){
+  const el=document.getElementById("mainTabs");el.innerHTML="";
+  sections.forEach(s=>{
+    const b=document.createElement("button");b.className=`tab ${s.id===activeSection?"active":""}`;b.textContent=s.label;
+    b.onclick=()=>{activeSection=s.id;renderTabs();destroyCharts();render()};el.appendChild(b);
+  });
+}
+
+function render(){
+  const el=document.getElementById("content");
+  ({overview:renderOverview,top8:renderTop8,profiles:renderProfiles,distribution:renderDistribution})[activeSection](el);
+}
+
+function renderOverview(el){
+  const ov=top8ns.filter(c=>B.find(b=>b.c===c).v5.z==="TOP 8").length;
+  el.innerHTML=`
+  <div class="section-title">Resumen del proceso</div>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="n">25</div><div class="l">Bionegocios evaluados</div></div>
+    <div class="kpi"><div class="n">22</div><div class="l">Entrevistas completadas</div></div>
+    <div class="kpi"><div class="n">3</div><div class="l">Metodologías iteradas</div></div>
+    <div class="kpi"><div class="n">${ov}/8</div><div class="l">Coincidencia v5 vs NESsT</div></div>
+  </div>
+  <div class="chart-wrap"><h3>Evolución de ranking: v5 → v7 → revisión NESsT</h3><div style="position:relative;height:400px"><canvas id="bumpC"></canvas></div></div>
+  <div class="section-title">Ranking completo</div>
+  <div style="overflow-x:auto"><table class="rank-tbl"><thead><tr><th>Cód</th><th>Bionegocio</th><th>Región</th><th>Cadena</th><th>Pos v5</th><th>Score v5</th><th>Pos v7</th><th>Score v7</th><th>Top 8 NESsT</th><th>Zona final</th></tr></thead><tbody>
+  ${B.sort((a,b)=>{const an=top8ns.indexOf(a.c),bn=top8ns.indexOf(b.c);if(an>=0&&bn>=0)return an-bn;if(an>=0)return-1;if(bn>=0)return 1;return(a.v5.p||99)-(b.v5.p||99)}).map(b=>{
+    const nsI=top8ns.indexOf(b.c);const nsL=nsI>=0?`#${nsI+1}`:(b.ns.z==="ELIMINADO"?"Elim.":"No");
+    const zf=nsI>=0?"TOP 8":b.ns.z;
+    return`<tr><td class="cod">${b.c}</td><td>${b.n}</td><td>${b.r}</td><td>${b.cd}</td><td>${b.v5.p||"—"}</td><td>${b.v5.s||"—"}</td><td>${b.v7.p||"Elim."}</td><td>${b.v7.s||"—"}</td><td>${nsL}</td><td><span class="zp ${zCls(zf)}">${zf}</span></td></tr>`;
+  }).join("")}</tbody></table></div>`;
+  const tracked=B.filter(b=>top8ns.includes(b.c)||b.v5.p<=8);
+  const colors=["#F32769","#0F6E56","#85B7EB","#EF9F27","#ED93B1","#7F77DD","#D85A30","#97C459","#E24B4A","#5F5E5A","#378ADD","#854F0B"];
+  const ds=tracked.map((b,i)=>{
+    const d=[];d.push(b.v5.p||null);d.push(b.v7.p||null);const ni=top8ns.indexOf(b.c);d.push(ni>=0?ni+1:null);
+    return{label:`${b.c} ${b.n}`,data:d,borderColor:colors[i%colors.length],backgroundColor:colors[i%colors.length],tension:0.3,pointRadius:6,borderWidth:2.5,pointHoverRadius:8,spanGaps:false};
+  });
+  charts.bump=new Chart(document.getElementById("bumpC"),{type:"line",data:{labels:["v5 (ejecución)","v7 (necesidad)","NESsT (definitivo)"],datasets:ds},options:{responsive:true,maintainAspectRatio:false,scales:{y:{reverse:true,min:1,max:14,title:{display:true,text:"Posición",color:"#888"},ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},x:{ticks:{color:"#888"},grid:{display:false}}},plugins:{legend:{display:true,position:"bottom",labels:{font:{size:11,family:"Barlow"},color:"#888",boxWidth:12,padding:8}},tooltip:{backgroundColor:"#1a1a1a",borderColor:"#F32769",borderWidth:1,titleColor:"#C1F400",bodyColor:"#f0f0f0",callbacks:{label:ctx=>`${ctx.dataset.label}: posición ${ctx.parsed.y}`}}}}});
+}
+
+function renderTop8(el){
+  el.innerHTML=`<div class="section-title">8 bionegocios seleccionados para inversión catalítica</div><div class="bio-grid">${top8ns.map((c,i)=>{
+    const b=B.find(x=>x.c===c);
+    return`<div class="bio-card"><div class="hdr"><div class="badge">#${i+1}</div><div><div class="nm">${b.c} ${b.n}</div><div class="rg">${b.r} · ${b.cd} · ${b.bud}</div></div></div><div class="inn">${b.inn}</div><div class="sc">Ventas: ${b.ven} · Socios: ${b.s||"N/D"} · Pueblo: ${b.p}</div><div style="font-size:12px;color:#F32769;margin-top:6px">${b.imp}</div><div class="evo"><span class="zp ${zCls(b.v5.z)}">v5: #${b.v5.p} ${b.v5.z}</span><span class="zp ${zCls(b.v7.z)}">v7: ${b.v7.p?"#"+b.v7.p:"Elim."} ${b.v7.z}</span><span class="zp zt8">NESsT: #${i+1}</span></div></div>`;
+  }).join("")}</div>`;
+}
+
+function renderProfiles(el){
+  el.innerHTML=`<div class="section-title">Perfiles de los 25 bionegocios</div><input type="text" class="search-input" id="bioFilter" placeholder="Filtrar por código, nombre, región o cadena..."><div id="bioList"></div>`;
+  const renderList=f=>{
+    const fl=f.toLowerCase();
+    const filtered=B.filter(b=>`${b.c} ${b.n} ${b.r} ${b.cd} ${b.p}`.toLowerCase().includes(fl));
+    document.getElementById("bioList").innerHTML=filtered.map(b=>{
+      const isT8=top8ns.includes(b.c);const ni=top8ns.indexOf(b.c);
+      const zf=isT8?"TOP 8":b.ns.z;
+      return`<div class="card" style="${isT8?"border-left:3px solid #F32769":""}"><div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px"><div><span style="font-weight:600;font-size:15px;color:${isT8?"#C1F400":"#f0f0f0"}">${b.c} ${b.n}</span> <span class="zp ${zCls(zf)}">${isT8?"TOP 8 #"+(ni+1):zf}</span></div><div style="font-size:12px;color:#888">${b.bud}</div></div><div style="font-size:13px;color:#888;margin-top:6px">${b.r} · ${b.cd} · ${b.p} · Socios: ${b.s||"N/D"}</div><div style="font-size:13px;color:#ccc;margin-top:8px">${b.inn}</div><div style="font-size:12px;color:#666;margin-top:8px">Ventas: ${b.ven} · v5: #${b.v5.p||"—"} (${b.v5.s||"—"}) · v7: ${b.v7.p?"#"+b.v7.p+" ("+b.v7.s+")":"Eliminado"}</div><div style="font-size:12px;color:#F32769;margin-top:4px">${b.imp}</div></div>`;
+    }).join("");
+  };
+  renderList("");
+  document.getElementById("bioFilter").addEventListener("input",e=>renderList(e.target.value));
+}
+
+function renderDistribution(el){
+  el.innerHTML=`<div class="section-title">Análisis del top 8 por distribución</div>
+  <div class="kpi-grid kpi-grid-3">
+    <div class="kpi"><div class="n">5/6</div><div class="l">Regiones cubiertas</div></div>
+    <div class="kpi"><div class="n">4</div><div class="l">Cadenas de valor</div></div>
+    <div class="kpi"><div class="n">~USD 45K</div><div class="l">Inversión estimada</div></div>
+  </div>
+  <div class="dist-grid">
+    <div class="chart-wrap"><h3>Top 8 por región</h3><div style="position:relative;height:280px"><canvas id="regC"></canvas></div></div>
+    <div class="chart-wrap"><h3>Top 8 por cadena de valor</h3><div style="position:relative;height:280px"><canvas id="cadC"></canvas></div></div>
+  </div>
+  <div class="dist-grid" style="margin-top:20px">
+    <div class="chart-wrap"><h3>Portafolio completo: 25 bionegocios por región</h3><div style="position:relative;height:260px"><canvas id="allRegC"></canvas></div></div>
+    <div class="chart-wrap"><h3>Zona final de los 25 bionegocios</h3><div style="position:relative;height:260px"><canvas id="zonaC"></canvas></div></div>
+  </div>`;
+  const rc={},cc={};
+  top8ns.forEach(c=>{const b=B.find(x=>x.c===c);rc[b.r]=(rc[b.r]||0)+1;cc[b.cd]=(cc[b.cd]||0)+1;});
+  const allR=["Loreto","Amazonas","San Martín","Junín","Madre de Dios","Ucayali"];
+  charts.reg=new Chart(document.getElementById("regC"),{type:"bar",data:{labels:allR,datasets:[{data:allR.map(r=>rc[r]||0),backgroundColor:allR.map(r=>rc[r]?"#F32769":"#333")}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",scales:{x:{beginAtZero:true,ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},y:{ticks:{color:"#ccc"},grid:{display:false}}},plugins:{legend:{display:false}}}});
+  const cL=Object.keys(cc),cV=Object.values(cc),cC=["#F32769","#C1F400","#85B7EB","#EF9F27","#ED93B1"];
+  charts.cad=new Chart(document.getElementById("cadC"),{type:"doughnut",data:{labels:cL,datasets:[{data:cV,backgroundColor:cC.slice(0,cL.length),borderColor:"#101010",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#888",font:{size:11,family:"Barlow"},padding:8}}}}});
+  const arc={};B.forEach(b=>arc[b.r]=(arc[b.r]||0)+1);
+  charts.allReg=new Chart(document.getElementById("allRegC"),{type:"bar",data:{labels:allR,datasets:[{label:"Total portafolio",data:allR.map(r=>arc[r]||0),backgroundColor:"#333"},{label:"Top 8 NESsT",data:allR.map(r=>rc[r]||0),backgroundColor:"#F32769"}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{color:"#888"},grid:{display:false}},y:{beginAtZero:true,ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}}},plugins:{legend:{display:true,position:"top",labels:{color:"#888",font:{size:11,family:"Barlow"}}}}}});
+  const zc={};B.forEach(b=>{const ni=top8ns.indexOf(b.c);const zf=ni>=0?"TOP 8":b.ns.z;zc[zf]=(zc[zf]||0)+1;});
+  const zL=["TOP 8","ELIMINADO","EXCLUIDO"],zV=zL.map(z=>zc[z]||0);
+  charts.zona=new Chart(document.getElementById("zonaC"),{type:"doughnut",data:{labels:zL.map((z,i)=>`${z} (${zV[i]})`),datasets:[{data:zV,backgroundColor:["#6fcf6f","#666","#444"],borderColor:"#101010",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#888",font:{size:11,family:"Barlow"},padding:8}}}}});
+}
+
+renderTabs();render();
+</script>
+</body>
+</html>

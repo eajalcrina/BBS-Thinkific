@@ -165,7 +165,7 @@ function renderOverview(el){
 function renderTop8(el){
   el.innerHTML=`<div class="section-title">8 bionegocios seleccionados para inversión catalítica</div><div class="bio-grid">${top8ns.map((c,i)=>{
     const b=B.find(x=>x.c===c);
-    return`<div class="bio-card"><div class="hdr"><div class="badge">#${i+1}</div><div><div class="nm">${b.c} ${b.n}</div><div class="rg">${b.r} · ${b.cd} · ${b.bud}</div></div></div><div class="inn">${b.inn}</div><div class="sc">Ventas: ${b.ven} · Socios: ${b.s||"N/D"} · Pueblo: ${b.p}</div><div style="font-size:12px;color:#F32769;margin-top:6px">${b.imp}</div><div class="evo"><span class="zp ${zCls(b.v5.z)}">v5: #${b.v5.p} ${b.v5.z}</span><span class="zp ${zCls(b.v7.z)}">v7: ${b.v7.p?"#"+b.v7.p:"Elim."} ${b.v7.z}</span><span class="zp zt8">NESsT: #${i+1}</span></div></div>`;
+    return`<div class="bio-card"><div class="hdr"><div class="badge">#${i+1}</div><div><div class="nm">${b.c} ${b.n}</div><div class="rg">${b.r} · ${b.cd} · ${b.bud}</div></div></div><div class="inn">${b.inn}</div><div class="sc">Ventas: ${b.ven} · Socios: ${b.s||"N/D"} · Pueblo: ${b.p}</div><div style="font-size:12px;color:#F32769;margin-top:6px">${b.imp}</div><div class="evo"><span class="zp ${zCls(b.v5.z)}">v1: #${b.v5.p} ${b.v5.z}</span><span class="zp ${zCls(b.v7.z)}">v2: ${b.v7.p?"#"+b.v7.p:"Elim."} ${b.v7.z}</span><span class="zp zt8">NESsT: #${i+1}</span></div></div>`;
   }).join("")}</div>`;
 }
 

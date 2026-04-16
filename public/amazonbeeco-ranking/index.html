@@ -143,11 +143,11 @@ function renderOverview(el){
     <div class="kpi"><div class="n">25</div><div class="l">Bionegocios evaluados</div></div>
     <div class="kpi"><div class="n">22</div><div class="l">Entrevistas completadas</div></div>
     <div class="kpi"><div class="n">3</div><div class="l">Metodologías iteradas</div></div>
-    <div class="kpi"><div class="n">${ov}/8</div><div class="l">Coincidencia v5 vs NESsT</div></div>
+    <div class="kpi"><div class="n">${ov}/8</div><div class="l">Coincidencia v1 vs NESsT</div></div>
   </div>
-  <div class="chart-wrap"><h3>Evolución de ranking: v5 → v7 → revisión NESsT</h3><div style="position:relative;height:400px"><canvas id="bumpC"></canvas></div></div>
+  <div class="chart-wrap"><h3>Evolución de ranking: v1 → v2 → revisión NESsT</h3><div style="position:relative;height:400px"><canvas id="bumpC"></canvas></div></div>
   <div class="section-title">Ranking completo</div>
-  <div style="overflow-x:auto"><table class="rank-tbl"><thead><tr><th>Cód</th><th>Bionegocio</th><th>Región</th><th>Cadena</th><th>Pos v5</th><th>Score v5</th><th>Pos v7</th><th>Score v7</th><th>Top 8 NESsT</th><th>Zona final</th></tr></thead><tbody>
+  <div style="overflow-x:auto"><table class="rank-tbl"><thead><tr><th>Cód</th><th>Bionegocio</th><th>Región</th><th>Cadena</th><th>Pos v1</th><th>Score v1</th><th>Pos v2</th><th>Score v2</th><th>Top 8 NESsT</th><th>Zona final</th></tr></thead><tbody>
   ${B.sort((a,b)=>{const an=top8ns.indexOf(a.c),bn=top8ns.indexOf(b.c);if(an>=0&&bn>=0)return an-bn;if(an>=0)return-1;if(bn>=0)return 1;return(a.v5.p||99)-(b.v5.p||99)}).map(b=>{
     const nsI=top8ns.indexOf(b.c);const nsL=nsI>=0?`#${nsI+1}`:(b.ns.z==="ELIMINADO"?"Elim.":"No");
     const zf=nsI>=0?"TOP 8":b.ns.z;
@@ -159,7 +159,7 @@ function renderOverview(el){
     const d=[];d.push(b.v5.p||null);d.push(b.v7.p||null);const ni=top8ns.indexOf(b.c);d.push(ni>=0?ni+1:null);
     return{label:`${b.c} ${b.n}`,data:d,borderColor:colors[i%colors.length],backgroundColor:colors[i%colors.length],tension:0.3,pointRadius:6,borderWidth:2.5,pointHoverRadius:8,spanGaps:false};
   });
-  charts.bump=new Chart(document.getElementById("bumpC"),{type:"line",data:{labels:["v5 (ejecución)","v7 (necesidad)","NESsT (definitivo)"],datasets:ds},options:{responsive:true,maintainAspectRatio:false,scales:{y:{reverse:true,min:1,max:14,title:{display:true,text:"Posición",color:"#888"},ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},x:{ticks:{color:"#888"},grid:{display:false}}},plugins:{legend:{display:true,position:"bottom",labels:{font:{size:11,family:"Barlow"},color:"#888",boxWidth:12,padding:8}},tooltip:{backgroundColor:"#1a1a1a",borderColor:"#F32769",borderWidth:1,titleColor:"#C1F400",bodyColor:"#f0f0f0",callbacks:{label:ctx=>`${ctx.dataset.label}: posición ${ctx.parsed.y}`}}}}});
+  charts.bump=new Chart(document.getElementById("bumpC"),{type:"line",data:{labels:["v1 (ejecución)","v2 (necesidad)","NESsT (definitivo)"],datasets:ds},options:{responsive:true,maintainAspectRatio:false,scales:{y:{reverse:true,min:1,max:14,title:{display:true,text:"Posición",color:"#888"},ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},x:{ticks:{color:"#888"},grid:{display:false}}},plugins:{legend:{display:true,position:"bottom",labels:{font:{size:11,family:"Barlow"},color:"#888",boxWidth:12,padding:8}},tooltip:{backgroundColor:"#1a1a1a",borderColor:"#F32769",borderWidth:1,titleColor:"#C1F400",bodyColor:"#f0f0f0",callbacks:{label:ctx=>`${ctx.dataset.label}: posición ${ctx.parsed.y}`}}}}});
 }
 
 function renderTop8(el){
@@ -177,7 +177,7 @@ function renderProfiles(el){
     document.getElementById("bioList").innerHTML=filtered.map(b=>{
       const isT8=top8ns.includes(b.c);const ni=top8ns.indexOf(b.c);
       const zf=isT8?"TOP 8":b.ns.z;
-      return`<div class="card" style="${isT8?"border-left:3px solid #F32769":""}"><div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px"><div><span style="font-weight:600;font-size:15px;color:${isT8?"#C1F400":"#f0f0f0"}">${b.c} ${b.n}</span> <span class="zp ${zCls(zf)}">${isT8?"TOP 8 #"+(ni+1):zf}</span></div><div style="font-size:12px;color:#888">${b.bud}</div></div><div style="font-size:13px;color:#888;margin-top:6px">${b.r} · ${b.cd} · ${b.p} · Socios: ${b.s||"N/D"}</div><div style="font-size:13px;color:#ccc;margin-top:8px">${b.inn}</div><div style="font-size:12px;color:#666;margin-top:8px">Ventas: ${b.ven} · v5: #${b.v5.p||"—"} (${b.v5.s||"—"}) · v7: ${b.v7.p?"#"+b.v7.p+" ("+b.v7.s+")":"Eliminado"}</div><div style="font-size:12px;color:#F32769;margin-top:4px">${b.imp}</div></div>`;
+      return`<div class="card" style="${isT8?"border-left:3px solid #F32769":""}"><div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px"><div><span style="font-weight:600;font-size:15px;color:${isT8?"#C1F400":"#f0f0f0"}">${b.c} ${b.n}</span> <span class="zp ${zCls(zf)}">${isT8?"TOP 8 #"+(ni+1):zf}</span></div><div style="font-size:12px;color:#888">${b.bud}</div></div><div style="font-size:13px;color:#888;margin-top:6px">${b.r} · ${b.cd} · ${b.p} · Socios: ${b.s||"N/D"}</div><div style="font-size:13px;color:#ccc;margin-top:8px">${b.inn}</div><div style="font-size:12px;color:#666;margin-top:8px">Ventas: ${b.ven} · v1: #${b.v5.p||"—"} (${b.v5.s||"—"}) · v2: ${b.v7.p?"#"+b.v7.p+" ("+b.v7.s+")":"Eliminado"}</div><div style="font-size:12px;color:#F32769;margin-top:4px">${b.imp}</div></div>`;
     }).join("");
   };
   renderList("");

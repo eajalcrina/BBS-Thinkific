@@ -7,13 +7,18 @@
 <meta name="description" content="Dashboard evolutivo del ranking AmazonBeEco — evaluación de 25 bionegocios y selección del Top 8 para NESsT Perú.">
 <title>AmazonBeEco · Dashboard de Ranking Evolutivo · Bio Business School</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
+@font-face{font-family:'Mluvka';font-weight:200;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-ExtraLight-BF65518ac7eb0fe.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:300;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-Light-BF65518ac849790.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:400;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-Regular-BF65518ac8463f5.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:400;font-style:italic;font-display:swap;src:url('/mluvka/Mluvka-Italic-BF65518ac838b27.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:500;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-Medium-BF65518ac864edb.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:600;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-SemiBold-BF65518ac864155.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:700;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-Bold-BF65518ac8cff8c.otf') format('opentype')}
+@font-face{font-family:'Mluvka';font-weight:800;font-style:normal;font-display:swap;src:url('/mluvka/Mluvka-ExtraBold-BF65518ac86bc69.otf') format('opentype')}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Barlow',sans-serif;background:#0e0e0e;color:#f0f0f0;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:'Mluvka',sans-serif;background:#0e0e0e;color:#f0f0f0;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 a{color:#F32769;text-decoration:none}
 .header{background:#101010;border-bottom:3px solid #C1F400;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:sticky;top:0;z-index:100;flex-wrap:wrap}
 .header .logo{font-size:18px;font-weight:700;color:#C1F400;letter-spacing:1px}
@@ -22,7 +27,7 @@ a{color:#F32769;text-decoration:none}
 .main{max-width:1200px;margin:0 auto;padding:24px 32px}
 .tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid #222;padding-bottom:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{padding:10px 20px;font-size:14px;font-family:'Barlow';cursor:pointer;background:transparent;color:#888;border:none;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.tab{padding:10px 20px;font-size:14px;font-family:'Mluvka';cursor:pointer;background:transparent;color:#888;border:none;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
 .tab:hover{color:#f0f0f0}
 .tab.active{color:#C1F400;border-bottom-color:#F32769}
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
@@ -54,7 +59,7 @@ a{color:#F32769;text-decoration:none}
 .zt8{background:#1b3a1b;color:#6fcf6f}.zac{background:#3a2e1b;color:#e0a84a}.zrs{background:#3a1f1b;color:#e07a4a}
 .zrj{background:#3a1b1b;color:#e05050}.zel{background:#222;color:#666}
 .dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.search-input{width:100%;padding:10px 16px;font-size:14px;font-family:'Barlow';border:1px solid #333;border-radius:8px;background:#111;color:#f0f0f0;margin-bottom:16px;outline:none;transition:border-color .2s}
+.search-input{width:100%;padding:10px 16px;font-size:14px;font-family:'Mluvka';border:1px solid #333;border-radius:8px;background:#111;color:#f0f0f0;margin-bottom:16px;outline:none;transition:border-color .2s}
 .search-input:focus{border-color:#F32769}
 .section-title{font-size:11px;color:#F32769;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
 .footer{text-align:center;padding:32px;color:#444;font-size:12px;border-top:1px solid #222;margin-top:40px}
@@ -159,7 +164,7 @@ function renderOverview(el){
     const d=[];d.push(b.v5.p||null);d.push(b.v7.p||null);const ni=top8ns.indexOf(b.c);d.push(ni>=0?ni+1:null);
     return{label:`${b.c} ${b.n}`,data:d,borderColor:colors[i%colors.length],backgroundColor:colors[i%colors.length],tension:0.3,pointRadius:6,borderWidth:2.5,pointHoverRadius:8,spanGaps:false};
   });
-  charts.bump=new Chart(document.getElementById("bumpC"),{type:"line",data:{labels:["v1 (ejecución)","v2 (necesidad)","NESsT (definitivo)"],datasets:ds},options:{responsive:true,maintainAspectRatio:false,scales:{y:{reverse:true,min:1,max:14,title:{display:true,text:"Posición",color:"#888"},ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},x:{ticks:{color:"#888"},grid:{display:false}}},plugins:{legend:{display:true,position:"bottom",labels:{font:{size:11,family:"Barlow"},color:"#888",boxWidth:12,padding:8}},tooltip:{backgroundColor:"#1a1a1a",borderColor:"#F32769",borderWidth:1,titleColor:"#C1F400",bodyColor:"#f0f0f0",callbacks:{label:ctx=>`${ctx.dataset.label}: posición ${ctx.parsed.y}`}}}}});
+  charts.bump=new Chart(document.getElementById("bumpC"),{type:"line",data:{labels:["v1 (ejecución)","v2 (necesidad)","NESsT (definitivo)"],datasets:ds},options:{responsive:true,maintainAspectRatio:false,scales:{y:{reverse:true,min:1,max:14,title:{display:true,text:"Posición",color:"#888"},ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},x:{ticks:{color:"#888"},grid:{display:false}}},plugins:{legend:{display:true,position:"bottom",labels:{font:{size:11,family:"Mluvka"},color:"#888",boxWidth:12,padding:8}},tooltip:{backgroundColor:"#1a1a1a",borderColor:"#F32769",borderWidth:1,titleColor:"#C1F400",bodyColor:"#f0f0f0",callbacks:{label:ctx=>`${ctx.dataset.label}: posición ${ctx.parsed.y}`}}}}});
 }
 
 function renderTop8(el){
@@ -204,12 +209,12 @@ function renderDistribution(el){
   const allR=["Loreto","Amazonas","San Martín","Junín","Madre de Dios","Ucayali"];
   charts.reg=new Chart(document.getElementById("regC"),{type:"bar",data:{labels:allR,datasets:[{data:allR.map(r=>rc[r]||0),backgroundColor:allR.map(r=>rc[r]?"#F32769":"#333")}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:"y",scales:{x:{beginAtZero:true,ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}},y:{ticks:{color:"#ccc"},grid:{display:false}}},plugins:{legend:{display:false}}}});
   const cL=Object.keys(cc),cV=Object.values(cc),cC=["#F32769","#C1F400","#85B7EB","#EF9F27","#ED93B1"];
-  charts.cad=new Chart(document.getElementById("cadC"),{type:"doughnut",data:{labels:cL,datasets:[{data:cV,backgroundColor:cC.slice(0,cL.length),borderColor:"#101010",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#888",font:{size:11,family:"Barlow"},padding:8}}}}});
+  charts.cad=new Chart(document.getElementById("cadC"),{type:"doughnut",data:{labels:cL,datasets:[{data:cV,backgroundColor:cC.slice(0,cL.length),borderColor:"#101010",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#888",font:{size:11,family:"Mluvka"},padding:8}}}}});
   const arc={};B.forEach(b=>arc[b.r]=(arc[b.r]||0)+1);
-  charts.allReg=new Chart(document.getElementById("allRegC"),{type:"bar",data:{labels:allR,datasets:[{label:"Total portafolio",data:allR.map(r=>arc[r]||0),backgroundColor:"#333"},{label:"Top 8 NESsT",data:allR.map(r=>rc[r]||0),backgroundColor:"#F32769"}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{color:"#888"},grid:{display:false}},y:{beginAtZero:true,ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}}},plugins:{legend:{display:true,position:"top",labels:{color:"#888",font:{size:11,family:"Barlow"}}}}}});
+  charts.allReg=new Chart(document.getElementById("allRegC"),{type:"bar",data:{labels:allR,datasets:[{label:"Total portafolio",data:allR.map(r=>arc[r]||0),backgroundColor:"#333"},{label:"Top 8 NESsT",data:allR.map(r=>rc[r]||0),backgroundColor:"#F32769"}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{ticks:{color:"#888"},grid:{display:false}},y:{beginAtZero:true,ticks:{stepSize:1,color:"#666"},grid:{color:"rgba(255,255,255,0.05)"}}},plugins:{legend:{display:true,position:"top",labels:{color:"#888",font:{size:11,family:"Mluvka"}}}}}});
   const zc={};B.forEach(b=>{const ni=top8ns.indexOf(b.c);const zf=ni>=0?"TOP 8":b.ns.z;zc[zf]=(zc[zf]||0)+1;});
   const zL=["TOP 8","ELIMINADO","EXCLUIDO"],zV=zL.map(z=>zc[z]||0);
-  charts.zona=new Chart(document.getElementById("zonaC"),{type:"doughnut",data:{labels:zL.map((z,i)=>`${z} (${zV[i]})`),datasets:[{data:zV,backgroundColor:["#6fcf6f","#666","#444"],borderColor:"#101010",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#888",font:{size:11,family:"Barlow"},padding:8}}}}});
+  charts.zona=new Chart(document.getElementById("zonaC"),{type:"doughnut",data:{labels:zL.map((z,i)=>`${z} (${zV[i]})`),datasets:[{data:zV,backgroundColor:["#6fcf6f","#666","#444"],borderColor:"#101010",borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:"55%",plugins:{legend:{display:true,position:"bottom",labels:{color:"#888",font:{size:11,family:"Mluvka"},padding:8}}}}});
 }
 
 renderTabs();render();

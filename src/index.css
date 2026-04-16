@@ -1,4 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Barlow+Condensed:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Barlow+Condensed:wght@400;600;700&display=swap');
+
+/* ── Mluvka — primary heading font ── */
+@font-face { font-family:'Mluvka'; font-weight:200; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-ExtraLight-BF65518ac7eb0fe.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:200; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-ExtraLightItalic-BF65518ac82ac8a.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:300; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-Light-BF65518ac849790.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:300; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-LightItalic-BF65518ac8bc189.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:400; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-Regular-BF65518ac8463f5.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:400; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-Italic-BF65518ac838b27.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:500; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-Medium-BF65518ac864edb.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:500; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-MediumItalic-BF65518ac8bbcba.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:600; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-SemiBold-BF65518ac864155.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:600; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-SemiBoldItalic-BF65518ac86ed6c.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:700; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-Bold-BF65518ac8cff8c.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:700; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-BoldItalic-BF65518ac840460.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:800; font-style:normal; font-display:swap; src:url('/mluvka/Mluvka-ExtraBold-BF65518ac86bc69.otf') format('opentype'); }
+@font-face { font-family:'Mluvka'; font-weight:800; font-style:italic; font-display:swap; src:url('/mluvka/Mluvka-ExtraBoldItalic-BF65518ac8b0001.otf') format('opentype'); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -23,7 +39,7 @@ img, svg { display: block; max-width: 100%; }
   --t-white: rgba(255,255,255,0.96);
   --t-white2:rgba(255,255,255,0.72);
   --t-white3:rgba(255,255,255,0.48);
-  --fout: 'Outfit', sans-serif;
+  --fout: 'Mluvka', sans-serif;
   --fdm:  'DM Sans', sans-serif;
   --fbc:  'Barlow Condensed', sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -45,7 +61,7 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 2px; }
 ::selection { background: rgba(193,244,0,0.35); color: var(--dark); }
 
-/* ── Typography: Outfit for headings ── */
+/* ── Typography: Mluvka for headings ── */
 .t-out { font-family: var(--fout); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; }
 .t-out .hl      { font-weight: 700; color: var(--rose); }
 .t-out .hl-lime { font-weight: 700; color: var(--lime); }

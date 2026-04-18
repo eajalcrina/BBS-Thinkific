@@ -11,91 +11,102 @@ const checklistItems = [
 export default function SprintCTAFinal() {
   return (
     <section
-      className="sec"
-      style={{
-        background: 'var(--rose)',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
+      className="fro-sec"
+      style={{ background:'var(--fro-bg)', position:'relative', overflow:'hidden' }}
     >
-      {/* Decorative circle */}
-      <div style={{
-        position: 'absolute', top: '20%', left: '-60px',
-        width: 260, height: 260, borderRadius: '50%',
-        background: 'rgba(193,244,0,0.07)', pointerEvents: 'none',
-        animation: 'float-y 6s ease-in-out infinite',
-      }} />
-      <style>{`
-        @keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-      `}</style>
+      {/* amber glow */}
+      <div aria-hidden style={{
+        position:'absolute', left:'-15%', top:'10%',
+        width:'620px', height:'620px',
+        background:'radial-gradient(circle, rgba(255,200,0,0.14), transparent 60%)',
+        filter:'blur(28px)', pointerEvents:'none', zIndex:0,
+      }}/>
 
-      <div className="wrap" style={{ textAlign: 'center' }}>
+      <div className="fro-wrap" style={{ position:'relative', zIndex:1, textAlign:'center' }}>
         <FadeIn>
-          {/* Title */}
-          <h2 style={{
-            fontFamily: 'var(--fout)', fontWeight: 300,
-            fontSize: 'clamp(2rem,4vw,3.5rem)', color: 'var(--white)',
-            marginBottom: '1rem',
-          }}>
+          <div className="fro-eyebrow amber" style={{ marginBottom:'1.2rem', justifyContent:'center' }}>
             El momento es ahora
-          </h2>
+          </div>
+        </FadeIn>
 
-          {/* Checklist */}
-          <div style={{
-            display: 'inline-flex', flexDirection: 'column', gap: '0.5rem',
-            textAlign: 'left', marginBottom: '2rem',
+        <FadeIn delay={0.06}>
+          <h2 className="fro-h2" style={{ marginBottom:'2rem' }}>
+            Empieza tu biotech{' '}
+            <span className="fro-italic-amber">hoy.</span>
+          </h2>
+        </FadeIn>
+
+        <FadeIn delay={0.1}>
+          <ul style={{
+            listStyle:'none',
+            display:'inline-flex', flexDirection:'column', gap:'0.55rem',
+            textAlign:'left', marginBottom:'2.2rem', padding:0,
           }}>
             {checklistItems.map((item, i) => (
-              <div key={i} style={{
-                fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6,
+              <li key={i} style={{
+                display:'flex', gap:'0.7rem', alignItems:'flex-start',
+                fontFamily:'var(--finter)', fontSize:'0.92rem', color:'var(--fro-text-2)', lineHeight:1.55,
               }}>
-                ✅ {item}
-              </div>
+                <span aria-hidden style={{ color:'var(--fro-amber)', fontWeight:700, flexShrink:0 }}>✓</span>
+                <span>{item}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </FadeIn>
 
-          {/* Paragraph */}
-          <p style={{
-            fontSize: '0.92rem', color: 'rgba(255,255,255,0.7)',
-            marginBottom: '1.5rem', maxWidth: 640, margin: '0 auto 1.5rem',
-          }}>
+        <FadeIn delay={0.16}>
+          <p className="fro-body" style={{ maxWidth:640, margin:'0 auto 1.8rem' }}>
             No existe en el mundo de habla hispana un programa que integre todo esto en menos de $55 USD.
           </p>
+        </FadeIn>
 
-          {/* CTA */}
-          <a
-            href="https://mpago.la/1v59m8j"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-lime btn-lg"
-          >
-            Inscribirme al Sprint 01 →
-          </a>
+        <FadeIn delay={0.22}>
+          <div style={{ display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap' }}>
+            <a
+              href="https://mpago.la/1v59m8j"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fro-btn fro-btn-amber fro-btn-lg"
+            >
+              Inscribirme al Sprint 01
+              <span aria-hidden>→</span>
+            </a>
+            <a
+              href="#precios"
+              onClick={e => { e.preventDefault(); document.querySelector('#precios')?.scrollIntoView({ behavior:'smooth' }) }}
+              className="fro-btn fro-btn-ghost fro-btn-lg"
+            >
+              Ver precios
+            </a>
+          </div>
+        </FadeIn>
 
-          {/* FOMO */}
+        <FadeIn delay={0.28}>
           <p style={{
-            fontFamily: 'var(--fbc)', fontSize: '0.75rem', fontWeight: 600,
-            letterSpacing: '0.1em', textTransform: 'uppercase',
-            color: 'var(--lime)', marginTop: '1rem',
+            fontFamily:'var(--finter)', fontSize:'0.72rem', fontWeight:600,
+            letterSpacing:'0.14em', textTransform:'uppercase',
+            color:'var(--fro-amber)', marginTop:'1.4rem',
           }}>
-            ⚡ Vacantes limitadas por lanzamiento — Primera cohorte
+            ⚡ Vacantes limitadas — Primera cohorte
           </p>
+        </FadeIn>
 
-          {/* Contact */}
-          <p style={{
-            fontSize: '0.82rem', color: 'rgba(255,255,255,0.5)', marginTop: '1.5rem',
-          }}>
+        <FadeIn delay={0.32}>
+          <p style={{ fontSize:'0.82rem', color:'var(--fro-text-3)', marginTop:'1.6rem' }}>
             ¿Preguntas? Escríbenos a{' '}
-            <a href="mailto:bbs@redesignlab.org" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'underline' }}>
-              bbs@redesignlab.org
+            <a
+              href="mailto:biobusiness@redesignlab.org"
+              style={{ color:'var(--fro-text-2)', textDecoration:'none', borderBottom:'1px solid var(--fro-line-2)' }}
+            >
+              biobusiness@redesignlab.org
             </a>
           </p>
+        </FadeIn>
 
-          {/* Hashtags */}
+        <FadeIn delay={0.36}>
           <p style={{
-            fontFamily: 'var(--fbc)', fontSize: '0.68rem',
-            color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em',
-            marginTop: '0.8rem',
+            fontFamily:'var(--finter)', fontSize:'0.7rem',
+            color:'var(--fro-text-4)', letterSpacing:'0.08em', marginTop:'0.8rem',
           }}>
             #BiotechSprint01 · #CienciaQueConstruye · #BBS404
           </p>

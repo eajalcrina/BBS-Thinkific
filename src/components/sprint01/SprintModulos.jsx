@@ -5,47 +5,49 @@ function ModuleContent({ quote, bullets, liveText, deliverable }) {
   return (
     <div>
       <p style={{
-        fontStyle: 'italic', fontFamily: 'var(--fdm)',
-        fontSize: '0.88rem', color: 'var(--t-white3)', marginBottom: '1rem',
+        fontStyle:'italic', fontFamily:'var(--finter)',
+        fontSize:'0.9rem', color:'var(--fro-text-2)', marginBottom:'1rem', lineHeight:1.6,
       }}>"{quote}"</p>
 
       <div style={{
-        fontFamily: 'var(--fbc)', fontSize: '0.72rem',
-        textTransform: 'uppercase', color: 'var(--t-white3)',
-        letterSpacing: '0.1em', marginBottom: '0.6rem',
-      }}>Qué cubre el módulo:</div>
+        fontFamily:'var(--finter)', fontSize:'0.72rem',
+        textTransform:'uppercase', color:'var(--fro-text-3)',
+        letterSpacing:'0.14em', marginBottom:'0.7rem', fontWeight:500,
+      }}>Qué cubre el módulo</div>
 
-      <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.4rem', padding: 0, margin: 0 }}>
+      <ul className="fro-feat" style={{ marginBottom:'1.1rem' }}>
         {bullets.map((b, i) => (
-          <li key={i} style={{ display: 'flex', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--t-white2)' }}>
-            <span style={{ color: 'var(--lime)', fontWeight: 700, flexShrink: 0 }}>→</span>
-            {b}
-          </li>
+          <li key={i}>{b}</li>
         ))}
       </ul>
 
       <div style={{
-        background: 'rgba(193,244,0,0.06)', borderRadius: 10,
-        padding: '0.8rem 1rem', marginTop: '1rem',
-        display: 'flex', alignItems: 'center', gap: '0.6rem',
+        background:'var(--fro-amber-08)', border:'1px solid var(--fro-amber-25)',
+        borderRadius:8, padding:'0.75rem 1rem', marginBottom:'0.7rem',
+        display:'flex', alignItems:'center', gap:'0.6rem', flexWrap:'wrap',
       }}>
-        <span style={{ fontFamily: 'var(--fbc)', fontSize: '0.7rem' }}>🎙️ 90 min</span>
-        <span style={{ fontSize: '0.82rem', color: 'var(--t-white2)' }}>{liveText}</span>
+        <span style={{ fontFamily:'var(--finter)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--fro-amber)' }}>
+          🎙 90 min en vivo
+        </span>
+        <span style={{ fontFamily:'var(--finter)', fontSize:'0.84rem', color:'var(--fro-text-2)' }}>
+          {liveText}
+        </span>
       </div>
 
       <div style={{
-        background: 'rgba(243,39,105,0.08)',
-        borderLeft: '3px solid var(--rose)',
-        borderRadius: '0 10px 10px 0',
-        padding: '0.8rem 1rem', marginTop: '0.8rem',
+        background:'rgba(255,255,255,0.03)',
+        borderLeft:'3px solid var(--fro-amber)',
+        borderRadius:'0 8px 8px 0',
+        padding:'0.8rem 1rem',
       }}>
         <div style={{
-          fontFamily: 'var(--fbc)', fontSize: '0.68rem',
-          textTransform: 'uppercase', color: 'var(--t-white3)',
-        }}>Tu entregable:</div>
+          fontFamily:'var(--finter)', fontSize:'0.66rem',
+          textTransform:'uppercase', letterSpacing:'0.14em',
+          color:'var(--fro-text-3)', fontWeight:500, marginBottom:'0.2rem',
+        }}>Tu entregable</div>
         <div style={{
-          fontFamily: 'var(--fout)', fontWeight: 600,
-          fontSize: '0.92rem', color: 'var(--white)',
+          fontFamily:'var(--fsyne)', fontWeight:600,
+          fontSize:'0.95rem', color:'var(--fro-text)', letterSpacing:'-0.01em',
         }}>{deliverable}</div>
       </div>
     </div>
@@ -122,27 +124,18 @@ export default function SprintModulos() {
   }))
 
   return (
-    <section className="sec" id="modulos" style={{ background: 'var(--dark)', position: 'relative' }}>
-      <div className="wrap">
-        <FadeIn>
-          <div style={{
-            fontFamily: 'var(--fbc)', fontSize: '0.68rem', fontWeight: 600,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
-            color: 'var(--lime)', display: 'inline-flex',
-            alignItems: 'center', gap: '0.55rem',
-          }}>
-            <span style={{ width: 18, height: 1.5, background: 'var(--lime)', display: 'inline-block' }} />
-            Programa · 4 módulos
-          </div>
-        </FadeIn>
+    <section
+      id="modulos"
+      className="fro-sec"
+      style={{ background:'var(--fro-bg)' }}
+    >
+      <div className="fro-wrap">
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Programa · 4 módulos</div></FadeIn>
 
         <FadeIn delay={0.06}>
-          <h2 style={{
-            fontFamily: 'var(--fout)', fontWeight: 300,
-            fontSize: 'clamp(1.8rem,3vw,3rem)',
-            color: 'var(--white)',
-          }}>
-            Qué aprenderás y qué construirás
+          <h2 className="fro-h2" style={{ marginBottom:'2rem', maxWidth:'16em' }}>
+            Qué aprenderás y qué{' '}
+            <span className="fro-italic-amber">construirás</span>
           </h2>
         </FadeIn>
 
@@ -151,22 +144,16 @@ export default function SprintModulos() {
         </FadeIn>
 
         <FadeIn delay={0.18}>
-          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+          <div style={{ textAlign:'center', marginTop:'2.5rem' }}>
             <a
-              className="btn btn-lime"
+              className="fro-btn fro-btn-amber fro-btn-lg"
               href="#precios"
-              onClick={e => { e.preventDefault(); document.querySelector('#precios')?.scrollIntoView({ behavior: 'smooth' }) }}
+              onClick={e => { e.preventDefault(); document.querySelector('#precios')?.scrollIntoView({ behavior:'smooth' }) }}
             >
-              Ver precios e inscribirme →
+              Ver precios e inscribirme <span aria-hidden>→</span>
             </a>
           </div>
         </FadeIn>
-      </div>
-
-      <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0 }}>
-        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: '100%', height: 60, display: 'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--cream)" />
-        </svg>
       </div>
     </section>
   )

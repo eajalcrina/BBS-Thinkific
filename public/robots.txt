@@ -1,0 +1,19 @@
+# Bio Business School — robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI / GEO crawlers — allow for Generative Engine Optimization
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://biobusinessschool.org/sitemap.xml

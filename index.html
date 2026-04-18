@@ -2,17 +2,185 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Bio Business School — Plataforma de inteligencia para bionegocios rentables en América Latina." />
-    <meta name="theme-color" content="#C1F400" />
-    <title>Bio Business School</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0A0A0A" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- ═══ Primary SEO ═══ -->
+    <title>Bio Business School — Bionegocios rentables para América Latina</title>
+    <meta name="description" content="Plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en bionegocios rentables. Formamos BioBuilders, no MBAs. Lanzamiento 2026, Lima, Perú." />
+    <meta name="keywords" content="bionegocios, biotecnología, América Latina, bioeconomía, Amazonía, biodiversidad, BioBuilders, impacto ambiental, inversión de impacto, DeepTech, escuela de negocios" />
+    <meta name="author" content="Bio Business School" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://biobusinessschool.org/" />
+    <meta name="language" content="es" />
+    <meta name="geo.region" content="PE-LIM" />
+    <meta name="geo.placename" content="Lima, Perú" />
+
+    <!-- ═══ Open Graph (Facebook, LinkedIn, WhatsApp) ═══ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bio Business School" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:url" content="https://biobusinessschool.org/" />
+    <meta property="og:title" content="Bio Business School — Bionegocios rentables para América Latina" />
+    <meta property="og:description" content="Plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en activos económicos de impacto global. Formamos BioBuilders, no MBAs." />
+    <meta property="og:image" content="https://biobusinessschool.org/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Bio Business School — Bionegocios rentables para América Latina" />
+
+    <!-- ═══ Twitter Card ═══ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bio Business School — Bionegocios rentables para América Latina" />
+    <meta name="twitter:description" content="Plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en bionegocios rentables. Lanzamiento 2026." />
+    <meta name="twitter:image" content="https://biobusinessschool.org/og-cover.jpg" />
+    <meta name="twitter:image:alt" content="Bio Business School — Bionegocios rentables para América Latina" />
+
+    <!-- ═══ Icons ═══ -->
+    <!-- TODO: reemplazar og-cover.jpg (actualmente recorte de book-cover) y apple-touch-icon.png (actualmente del logo SVG) con versiones diseñadas. -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- ═══ Performance / Fonts ═══ -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- BBS site: Syne + Inter -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" />
+    <!-- NESsT dashboard: DM Sans + Barlow Condensed -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- ═══ Structured Data — Organization ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "@id": "https://biobusinessschool.org/#organization",
+      "name": "Bio Business School",
+      "alternateName": "BBS",
+      "url": "https://biobusinessschool.org/",
+      "logo": "https://biobusinessschool.org/logo-bbs.svg",
+      "image": "https://biobusinessschool.org/og-cover.jpg",
+      "description": "Plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en bionegocios rentables. Formamos BioBuilders, no MBAs.",
+      "foundingDate": "2026",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lima",
+        "addressCountry": "PE"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Perú" },
+        { "@type": "Country", "name": "Colombia" },
+        { "@type": "Country", "name": "Chile" },
+        { "@type": "Country", "name": "México" },
+        { "@type": "Country", "name": "Brasil" },
+        { "@type": "Country", "name": "Ecuador" },
+        { "@type": "Country", "name": "Bolivia" },
+        { "@type": "Country", "name": "Argentina" }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/bio-business-school",
+        "https://www.instagram.com/biobusinessschool"
+      ],
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Eddie Ajalcriña",
+          "jobTitle": "CEO & Co-Fundador",
+          "sameAs": "https://www.linkedin.com/in/eddieajalcrina/"
+        },
+        {
+          "@type": "Person",
+          "name": "Lorenzo Ortiz",
+          "jobTitle": "COO & Co-Fundador",
+          "sameAs": "https://www.linkedin.com/in/lorenzoortiz/"
+        }
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "biobusiness@redesignlab.org",
+        "availableLanguage": ["Spanish", "es"]
+      }
+    }
+    </script>
+
+    <!-- ═══ Structured Data — WebSite + SearchAction ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://biobusinessschool.org/#website",
+      "url": "https://biobusinessschool.org/",
+      "name": "Bio Business School",
+      "inLanguage": "es",
+      "publisher": { "@id": "https://biobusinessschool.org/#organization" }
+    }
+    </script>
+
+    <!-- ═══ Structured Data — Biotech Sprint 01 Course ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Biotech Sprint 01",
+      "description": "Curso dual de 8 semanas que combina DeepTech aplicado y Business Design. Aprende a convertir conocimiento biotecnológico en modelos de negocio técnica y financieramente viables.",
+      "provider": { "@id": "https://biobusinessschool.org/#organization" },
+      "inLanguage": "es",
+      "educationalLevel": "Professional",
+      "url": "https://biobusinessschool.org/sprint01",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "PT8W",
+        "startDate": "2026-04-01"
+      },
+      "offers": {
+        "@type": "Offer",
+        "category": "EarlyBird",
+        "price": "40",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder"
+      }
+    }
+    </script>
+
+    <!-- ═══ Structured Data — Book ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      "name": "Bio Business Playbook Vol. 1 — Design",
+      "author": [
+        { "@type": "Person", "name": "Eddie Ajalcriña" },
+        { "@type": "Person", "name": "Lorenzo Ortiz" }
+      ],
+      "publisher": { "@id": "https://biobusinessschool.org/#organization" },
+      "inLanguage": "es",
+      "image": "https://biobusinessschool.org/book-cover.jpg",
+      "description": "Ingeniería de bionegocios para dominar el mercado global desde la biodiversidad de América Latina.",
+      "offers": {
+        "@type": "Offer",
+        "price": "25",
+        "priceCurrency": "USD",
+        "url": "https://mpago.la/17jbnkb",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width:720px;margin:3rem auto;padding:2rem;font-family:Inter,sans-serif;color:#fff;background:#0A0A0A;">
+        <h1 style="font-family:Syne,sans-serif;">Bio Business School</h1>
+        <p>Necesitas activar JavaScript para ver este sitio. Somos una plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en bionegocios rentables.</p>
+        <p>Contacto: <a href="mailto:biobusiness@redesignlab.org" style="color:#FFC800">biobusiness@redesignlab.org</a></p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

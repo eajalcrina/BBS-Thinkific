@@ -40,33 +40,24 @@ export default function SprintFAQ() {
   return (
     <section
       id="faq"
-      className="sec"
-      style={{ background: 'var(--cream)', position: 'relative', overflow: 'hidden' }}
+      className="fro-sec"
+      style={{ background:'var(--fro-bg-2)', borderTop:'1px solid var(--fro-line)', borderBottom:'1px solid var(--fro-line)' }}
     >
-      <div className="wrap">
-        <FadeIn>
-          <div className="label">Preguntas frecuentes</div>
-          <h2 style={{
-            fontFamily: 'var(--fout)', fontWeight: 300,
-            fontSize: 'clamp(1.5rem,2.5vw,2.4rem)', color: 'var(--dark)',
-            marginBottom: '2rem',
-          }}>
-            Resolvemos tus dudas
+      <div className="fro-wrap">
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Preguntas frecuentes</div></FadeIn>
+
+        <FadeIn delay={0.06}>
+          <h2 className="fro-h2" style={{ marginBottom:'2.5rem', maxWidth:'14em' }}>
+            Resolvemos tus{' '}
+            <span className="fro-italic-amber">dudas</span>
           </h2>
         </FadeIn>
 
-        <FadeIn>
-          <div style={{ maxWidth: 740, margin: '0 auto' }}>
+        <FadeIn delay={0.12}>
+          <div style={{ maxWidth:760 }}>
             <FAQAccordion items={faqItems} />
           </div>
         </FadeIn>
-      </div>
-
-      {/* Bottom wave to rose */}
-      <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0 }}>
-        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: '100%', height: 60, display: 'block' }}>
-          <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--rose)" />
-        </svg>
       </div>
     </section>
   )

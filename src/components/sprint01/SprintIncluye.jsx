@@ -14,114 +14,87 @@ const checkItems = [
 ]
 
 const earlyBirdItems = [
-  { emoji: '🎯', text: '$40 de descuento directo en el Bootcamp 101 — lo que pagas en el Sprint se descuenta del siguiente nivel' },
-  { emoji: '🎙️', text: 'Sesión privada de Q&A post-Sesión 04 — 30 minutos adicionales con Eddie, Lorenzo y expertos' },
-  { emoji: '🏅', text: 'Badge "Biotech Sprint Founder" — insignia digital de primera cohorte, compartible en LinkedIn' },
+  { emoji:'🎯', text:'$40 de descuento directo en el Bootcamp 101 — lo que pagas en el Sprint se descuenta del siguiente nivel' },
+  { emoji:'🎙️', text:'Sesión privada de Q&A post-Sesión 04 — 30 minutos adicionales con Eddie, Lorenzo y expertos' },
+  { emoji:'🏅', text:'Badge "Biotech Sprint Founder" — insignia digital de primera cohorte, compartible en LinkedIn' },
 ]
 
 export default function SprintIncluye() {
   return (
-    <section className="sec" id="incluye" style={{ background: 'var(--cream)' }}>
-      <style>{`
-        .incluye-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
-        @media(max-width:860px){.incluye-grid{grid-template-columns:1fr}}
-      `}</style>
+    <section
+      id="incluye"
+      className="fro-sec"
+      style={{ background:'var(--fro-bg-2)', borderTop:'1px solid var(--fro-line)', borderBottom:'1px solid var(--fro-line)' }}
+    >
+      <div className="fro-wrap">
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Todo lo que incluye</div></FadeIn>
 
-      <div className="wrap">
-        <FadeIn>
-          <p className="label">Todo lo que incluye</p>
-          <h2 style={{
-            fontFamily: 'var(--fout)',
-            fontWeight: 300,
-            fontSize: 'clamp(1.8rem, 3vw, 3rem)',
-            color: 'var(--dark)',
-            marginBottom: '2rem',
-          }}>
-            Tu inscripción incluye mucho más que un curso
+        <FadeIn delay={0.06}>
+          <h2 className="fro-h2" style={{ maxWidth:'16em', marginBottom:'2.2rem' }}>
+            Tu inscripción incluye mucho más{' '}
+            <span className="fro-italic-amber">que un curso</span>
           </h2>
         </FadeIn>
 
-        <div className="incluye-grid">
-          {/* Left column */}
-          <FadeIn delay={0.1}>
-            <p style={{
-              fontFamily: 'var(--fbc)',
-              fontSize: '0.78rem',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              color: 'var(--dark)',
-              marginBottom: '1rem',
-            }}>
-              Para todos los participantes
-            </p>
+        <style>{`
+          .incluye-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+          @media (max-width: 860px) { .incluye-grid { grid-template-columns: 1fr; } }
+        `}</style>
 
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', padding: 0, margin: 0 }}>
-              {checkItems.map((item, i) => (
-                <li key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start', lineHeight: 1.5 }}>
-                  <span style={{ color: 'var(--rose)', fontWeight: 700, flexShrink: 0 }}>✓</span>
-                  <span style={{ color: 'var(--t-dark2)', fontSize: '0.86rem' }}>{item}</span>
-                </li>
-              ))}
-            </ul>
+        <div className="incluye-grid">
+          {/* Left: for all */}
+          <FadeIn delay={0.1}>
+            <div className="fro-card" style={{ padding:0, overflow:'hidden' }}>
+              <div style={{ padding:'0.9rem 1.2rem', borderBottom:'1px solid var(--fro-line)', display:'flex', alignItems:'center', gap:'0.55rem' }}>
+                <span aria-hidden style={{ width:10, height:10, borderRadius:'50%', background:'var(--fro-text-3)' }}/>
+                <span style={{ fontFamily:'var(--finter)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--fro-text-2)' }}>
+                  Para todos los participantes
+                </span>
+              </div>
+              <ul style={{ listStyle:'none', padding:'0.8rem 1.2rem' }}>
+                {checkItems.map((item, i, a) => (
+                  <li key={i} style={{ padding:'0.55rem 0', borderBottom: i<a.length-1 ? '1px solid var(--fro-line)' : 'none', display:'flex', gap:'0.6rem', alignItems:'flex-start', fontSize:'0.88rem', color:'var(--fro-text-2)', lineHeight:1.55 }}>
+                    <span aria-hidden style={{ color:'var(--fro-amber)', fontWeight:700, flexShrink:0 }}>✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </FadeIn>
 
-          {/* Right column */}
-          <FadeIn delay={0.2}>
-            <div style={{
-              background: 'var(--white)',
-              border: '2px solid var(--lime)',
-              borderRadius: 16,
-              padding: '1.6rem',
-              boxShadow: '0 8px 24px rgba(193,244,0,0.15)',
-            }}>
-              <p style={{
-                fontFamily: 'var(--fbc)',
-                fontSize: '0.78rem',
-                textTransform: 'uppercase',
-                fontWeight: 700,
-                color: 'var(--dark)',
-                marginBottom: '1.2rem',
-              }}>
-                Solo Early Bird ⚡
-              </p>
-
-              {earlyBirdItems.map((item, i) => (
-                <p key={i} style={{
-                  fontSize: '0.86rem',
-                  color: 'var(--t-dark2)',
-                  lineHeight: 1.6,
-                  marginBottom: '0.8rem',
-                }}>
-                  <span style={{ fontSize: '1.1rem' }}>{item.emoji}</span> {item.text}
-                </p>
-              ))}
+          {/* Right: early bird */}
+          <FadeIn delay={0.18}>
+            <div className="fro-card" style={{ padding:0, overflow:'hidden', borderColor:'var(--fro-amber-25)' }}>
+              <div style={{ padding:'0.9rem 1.2rem', borderBottom:'1px solid var(--fro-amber-25)', background:'var(--fro-amber-08)', display:'flex', alignItems:'center', gap:'0.55rem' }}>
+                <span aria-hidden style={{ width:10, height:10, borderRadius:'50%', background:'var(--fro-amber)' }}/>
+                <span style={{ fontFamily:'var(--finter)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--fro-amber)' }}>
+                  Solo Early Bird ⚡
+                </span>
+              </div>
+              <ul style={{ listStyle:'none', padding:'0.4rem 1.2rem 1rem' }}>
+                {earlyBirdItems.map((item, i) => (
+                  <li key={i} style={{ padding:'0.65rem 0', fontSize:'0.88rem', color:'var(--fro-text-2)', lineHeight:1.55, display:'flex', gap:'0.6rem', alignItems:'flex-start' }}>
+                    <span aria-hidden style={{ fontSize:'1rem', flexShrink:0 }}>{item.emoji}</span>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div style={{
-              background: 'rgba(14,14,14,0.04)',
-              borderRadius: 12,
-              padding: '1rem 1.2rem',
-              marginTop: '1rem',
-            }}>
-              <p style={{ fontSize: '0.82rem', color: 'var(--t-dark3)', margin: 0 }}>
-                Comunidad 404 Tech Found y Biobuilders Starter: acceso a precio especial exclusivo para miembros
-              </p>
-            </div>
+            <p className="fro-sm" style={{ marginTop:'1rem', padding:'0.8rem 1rem', borderRadius:8, background:'rgba(255,255,255,0.03)', border:'1px solid var(--fro-line)' }}>
+              Comunidad 404 Tech Found y Biobuilders Starter: acceso a precio especial exclusivo para miembros.
+            </p>
           </FadeIn>
         </div>
 
         <FadeIn delay={0.3}>
-          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+          <div style={{ textAlign:'center', marginTop:'2.5rem' }}>
             <a
               href="#precios"
-              className="btn btn-rose"
-              onClick={e => {
-                e.preventDefault()
-                document.querySelector('#precios')?.scrollIntoView({ behavior: 'smooth' })
-              }}
+              className="fro-btn fro-btn-amber fro-btn-lg"
+              onClick={e => { e.preventDefault(); document.querySelector('#precios')?.scrollIntoView({ behavior:'smooth' }) }}
             >
-              Inscribirme ahora →
+              Inscribirme ahora <span aria-hidden>→</span>
             </a>
           </div>
         </FadeIn>

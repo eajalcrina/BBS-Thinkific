@@ -1,21 +1,21 @@
 import { motion } from 'framer-motion'
-import FadeIn from '../FadeIn.jsx'
 
 const st = { hidden:{}, show:{ transition:{ staggerChildren:0.09, delayChildren:0.12 } } }
 const it = { hidden:{ opacity:0, y:32 }, show:{ opacity:1, y:0, transition:{ duration:0.75, ease:[0.22,1,0.36,1] } } }
 
-export default function SprintHero() {
-  const smoothScroll = (selector) => (e) => {
-    e.preventDefault()
-    document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' })
-  }
+const MARQUEE = ['Bionegocios', 'Biotecnología', 'Amazonía', 'Inteligencia Estratégica', 'América Latina', 'Capital Regenerativo']
 
+const STATS = [
+  ['+18',   'Años de experiencia regional'],
+  ['01',    'Playbook'],
+  ['02',    'Comunidades de práctica'],
+  ['LATAM', 'Red de Bio/Builders'],
+]
+
+export default function HeroFroohm() {
   return (
-    <section
-      id="top"
-      aria-label="Biotech Sprint 01 — Del Problema a la Inversión"
-      style={{ position:'relative', overflow:'hidden', background:'var(--fro-bg)', color:'var(--fro-text)' }}
-    >
+    <section id="top" aria-label="Bionegocios rentables para América Latina" style={{ position:'relative', overflow:'hidden', background:'var(--fro-bg)', color:'var(--fro-text)' }}>
+
       {/* subtle grid background */}
       <div aria-hidden style={{
         position:'absolute', inset:0,
@@ -23,7 +23,7 @@ export default function SprintHero() {
         backgroundSize:'80px 80px',
         maskImage:'radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0.9), transparent 70%)',
         WebkitMaskImage:'radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0.9), transparent 70%)',
-        pointerEvents:'none', zIndex:0,
+        pointerEvents:'none', zIndex:0
       }}/>
 
       {/* amber glow */}
@@ -31,90 +31,72 @@ export default function SprintHero() {
         position:'absolute', right:'-20%', top:'15%',
         width:'720px', height:'720px',
         background:'radial-gradient(circle, rgba(255,200,0,0.14), transparent 60%)',
-        filter:'blur(24px)', pointerEvents:'none', zIndex:0,
+        filter:'blur(24px)', pointerEvents:'none', zIndex:0
       }}/>
 
       {/* hero body */}
       <div className="fro-wrap" style={{ position:'relative', zIndex:2, padding:'5rem 2rem 4rem', minHeight:'calc(100vh - 70px)', display:'flex', alignItems:'center' }}>
         <motion.div variants={st} initial="hidden" animate="show" style={{ width:'100%' }}>
 
-          {/* eyebrows row */}
           <motion.div variants={it} style={{ display:'flex', alignItems:'center', gap:'1rem', marginBottom:'2.2rem', flexWrap:'wrap' }}>
             <span className="fro-chip">
               <span className="fro-dot" aria-hidden/>
-              Curso especializado · Primera cohorte 2026
+              Lanzamiento 2026 · Lima, Perú
             </span>
             <span className="hero-sub" style={{ color:'var(--fro-text-3)', fontSize:'0.75rem', letterSpacing:'0.14em', textTransform:'uppercase', fontWeight:500 }}>
-              BBS × 404 Tech Found
+              Vol. 01 — Bio Business
             </span>
           </motion.div>
 
-          {/* chips row */}
-          <motion.div variants={it} style={{ display:'flex', gap:'0.5rem', marginBottom:'1.4rem', flexWrap:'wrap' }}>
-            <span className="fro-chip"><span aria-hidden>⚡</span> Early Bird</span>
-            <span className="fro-chip-plain">4 semanas · Online</span>
-            <span className="fro-chip-plain">DeepTech + Business</span>
-          </motion.div>
-
-          {/* H1 */}
           <motion.h1
             variants={it}
             className="fro-display hero-title"
-            style={{ fontSize:'clamp(2.6rem, 8.4vw, 9.2rem)', marginBottom:'1rem' }}
-            aria-label="Biotech Sprint 01"
+            style={{ fontSize:'clamp(2.6rem, 8.4vw, 9.2rem)', marginBottom:'1.8rem' }}
+            aria-label="Bionegocios rentables para América Latina."
           >
             <span aria-hidden>
-              Biotech<br/>
-              <span className="fro-italic-amber">Sprint 01</span><span style={{ color:'var(--fro-amber)' }}>.</span>
+              Bionegocios<br/>
+              <span className="fro-italic-amber">rentables</span>{' '}
+              <span style={{ color:'var(--fro-text-2)' }}>para</span><br/>
+              América Latina<span style={{ color:'var(--fro-amber)' }}>.</span>
             </span>
           </motion.h1>
 
-          <motion.p
-            variants={it}
-            className="fro-eyebrow amber"
-            style={{ marginBottom:'1.6rem' }}
-          >
-            Del Problema a la Inversión · Construye tu Biotech en 4 Pasos
-          </motion.p>
-
-          <div className="hero-grid" style={{ display:'grid', gridTemplateColumns:'1.2fr 1fr', gap:'3rem', alignItems:'end', marginTop:'2.5rem' }}>
-            <motion.div variants={it}>
-              <p className="fro-body" style={{ fontSize:'1.02rem', fontStyle:'italic', color:'var(--fro-text)', marginBottom:'1rem', maxWidth:560 }}>
-                "Cuatro semanas. Cuatro pasos. Una biotech con chances reales."
-              </p>
-              <p className="fro-body" style={{ fontSize:'0.98rem', maxWidth:560 }}>
-                Ya sabes que el biotech es el futuro. Ahora necesitas saber qué hacer con eso. El Biotech Sprint 01 te acompaña a construir el esqueleto de tu propio biotech en 4 semanas. No sales con conocimiento — sales con un documento.
-              </p>
-            </motion.div>
+          <div className="hero-grid" style={{ display:'grid', gridTemplateColumns:'1.2fr 1fr', gap:'3rem', alignItems:'end', marginTop:'3rem' }}>
+            <motion.p variants={it} className="fro-body" style={{ fontSize:'1.02rem', maxWidth:560 }}>
+              No somos una escuela de negocios. Somos la plataforma de inteligencia estratégica que convierte la biodiversidad de América Latina en activos económicos de impacto global.
+            </motion.p>
 
             <motion.div variants={it} style={{ display:'flex', flexDirection:'column', gap:'0.8rem', alignItems:'flex-start' }}>
-              <a href="#precios" onClick={smoothScroll('#precios')} className="fro-btn fro-btn-amber fro-btn-lg">
-                Inscribirme al Sprint 01
+              <a href="/sprint01" className="fro-btn fro-btn-amber fro-btn-lg">
+                Descubrir Biotech Sprint 01
                 <span aria-hidden style={{ fontSize:'1.05rem' }}>→</span>
               </a>
-              <a href="#incluye" onClick={smoothScroll('#incluye')} className="fro-btn fro-btn-ghost fro-btn-lg">
-                Ver qué incluye
-                <span aria-hidden style={{ fontSize:'1.05rem' }}>↓</span>
+              <a href="#libro" className="fro-btn fro-btn-ghost fro-btn-lg">
+                Bio Business Playbook Vol. 1
+                <span aria-hidden style={{ fontSize:'1.05rem' }}>↗</span>
               </a>
             </motion.div>
           </div>
 
           {/* stat row */}
           <motion.div variants={it} className="hero-stats" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:'2rem', marginTop:'4.5rem', paddingTop:'2.5rem', borderTop:'1px solid var(--fro-line)' }}>
-            {[
-              ['$40',   'Early Bird · USD'],
-              ['30+',   'horas de programa'],
-              ['4',     'módulos con entregable'],
-              ['Q2',    'Primera cohorte · 2026'],
-            ].map(([n,l]) => (
+            {STATS.map(([n,l]) => (
               <div key={l}>
                 <div style={{ fontFamily:'var(--fsyne)', fontWeight:600, fontSize:'2.4rem', letterSpacing:'-0.03em', color:'var(--fro-text)', lineHeight:1 }}>{n}</div>
                 <div style={{ fontFamily:'var(--finter)', fontSize:'0.78rem', color:'var(--fro-text-2)', marginTop:'0.5rem', lineHeight:1.45 }}>{l}</div>
               </div>
             ))}
           </motion.div>
-
         </motion.div>
+      </div>
+
+      {/* marquee */}
+      <div className="fro-marquee" style={{ position:'relative', zIndex:2 }} aria-hidden>
+        <div className="fro-marquee-track">
+          <span>{MARQUEE.map(t => <span key={t}>{t}</span>)}</span>
+          <span>{MARQUEE.map(t => <span key={t+'_b'}>{t}</span>)}</span>
+        </div>
       </div>
 
       <style>{`

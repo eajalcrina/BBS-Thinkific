@@ -1,19 +1,17 @@
 import FadeIn from './FadeIn.jsx'
-import { motion } from 'framer-motion'
 
 /**
  * Respaldan — sección de credibilidad institucional.
- * Por ahora listamos afiliaciones reales del equipo fundador + partner principal.
- * Cuando lleguen testimonios o logos adicionales, extender `partners` y/o `quotes`.
+ * Mismo tratamiento que el marquee del hero: tira en loop infinito.
  */
 
-const partners = [
-  { name: '404 Tech Found', role: 'Partner académico · Biotech LATAM' },
-  { name: 'MIT Professional Education', role: 'Credencial fundador · Business Analytics' },
-  { name: 'ESAN Graduate School', role: 'Credencial fundador · MBA' },
-  { name: 'Pontificia Universidad Católica del Perú', role: 'Credencial fundador · Maestría Biocomercio' },
-  { name: 'Singularity University', role: 'Credencial fundador · LATAM Fellow' },
-  { name: 'Unión Europea en Perú', role: 'Trayectoria · Ex-coordinación' },
+const PARTNERS = [
+  '404 Tech Found',
+  'MIT Professional Education',
+  'ESAN Graduate School',
+  'Pontificia Universidad Católica del Perú',
+  'Singularity University',
+  'Unión Europea en Perú',
 ]
 
 export default function Endorsements() {
@@ -21,7 +19,7 @@ export default function Endorsements() {
     <section
       id="respaldan"
       className="fro-sec"
-      style={{ background:'var(--fro-bg-3)', borderTop:'1px solid var(--fro-line)', borderBottom:'1px solid var(--fro-line)' }}
+      style={{ background:'var(--fro-bg-3)', borderTop:'1px solid var(--fro-line)', borderBottom:'1px solid var(--fro-line)', padding:'6rem 0 0' }}
     >
       <div className="fro-wrap">
         <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Respaldan este trabajo</div></FadeIn>
@@ -38,39 +36,21 @@ export default function Endorsements() {
             Construimos sobre trayectoria real. Partners académicos, redes técnicas y credenciales del equipo fundador.
           </p>
         </FadeIn>
+      </div>
 
-        <style>{`
-          .endorse-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-          }
-          @media (max-width: 860px) { .endorse-grid { grid-template-columns: 1fr 1fr; } }
-          @media (max-width: 520px) { .endorse-grid { grid-template-columns: 1fr; } }
-        `}</style>
-
-        <div className="endorse-grid">
-          {partners.map((p, i) => (
-            <FadeIn key={p.name} delay={0.18 + i * 0.04}>
-              <motion.div
-                whileHover={{ y:-3, borderColor:'rgba(255,200,0,0.35)' }}
-                transition={{ duration:0.22, ease:[0.22,1,0.36,1] }}
-                className="fro-card"
-                style={{ padding:'1.3rem 1.4rem', height:'100%', display:'flex', flexDirection:'column', gap:'0.55rem' }}
-              >
-                <div style={{ fontFamily:'var(--fsyne)', fontWeight:700, fontSize:'1rem', color:'var(--fro-text)', letterSpacing:'-0.01em', lineHeight:1.3 }}>
-                  {p.name}
-                </div>
-                <div style={{ fontFamily:'var(--finter)', fontSize:'0.74rem', color:'var(--fro-text-3)', letterSpacing:'0.04em', textTransform:'uppercase', fontWeight:500 }}>
-                  {p.role}
-                </div>
-              </motion.div>
-            </FadeIn>
-          ))}
+      {/* Full-bleed marquee — mismo estilo que el del hero */}
+      <FadeIn delay={0.2}>
+        <div className="fro-marquee" aria-hidden>
+          <div className="fro-marquee-track">
+            <span>{PARTNERS.map(p => <span key={p}>{p}</span>)}</span>
+            <span>{PARTNERS.map(p => <span key={p+'_b'}>{p}</span>)}</span>
+          </div>
         </div>
+      </FadeIn>
 
-        <FadeIn delay={0.5}>
-          <p className="fro-sm" style={{ marginTop:'2.5rem', textAlign:'center', maxWidth:540, margin:'2.5rem auto 0', fontStyle:'italic' }}>
+      <div className="fro-wrap">
+        <FadeIn delay={0.3}>
+          <p className="fro-sm" style={{ marginTop:'2.5rem', marginBottom:'2rem', textAlign:'center', maxWidth:540, marginLeft:'auto', marginRight:'auto', fontStyle:'italic' }}>
             Testimonios de nuestra primera cohorte se publicarán tras el lanzamiento Q2 2026.
           </p>
         </FadeIn>

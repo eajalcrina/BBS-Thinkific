@@ -9,6 +9,7 @@ const LINKS = [
   ['#libro',      'Playbook'],
   ['#comunidad',  'Comunidad'],
   ['#equipo',     'Equipo'],
+  ['#faq',        'FAQ'],
 ]
 
 const Logo = () => (

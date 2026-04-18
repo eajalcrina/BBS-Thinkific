@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 import Home from './pages/Home.jsx'
 
 const Sprint01 = lazy(() => import('./pages/Sprint01.jsx'))
+const Privacy  = lazy(() => import('./pages/Privacy.jsx'))
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sprint01" element={<Sprint01 />} />
+          <Route path="/privacidad" element={<Privacy />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

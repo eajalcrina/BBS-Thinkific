@@ -93,9 +93,15 @@ export default function Footer() {
               onMouseLeave={e=>{ e.currentTarget.style.color='var(--fro-text-2)'; e.currentTarget.style.borderColor='var(--fro-line-2)'; }}
             >Thousandfold</a>
           </p>
-          <p style={{ fontSize:'0.76rem', color:'var(--fro-text-3)' }}>
-            Lanzamiento Q2 2026
-          </p>
+          <div style={{ display:'flex', alignItems:'center', gap:'1.2rem', flexWrap:'wrap', fontSize:'0.76rem', color:'var(--fro-text-3)' }}>
+            <a
+              href="/privacidad"
+              style={{ color:'var(--fro-text-3)', textDecoration:'none', transition:'color 0.18s' }}
+              onMouseEnter={e=>{ e.currentTarget.style.color='var(--fro-amber)'; }}
+              onMouseLeave={e=>{ e.currentTarget.style.color='var(--fro-text-3)'; }}
+            >Privacidad</a>
+            <span>Lanzamiento Q2 2026</span>
+          </div>
         </div>
       </div>
 

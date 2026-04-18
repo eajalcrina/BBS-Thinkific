@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import FadeIn from './FadeIn.jsx'
+import { trackForm, trackOutbound } from '../lib/analytics.js'
 
 const COUNTRY_CODES = [
   {code:'+51',flag:'🇵🇪',name:'PE'},{code:'+57',flag:'🇨🇴',name:'CO'},{code:'+56',flag:'🇨🇱',name:'CL'},
@@ -25,14 +26,15 @@ export default function Community() {
   const validEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)
 
   const submit=async()=>{
-    if(!firstName||!lastName||!validEmail){setErr(true);return}
+    if(!firstName||!lastName||!validEmail){setErr(true);trackForm('community_emprendedores','error');return}
     setLoading(true)
+    trackForm('community_emprendedores','submit')
     try{
       const res=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({firstName,lastName,email:normalizedEmail,phone:phone?`${dialCode}${phone}`:'',country})})
-      if(!res.ok){setErr(true);setLoading(false);return}
+      if(!res.ok){setErr(true);trackForm('community_emprendedores','error');setLoading(false);return}
       setErr(false);setDone(true)
-      setTimeout(()=>{window.open(WHATSAPP_URL,'_blank')},2500)
-    }catch{setErr(true)}finally{setLoading(false)}
+      trackForm('community_emprendedores','success')
+    }catch{setErr(true);trackForm('community_emprendedores','error')}finally{setLoading(false)}
   }
 
   return (
@@ -75,6 +77,7 @@ export default function Community() {
 
             {/* Empresarios */}
             <a href={WHATSAPP_PRO} target="_blank" rel="noopener noreferrer" className="fro-card"
+              onClick={() => trackOutbound(WHATSAPP_PRO, 'whatsapp_empresarios')}
               style={{ textDecoration:'none', padding:'1.6rem', display:'flex', flexDirection:'column', gap:'0.8rem', background:'var(--fro-bg)', transition:'all 0.25s' }}
               onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-3px)'; e.currentTarget.style.borderColor='var(--fro-amber-25)'; }}
               onMouseLeave={e=>{ e.currentTarget.style.transform='none'; e.currentTarget.style.borderColor='var(--fro-line)'; }}>
@@ -141,9 +144,21 @@ export default function Community() {
             <div className="fro-card" role="status" aria-live="polite" style={{ padding:'2.5rem 2rem', background:'var(--fro-surface)', display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center', gap:'1rem' }}>
               <div aria-hidden style={{ width:60, height:60, borderRadius:'50%', background:'var(--fro-amber)', color:'var(--fro-bg)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.6rem', fontWeight:700 }}>✓</div>
               <strong className="fro-h3">¡Bienvenido/a a los Bio/Builders!</strong>
-              <p className="fro-body" style={{ maxWidth:400 }}>Recibimos tus datos. En las próximas 48h te enviamos tus accesos a la comunidad Emprendedores.</p>
-              <p className="fro-sm">Redirigiendo al grupo de WhatsApp…</p>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="fro-btn fro-btn-amber fro-btn-lg">Ir al grupo ahora <span aria-hidden>→</span></a>
+              <p className="fro-body" style={{ maxWidth:420 }}>
+                Recibimos tus datos. En las próximas 48h te enviamos tus accesos a la comunidad Emprendedores.
+              </p>
+              <p className="fro-sm" style={{ maxWidth:420 }}>
+                Da el siguiente paso: únete al grupo de WhatsApp donde presentamos novedades, casos reales y recursos exclusivos.
+              </p>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackOutbound(WHATSAPP_URL, 'whatsapp_community_group')}
+                className="fro-btn fro-btn-amber fro-btn-lg"
+              >
+                Ir al grupo de WhatsApp <span aria-hidden>→</span>
+              </a>
             </div>
           )}
         </FadeIn>

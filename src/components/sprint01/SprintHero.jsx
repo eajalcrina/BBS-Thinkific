@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import FadeIn from '../FadeIn.jsx'
+import { trackCta } from '../../lib/analytics.js'
 
 const st = { hidden:{}, show:{ transition:{ staggerChildren:0.09, delayChildren:0.12 } } }
 const it = { hidden:{ opacity:0, y:32 }, show:{ opacity:1, y:0, transition:{ duration:0.75, ease:[0.22,1,0.36,1] } } }
@@ -88,11 +89,19 @@ export default function SprintHero() {
             </motion.div>
 
             <motion.div variants={it} style={{ display:'flex', flexDirection:'column', gap:'0.8rem', alignItems:'flex-start' }}>
-              <a href="#precios" onClick={smoothScroll('#precios')} className="fro-btn fro-btn-amber fro-btn-lg">
+              <a
+                href="#precios"
+                onClick={(e) => { trackCta('sprint_hero_inscribir', 'sprint01_hero', '#precios'); smoothScroll('#precios')(e); }}
+                className="fro-btn fro-btn-amber fro-btn-lg"
+              >
                 Inscribirme al Sprint 01
                 <span aria-hidden style={{ fontSize:'1.05rem' }}>→</span>
               </a>
-              <a href="#incluye" onClick={smoothScroll('#incluye')} className="fro-btn fro-btn-ghost fro-btn-lg">
+              <a
+                href="#incluye"
+                onClick={(e) => { trackCta('sprint_hero_incluye', 'sprint01_hero', '#incluye'); smoothScroll('#incluye')(e); }}
+                className="fro-btn fro-btn-ghost fro-btn-lg"
+              >
                 Ver qué incluye
                 <span aria-hidden style={{ fontSize:'1.05rem' }}>↓</span>
               </a>

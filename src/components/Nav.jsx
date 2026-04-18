@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { trackCta } from '../lib/analytics.js'
 
 const LINKS = [
   ['#problema',   'Problema'],
@@ -66,7 +67,12 @@ export default function Nav() {
           </ul>
 
           <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', flexShrink:0 }}>
-            <a href="#comunidad" className="fro-btn fro-btn-amber nav-cta" style={{ padding:'0.58rem 1.1rem', fontSize:'0.8rem' }}>
+            <a
+              href="#comunidad"
+              onClick={() => trackCta('nav_unete_gratis', 'home_nav', '#comunidad')}
+              className="fro-btn fro-btn-amber nav-cta"
+              style={{ padding:'0.58rem 1.1rem', fontSize:'0.8rem' }}
+            >
               Únete gratis
               <span aria-hidden>→</span>
             </a>
@@ -125,7 +131,11 @@ export default function Nav() {
               ))}
             </motion.ul>
             <div style={{ marginTop:'2rem' }}>
-              <a href="#comunidad" onClick={() => setOpen(false)} className="fro-btn fro-btn-amber fro-btn-lg fro-btn-full">
+              <a
+                href="#comunidad"
+                onClick={() => { setOpen(false); trackCta('nav_unete_gratis_mobile', 'home_nav_mobile', '#comunidad'); }}
+                className="fro-btn fro-btn-amber fro-btn-lg fro-btn-full"
+              >
                 Únete gratis <span aria-hidden>→</span>
               </a>
             </div>

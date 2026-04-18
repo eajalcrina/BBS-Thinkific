@@ -1,4 +1,8 @@
 import FadeIn from '../FadeIn.jsx'
+import { trackCta, trackOutbound } from '../../lib/analytics.js'
+import { withUtm, CAMPAIGNS } from '../../lib/utm.js'
+
+const CTA_FINAL_URL = withUtm('https://mpago.la/1v59m8j', { campaign: CAMPAIGNS.SPRINT_01, content: 'cta_final' })
 
 const checklistItems = [
   'Ciencia de frontera explicada para fundadores',
@@ -63,9 +67,10 @@ export default function SprintCTAFinal() {
         <FadeIn delay={0.22}>
           <div style={{ display:'flex', gap:'0.8rem', justifyContent:'center', flexWrap:'wrap' }}>
             <a
-              href="https://mpago.la/1v59m8j"
+              href={CTA_FINAL_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackOutbound(CTA_FINAL_URL, 'sprint01_cta_final')}
               className="fro-btn fro-btn-amber fro-btn-lg"
             >
               Inscribirme al Sprint 01
@@ -73,7 +78,7 @@ export default function SprintCTAFinal() {
             </a>
             <a
               href="#precios"
-              onClick={e => { e.preventDefault(); document.querySelector('#precios')?.scrollIntoView({ behavior:'smooth' }) }}
+              onClick={e => { e.preventDefault(); trackCta('sprint_cta_final_ver_precios', 'sprint01_cta_final', '#precios'); document.querySelector('#precios')?.scrollIntoView({ behavior:'smooth' }) }}
               className="fro-btn fro-btn-ghost fro-btn-lg"
             >
               Ver precios

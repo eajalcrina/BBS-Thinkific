@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { trackCta } from '../lib/analytics.js'
 
 const st = { hidden:{}, show:{ transition:{ staggerChildren:0.09, delayChildren:0.12 } } }
 const it = { hidden:{ opacity:0, y:32 }, show:{ opacity:1, y:0, transition:{ duration:0.75, ease:[0.22,1,0.36,1] } } }
@@ -68,11 +69,19 @@ export default function HeroFroohm() {
             </motion.p>
 
             <motion.div variants={it} style={{ display:'flex', flexDirection:'column', gap:'0.8rem', alignItems:'flex-start' }}>
-              <a href="/sprint01" className="fro-btn fro-btn-amber fro-btn-lg">
+              <a
+                href="/sprint01"
+                onClick={() => trackCta('hero_sprint01', 'home_hero', '/sprint01')}
+                className="fro-btn fro-btn-amber fro-btn-lg"
+              >
                 Descubrir Biotech Sprint 01
                 <span aria-hidden style={{ fontSize:'1.05rem' }}>→</span>
               </a>
-              <a href="#libro" className="fro-btn fro-btn-ghost fro-btn-lg">
+              <a
+                href="#libro"
+                onClick={() => trackCta('hero_playbook', 'home_hero', '#libro')}
+                className="fro-btn fro-btn-ghost fro-btn-lg"
+              >
                 Bio Business Playbook Vol. 1
                 <span aria-hidden style={{ fontSize:'1.05rem' }}>↗</span>
               </a>

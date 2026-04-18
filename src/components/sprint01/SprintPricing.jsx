@@ -1,4 +1,8 @@
 import FadeIn from '../FadeIn.jsx'
+import { trackOutbound } from '../../lib/analytics.js'
+import { withUtm, CAMPAIGNS } from '../../lib/utm.js'
+
+const PRICING_URL = withUtm('https://mpago.la/1v59m8j', { campaign: CAMPAIGNS.SPRINT_01, content: 'pricing_card' })
 
 const checklist = [
   '4 sesiones en vivo de 90 min',
@@ -100,9 +104,10 @@ export default function SprintPricing() {
               </ul>
 
               <a
-                href="https://mpago.la/1v59m8j"
+                href={PRICING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackOutbound(PRICING_URL, 'sprint01_pricing_card')}
                 className="fro-btn fro-btn-amber fro-btn-full fro-btn-lg"
                 style={{ marginBottom:'0.6rem' }}
               >

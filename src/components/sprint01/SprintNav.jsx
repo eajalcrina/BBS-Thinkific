@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { trackCta } from '../../lib/analytics.js'
 
 const LINKS = [
   ['#camino',   'El Camino'],
@@ -90,7 +91,7 @@ export default function SprintNav() {
           <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', flexShrink:0 }}>
             <a
               href="#precios"
-              onClick={smoothScroll('#precios')}
+              onClick={(e) => { trackCta('sprint_nav_inscribir', 'sprint01_nav', '#precios'); smoothScroll('#precios')(e); }}
               className="fro-btn fro-btn-amber nav-cta"
               style={{ padding:'0.58rem 1.1rem', fontSize:'0.8rem' }}
             >

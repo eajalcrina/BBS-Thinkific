@@ -6,6 +6,7 @@ import Course from '../components/Course.jsx'
 import Book from '../components/Book.jsx'
 import Community from '../components/Community.jsx'
 import Team from '../components/Team.jsx'
+import Endorsements from '../components/Endorsements.jsx'
 import Footer from '../components/Footer.jsx'
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <Book/>
         <Community/>
         <Team/>
+        <Endorsements/>
       </main>
       <Footer/>
     </>

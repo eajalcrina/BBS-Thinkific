@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion'
 import FadeIn from './FadeIn.jsx'
+import { trackOutbound } from '../lib/analytics.js'
+import { withUtm, CAMPAIGNS } from '../lib/utm.js'
+
+const DIGITAL_URL = withUtm('https://mpago.la/17jbnkb', { campaign: CAMPAIGNS.PLAYBOOK_DIGITAL, content: 'book_section' })
+const IMPRESO_URL = withUtm('https://mpago.la/1dgbgiT', { campaign: CAMPAIGNS.PLAYBOOK_IMPRESO, content: 'book_section' })
 
 const features = [
   'Diseño de bionegocios rentables desde cero',
@@ -48,10 +53,22 @@ export default function Book() {
               </div>
 
               <div style={{ display:'flex', gap:'0.7rem', flexWrap:'wrap' }}>
-                <a href="https://mpago.la/17jbnkb" target="_blank" rel="noopener noreferrer" className="fro-btn fro-btn-amber fro-btn-lg">
+                <a
+                  href={DIGITAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackOutbound(DIGITAL_URL, 'playbook_digital')}
+                  className="fro-btn fro-btn-amber fro-btn-lg"
+                >
                   Comprar digital <span aria-hidden>→</span>
                 </a>
-                <a href="https://mpago.la/1dgbgiT" target="_blank" rel="noopener noreferrer" className="fro-btn fro-btn-ghost fro-btn-lg">
+                <a
+                  href={IMPRESO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackOutbound(IMPRESO_URL, 'playbook_impreso')}
+                  className="fro-btn fro-btn-ghost fro-btn-lg"
+                >
                   Reservar impreso
                 </a>
               </div>

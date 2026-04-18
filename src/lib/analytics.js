@@ -1,15 +1,13 @@
 /**
  * Analytics helper — GA4 event tracking with graceful fallback.
  *
- * Setup:
- * 1. Reemplaza GA_MEASUREMENT_ID abajo con tu ID real ("G-XXXXXXXXXX")
- *    del panel de GA4 (Admin → Data Streams → Web → Measurement ID).
- * 2. El script gtag.js se carga desde index.html, así que aquí solo exponemos
- *    `track()` que llama a `window.gtag(...)` si está disponible.
- * 3. En dev (import.meta.env.DEV), no disparamos eventos pero sí logueamos en consola.
+ * - El script gtag.js se carga desde index.html; aquí solo exponemos
+ *   `track()` que llama a `window.gtag(...)` si está disponible.
+ * - En dev (import.meta.env.DEV), no disparamos eventos pero sí logueamos en consola.
+ * - El ID debe mantenerse sincronizado con index.html.
  */
 
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX' // TODO: reemplazar con el ID real
+export const GA_MEASUREMENT_ID = 'G-TXYZ6HK54H'
 
 const isDev = typeof import.meta !== 'undefined' && import.meta.env?.DEV
 

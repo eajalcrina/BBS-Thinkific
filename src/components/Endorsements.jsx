@@ -22,17 +22,10 @@ export default function Endorsements() {
       style={{ background:'var(--fro-bg-3)', borderTop:'1px solid var(--fro-line)', borderBottom:'1px solid var(--fro-line)', padding:'6rem 0 0' }}
     >
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Respaldan este trabajo</div></FadeIn>
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Aliados y referentes</div></FadeIn>
 
         <FadeIn delay={0.08}>
-          <h2 className="fro-h2" style={{ maxWidth:'14em', marginBottom:'1rem' }}>
-            Aliados y{' '}
-            <span className="fro-italic-amber">referentes</span>
-          </h2>
-        </FadeIn>
-
-        <FadeIn delay={0.14}>
-          <p className="fro-lead" style={{ maxWidth:560, marginBottom:'3rem' }}>
+          <p className="fro-lead" style={{ maxWidth:620, marginBottom:'3rem' }}>
             Construimos sobre trayectoria real. Partners académicos, redes técnicas y credenciales del equipo fundador.
           </p>
         </FadeIn>

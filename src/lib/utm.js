@@ -29,6 +29,5 @@ export function withUtm(url, { campaign, content }) {
 export const CAMPAIGNS = {
   PLAYBOOK_DIGITAL: 'playbook_digital',
   PLAYBOOK_IMPRESO: 'playbook_impreso',
-  SPRINT_01:        'sprint01',
   COMMUNITY:        'community_whatsapp',
 }

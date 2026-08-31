@@ -1,6 +1,7 @@
 import Nav from '../components/Nav.jsx'
 import Hero from '../components/Hero.jsx'
 import TresEjes from '../components/TresEjes.jsx'
+import Programas from '../components/Programas.jsx'
 import Footer from '../components/Footer.jsx'
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <main id="main">
         <Hero/>
         <TresEjes/>
+        <Programas/>
       </main>
       <Footer/>
     </>

@@ -1,5 +1,9 @@
 import FadeIn from './FadeIn.jsx'
 
+// No longer rendered on the home page (Eddie, 2026-08-31): moves closer to the
+// point of decision, as a value-proof block on each program subpage instead of
+// a generic section on the home. Kept here, not deleted — subsystem 2 (program
+// subpages) reuses this content/section.
 export default function RedAliados() {
   return (
     <section id="aliados" className="fro-sec fro-bg-light fro-on-light">

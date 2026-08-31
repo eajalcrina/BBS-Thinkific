@@ -33,7 +33,7 @@ const PROGRAMAS = [
   {
     slug: 'economia-circular-industria',
     titulo: 'Economía Circular para la Industria',
-    audiencia: 'Industria pesada',
+    audiencia: 'Gran industria',
     nota: 'No lo hacemos porque lo pida un reporte de sostenibilidad. Lo hacemos porque hay industrias que ya no pueden darse el lujo de desperdiciar.',
     precio: 'S/ 797',
   },
@@ -50,7 +50,7 @@ export default function Programas() {
   return (
     <section id="programas" className="fro-sec fro-bg-white fro-on-light">
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>La planilla</div></FadeIn>
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Cursos especializados</div></FadeIn>
         <FadeIn delay={0.08}>
           <h2 className="fro-h2" style={{ marginBottom:'1rem', maxWidth:760 }}>
             No es un catálogo extenso. Es lo primero que hay que resolver.
@@ -69,12 +69,12 @@ export default function Programas() {
                 href={`/programas/${p.slug}`}
                 onClick={() => trackCta(`programa_${p.slug}`, 'home_programas', `/programas/${p.slug}`)}
                 className="fro-card"
-                style={{ display:'block', padding:'1.6rem', height:'100%', textDecoration:'none' }}
+                style={{ display:'flex', flexDirection:'column', padding:'1.6rem', height:'100%', textDecoration:'none' }}
               >
                 <div className="fro-sm" style={{ marginBottom:'0.8rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.68rem' }}>{p.audiencia}</div>
                 <h3 className="fro-h3" style={{ marginBottom:'0.8rem', fontSize:'1.1rem' }}>{p.titulo}</h3>
-                <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:'1.4rem' }}>{p.nota}</p>
-                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.nota}</p>
+                <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'auto', paddingTop:'1.4rem' }}>
                   <span className="fro-chip-outline">{p.precio}</span>
                   <span style={{ fontSize:'0.82rem', fontWeight:600, color:'var(--fro-ink)' }}>Ver programa →</span>
                 </div>

@@ -166,7 +166,11 @@ section[id] { scroll-margin-top: 84px; }
 .fro-on-light .fro-body { color: var(--fro-ink-2); }
 .fro-on-light .fro-sm { color: var(--fro-ink-3); }
 .fro-on-light .fro-card { background: var(--fro-bg-white); border-color: var(--fro-ink-line); }
-.fro-on-light .fro-card:hover { border-color: rgba(43,43,43,0.32); }
+.fro-on-light .fro-card:hover {
+  border-color: var(--fro-amber);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255,200,0,0.18);
+}
 
 .fro-chip-outline {
   display: inline-flex; align-items: center; gap: 0.4rem;
@@ -226,7 +230,7 @@ section[id] { scroll-margin-top: 84px; }
   background: var(--fro-surface);
   border: 1px solid var(--fro-line);
   border-radius: 10px;
-  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s, box-shadow 0.25s;
 }
 .fro-card:hover { border-color: var(--fro-line-2); }
 

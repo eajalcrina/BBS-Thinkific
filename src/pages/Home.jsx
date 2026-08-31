@@ -3,7 +3,6 @@ import Hero from '../components/Hero.jsx'
 import TresEjes from '../components/TresEjes.jsx'
 import Programas from '../components/Programas.jsx'
 import ComunidadBiobuilders from '../components/ComunidadBiobuilders.jsx'
-import RedAliados from '../components/RedAliados.jsx'
 import DiagnosticoCTA from '../components/DiagnosticoCTA.jsx'
 import RespaldoInstitucional from '../components/RespaldoInstitucional.jsx'
 import Endorsements from '../components/Endorsements.jsx'
@@ -19,7 +18,6 @@ export default function Home() {
         <TresEjes/>
         <Programas/>
         <ComunidadBiobuilders/>
-        <RedAliados/>
         <DiagnosticoCTA/>
         <RespaldoInstitucional/>
         <Endorsements/>

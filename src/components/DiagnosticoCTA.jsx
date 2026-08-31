@@ -40,7 +40,7 @@ export default function DiagnosticoCTA() {
               >
                 <h3 className="fro-h3" style={{ marginBottom:'0.9rem' }}>{c.titulo}</h3>
                 <p className="fro-body" style={{ marginBottom:'1.4rem' }}>{c.nota}</p>
-                <span className="fro-mark-amber" style={{ fontSize:'0.88rem', fontWeight:700, color:'var(--fro-ink)' }}>{c.cta} →</span>
+                <span className="fro-mark-amber fro-card-cta" style={{ fontSize:'0.88rem', fontWeight:700 }}>{c.cta} →</span>
               </a>
             </FadeIn>
           ))}

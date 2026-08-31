@@ -166,10 +166,27 @@ section[id] { scroll-margin-top: 84px; }
 .fro-on-light .fro-body { color: var(--fro-ink-2); }
 .fro-on-light .fro-sm { color: var(--fro-ink-3); }
 .fro-on-light .fro-card { background: var(--fro-bg-white); border-color: var(--fro-ink-line); }
+
+/* Hover on a light card inverts it to the dark palette — black surface,
+   amber/white text — instead of a glow around the card. */
 .fro-on-light .fro-card:hover {
-  border-color: var(--fro-amber);
+  background: var(--fro-bg);
+  border-color: var(--fro-bg);
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(255,200,0,0.18);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+.fro-on-light .fro-card:hover .fro-sm { color: var(--fro-amber); }
+.fro-on-light .fro-card:hover .fro-h3 { color: var(--fro-text); }
+.fro-on-light .fro-card:hover .fro-body { color: var(--fro-text-2); }
+.fro-on-light .fro-card:hover .fro-chip-outline { border-color: var(--fro-amber); color: var(--fro-amber); }
+.fro-on-light .fro-card:hover .fro-card-cta { color: var(--fro-amber); }
+
+.fro-card .fro-sm,
+.fro-card .fro-h3,
+.fro-card .fro-body,
+.fro-card .fro-chip-outline,
+.fro-card .fro-card-cta {
+  transition: color 0.25s, border-color 0.25s;
 }
 
 .fro-chip-outline {
@@ -179,6 +196,8 @@ section[id] { scroll-margin-top: 84px; }
   font-family: var(--finter); font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.02em;
 }
+
+.fro-card-cta { color: var(--fro-ink); }
 
 .fro-mark-amber {
   white-space: nowrap;

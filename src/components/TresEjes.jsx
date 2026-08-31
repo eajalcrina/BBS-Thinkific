@@ -41,11 +41,12 @@ function VennDiagram() {
           </motion.g>
         ))}
 
-        {/* BBS — sitting exactly in the triple intersection */}
+        {/* bio/business school — sitting exactly in the triple intersection,
+            directly on the diagram, no card behind it */}
         <motion.g initial={{ opacity:0, scale:0.7 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} transition={{ duration:0.6, delay:0.85, ease:[0.22,1,0.36,1] }} style={{ transformOrigin:`${CENTER.x}px ${CENTER.y}px` }}>
-          <circle cx={CENTER.x} cy={CENTER.y} r="46" fill="url(#te-center-glow)"/>
-          <rect x={CENTER.x - 34} y={CENTER.y - 17} width="68" height="34" rx="17" fill="var(--fro-bg-white)" stroke="var(--fro-ink)" strokeWidth="1.5"/>
-          <text x={CENTER.x} y={CENTER.y + 5} textAnchor="middle" fontFamily="var(--fbc), sans-serif" fontWeight="700" fontSize="15" letterSpacing="0.03em" fill="var(--fro-ink)">BBS</text>
+          <circle cx={CENTER.x} cy={CENTER.y} r="52" fill="url(#te-center-glow)"/>
+          <text x={CENTER.x} y={CENTER.y - 2} textAnchor="middle" fontFamily="var(--fbc), sans-serif" fontWeight="700" fontSize="16" letterSpacing="0.01em" fill="var(--fro-ink)">bio/business</text>
+          <text x={CENTER.x} y={CENTER.y + 15} textAnchor="middle" fontFamily="var(--fbc), sans-serif" fontWeight="500" fontSize="11" letterSpacing="0.1em" fill="var(--fro-ink-2)">SCHOOL</text>
         </motion.g>
       </svg>
     </div>
@@ -64,7 +65,7 @@ export default function TresEjes() {
         </FadeIn>
 
         <FadeIn delay={0.14}>
-          <div className="fro-card" style={{ padding:'2rem', marginBottom:'2.6rem' }}>
+          <div style={{ marginBottom:'2.6rem' }}>
             <VennDiagram/>
           </div>
         </FadeIn>

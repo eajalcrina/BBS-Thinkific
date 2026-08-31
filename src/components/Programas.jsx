@@ -76,7 +76,7 @@ export default function Programas() {
                 <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.nota}</p>
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'auto', paddingTop:'1.4rem' }}>
                   <span className="fro-chip-outline">{p.precio}</span>
-                  <span style={{ fontSize:'0.82rem', fontWeight:600, color:'var(--fro-ink)' }}>Ver programa →</span>
+                  <span className="fro-card-cta" style={{ fontSize:'0.82rem', fontWeight:600 }}>Ver programa →</span>
                 </div>
               </a>
             </FadeIn>

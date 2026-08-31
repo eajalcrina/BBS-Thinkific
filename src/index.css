@@ -65,6 +65,12 @@ img, svg { display: block; max-width: 100%; }
   --fro-line-2:   rgba(255,255,255,0.18);
   --fro-danger:   #FF5B5B;
   --fro-success:  #66E0A3;
+  --fro-bg-light: #FAF8F2;
+  --fro-bg-white: #FFFFFF;
+  --fro-ink:      #2B2B2B;
+  --fro-ink-2:    rgba(43,43,43,0.68);
+  --fro-ink-3:    rgba(43,43,43,0.48);
+  --fro-ink-line: rgba(43,43,43,0.12);
   --fsyne:  'Syne', 'Outfit', sans-serif;
   --finter: 'Inter', 'DM Sans', sans-serif;
 
@@ -148,6 +154,32 @@ section[id] { scroll-margin-top: 84px; }
 .fro-bg-1 { background: var(--fro-bg); }
 .fro-bg-2 { background: var(--fro-bg-2); }
 .fro-bg-3 { background: var(--fro-bg-3); }
+
+/* ══ BBS Light section variants (Home redesign) ═══════════ */
+.fro-bg-light { background: var(--fro-bg-light); }
+.fro-bg-white { background: var(--fro-bg-white); }
+
+.fro-on-light .fro-eyebrow { color: var(--fro-ink-2); }
+.fro-on-light .fro-h2,
+.fro-on-light .fro-h3 { color: var(--fro-ink); }
+.fro-on-light .fro-lead,
+.fro-on-light .fro-body { color: var(--fro-ink-2); }
+.fro-on-light .fro-sm { color: var(--fro-ink-3); }
+.fro-on-light .fro-card { background: var(--fro-bg-white); border-color: var(--fro-ink-line); }
+
+.fro-chip-outline {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.32rem 0.8rem; border-radius: 20px;
+  border: 1.5px solid var(--fro-ink); color: var(--fro-ink);
+  font-family: var(--finter); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.fro-mark-amber { position: relative; white-space: nowrap; }
+.fro-mark-amber::before {
+  content: ''; position: absolute; left: -0.06em; right: -0.06em; bottom: 0.06em; height: 0.32em;
+  background: var(--fro-amber); opacity: 0.55; z-index: -1; border-radius: 2px;
+}
 
 /* ══ BBS Buttons ══════════════════════════════════════════ */
 .fro-btn {

@@ -3,17 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { trackCta } from '../lib/analytics.js'
 
 const LINKS = [
-  ['#problema',   'Problema'],
-  ['#biobuilder', 'Bio/Builders'],
-  ['/sprint01',   'Sprint 01'],
-  ['#libro',      'Playbook'],
-  ['#comunidad',  'Comunidad'],
-  ['#equipo',     'Equipo'],
-  ['#faq',        'FAQ'],
+  ['#programas',   'Programas'],
+  ['#comunidad',   'Comunidad'],
+  ['#diagnostico', 'Diagnóstico'],
 ]
 
 const Logo = () => (
-  <span style={{ fontFamily:'var(--fsyne)', fontWeight:700, fontSize:'1.1rem', letterSpacing:'-0.02em', color:'var(--fro-text)', userSelect:'none' }}>
+  <span style={{ fontFamily:'var(--fbc)', fontWeight:700, fontSize:'1.25rem', letterSpacing:'-0.01em', color:'var(--fro-text)', userSelect:'none' }}>
     bio<span style={{ color:'var(--fro-amber)' }}>/</span>business
   </span>
 )
@@ -59,6 +55,7 @@ export default function Nav() {
             {LINKS.map(([h,l]) => (
               <li key={h}>
                 <a href={h}
+                  onClick={() => trackCta(`nav_${h.slice(1)}`, 'home_nav', h)}
                   style={{ fontFamily:'var(--finter)', fontSize:'0.83rem', fontWeight:500, color:'var(--fro-text-2)', textDecoration:'none', transition:'color 0.18s' }}
                   onMouseEnter={e => e.currentTarget.style.color='var(--fro-text)'}
                   onMouseLeave={e => e.currentTarget.style.color='var(--fro-text-2)'}
@@ -67,37 +64,26 @@ export default function Nav() {
             ))}
           </ul>
 
-          <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', flexShrink:0 }}>
-            <a
-              href="#comunidad"
-              onClick={() => trackCta('nav_unete_gratis', 'home_nav', '#comunidad')}
-              className="fro-btn fro-btn-amber nav-cta"
-              style={{ padding:'0.58rem 1.1rem', fontSize:'0.8rem' }}
-            >
-              Únete gratis
-              <span aria-hidden>→</span>
-            </a>
-            <button
-              type="button"
-              className="nav-burger"
-              aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              onClick={() => setOpen(v => !v)}
-              style={{
-                width:42, height:42, borderRadius:6,
-                background:'transparent', border:'1px solid var(--fro-line-2)',
-                color:'var(--fro-text)', cursor:'pointer',
-                display:'none', alignItems:'center', justifyContent:'center',
-              }}
-            >
-              <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden>
-                <rect y={open ? 6 : 0} width="18" height="1.6" fill="currentColor" style={{ transformOrigin:'center', transform: open?'rotate(45deg)':'none', transition:'transform 0.2s' }}/>
-                <rect y="6" width="18" height="1.6" fill="currentColor" style={{ opacity: open?0:1, transition:'opacity 0.15s' }}/>
-                <rect y={open ? 6 : 12} width="18" height="1.6" fill="currentColor" style={{ transformOrigin:'center', transform: open?'rotate(-45deg)':'none', transition:'transform 0.2s' }}/>
-              </svg>
-            </button>
-          </div>
+          <button
+            type="button"
+            className="nav-burger"
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen(v => !v)}
+            style={{
+              width:42, height:42, borderRadius:6,
+              background:'transparent', border:'1px solid var(--fro-line-2)',
+              color:'var(--fro-text)', cursor:'pointer',
+              display:'none', alignItems:'center', justifyContent:'center', flexShrink:0,
+            }}
+          >
+            <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden>
+              <rect y={open ? 6 : 0} width="18" height="1.6" fill="currentColor" style={{ transformOrigin:'center', transform: open?'rotate(45deg)':'none', transition:'transform 0.2s' }}/>
+              <rect y="6" width="18" height="1.6" fill="currentColor" style={{ opacity: open?0:1, transition:'opacity 0.15s' }}/>
+              <rect y={open ? 6 : 12} width="18" height="1.6" fill="currentColor" style={{ transformOrigin:'center', transform: open?'rotate(-45deg)':'none', transition:'transform 0.2s' }}/>
+            </svg>
+          </button>
         </nav>
       </motion.header>
 
@@ -131,15 +117,6 @@ export default function Nav() {
                 </motion.li>
               ))}
             </motion.ul>
-            <div style={{ marginTop:'2rem' }}>
-              <a
-                href="#comunidad"
-                onClick={() => { setOpen(false); trackCta('nav_unete_gratis_mobile', 'home_nav_mobile', '#comunidad'); }}
-                className="fro-btn fro-btn-amber fro-btn-lg fro-btn-full"
-              >
-                Únete gratis <span aria-hidden>→</span>
-              </a>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -148,16 +125,6 @@ export default function Nav() {
         @media (max-width: 900px) {
           .nav-ul { display: none !important; }
           .nav-burger { display: inline-flex !important; }
-        }
-        @media (max-width: 900px) {
-          .nav-cta {
-            padding: 0.48rem 0.85rem !important;
-            font-size: 0.74rem !important;
-          }
-          .nav-cta span[aria-hidden] { display: none; }
-        }
-        @media (max-width: 340px) {
-          .nav-cta { display: none !important; }
         }
       `}</style>
     </>

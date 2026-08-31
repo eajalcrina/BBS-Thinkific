@@ -1,38 +1,16 @@
 import FadeIn from './FadeIn.jsx'
 
-/**
- * Respaldan — sección de credibilidad institucional.
- * Mismo tratamiento que el marquee del hero: tira en loop infinito.
- */
-
 const PARTNERS = [
-  '404 Tech Found',
   'MIT Professional Education',
-  'ESAN Graduate School',
-  'Pontificia Universidad Católica del Perú',
-  'Singularity University',
-  'Unión Europea en Perú',
+  'Universidad de Chicago',
+  'CATIE',
+  'INCAE',
 ]
 
 export default function Endorsements() {
   return (
-    <section
-      id="respaldan"
-      className="fro-sec"
-      style={{ background:'var(--fro-bg-3)', borderTop:'1px solid var(--fro-line)', borderBottom:'1px solid var(--fro-line)', padding:'6rem 0 0' }}
-    >
-      <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Aliados y referentes</div></FadeIn>
-
-        <FadeIn delay={0.08}>
-          <p className="fro-lead" style={{ maxWidth:620, marginBottom:'3rem' }}>
-            Construimos sobre trayectoria real. Partners académicos, redes técnicas y credenciales del equipo fundador.
-          </p>
-        </FadeIn>
-      </div>
-
-      {/* Full-bleed marquee — mismo estilo que el del hero */}
-      <FadeIn delay={0.2}>
+    <section id="respaldan" style={{ background:'var(--fro-bg)', paddingBottom:'6rem' }}>
+      <FadeIn>
         <div className="fro-marquee" aria-hidden>
           <div className="fro-marquee-track">
             <span>{PARTNERS.map(p => <span key={p}>{p}</span>)}</span>
@@ -40,14 +18,6 @@ export default function Endorsements() {
           </div>
         </div>
       </FadeIn>
-
-      <div className="fro-wrap">
-        <FadeIn delay={0.3}>
-          <p className="fro-sm" style={{ marginTop:'2.5rem', marginBottom:'2rem', textAlign:'center', maxWidth:540, marginLeft:'auto', marginRight:'auto', fontStyle:'italic' }}>
-            Testimonios de nuestra primera cohorte se publicarán tras el lanzamiento Q2 2026.
-          </p>
-        </FadeIn>
-      </div>
     </section>
   )
 }

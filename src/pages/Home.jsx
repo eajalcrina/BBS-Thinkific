@@ -5,6 +5,8 @@ import Programas from '../components/Programas.jsx'
 import ComunidadBiobuilders from '../components/ComunidadBiobuilders.jsx'
 import RedAliados from '../components/RedAliados.jsx'
 import DiagnosticoCTA from '../components/DiagnosticoCTA.jsx'
+import RespaldoInstitucional from '../components/RespaldoInstitucional.jsx'
+import Endorsements from '../components/Endorsements.jsx'
 import Footer from '../components/Footer.jsx'
 
 export default function Home() {
@@ -19,6 +21,8 @@ export default function Home() {
         <ComunidadBiobuilders/>
         <RedAliados/>
         <DiagnosticoCTA/>
+        <RespaldoInstitucional/>
+        <Endorsements/>
       </main>
       <Footer/>
     </>

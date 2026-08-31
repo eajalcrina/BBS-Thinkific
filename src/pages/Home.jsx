@@ -2,6 +2,7 @@ import Nav from '../components/Nav.jsx'
 import Hero from '../components/Hero.jsx'
 import TresEjes from '../components/TresEjes.jsx'
 import Programas from '../components/Programas.jsx'
+import ComunidadBiobuilders from '../components/ComunidadBiobuilders.jsx'
 import Footer from '../components/Footer.jsx'
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero/>
         <TresEjes/>
         <Programas/>
+        <ComunidadBiobuilders/>
       </main>
       <Footer/>
     </>

@@ -45,7 +45,7 @@ img, svg { display: block; max-width: 100%; }
   --fdm:  'DM Sans', sans-serif;
   --fbc:  'Barlow Condensed', sans-serif;
 
-  /* ── Bio Business School palette (home + /sprint01) ───────── */
+  /* ── Bio Business School palette (home) ───────────────────── */
   --fro-bg:       #0A0A0A;
   --fro-bg-2:     #111111;
   --fro-bg-3:     #161616;
@@ -110,7 +110,7 @@ section[id] { scroll-margin-top: 84px; }
 .t-md { font-size: clamp(1.8rem, 3vw, 3rem); }
 .t-sm { font-size: clamp(1.3rem, 2vw, 1.9rem); }
 
-/* ══ BBS Typography (Syne + Inter, used by / and /sprint01) ══ */
+/* ══ BBS Typography (Syne + Inter, used by /) ════════════════ */
 .fro-display {
   font-family: var(--fsyne); font-weight: 700;
   letter-spacing: -0.04em; line-height: 0.95;

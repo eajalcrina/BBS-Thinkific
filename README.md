@@ -1,75 +1,79 @@
-# Bio Business School — Landing Page v6
+# Bio Business School — Landing Page
 
-Plataforma de inteligencia para bionegocios rentables en América Latina.
-
-## Concepto de diseño: "Bioluminiscencia Estratégica"
-
-La biodiversidad de LATAM emite luz en la oscuridad — como organismos bioluminiscentes.
-Los colores lima y rose son puntos de luz que emergen de un fondo profundo oscuro.
+Formación en IA para industrias de sistemas vivos. Plataforma de inteligencia
+para bionegocios rentables en América Latina.
 
 ## Stack
 
 - **React 18** + **Vite 5**
-- **Framer Motion 11** — animaciones de entrada y SVG animado
-- **Outfit** (display/títulos) — geométrica moderna, weight 300/600
-- **DM Sans** (cuerpo) — humanista y legible
-- **Barlow Condensed** — logo y labels, mantenida como referencia de marca
+- **React Router 7** — enrutamiento de páginas (`/`, `/privacidad`)
+- **Framer Motion 11** — animaciones de entrada y scroll-triggered
+- Deploy en **Vercel**
+
+## Tipografía
+
+- **Syne** — headings
+- **Inter** — cuerpo de texto
+- **Barlow Condensed** — labels, botones y wordmark
 
 ## Paleta de colores
 
-```
---lime:   #C8F000   Verde lima BBS — acento primario (bioluminiscencia)
---rose:   #F32769   Magenta BBS — exclusivo Sprint 01 + énfasis secundario
---bg:     #070810   Fondo near-black con tinte índigo profundo
---bg2:    #0C0C1A   Superficie de sección
---bg3:    #101024   Superficie elevada
-Glassmorphism: rgba(12,12,26,0.7) + backdrop-filter: blur(12px)
-```
-
-## Estructura de secciones
+El sitio de Bio Business School usa dos variantes de sección: oscura y clara.
 
 ```
-1. Hero          — orbes bioluminiscentes CSS animados, stats panel glassmorphism
-2. Mission       — diagrama Venn SVG animado (del deck de BBS)
-3. Problem       — 4 fallas del modelo actual, cards glassmorphism
-4. BioBuilder    — diagrama radial orbiting SVG + tabla MBA vs BioBuilder
-5. Course        — Biotech Sprint 01 con rose #F32769 como color dominante
-6. Book          — Bio Business Playbook, precio $25 prominente, mockup con foto real
-7. Community     — Starter gratis + PRO + formulario de captación
-8. Team          — Eddie y Lorenzo con LinkedIn, sección bg diferenciado
-9. Footer        — logo verde, links organizados
+Oscuro (base)
+--fro-bg:       #0A0A0A   Fondo principal
+--fro-amber:    #FFC800   Acento (solo detalles: chips, subrayados, CTAs)
+--fro-text:     #FFFFFF   Texto principal
+
+Claro (secciones "on-light")
+--fro-bg-light: #FAF8F2   Fondo de sección clara
+--fro-bg-white: #FFFFFF   Fondo de tarjetas
+--fro-ink:      #2B2B2B   Texto principal sobre fondo claro
+```
+
+Los colores lima y rose (`--lime`, `--rose`) que aparecen también en
+`src/index.css` pertenecen a la paleta del dashboard NESsT
+(`/proyecto-nesst`), un proyecto separado que comparte este repo — no forman
+parte del scope de BBS.
+
+## Páginas
+
+```
+/            Home — rediseñada en esta rama
+/privacidad  Política de privacidad
+```
+
+## Estructura de la Home
+
+Las secciones se renderizan en este orden (ver `src/pages/Home.jsx`):
+
+```
+1. Nav                      — navegación sticky
+2. Hero                     — mensaje principal + CTA
+3. TresEjes                 — los tres ejes de la propuesta
+4. Programas                — tarjetas de programas/audiencias
+5. ComunidadBiobuilders     — comunidad de Biobuilders
+6. RedAliados                — red de aliados institucionales
+7. DiagnosticoCTA            — CTA de diagnóstico
+8. RespaldoInstitucional     — respaldo institucional
+9. Endorsements               — testimonios/endosos (marquee)
+10. Footer                    — pie de página
 ```
 
 ## Archivos del proyecto
 
 ```
-bbs-react/
-├── public/
-│   ├── logo-green.png    # Logo verde (nav + footer)
-│   ├── logo-red.png      # Logo rojo (sección Sprint 01)
-│   ├── book-cover.jpg    # Portada del Playbook
-│   └── book-stack.jpg    # Foto de la pila de libros (mockup)
+├── public/                 # assets estáticos (favicon, og-cover, fuentes)
 ├── src/
-│   ├── components/
-│   │   ├── Nav.jsx       # Sticky nav con blur + scroll detection
-│   │   ├── Hero.jsx      # Hero con orbes animados + stats panel
-│   │   ├── Mission.jsx   # Venn diagram SVG animado
-│   │   ├── Problem.jsx   # 4 cards glassmorphism
-│   │   ├── BioBuilder.jsx# Diagrama orbital + tabla comparativa
-│   │   ├── Course.jsx    # Sprint 01 con rose dominante
-│   │   ├── Book.jsx      # Libro con precio $25 prominente
-│   │   ├── Community.jsx # Membresía gratis + formulario
-│   │   ├── Team.jsx      # Equipo con LinkedIn
-│   │   ├── Footer.jsx    # Footer completo
-│   │   └── FadeIn.jsx    # Wrapper animación scroll-triggered
-│   ├── App.jsx
+│   ├── components/         # componentes de la Home + Nav/Footer
+│   ├── pages/               # Home.jsx, Privacy.jsx
+│   ├── App.jsx               # rutas (React Router)
 │   ├── main.jsx
-│   └── index.css         # Sistema de diseño completo
-├── index.html            # Entrada con fuentes precargadas
+│   └── index.css              # sistema de diseño (BBS + NESsT)
+├── index.html                 # entrada, meta tags, structured data (JSON-LD)
 ├── package.json
-├── vite.config.js
-├── vercel.json
-└── .gitignore
+└── vite.config.js
 ```
 
 ## Instalación local
@@ -80,53 +84,17 @@ npm run dev
 # → http://localhost:5173
 ```
 
-## Deploy en Vercel desde GitHub
+## Build
 
 ```bash
-# 1. Descomprime y entra al directorio
-unzip bbs-react.zip && cd bbs-react
-
-# 2. Inicializa git y conecta con tu repositorio
-git init
-git remote add origin https://github.com/eajalcrina/BBS-Thinkific.git
-git add .
-git commit -m "feat: v6 - Bioluminiscencia Estratégica, Outfit+DM Sans, Venn animado"
-git push origin main --force
-
-# 3. Vercel despliega automáticamente al detectar el push
+npm run build
+npm run preview
 ```
 
-## Personalización de URLs
+## Deploy
 
-Busca los `href` de estos botones y actualiza con las URLs reales:
-
-| Botón | Archivo | URL actual |
-|-------|---------|-----------|
-| Inscribirme al Sprint 01 | Course.jsx | `https://biobusinessschool.org/sprint01` |
-| Comprar Playbook digital | Book.jsx | `https://biobusinessschool.org/playbook` |
-| LinkedIn Eddie | Team.jsx | `https://www.linkedin.com/in/eddieajalcrina/` |
-| LinkedIn Lorenzo | Team.jsx | `https://www.linkedin.com/in/lorenzoo/` ← verificar handle |
-
-## Conectar formulario de comunidad
-
-En `Community.jsx`, reemplaza la función `submit`:
-
-```js
-const submit = async () => {
-  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  if (!name || !ok) { setErr(true); return }
-  
-  // Ejemplo con Mailchimp, ConvertKit, HubSpot, Zapier o tu endpoint propio:
-  await fetch('https://tu-endpoint.com/subscribe', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, country, plan })
-  })
-  
-  setErr(false)
-  setDone(true)
-}
-```
+El sitio se despliega en Vercel a partir del repositorio de GitHub. Un push
+a la rama de producción dispara el build y deploy automáticamente.
 
 ## Créditos
 

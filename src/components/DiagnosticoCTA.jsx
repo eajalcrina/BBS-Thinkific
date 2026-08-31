@@ -22,10 +22,10 @@ export default function DiagnosticoCTA() {
   return (
     <section id="diagnostico" className="fro-sec fro-bg-white fro-on-light">
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>¿Por dónde empezar?</div></FadeIn>
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.2rem' }}>Autodiagnóstico gratuito</div></FadeIn>
         <FadeIn delay={0.08}>
           <h2 className="fro-h2" style={{ marginBottom:'2.6rem', maxWidth:760 }}>
-            Dos minutos de diagnóstico, una recomendación clara
+            ¿Descubre qué necesitas para avanzar en tu camino como profesional o empresario?
           </h2>
         </FadeIn>
 

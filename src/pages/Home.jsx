@@ -15,10 +15,10 @@ export default function Home() {
       <Nav/>
       <main id="main">
         <Hero/>
-        <TresEjes/>
-        <Programas/>
-        <ComunidadBiobuilders/>
         <DiagnosticoCTA/>
+        <Programas/>
+        <TresEjes/>
+        <ComunidadBiobuilders/>
         <RespaldoInstitucional/>
         <Endorsements/>
       </main>

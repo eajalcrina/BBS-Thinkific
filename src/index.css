@@ -167,6 +167,16 @@ section[id] { scroll-margin-top: 84px; }
 .fro-on-light .fro-sm { color: var(--fro-ink-3); }
 .fro-on-light .fro-card { background: var(--fro-bg-white); border-color: var(--fro-ink-line); }
 
+/* "Live" cards (open for enrollment) — inverted from the default light
+   card: amber surface, black accents. Distinguishes them from "reserve"
+   (pre-registration) cards without relying on a badge alone. */
+.fro-on-light .fro-card-live { background: var(--fro-amber); border-color: var(--fro-amber); }
+.fro-on-light .fro-card-live .fro-sm { color: rgba(10,10,10,0.65); }
+.fro-on-light .fro-card-live .fro-h3 { color: #0A0A0A; }
+.fro-on-light .fro-card-live .fro-body { color: rgba(10,10,10,0.75); }
+.fro-on-light .fro-card-live .fro-chip-outline { border-color: #0A0A0A; color: #0A0A0A; }
+.fro-on-light .fro-card-live .fro-card-cta { color: #0A0A0A; }
+
 /* Hover on a light card inverts it to the dark palette — black surface,
    amber/white text — instead of a glow around the card. */
 .fro-on-light .fro-card:hover {

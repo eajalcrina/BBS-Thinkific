@@ -26,13 +26,13 @@ export default function Hero() {
 
         <FadeIn delay={0.14}>
           <p className="fro-lead" style={{ maxWidth:640, marginBottom:'1.2rem' }}>
-            De Eddie Ajalcriña (Lima) y Lorenzo Ortiz (Bogotá), respaldados por Redesign Lab: formación especializada para que profesionales y empresas de industrias que dependen de sistemas vivos dominen la IA y lideren ese cambio, en toda la región.
+            Eddie Ajalcriña (Lima) y Lorenzo Ortiz (Bogotá) han desarrollado múltiples proyectos a través de Redesign Lab en la región, y han identificado la necesidad urgente de formación especializada para que profesionales y empresas de industrias que dependen de sistemas vivos dominen la IA y lideren ese cambio.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <p className="fro-sm" style={{ maxWidth:600, marginBottom:'2.4rem' }}>
-            Antes de esto, ayudamos a diseñar programas de formación para instituciones como MIT Professional Education, la Universidad de Chicago, CATIE e INCAE. Aquí destilamos ese mismo nivel, para tu carrera o tu negocio.
+            Estos programas son la destilación de nuestra experiencia como docentes y speakers en instituciones como MIT Professional Education, la Universidad de Chicago, CATIE e INCAE.
           </p>
         </FadeIn>
 

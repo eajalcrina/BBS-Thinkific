@@ -23,7 +23,20 @@ function renderFieldsHtml(fields) {
   return `<table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">${rows}</table>`
 }
 
+const MAX_FIELD_LENGTH = 500
+
+function sanitizeData(data) {
+  const clean = {}
+  for (const [key, value] of Object.entries(data || {})) {
+    clean[key] = typeof value === 'string' && value.length > MAX_FIELD_LENGTH
+      ? value.slice(0, MAX_FIELD_LENGTH)
+      : value
+  }
+  return clean
+}
+
 export function buildEnvelope(form, data) {
+  data = sanitizeData(data)
   const ts = nowLima()
 
   switch (form) {

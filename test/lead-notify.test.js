@@ -85,6 +85,12 @@ test('buildEnvelope: throws on unknown form', () => {
   assert.throws(() => buildEnvelope('not-a-real-form', {}), /unknown form/)
 })
 
+test('buildEnvelope: truncates an oversized field instead of passing it through', () => {
+  const longValue = 'x'.repeat(10000)
+  const env = buildEnvelope('bbs-newsletter', { email: longValue, pagina_origen: '/' })
+  assert.equal(env.sheetRow[1].length, 500)
+})
+
 test('notifyLead: both channels succeed', async () => {
   const result = await notifyLead(
     'bbs-newsletter',

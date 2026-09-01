@@ -47,7 +47,7 @@ export default function Nav() {
         }}
       >
         <nav className="fro-wrap" aria-label="Principal" style={{ height:70, display:'flex', alignItems:'center', justifyContent:'space-between', gap:'2rem' }}>
-          <a href="#top" aria-label="Ir al inicio — Bio Business School" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
+          <a href="/#top" aria-label="Ir al inicio — Bio Business School" style={{ display:'flex', alignItems:'center', textDecoration:'none', flexShrink:0 }}>
             <Logo/>
           </a>
 

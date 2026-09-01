@@ -196,6 +196,14 @@ section[id] { scroll-margin-top: 84px; }
   .fro-on-light .fro-card:hover .fro-card-cta { color: var(--fro-amber); }
 }
 
+.fro-on-light .fro-field {
+  background: rgba(43,43,43,0.03);
+  color: var(--fro-ink);
+  border-color: var(--fro-ink-line);
+}
+.fro-on-light .fro-field::placeholder { color: var(--fro-ink-3); }
+.fro-on-light .fro-field:focus { border-color: var(--fro-amber); background: rgba(255,200,0,0.06); box-shadow: 0 0 0 3px rgba(255,200,0,0.12); }
+
 .fro-card .fro-sm,
 .fro-card .fro-h3,
 .fro-card .fro-body,

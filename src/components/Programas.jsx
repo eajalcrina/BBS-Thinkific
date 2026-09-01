@@ -1,56 +1,6 @@
 import FadeIn from './FadeIn.jsx'
 import { trackCta } from '../lib/analytics.js'
-
-const PROGRAMAS = [
-  {
-    slug: 'ia-nuevos-profesionales',
-    titulo: 'IA para Nuevos Profesionales',
-    audiencia: 'Jóvenes profesionales',
-    nota: 'La IA no va a reemplazar a los jóvenes profesionales que la dominen con criterio propio. Va a reemplazar a los que crecieron sin desarrollarlo.',
-    precio: 'S/ 297',
-    status: 'live',
-  },
-  {
-    slug: 'ia-profesionales-senior',
-    titulo: 'IA para Profesionales Senior',
-    audiencia: 'Profesionales senior',
-    nota: 'Tu experiencia no está en riesgo por la IA. Está en riesgo si nadie aprende a multiplicarla con ella.',
-    precio: 'S/ 497',
-    status: 'reserve',
-  },
-  {
-    slug: 'negocios-regenerativos',
-    titulo: 'Construcción de Negocios Regenerativos',
-    audiencia: 'Emprendimientos y pymes',
-    nota: 'Tener buena intención regenerativa no basta. Este programa es la ingeniería detrás del negocio que sí funciona.',
-    precio: 'S/ 597',
-    status: 'reserve',
-  },
-  {
-    slug: 'marcas-regenerativas',
-    titulo: 'Construcción de Marcas Regenerativas',
-    audiencia: 'Emprendimientos y pymes',
-    nota: 'Tener una causa real no basta si tu marca suena igual a las cien que dicen tener lo mismo.',
-    precio: 'S/ 597',
-    status: 'live',
-  },
-  {
-    slug: 'economia-circular-industria',
-    titulo: 'Economía Circular para la Industria',
-    audiencia: 'Gran industria',
-    nota: 'No lo hacemos porque lo pida un reporte de sostenibilidad. Lo hacemos porque hay industrias que ya no pueden darse el lujo de desperdiciar.',
-    precio: 'S/ 797',
-    status: 'reserve',
-  },
-  {
-    slug: 'capital-de-impacto',
-    titulo: 'Capital de Impacto',
-    audiencia: 'Empresas grandes y pymes',
-    nota: 'El capital no huye de la región por falta de buenos proyectos. Huye por falta de preparación para levantarlo.',
-    precio: 'S/ 997',
-    status: 'reserve',
-  },
-]
+import { PROGRAMAS } from '../data/programas.js'
 
 export default function Programas() {
   return (
@@ -84,9 +34,9 @@ export default function Programas() {
                 )}
                 <div className="fro-sm" style={{ marginBottom:'0.8rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.68rem' }}>{p.audiencia}</div>
                 <h3 className="fro-h3" style={{ marginBottom:'0.8rem', fontSize:'1.1rem' }}>{p.titulo}</h3>
-                <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.nota}</p>
+                <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.notaCard}</p>
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'auto', paddingTop:'1.4rem' }}>
-                  <span className="fro-chip-outline">{p.precio}</span>
+                  <span className="fro-chip-outline">{`S/ ${p.precioRegular}`}</span>
                   <span className="fro-card-cta" style={{ fontSize:'0.82rem', fontWeight:600 }}>Ver programa →</span>
                 </div>
               </a>

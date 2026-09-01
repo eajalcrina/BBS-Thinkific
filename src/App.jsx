@@ -3,14 +3,16 @@ import { lazy, Suspense } from 'react'
 import Home from './pages/Home.jsx'
 
 const Privacy = lazy(() => import('./pages/Privacy.jsx'))
+const ProgramaPage = lazy(() => import('./pages/ProgramaPage.jsx'))
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div style={{ minHeight:'100vh' }}/>}>
+      <Suspense fallback={<div style={{ minHeight: '100vh' }}/>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/privacidad" element={<Privacy />} />
+          <Route path="/programas/:slug" element={<ProgramaPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

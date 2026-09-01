@@ -15,11 +15,23 @@ export function createHandler(notify = notifyLead) {
     }
 
     const { form, data } = req.body || {}
-    if (!form || !KNOWN_FORMS.includes(form) || typeof data !== 'object' || data === null) {
+    if (
+      !form ||
+      !KNOWN_FORMS.includes(form) ||
+      typeof data !== 'object' ||
+      data === null ||
+      Array.isArray(data)
+    ) {
       return res.status(400).json({ error: 'Missing or invalid "form"/"data".' })
     }
 
-    const result = await notify(form, data)
+    let result
+    try {
+      result = await notify(form, data)
+    } catch (err) {
+      console.error('[lead] notify threw unexpectedly', err)
+      return res.status(502).json({ error: 'No pudimos procesar la solicitud.' })
+    }
 
     // El email es la garantía de "no perder el lead" — se trata como éxito
     // en cuanto uno de los dos canales funcione. Solo se reporta error duro

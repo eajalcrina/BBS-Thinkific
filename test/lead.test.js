@@ -88,3 +88,22 @@ test('passes form and data through to notify unchanged', async () => {
   assert.equal(received.form, 'bbs-payment')
   assert.deepEqual(received.data, data)
 })
+
+test('returns 502 (not an unhandled rejection) if notify throws', async () => {
+  const handler = createHandler(async () => {
+    throw new Error('boom')
+  })
+  const res = createMockRes()
+  await handler(
+    { method: 'POST', body: { form: 'bbs-newsletter', data: { email: 'a@b.com' } } },
+    res
+  )
+  assert.equal(res.statusCode, 502)
+})
+
+test('rejects an array as data with 400', async () => {
+  const handler = createHandler(async () => ({ emailOk: true, sheetOk: true }))
+  const res = createMockRes()
+  await handler({ method: 'POST', body: { form: 'bbs-newsletter', data: [] } }, res)
+  assert.equal(res.statusCode, 400)
+})

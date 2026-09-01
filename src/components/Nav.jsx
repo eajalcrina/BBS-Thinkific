@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { trackCta } from '../lib/analytics.js'
 
 const LINKS = [
-  ['#programas',   'Programas'],
-  ['#comunidad',   'Comunidad'],
-  ['#diagnostico', 'Diagnóstico'],
+  ['/#programas',   'Programas'],
+  ['/#comunidad',   'Comunidad'],
+  ['/#diagnostico', 'Diagnóstico'],
 ]
 
 const Logo = () => (
@@ -55,7 +55,7 @@ export default function Nav() {
             {LINKS.map(([h,l]) => (
               <li key={h}>
                 <a href={h}
-                  onClick={() => trackCta(`nav_${h.slice(1)}`, 'home_nav', h)}
+                  onClick={() => trackCta(`nav_${h.replace(/^\/?#/, '')}`, 'home_nav', h)}
                   style={{ fontFamily:'var(--finter)', fontSize:'0.83rem', fontWeight:500, color:'var(--fro-text-2)', textDecoration:'none', transition:'color 0.18s' }}
                   onMouseEnter={e => e.currentTarget.style.color='var(--fro-text)'}
                   onMouseLeave={e => e.currentTarget.style.color='var(--fro-text-2)'}

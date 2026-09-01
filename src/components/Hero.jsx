@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="fro-wrap">
         <FadeIn>
           <div className="fro-chip" style={{ marginBottom:'1.8rem' }}>
-            Formación especializada · Industrias de sistemas vivos · Perú, Colombia y LATAM
+            Programas de formación especializada para Latam
           </div>
         </FadeIn>
 

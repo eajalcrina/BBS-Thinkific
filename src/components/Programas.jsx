@@ -75,14 +75,14 @@ export default function Programas() {
                 href={`/programas/${p.slug}`}
                 onClick={() => trackCta(`programa_${p.slug}`, 'home_programas', `/programas/${p.slug}`)}
                 className={p.status === 'live' ? 'fro-card fro-card-live' : 'fro-card'}
-                style={{ display:'flex', flexDirection:'column', padding:'1.6rem', height:'100%', textDecoration:'none', position:'relative' }}
+                style={{ display:'flex', flexDirection:'column', padding:'1.6rem', height:'100%', textDecoration:'none' }}
               >
                 {p.status === 'live' && (
-                  <span style={{ position:'absolute', top:'1.2rem', right:'1.2rem', background:'#0A0A0A', color:'var(--fro-amber)', fontSize:'0.6rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.28rem 0.6rem', borderRadius:20 }}>
+                  <span style={{ alignSelf:'flex-start', background:'#0A0A0A', color:'var(--fro-amber)', fontSize:'0.6rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.28rem 0.6rem', borderRadius:20, marginBottom:'0.9rem' }}>
                     Disponible ahora
                   </span>
                 )}
-                <div className="fro-sm" style={{ marginBottom:'0.8rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.68rem', maxWidth: p.status === 'live' ? '75%' : 'none' }}>{p.audiencia}</div>
+                <div className="fro-sm" style={{ marginBottom:'0.8rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.68rem' }}>{p.audiencia}</div>
                 <h3 className="fro-h3" style={{ marginBottom:'0.8rem', fontSize:'1.1rem' }}>{p.titulo}</h3>
                 <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.nota}</p>
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'auto', paddingTop:'1.4rem' }}>

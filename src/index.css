@@ -178,18 +178,23 @@ section[id] { scroll-margin-top: 84px; }
 .fro-on-light .fro-card-live .fro-card-cta { color: #0A0A0A; }
 
 /* Hover on a light card inverts it to the dark palette — black surface,
-   amber/white text — instead of a glow around the card. */
-.fro-on-light .fro-card:hover {
-  background: var(--fro-bg);
-  border-color: var(--fro-bg);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+   amber/white text — instead of a glow around the card. Gated to devices
+   with a real pointer + true hover (mouse/trackpad): touchscreens fire a
+   synthetic, stuck ":hover" on tap with no real "leave" event, which
+   left tapped cards frozen mid-transition on mobile. */
+@media (hover: hover) and (pointer: fine) {
+  .fro-on-light .fro-card:hover {
+    background: var(--fro-bg);
+    border-color: var(--fro-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  }
+  .fro-on-light .fro-card:hover .fro-sm { color: var(--fro-amber); }
+  .fro-on-light .fro-card:hover .fro-h3 { color: var(--fro-text); }
+  .fro-on-light .fro-card:hover .fro-body { color: var(--fro-text-2); }
+  .fro-on-light .fro-card:hover .fro-chip-outline { border-color: var(--fro-amber); color: var(--fro-amber); }
+  .fro-on-light .fro-card:hover .fro-card-cta { color: var(--fro-amber); }
 }
-.fro-on-light .fro-card:hover .fro-sm { color: var(--fro-amber); }
-.fro-on-light .fro-card:hover .fro-h3 { color: var(--fro-text); }
-.fro-on-light .fro-card:hover .fro-body { color: var(--fro-text-2); }
-.fro-on-light .fro-card:hover .fro-chip-outline { border-color: var(--fro-amber); color: var(--fro-amber); }
-.fro-on-light .fro-card:hover .fro-card-cta { color: var(--fro-amber); }
 
 .fro-card .fro-sm,
 .fro-card .fro-h3,

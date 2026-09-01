@@ -25,6 +25,23 @@ export default function ProgramaPage() {
     const prevDesc = metaDesc ? metaDesc.getAttribute('content') : null
     if (metaDesc) metaDesc.setAttribute('content', programa.notaCorta)
 
+    const canonicalLink = document.querySelector('link[rel="canonical"]')
+    const prevCanonical = canonicalLink ? canonicalLink.getAttribute('href') : null
+    const pageUrl = `https://biobusinessschool.org/programas/${programa.slug}`
+    if (canonicalLink) canonicalLink.setAttribute('href', pageUrl)
+
+    const ogUrl = document.querySelector('meta[property="og:url"]')
+    const prevOgUrl = ogUrl ? ogUrl.getAttribute('content') : null
+    if (ogUrl) ogUrl.setAttribute('content', pageUrl)
+
+    const ogTitle = document.querySelector('meta[property="og:title"]')
+    const prevOgTitle = ogTitle ? ogTitle.getAttribute('content') : null
+    if (ogTitle) ogTitle.setAttribute('content', `${programa.titulo} | Bio Business School`)
+
+    const ogDesc = document.querySelector('meta[property="og:description"]')
+    const prevOgDesc = ogDesc ? ogDesc.getAttribute('content') : null
+    if (ogDesc) ogDesc.setAttribute('content', programa.notaCorta)
+
     const script = document.createElement('script')
     script.type = 'application/ld+json'
     script.text = JSON.stringify({
@@ -47,6 +64,10 @@ export default function ProgramaPage() {
     return () => {
       document.title = 'Bio Business School'
       if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
+      if (canonicalLink && prevCanonical) canonicalLink.setAttribute('href', prevCanonical)
+      if (ogUrl && prevOgUrl) ogUrl.setAttribute('content', prevOgUrl)
+      if (ogTitle && prevOgTitle) ogTitle.setAttribute('content', prevOgTitle)
+      if (ogDesc && prevOgDesc) ogDesc.setAttribute('content', prevOgDesc)
       document.head.removeChild(script)
     }
   }, [programa])

@@ -24,10 +24,22 @@ export default function FloatingCtaBar({ programa }) {
         padding: '0.9rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap',
       }}
     >
-      <span className="fro-sm" style={{ color: 'var(--fro-text-2)' }}>{programa.titulo}</span>
-      <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber">
-        {status === 'loading' ? 'Un momento…' : label}
-      </button>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <span className="fro-sm" style={{ color: 'var(--fro-text-2)' }}>{programa.titulo}</span>
+          <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber">
+            {status === 'loading' ? 'Un momento…' : label}
+          </button>
+        </div>
+        {status === 'sent' && (
+          <p className="fro-sm" style={{ color: 'var(--fro-amber)' }}>
+            Estamos activando los pagos — dejamos tu registro guardado, te contactamos para completar la inscripción.
+          </p>
+        )}
+        {status === 'error' && (
+          <p className="fro-sm" style={{ color: 'var(--fro-danger)' }}>No se pudo enviar, intenta de nuevo.</p>
+        )}
+      </div>
     </div>
   )
 }

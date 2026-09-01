@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { buildEnvelope, notifyLead } from '../api/_lib/lead-notify.js'
+import { buildEnvelope, notifyLead, sendBrevoEmail, appendSheetRow } from '../api/_lib/lead-notify.js'
 
 test('buildEnvelope: bbs-newsletter', () => {
   const env = buildEnvelope('bbs-newsletter', {
@@ -139,4 +139,26 @@ test('notifyLead: a channel throwing does not crash the other', async () => {
     }
   )
   assert.deepEqual(result, { emailOk: false, sheetOk: true })
+})
+
+test('sendBrevoEmail: returns false without throwing when BREVO_API_KEY is unset', async () => {
+  const original = process.env.BREVO_API_KEY
+  delete process.env.BREVO_API_KEY
+  try {
+    const result = await sendBrevoEmail('subject', '<p>html</p>')
+    assert.equal(result, false)
+  } finally {
+    if (original !== undefined) process.env.BREVO_API_KEY = original
+  }
+})
+
+test('appendSheetRow: returns false without throwing when GOOGLE_SHEET_ID is unset', async () => {
+  const original = process.env.GOOGLE_SHEET_ID
+  delete process.env.GOOGLE_SHEET_ID
+  try {
+    const result = await appendSheetRow('SomeTab', ['a', 'b'])
+    assert.equal(result, false)
+  } finally {
+    if (original !== undefined) process.env.GOOGLE_SHEET_ID = original
+  }
 })

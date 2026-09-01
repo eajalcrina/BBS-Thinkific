@@ -131,7 +131,7 @@ export function buildEnvelope(form, data) {
   }
 }
 
-async function sendBrevoEmail(subject, html) {
+export async function sendBrevoEmail(subject, html) {
   const apiKey = process.env.BREVO_API_KEY
   const notifyTo = process.env.NOTIFICATION_EMAIL
   if (!apiKey || !notifyTo) {
@@ -184,7 +184,7 @@ function getSheetsClient() {
   return cachedClient
 }
 
-async function appendSheetRow(tabName, values) {
+export async function appendSheetRow(tabName, values) {
   const sheetId = process.env.GOOGLE_SHEET_ID
   const client = getSheetsClient()
   if (!sheetId || !client) {

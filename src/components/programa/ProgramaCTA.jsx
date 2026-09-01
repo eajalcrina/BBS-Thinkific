@@ -89,6 +89,8 @@ export default function ProgramaCTA({ programa, dark = false }) {
           type="button"
           onClick={() => { setShowForm(v => !v); trackCta(`programa_${programa.slug}_inscribete`, 'programa_cta', 'form') }}
           className="fro-btn"
+          aria-expanded={showForm}
+          aria-controls={`inscribe-form-${programa.slug}`}
           style={{ border: `1.5px solid ${outlineColor}`, color: outlineText, background: 'transparent' }}
         >
           Inscríbete
@@ -114,7 +116,11 @@ export default function ProgramaCTA({ programa, dark = false }) {
         <p className="fro-sm" style={{ marginTop: '0.8rem', color: 'var(--fro-danger)' }}>No se pudo enviar, intenta de nuevo.</p>
       )}
 
-      {showForm && <InlineEnrollForm programa={programa} dark={dark} />}
+      {showForm && (
+        <div id={`inscribe-form-${programa.slug}`}>
+          <InlineEnrollForm programa={programa} dark={dark} />
+        </div>
+      )}
     </div>
   )
 }

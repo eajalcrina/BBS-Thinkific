@@ -26,7 +26,7 @@ export default function Hero() {
 
         <FadeIn delay={0.14}>
           <p className="fro-lead" style={{ maxWidth:640, marginBottom:'1.2rem' }}>
-            Eddie Ajalcriña (Lima) y Lorenzo Ortiz (Bogotá) han desarrollado múltiples proyectos a través de Redesign Lab en la región, y han identificado la necesidad urgente de formación especializada para que profesionales y empresas de industrias que dependen de sistemas vivos dominen la IA y lideren ese cambio.
+            Somos Eddie Ajalcriña (Lima) y Lorenzo Ortiz (Bogotá): hemos desarrollado múltiples proyectos a través de Redesign Lab en la región, y hemos identificado la necesidad urgente de formación especializada para que profesionales y empresas de industrias que dependen de sistemas vivos dominen la IA y lideren ese cambio.
           </p>
         </FadeIn>
 

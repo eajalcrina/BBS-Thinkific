@@ -6,11 +6,18 @@ function nowLima() {
   return new Date().toLocaleString('es-PE', { timeZone: 'America/Lima' })
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+}
+
 function renderFieldsHtml(fields) {
   const rows = fields
     .map(
       ([label, value]) =>
-        `<tr><td style="padding:4px 12px 4px 0;color:#666;">${label}</td><td style="padding:4px 0;">${value ?? ''}</td></tr>`
+        `<tr><td style="padding:4px 12px 4px 0;color:#666;">${escapeHtml(label)}</td><td style="padding:4px 0;">${escapeHtml(value)}</td></tr>`
     )
     .join('')
   return `<table style="border-collapse:collapse;font-family:sans-serif;font-size:14px;">${rows}</table>`

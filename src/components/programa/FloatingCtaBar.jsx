@@ -3,6 +3,7 @@ import { usePaymentCta } from './usePaymentCta.js'
 
 export default function FloatingCtaBar({ programa }) {
   const [visible, setVisible] = useState(false)
+  const [footerVisible, setFooterVisible] = useState(false)
   const { label, status, handleClick } = usePaymentCta(programa)
 
   useEffect(() => {
@@ -12,7 +13,18 @@ export default function FloatingCtaBar({ programa }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  if (!visible) return null
+  useEffect(() => {
+    const footer = document.querySelector('footer[role="contentinfo"]')
+    if (!footer) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(entry.isIntersecting),
+      { rootMargin: '0px' }
+    )
+    observer.observe(footer)
+    return () => observer.disconnect()
+  }, [])
+
+  if (!visible || footerVisible) return null
 
   return (
     <div

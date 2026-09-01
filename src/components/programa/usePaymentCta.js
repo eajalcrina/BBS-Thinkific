@@ -22,10 +22,12 @@ export function usePaymentCta(programa) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          form: 'bbs-enroll',
-          programa: programa.slug,
-          intento_pago: true,
-          pagina_origen: window.location.pathname,
+          form: 'bbs-payment',
+          data: {
+            programa: programa.slug,
+            status: 'pending_checkout',
+            pagina_origen: window.location.pathname,
+          },
         }),
       })
       if (!res.ok) throw new Error('request_failed')

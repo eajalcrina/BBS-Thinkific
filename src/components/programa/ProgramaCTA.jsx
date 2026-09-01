@@ -23,11 +23,13 @@ function InlineEnrollForm({ programa, dark }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           form: 'bbs-enroll',
-          programa: programa.slug,
-          nombre: values.nombre,
-          email: values.email,
-          whatsapp: values.whatsapp,
-          pagina_origen: window.location.pathname,
+          data: {
+            programa: programa.slug,
+            nombre: values.nombre,
+            email: values.email,
+            whatsapp: values.whatsapp,
+            pagina_origen: window.location.pathname,
+          },
         }),
       })
       if (!res.ok) throw new Error('request_failed')

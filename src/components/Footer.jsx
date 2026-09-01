@@ -22,7 +22,10 @@ function NewsletterForm() {
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ form: 'bbs-newsletter', email, pagina_origen: window.location.pathname }),
+        body: JSON.stringify({
+          form: 'bbs-newsletter',
+          data: { email, pagina_origen: window.location.pathname },
+        }),
       })
       if (!res.ok) throw new Error('request_failed')
       setStatus('success')

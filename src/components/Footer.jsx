@@ -83,9 +83,9 @@ export default function Footer() {
             <h4 className="fro-eyebrow" style={{ fontSize:'0.68rem', marginBottom:'1rem' }}>Explorar</h4>
             <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.5rem' }}>
               {[
-                ['Programas', '#programas'],
-                ['Comunidad', '#comunidad'],
-                ['Diagnóstico', '#diagnostico'],
+                ['Programas', '/#programas'],
+                ['Comunidad', '/#comunidad'],
+                ['Diagnóstico', '/#diagnostico'],
                 ['Contacto', 'mailto:biobusiness@redesignlab.org'],
               ].map(([l,h]) => (
                 <li key={l}>

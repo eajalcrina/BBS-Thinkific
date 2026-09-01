@@ -73,6 +73,13 @@ export default function ProgramaCTA({ programa, dark = false }) {
 
   return (
     <div>
+      {programa.status === 'reserve' && (
+        <p className="fro-sm" style={{ marginBottom: '0.6rem', color: dark ? 'var(--fro-text-2)' : 'var(--fro-ink-2)' }}>
+          Precio de lista: <span style={{ textDecoration: 'line-through' }}>
+            S/ {programa.precioRegular} (~USD {programa.precioRegularUsd})
+          </span>
+        </p>
+      )}
       <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', alignItems: 'center' }}>
         <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber fro-btn-lg fro-btn-wrap">
           {status === 'loading' ? 'Un momento…' : label}

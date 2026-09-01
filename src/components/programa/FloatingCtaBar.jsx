@@ -27,7 +27,7 @@ export default function FloatingCtaBar({ programa }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           <span className="fro-sm" style={{ color: 'var(--fro-text-2)' }}>{programa.titulo}</span>
-          <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber">
+          <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber fro-btn-wrap">
             {status === 'loading' ? 'Un momento…' : label}
           </button>
         </div>

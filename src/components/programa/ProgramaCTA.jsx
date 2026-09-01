@@ -74,7 +74,7 @@ export default function ProgramaCTA({ programa, dark = false }) {
   return (
     <div>
       <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', alignItems: 'center' }}>
-        <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber fro-btn-lg">
+        <button type="button" onClick={handleClick} disabled={status === 'loading'} className="fro-btn fro-btn-amber fro-btn-lg fro-btn-wrap">
           {status === 'loading' ? 'Un momento…' : label}
         </button>
 

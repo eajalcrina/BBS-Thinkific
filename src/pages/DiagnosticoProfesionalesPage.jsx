@@ -18,6 +18,20 @@ const FASES = {
   RESULTADO: 'resultado',
 }
 
+// Constante de módulo — referencia estable entre renders. PantallaTransicion
+// depende de `mensajes` en su useEffect; un array literal inline en el JSX
+// de abajo se recrearía en cada re-render (ej. cuando `percentil` resuelve
+// en paralelo durante la transición, ver handleCaptura) y reiniciaría el
+// temporizador de 2.6s — el mismo bug que ya se corrigió una vez para
+// `onComplete` con useCallback, reintroducido por esta prop si no se hace
+// igual de estable.
+const MENSAJES_TRANSICION = [
+  'Evaluando tu criterio propio...',
+  'Analizando tu relación con el aprendizaje...',
+  'Calculando tu proyección de crecimiento...',
+  'Generando tu resultado...',
+]
+
 export default function DiagnosticoProfesionalesPage() {
   const [fase, setFase] = useState(FASES.BIENVENIDA)
   const [segmento, setSegmento] = useState(null)
@@ -186,12 +200,7 @@ export default function DiagnosticoProfesionalesPage() {
 
         {fase === FASES.TRANSICION && (
           <PantallaTransicion
-            mensajes={[
-              'Evaluando tu criterio propio...',
-              'Analizando tu relación con el aprendizaje...',
-              'Calculando tu proyección de crecimiento...',
-              'Generando tu resultado...',
-            ]}
+            mensajes={MENSAJES_TRANSICION}
             onComplete={handleTransicionComplete}
           />
         )}

@@ -35,6 +35,29 @@ function sanitizeData(data) {
   return clean
 }
 
+// /api/diagnostico-stats calcula un percentil real leyendo estas mismas
+// filas — un `segmento`/`score` fuera de contrato (POST directo al
+// endpoint, no a través del quiz) escribiría un dato que después se
+// presenta como comparación real a otro usuario. Un `segmento`/`score`
+// inválido se guarda vacío en vez del valor recibido, para que ese
+// endpoint los descarte de la muestra igual que hace con una celda vacía.
+const DIAGNOSTICO_SCORE_MAX = { junior: 21, senior: 24 }
+
+function sanitizeDiagnosticoResult(segmento, score, scoreMax) {
+  const maxEsperado = DIAGNOSTICO_SCORE_MAX[segmento]
+  if (!maxEsperado) return { segmento: '', score: '', scoreMax: '' }
+
+  const scoreNum = Number(score)
+  const scoreMaxNum = Number(scoreMax)
+  const valido = Number.isInteger(scoreNum) && scoreNum >= 0 && scoreNum <= maxEsperado && scoreMaxNum === maxEsperado
+
+  return {
+    segmento,
+    score: valido ? scoreNum : '',
+    scoreMax: valido ? scoreMaxNum : '',
+  }
+}
+
 export function buildEnvelope(form, data) {
   data = sanitizeData(data)
   const ts = nowLima()
@@ -84,15 +107,16 @@ export function buildEnvelope(form, data) {
         sheetRow: [ts, data.programa || '', data.status || '', data.whatsapp || '', data.pagina_origen || ''],
       }
 
-    case 'bbs-diagnostico-profesionales':
+    case 'bbs-diagnostico-profesionales': {
+      const { segmento, score, scoreMax } = sanitizeDiagnosticoResult(data.segmento, data.score, data.scoreMax)
       return {
         emailSubject: `Diagnóstico Profesionales — ${data.nombre || 'sin nombre'} — ${data.nivel || 'sin nivel'}`,
         emailFields: [
           ['Nombre', data.nombre],
           ['Email', data.email],
           ['WhatsApp', data.whatsapp],
-          ['Segmento', data.segmento],
-          ['Score', `${data.score ?? ''}/${data.scoreMax ?? ''}`],
+          ['Segmento', segmento],
+          ['Score', `${score}/${scoreMax}`],
           ['Nivel', data.nivel],
           ['Página de origen', data.pagina_origen],
         ],
@@ -102,13 +126,14 @@ export function buildEnvelope(form, data) {
           data.nombre || '',
           data.email || '',
           data.whatsapp || '',
-          data.segmento || '',
-          data.score ?? '',
-          data.scoreMax ?? '',
+          segmento,
+          score,
+          scoreMax,
           data.nivel || '',
           data.pagina_origen || '',
         ],
       }
+    }
 
     case 'bbs-diagnostico-empresas':
       return {

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Nav from '../components/Nav.jsx'
 import Footer from '../components/Footer.jsx'
 import PantallaBienvenida from '../components/diagnostico/PantallaBienvenida.jsx'
@@ -27,6 +27,45 @@ export default function DiagnosticoProfesionalesPage() {
   const [percentil, setPercentil] = useState(null)
 
   const preguntas = segmento === 'junior' ? JUNIOR_QUESTIONS : SENIOR_QUESTIONS
+
+  useEffect(() => {
+    const pageUrl = 'https://biobusinessschool.org/diagnostico/profesionales'
+    const pageTitle = 'Autodiagnóstico: ¿Qué tan preparado estás frente a la IA? | Bio Business School'
+    const pageDesc = 'Descubre en 3 minutos qué tan preparado estás frente a la disrupción de la IA, y qué programa de Bio Business School es tu siguiente paso.'
+
+    document.title = pageTitle
+
+    const metaDesc = document.querySelector('meta[name="description"]')
+    const prevDesc = metaDesc ? metaDesc.getAttribute('content') : null
+    if (metaDesc) metaDesc.setAttribute('content', pageDesc)
+
+    const canonicalLink = document.querySelector('link[rel="canonical"]')
+    const prevCanonical = canonicalLink ? canonicalLink.getAttribute('href') : null
+    if (canonicalLink) canonicalLink.setAttribute('href', pageUrl)
+
+    const ogUrl = document.querySelector('meta[property="og:url"]')
+    const prevOgUrl = ogUrl ? ogUrl.getAttribute('content') : null
+    if (ogUrl) ogUrl.setAttribute('content', pageUrl)
+
+    const ogTitle = document.querySelector('meta[property="og:title"]')
+    const prevOgTitle = ogTitle ? ogTitle.getAttribute('content') : null
+    if (ogTitle) ogTitle.setAttribute('content', pageTitle)
+
+    const ogDesc = document.querySelector('meta[property="og:description"]')
+    const prevOgDesc = ogDesc ? ogDesc.getAttribute('content') : null
+    if (ogDesc) ogDesc.setAttribute('content', pageDesc)
+
+    window.scrollTo(0, 0)
+
+    return () => {
+      document.title = 'Bio Business School'
+      if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
+      if (canonicalLink && prevCanonical) canonicalLink.setAttribute('href', prevCanonical)
+      if (ogUrl && prevOgUrl) ogUrl.setAttribute('content', prevOgUrl)
+      if (ogTitle && prevOgTitle) ogTitle.setAttribute('content', prevOgTitle)
+      if (ogDesc && prevOgDesc) ogDesc.setAttribute('content', prevOgDesc)
+    }
+  }, [])
 
   function handleStart() {
     trackCta('diagnostico_profesionales_iniciar', 'diagnostico_profesionales', '/diagnostico/profesionales')

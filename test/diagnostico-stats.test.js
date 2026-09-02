@@ -101,6 +101,36 @@ test('degrades to insufficientData if readValues resolves with something other t
   assert.equal(res.body.muestraTotal, 0)
 })
 
+test('an empty score cell in a stored row is excluded from the sample, not counted as a zero', async () => {
+  const rows = [headerRow()]
+  for (let i = 0; i < 19; i++) rows.push(dataRow('junior', 10))
+  // one row with a genuinely empty score cell (e.g. a malformed /api/lead
+  // submission that omitted `score`) — must not be silently treated as 0
+  rows.push(['2026-09-01', 'Test', 'test@example.com', '', 'junior', '', '21', 'Nivel', '/diagnostico/profesionales'])
+
+  const handler = createHandler(async () => rows)
+  const res = createMockRes()
+  await handler({ method: 'GET', query: { tipo: 'profesionales', segmento: 'junior', score: '10' } }, res)
+  assert.equal(res.statusCode, 200)
+  // Only 19 of the 20 rows have a real score — still below the threshold.
+  assert.equal(res.body.insufficientData, true)
+  assert.equal(res.body.muestraTotal, 19)
+})
+
+test('a tied score does not count as "beaten" — percentile uses strictly-less-than', async () => {
+  const rows = [headerRow()]
+  for (let i = 0; i < 15; i++) rows.push(dataRow('junior', 5)) // ties with the query
+  for (let i = 0; i < 5; i++) rows.push(dataRow('junior', 20)) // strictly higher
+
+  const handler = createHandler(async () => rows)
+  const res = createMockRes()
+  await handler({ method: 'GET', query: { tipo: 'profesionales', segmento: 'junior', score: '5' } }, res)
+  assert.equal(res.statusCode, 200)
+  assert.equal(res.body.muestraTotal, 20)
+  // 0 of 20 scored strictly less than 5 (15 tie, 5 are higher) => 0th percentile
+  assert.equal(res.body.percentil, 0)
+})
+
 test('never hard-errors when readValues throws — returns insufficientData instead', async () => {
   const handler = createHandler(async () => {
     throw new Error('Sheets down')

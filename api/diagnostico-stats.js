@@ -33,7 +33,10 @@ export function createHandler(readValues = getSheetValues) {
       const scores = rows
         .slice(1) // la primera fila son encabezados
         .filter(row => row[SEGMENTO_COL] === segmento)
-        .map(row => Number(row[SCORE_COL]))
+        // Una celda vacía ('' o undefined) es "sin score", no un score de 0
+        // — Number('') === 0 la contaría como un cero real y sesgaría el
+        // percentil, exactamente lo que este endpoint existe para evitar.
+        .map(row => (row[SCORE_COL] === '' || row[SCORE_COL] == null ? NaN : Number(row[SCORE_COL])))
         .filter(n => !Number.isNaN(n))
 
       if (scores.length < MIN_SAMPLE_SIZE) {

@@ -75,6 +75,48 @@ test('buildEnvelope: bbs-diagnostico-profesionales', () => {
   ])
 })
 
+test('buildEnvelope: bbs-diagnostico-profesionales rejects an unknown segmento (writes empty, not the raw value)', () => {
+  const env = buildEnvelope('bbs-diagnostico-profesionales', {
+    nombre: 'Ana',
+    segmento: 'no-es-un-segmento-real',
+    score: 999,
+    scoreMax: 999,
+    pagina_origen: '/diagnostico/profesionales',
+  })
+  // índices de sheetRow: ts(0) nombre(1) email(2) whatsapp(3) segmento(4) score(5) scoreMax(6) nivel(7) pagina_origen(8)
+  assert.equal(env.sheetRow[4], '')
+  assert.equal(env.sheetRow[5], '')
+  assert.equal(env.sheetRow[6], '')
+})
+
+test('buildEnvelope: bbs-diagnostico-profesionales rejects a score outside the segmento\'s real range', () => {
+  const env = buildEnvelope('bbs-diagnostico-profesionales', {
+    nombre: 'Ana',
+    segmento: 'junior', // max real es 21
+    score: 50,
+    scoreMax: 21,
+    pagina_origen: '/diagnostico/profesionales',
+  })
+  // El segmento en sí era válido, se conserva para poder auditar la fila —
+  // solo score/scoreMax se descartan, que es lo que corrompería el percentil.
+  assert.equal(env.sheetRow[4], 'junior')
+  assert.equal(env.sheetRow[5], '')
+  assert.equal(env.sheetRow[6], '')
+})
+
+test('buildEnvelope: bbs-diagnostico-profesionales rejects a scoreMax that does not match the segmento', () => {
+  const env = buildEnvelope('bbs-diagnostico-profesionales', {
+    nombre: 'Ana',
+    segmento: 'junior',
+    score: 10,
+    scoreMax: 24, // 24 es el máximo de senior, no de junior — payload inconsistente
+    pagina_origen: '/diagnostico/profesionales',
+  })
+  assert.equal(env.sheetRow[4], 'junior')
+  assert.equal(env.sheetRow[5], '')
+  assert.equal(env.sheetRow[6], '')
+})
+
 test('buildEnvelope: bbs-diagnostico-empresas', () => {
   const env = buildEnvelope('bbs-diagnostico-empresas', {
     nombre: 'Marca SAC',

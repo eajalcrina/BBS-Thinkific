@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { buildEnvelope, notifyLead, sendBrevoEmail, appendSheetRow } from '../api/_lib/lead-notify.js'
+import { buildEnvelope, notifyLead, sendBrevoEmail, appendSheetRow, getSheetValues } from '../api/_lib/lead-notify.js'
 
 test('buildEnvelope: bbs-newsletter', () => {
   const env = buildEnvelope('bbs-newsletter', {
@@ -55,16 +55,22 @@ test('buildEnvelope: bbs-diagnostico-profesionales', () => {
     nombre: 'Luis',
     email: 'luis@example.com',
     whatsapp: '+51999888777',
-    resultado: 'Nivel avanzado',
+    segmento: 'senior',
+    score: 17,
+    scoreMax: 24,
+    nivel: 'Liderando la multiplicación',
     pagina_origen: '/diagnostico/profesionales',
   })
-  assert.equal(env.emailSubject, 'Diagnóstico Profesionales — Luis')
+  assert.equal(env.emailSubject, 'Diagnóstico Profesionales — Luis — Liderando la multiplicación')
   assert.equal(env.sheetTab, 'Diagnóstico Profesionales')
   assert.deepEqual(env.sheetRow.slice(1), [
     'Luis',
     'luis@example.com',
     '+51999888777',
-    'Nivel avanzado',
+    'senior',
+    17,
+    24,
+    'Liderando la multiplicación',
     '/diagnostico/profesionales',
   ])
 })
@@ -162,3 +168,15 @@ test('appendSheetRow: returns false without throwing when GOOGLE_SHEET_ID is uns
     if (original !== undefined) process.env.GOOGLE_SHEET_ID = original
   }
 })
+
+test('getSheetValues: returns [] without throwing when GOOGLE_SHEET_ID is unset', async () => {
+  const original = process.env.GOOGLE_SHEET_ID
+  delete process.env.GOOGLE_SHEET_ID
+  try {
+    const result = await getSheetValues('SomeTab')
+    assert.deepEqual(result, [])
+  } finally {
+    if (original !== undefined) process.env.GOOGLE_SHEET_ID = original
+  }
+})
+

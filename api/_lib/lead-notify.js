@@ -86,12 +86,14 @@ export function buildEnvelope(form, data) {
 
     case 'bbs-diagnostico-profesionales':
       return {
-        emailSubject: `Diagnóstico Profesionales — ${data.nombre || 'sin nombre'}`,
+        emailSubject: `Diagnóstico Profesionales — ${data.nombre || 'sin nombre'} — ${data.nivel || 'sin nivel'}`,
         emailFields: [
           ['Nombre', data.nombre],
           ['Email', data.email],
           ['WhatsApp', data.whatsapp],
-          ['Resultado', data.resultado],
+          ['Segmento', data.segmento],
+          ['Score', `${data.score ?? ''}/${data.scoreMax ?? ''}`],
+          ['Nivel', data.nivel],
           ['Página de origen', data.pagina_origen],
         ],
         sheetTab: 'Diagnóstico Profesionales',
@@ -100,7 +102,10 @@ export function buildEnvelope(form, data) {
           data.nombre || '',
           data.email || '',
           data.whatsapp || '',
-          data.resultado || '',
+          data.segmento || '',
+          data.score ?? '',
+          data.scoreMax ?? '',
+          data.nivel || '',
           data.pagina_origen || '',
         ],
       }
@@ -214,6 +219,34 @@ export async function appendSheetRow(tabName, values) {
   } catch (err) {
     console.error('[lead-notify] Sheets append threw', err)
     return false
+  }
+}
+
+
+export async function getSheetValues(tabName) {
+  const sheetId = process.env.GOOGLE_SHEET_ID
+  const client = getSheetsClient()
+  if (!sheetId || !client) {
+    console.warn('[lead-notify] Google Sheets not configured — skipping row read.')
+    return []
+  }
+
+  try {
+    const { token } = await client.getAccessToken()
+    const range = encodeURIComponent(`${tabName}!A:Z`)
+    const res = await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+    if (!res.ok) {
+      console.error('[lead-notify] Sheets read failed', res.status, await res.text().catch(() => ''))
+      return []
+    }
+    const body = await res.json()
+    return body.values || []
+  } catch (err) {
+    console.error('[lead-notify] Sheets read threw', err)
+    return []
   }
 }
 

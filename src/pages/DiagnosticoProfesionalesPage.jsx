@@ -21,6 +21,7 @@ const FASES = {
 export default function DiagnosticoProfesionalesPage() {
   const [fase, setFase] = useState(FASES.BIENVENIDA)
   const [segmento, setSegmento] = useState(null)
+  const [experiencia, setExperiencia] = useState(null)
   const [respuestas, setRespuestas] = useState({})
   const [preguntaIndex, setPreguntaIndex] = useState(0)
   const [resultado, setResultado] = useState(null)
@@ -72,8 +73,9 @@ export default function DiagnosticoProfesionalesPage() {
     setFase(FASES.SEGMENTACION)
   }
 
-  function handleSegmento(valorSegmento) {
+  function handleSegmento({ segmento: valorSegmento, experiencia: valorExperiencia }) {
     setSegmento(valorSegmento)
+    setExperiencia(valorExperiencia)
     setPreguntaIndex(0)
     setFase(FASES.PREGUNTAS)
   }
@@ -106,6 +108,7 @@ export default function DiagnosticoProfesionalesPage() {
           email: datosContacto.email,
           whatsapp: datosContacto.whatsapp,
           segmento,
+          experiencia,
           score: calculado.score,
           scoreMax: calculado.scoreMax,
           nivel: calculado.nivel,
@@ -147,7 +150,7 @@ export default function DiagnosticoProfesionalesPage() {
           <PreguntaScreen
             pregunta={{
               pregunta: SEGMENTO_QUESTION.pregunta,
-              opciones: SEGMENTO_QUESTION.opciones.map(o => ({ texto: o.texto, valor: o.segmento })),
+              opciones: SEGMENTO_QUESTION.opciones.map(o => ({ texto: o.texto, valor: { segmento: o.segmento, experiencia: o.experiencia } })),
             }}
             numero={1}
             total={1}

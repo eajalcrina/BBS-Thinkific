@@ -6,7 +6,9 @@ const TAB_BY_TIPO = {
 
 const MIN_SAMPLE_SIZE = 20
 const SEGMENTO_COL = 4
-const SCORE_COL = 5
+// Columna 5 es 'experiencia' (menos-5/5-15/mas-15) — no se usa para el
+// cálculo del percentil, solo se guarda para segmentación futura.
+const SCORE_COL = 6
 
 export function createHandler(readValues = getSheetValues) {
   return async function handler(req, res) {

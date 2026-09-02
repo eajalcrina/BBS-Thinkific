@@ -7,10 +7,17 @@ import {
   calcularResultado,
 } from '../src/data/diagnosticoProfesionales.js'
 
-test('SEGMENTO_QUESTION has exactly the junior/senior split', () => {
-  assert.equal(SEGMENTO_QUESTION.opciones.length, 2)
-  assert.equal(SEGMENTO_QUESTION.opciones[0].segmento, 'junior')
-  assert.equal(SEGMENTO_QUESTION.opciones[1].segmento, 'senior')
+test('SEGMENTO_QUESTION has 3 experience bands collapsing into the junior/senior split', () => {
+  assert.equal(SEGMENTO_QUESTION.opciones.length, 3)
+  assert.deepEqual(
+    SEGMENTO_QUESTION.opciones.map(o => o.segmento),
+    ['junior', 'senior', 'senior']
+  )
+  // Las 3 bandas de experiencia deben ser distintas y no vacías — es el
+  // dato que /api/lead guarda además del segmento binario.
+  const experiencias = SEGMENTO_QUESTION.opciones.map(o => o.experiencia)
+  assert.equal(new Set(experiencias).size, 3)
+  for (const e of experiencias) assert.ok(e)
 })
 
 test('JUNIOR_QUESTIONS has exactly 7 questions, each with 4 options valued 0-3', () => {

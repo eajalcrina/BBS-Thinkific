@@ -42,6 +42,11 @@ function sanitizeData(data) {
 // inválido se guarda vacío en vez del valor recibido, para que ese
 // endpoint los descarte de la muestra igual que hace con una celda vacía.
 const DIAGNOSTICO_SCORE_MAX = { junior: 21, senior: 24 }
+const EXPERIENCIA_VALUES = ['menos-5', '5-15', 'mas-15']
+
+function sanitizeExperiencia(experiencia) {
+  return EXPERIENCIA_VALUES.includes(experiencia) ? experiencia : ''
+}
 
 function sanitizeDiagnosticoResult(segmento, score, scoreMax) {
   const maxEsperado = DIAGNOSTICO_SCORE_MAX[segmento]
@@ -109,6 +114,7 @@ export function buildEnvelope(form, data) {
 
     case 'bbs-diagnostico-profesionales': {
       const { segmento, score, scoreMax } = sanitizeDiagnosticoResult(data.segmento, data.score, data.scoreMax)
+      const experiencia = sanitizeExperiencia(data.experiencia)
       return {
         emailSubject: `Diagnóstico Profesionales — ${data.nombre || 'sin nombre'} — ${data.nivel || 'sin nivel'}`,
         emailFields: [
@@ -116,6 +122,7 @@ export function buildEnvelope(form, data) {
           ['Email', data.email],
           ['WhatsApp', data.whatsapp],
           ['Segmento', segmento],
+          ['Experiencia', experiencia],
           ['Score', `${score}/${scoreMax}`],
           ['Nivel', data.nivel],
           ['Página de origen', data.pagina_origen],
@@ -127,6 +134,7 @@ export function buildEnvelope(form, data) {
           data.email || '',
           data.whatsapp || '',
           segmento,
+          experiencia,
           score,
           scoreMax,
           data.nivel || '',

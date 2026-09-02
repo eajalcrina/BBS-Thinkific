@@ -1,9 +1,15 @@
+// La rama de preguntas sigue siendo binaria (junior/senior) — `experiencia`
+// es un dato adicional, más granular, que viaja junto al segmento hasta
+// /api/lead para poder identificar más adelante al público de silver
+// economy (15+ años/jubilados) sin tener que construir una tercera rama
+// de preguntas todavía.
 export const SEGMENTO_QUESTION = {
   id: 'q0',
   pregunta: '¿Cuántos años de experiencia profesional tienes?',
   opciones: [
-    { texto: 'Menos de 5 años', segmento: 'junior' },
-    { texto: '5 años o más', segmento: 'senior' },
+    { texto: 'Menos de 5 años', segmento: 'junior', experiencia: 'menos-5' },
+    { texto: 'Entre 5 y 15 años', segmento: 'senior', experiencia: '5-15' },
+    { texto: 'Más de 15 años, incluyendo jubilados', segmento: 'senior', experiencia: 'mas-15' },
   ],
 }
 

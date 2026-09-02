@@ -56,6 +56,7 @@ test('buildEnvelope: bbs-diagnostico-profesionales', () => {
     email: 'luis@example.com',
     whatsapp: '+51999888777',
     segmento: 'senior',
+    experiencia: 'mas-15',
     score: 17,
     scoreMax: 24,
     nivel: 'Liderando la multiplicación',
@@ -68,6 +69,7 @@ test('buildEnvelope: bbs-diagnostico-profesionales', () => {
     'luis@example.com',
     '+51999888777',
     'senior',
+    'mas-15',
     17,
     24,
     'Liderando la multiplicación',
@@ -83,10 +85,10 @@ test('buildEnvelope: bbs-diagnostico-profesionales rejects an unknown segmento (
     scoreMax: 999,
     pagina_origen: '/diagnostico/profesionales',
   })
-  // índices de sheetRow: ts(0) nombre(1) email(2) whatsapp(3) segmento(4) score(5) scoreMax(6) nivel(7) pagina_origen(8)
+  // índices de sheetRow: ts(0) nombre(1) email(2) whatsapp(3) segmento(4) experiencia(5) score(6) scoreMax(7) nivel(8) pagina_origen(9)
   assert.equal(env.sheetRow[4], '')
-  assert.equal(env.sheetRow[5], '')
   assert.equal(env.sheetRow[6], '')
+  assert.equal(env.sheetRow[7], '')
 })
 
 test('buildEnvelope: bbs-diagnostico-profesionales rejects a score outside the segmento\'s real range', () => {
@@ -100,8 +102,8 @@ test('buildEnvelope: bbs-diagnostico-profesionales rejects a score outside the s
   // El segmento en sí era válido, se conserva para poder auditar la fila —
   // solo score/scoreMax se descartan, que es lo que corrompería el percentil.
   assert.equal(env.sheetRow[4], 'junior')
-  assert.equal(env.sheetRow[5], '')
   assert.equal(env.sheetRow[6], '')
+  assert.equal(env.sheetRow[7], '')
 })
 
 test('buildEnvelope: bbs-diagnostico-profesionales rejects a scoreMax that does not match the segmento', () => {
@@ -113,8 +115,24 @@ test('buildEnvelope: bbs-diagnostico-profesionales rejects a scoreMax that does 
     pagina_origen: '/diagnostico/profesionales',
   })
   assert.equal(env.sheetRow[4], 'junior')
-  assert.equal(env.sheetRow[5], '')
   assert.equal(env.sheetRow[6], '')
+  assert.equal(env.sheetRow[7], '')
+})
+
+test('buildEnvelope: bbs-diagnostico-profesionales rejects an unknown experiencia (writes empty, not the raw value)', () => {
+  const env = buildEnvelope('bbs-diagnostico-profesionales', {
+    nombre: 'Ana',
+    segmento: 'senior',
+    experiencia: 'algo-inventado',
+    score: 10,
+    scoreMax: 24,
+    pagina_origen: '/diagnostico/profesionales',
+  })
+  // segmento/score/scoreMax son válidos e independientes de experiencia —
+  // solo la columna experiencia se descarta.
+  assert.equal(env.sheetRow[4], 'senior')
+  assert.equal(env.sheetRow[5], '')
+  assert.equal(env.sheetRow[6], 10)
 })
 
 test('buildEnvelope: bbs-diagnostico-empresas', () => {

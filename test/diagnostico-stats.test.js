@@ -18,11 +18,11 @@ function createMockRes() {
 }
 
 function headerRow() {
-  return ['timestamp', 'nombre', 'email', 'whatsapp', 'segmento', 'score', 'scoreMax', 'nivel', 'pagina_origen']
+  return ['timestamp', 'nombre', 'email', 'whatsapp', 'segmento', 'experiencia', 'score', 'scoreMax', 'nivel', 'pagina_origen']
 }
 
 function dataRow(segmento, score) {
-  return ['2026-09-01', 'Test', 'test@example.com', '', segmento, String(score), '21', 'Nivel', '/diagnostico/profesionales']
+  return ['2026-09-01', 'Test', 'test@example.com', '', segmento, '5-15', String(score), '21', 'Nivel', '/diagnostico/profesionales']
 }
 
 test('rejects non-GET methods with 405', async () => {
@@ -106,7 +106,7 @@ test('an empty score cell in a stored row is excluded from the sample, not count
   for (let i = 0; i < 19; i++) rows.push(dataRow('junior', 10))
   // one row with a genuinely empty score cell (e.g. a malformed /api/lead
   // submission that omitted `score`) — must not be silently treated as 0
-  rows.push(['2026-09-01', 'Test', 'test@example.com', '', 'junior', '', '21', 'Nivel', '/diagnostico/profesionales'])
+  rows.push(['2026-09-01', 'Test', 'test@example.com', '', 'junior', '5-15', '', '21', 'Nivel', '/diagnostico/profesionales'])
 
   const handler = createHandler(async () => rows)
   const res = createMockRes()

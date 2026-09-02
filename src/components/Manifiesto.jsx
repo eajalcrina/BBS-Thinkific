@@ -15,7 +15,7 @@ export default function Manifiesto() {
   return (
     <section id="manifiesto" className="fro-sec" style={{ background:'var(--fro-bg)' }}>
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow amber" style={{ marginBottom:'1.6rem' }}>Por qué hacemos esto</div></FadeIn>
+        <FadeIn><h2 className="fro-eyebrow amber" style={{ marginBottom:'1.6rem' }}>Por qué hacemos esto</h2></FadeIn>
 
         <FadeIn delay={0.08}>
           <p style={letterStyle}>

@@ -10,7 +10,7 @@ export default function RespaldoInstitucional() {
   return (
     <section id="respaldo" className="fro-sec-t" style={{ background:'var(--fro-bg)' }}>
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow amber" style={{ marginBottom:'1.2rem' }}>Quién está detrás</div></FadeIn>
+        <FadeIn><h2 className="fro-eyebrow amber" style={{ marginBottom:'1.2rem' }}>Quién está detrás</h2></FadeIn>
         <FadeIn delay={0.08}>
           <p className="fro-lead" style={{ maxWidth:820, marginBottom:'2.4rem' }}>
             Bio Business School nace de Redesign Lab, la empresa que Eddie y Lorenzo fundaron, y desde la cual han desarrollado distintas iniciativas de transformación económica en la región. Cuentan con más de 30 años de experiencia corporativa combinada: han gestionado más de un millón de dólares en fondos no reembolsables, un millón y medio de dólares en deuda de impacto, y participado en procesos de formulación de proyectos de financiamiento por 80 millones de dólares en la región. Ambos son docentes y speakers en instituciones de renombre internacional, y son Claude Network Partners en Perú, porque creen que la inteligencia artificial es indispensable para acelerar la transformación de los negocios regenerativos y la bioeconomía en América Latina.

@@ -1,5 +1,6 @@
 import Nav from '../components/Nav.jsx'
 import Hero from '../components/Hero.jsx'
+import Manifiesto from '../components/Manifiesto.jsx'
 import TresEjes from '../components/TresEjes.jsx'
 import Programas from '../components/Programas.jsx'
 import ComunidadBiobuilders from '../components/ComunidadBiobuilders.jsx'
@@ -15,6 +16,7 @@ export default function Home() {
       <Nav/>
       <main id="main">
         <Hero/>
+        <Manifiesto/>
         <DiagnosticoCTA/>
         <Programas/>
         <TresEjes/>

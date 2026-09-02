@@ -5,6 +5,7 @@ import Home from './pages/Home.jsx'
 const Privacy = lazy(() => import('./pages/Privacy.jsx'))
 const ProgramaPage = lazy(() => import('./pages/ProgramaPage.jsx'))
 const DiagnosticoProfesionalesPage = lazy(() => import('./pages/DiagnosticoProfesionalesPage.jsx'))
+const DiagnosticoEmpresasPage = lazy(() => import('./pages/DiagnosticoEmpresasPage.jsx'))
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/privacidad" element={<Privacy />} />
           <Route path="/programas/:slug" element={<ProgramaPage />} />
           <Route path="/diagnostico/profesionales" element={<DiagnosticoProfesionalesPage />} />
+          <Route path="/diagnostico/empresas" element={<DiagnosticoEmpresasPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

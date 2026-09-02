@@ -32,4 +32,5 @@ export const CAMPAIGNS = {
   COMMUNITY:                 'community_whatsapp',
   PROGRAMA_WHATSAPP:         'programa_whatsapp',
   DIAGNOSTICO_PROFESIONALES: 'diagnostico_profesionales',
+  DIAGNOSTICO_EMPRESAS:      'diagnostico_empresas',
 }

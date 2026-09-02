@@ -2,11 +2,11 @@ import Nav from '../components/Nav.jsx'
 import Hero from '../components/Hero.jsx'
 import Manifiesto from '../components/Manifiesto.jsx'
 import TresEjes from '../components/TresEjes.jsx'
-import Programas from '../components/Programas.jsx'
-import ComunidadBiobuilders from '../components/ComunidadBiobuilders.jsx'
-import DiagnosticoCTA from '../components/DiagnosticoCTA.jsx'
-import RespaldoInstitucional from '../components/RespaldoInstitucional.jsx'
 import Endorsements from '../components/Endorsements.jsx'
+import TransformamosProfesionales from '../components/TransformamosProfesionales.jsx'
+import TransformamosEmpresas from '../components/TransformamosEmpresas.jsx'
+import ComunidadBiobuilders from '../components/ComunidadBiobuilders.jsx'
+import RespaldoInstitucional from '../components/RespaldoInstitucional.jsx'
 import Footer from '../components/Footer.jsx'
 
 export default function Home() {
@@ -19,8 +19,8 @@ export default function Home() {
         <Manifiesto/>
         <TresEjes/>
         <Endorsements/>
-        <DiagnosticoCTA/>
-        <Programas/>
+        <TransformamosProfesionales/>
+        <TransformamosEmpresas/>
         <ComunidadBiobuilders/>
         <RespaldoInstitucional/>
       </main>

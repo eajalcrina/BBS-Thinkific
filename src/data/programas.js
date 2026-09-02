@@ -24,7 +24,7 @@ export const PROGRAMAS = [
     precioDescuentoUsd: null,
     tagHome: null,
     descuentoPct: null,
-    mercadopagoUrl: null,
+    mercadopagoUrl: 'https://mpago.la/1jKjPEn',
     rizoma: null,
     noEsParaTi: [
       'Buscas un curso técnico de programación o ingeniería de IA (este programa es de criterio y aplicación estratégica, no de código).',
@@ -57,7 +57,7 @@ export const PROGRAMAS = [
     precioDescuentoUsd: 83,
     tagHome: '30% off',
     descuentoPct: 30,
-    mercadopagoUrl: null,
+    mercadopagoUrl: 'https://mpago.la/1RjZaXc',
     rizoma: null,
     noEsParaTi: [
       'Recién empiezas tu carrera y todavía estás construyendo el criterio y la experiencia que este programa busca multiplicar (para eso está IA para Nuevos Profesionales).',
@@ -94,7 +94,7 @@ export const PROGRAMAS = [
     precioDescuentoUsd: 104,
     tagHome: '30% off',
     descuentoPct: 30,
-    mercadopagoUrl: null,
+    mercadopagoUrl: 'https://mpago.la/15oTnjX',
     rizoma: null,
     noEsParaTi: [
       'Ya tienes un modelo de negocio validado y sólo buscas capital (para eso está Capital de Impacto).',
@@ -127,7 +127,7 @@ export const PROGRAMAS = [
     precioDescuentoUsd: 149,
     tagHome: 'Precio especial',
     descuentoPct: 15,
-    mercadopagoUrl: null,
+    mercadopagoUrl: 'https://mpago.la/21bE5wA',
     rizoma: {
       texto: 'Antes de inscribirte, puedes conocer en qué nivel está tu marca hoy con el Diagnóstico RIZOMA, la herramienta gratuita de ThousandFold (el proyecto de branding regenerativo de Redesign Lab, dueño del framework RIZOMA que se usa en este programa). 24 preguntas, ~8 minutos: descubre tu arquetipo de marca, tu score en las 6 capas RIZOMA, y las tres brechas prioritarias que separan a tu marca del precio que realmente vale.',
       cta: 'Hacer el Diagnóstico RIZOMA →',
@@ -164,7 +164,7 @@ export const PROGRAMAS = [
     precioDescuentoUsd: 104,
     tagHome: '30% off',
     descuentoPct: 30,
-    mercadopagoUrl: null,
+    mercadopagoUrl: 'https://mpago.la/13k8XxN',
     rizoma: null,
     noEsParaTi: [
       'Tu empresa no pertenece a una industria intensiva en recursos naturales (pesca, agro, acuicultura, minería, energía).',
@@ -197,7 +197,7 @@ export const PROGRAMAS = [
     precioDescuentoUsd: 208,
     tagHome: '30% off',
     descuentoPct: 30,
-    mercadopagoUrl: null,
+    mercadopagoUrl: 'https://mpago.la/2FwArQe',
     rizoma: null,
     noEsParaTi: [
       'Todavía no tienes un modelo de negocio o proyecto estructurado (para eso está Construcción de Negocios Regenerativos, primero).',

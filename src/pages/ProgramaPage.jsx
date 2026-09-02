@@ -72,7 +72,7 @@ export default function ProgramaPage() {
     }
   }, [programa])
 
-  if (!programa) return <Navigate to="/#programas" replace />
+  if (!programa) return <Navigate to="/#profesionales" replace />
 
   return (
     <>

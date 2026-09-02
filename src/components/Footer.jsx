@@ -68,10 +68,13 @@ export default function Footer() {
     <footer role="contentinfo" style={{ background:'var(--fro-bg)', borderTop:'1px solid var(--fro-line)' }}>
       <div className="fro-wrap" style={{ padding:'4rem 2rem 2rem' }}>
 
-        <div className="footer-grid" style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1.4fr', gap:'3rem', marginBottom:'3rem' }}>
+        <div className="footer-grid" style={{ display:'grid', gridTemplateColumns:'1.6fr 0.8fr 1fr 1.3fr', gap:'3rem', marginBottom:'3rem' }}>
           <div>
             <Logo/>
             <p className="fro-sm" style={{ marginTop:'0.8rem', maxWidth:300 }}>
+              Formación en IA para profesionales y empresas de industrias basadas en sistemas vivos, en toda América Latina.
+            </p>
+            <p className="fro-sm" style={{ marginTop:'0.6rem', maxWidth:300 }}>
               Una propuesta de Eddie Ajalcriña y Lorenzo Ortiz — Powered by{' '}
               <a
                 href="https://redesignlab.org/"
@@ -80,12 +83,6 @@ export default function Footer() {
                 style={{ color:'var(--fro-text-2)', textDecoration:'none', borderBottom:'1px solid var(--fro-line-2)' }}
               >Redesign Lab</a>.
             </p>
-            <a
-              href="mailto:biobusiness@redesignlab.org"
-              style={{ display:'inline-block', marginTop:'0.6rem', fontSize:'0.85rem', color:'var(--fro-text-2)', textDecoration:'none' }}
-            >
-              biobusiness@redesignlab.org
-            </a>
           </div>
 
           <nav aria-label="Navegación">
@@ -104,20 +101,40 @@ export default function Footer() {
           </nav>
 
           <div>
+            <h4 className="fro-eyebrow" style={{ fontSize:'0.68rem', marginBottom:'1rem' }}>Contacto</h4>
+            <a
+              href="mailto:biobusiness@redesignlab.org"
+              style={{ display:'block', fontSize:'0.85rem', color:'var(--fro-amber)', textDecoration:'none', marginBottom:'0.6rem' }}
+            >
+              biobusiness@redesignlab.org
+            </a>
+            <p className="fro-sm" style={{ marginBottom:'0.2rem' }}>Lima, Perú</p>
+            <p className="fro-sm">biobusinessschool.org</p>
+          </div>
+
+          <div>
             <h4 className="fro-eyebrow" style={{ fontSize:'0.68rem', marginBottom:'1rem' }}>No te pierdas las novedades de BBS.</h4>
             <NewsletterForm/>
           </div>
         </div>
 
         <div style={{ borderTop:'1px solid var(--fro-line)', paddingTop:'1.5rem', display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:'1rem' }}>
-          <p style={{ fontSize:'0.76rem', color:'var(--fro-text-3)' }}>© {YEAR} Bio Business School</p>
+          <p style={{ fontSize:'0.76rem', color:'var(--fro-text-3)' }}>
+            © {YEAR} Bio Business School · Diseño y desarrollo por{' '}
+            <a
+              href="https://www.thousandfold.la/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color:'var(--fro-text-3)', textDecoration:'underline' }}
+            >Thousandfold</a>
+          </p>
           <a href="/privacidad" style={{ fontSize:'0.76rem', color:'var(--fro-text-3)', textDecoration:'none' }}>Privacidad</a>
         </div>
       </div>
 
       <style>{`
-        @media(max-width: 860px){ .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; } }
-        @media(max-width: 520px){ .footer-grid { grid-template-columns: 1fr !important; } }
+        @media(max-width: 980px){ .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 2rem !important; } }
+        @media(max-width: 560px){ .footer-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </footer>
   )

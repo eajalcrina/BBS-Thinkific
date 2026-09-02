@@ -1,7 +1,11 @@
 import FadeIn from './FadeIn.jsx'
 import { trackCta } from '../lib/analytics.js'
+import { withUtm, CAMPAIGNS } from '../lib/utm.js'
+
+const WHATSAPP_URL = 'https://chat.whatsapp.com/EnVjmCxvR6Q6TaUORbLAj8'
 
 export default function Hero() {
+  const whatsappHref = withUtm(WHATSAPP_URL, { campaign: CAMPAIGNS.COMMUNITY, content: 'hero_biobuilders' })
   return (
     <section id="top" className="fro-sec" style={{ paddingTop:'8rem', background:'linear-gradient(160deg, var(--fro-bg) 0%, #131313 55%, var(--fro-bg-3) 100%)' }}>
       <div className="fro-wrap">
@@ -30,7 +34,7 @@ export default function Hero() {
         </FadeIn>
 
         <FadeIn delay={0.26}>
-          <div style={{ display:'flex', gap:'1rem', flexWrap:'wrap' }}>
+          <div style={{ display:'flex', alignItems:'center', gap:'1.4rem', flexWrap:'wrap' }}>
             <a
               href="#profesionales"
               className="fro-btn fro-btn-amber fro-btn-lg"
@@ -44,6 +48,15 @@ export default function Hero() {
               onClick={() => trackCta('hero_ver_programas_empresas', 'home_hero', '#empresas')}
             >
               Programas para empresas <span aria-hidden>→</span>
+            </a>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCta('hero_biobuilders_whatsapp', 'home_hero', whatsappHref)}
+              style={{ fontSize:'0.88rem', fontWeight:600, color:'var(--fro-text-2)', textDecoration:'underline', textUnderlineOffset:'3px' }}
+            >
+              Unirme a grupo bio<span style={{ color:'var(--fro-amber)' }}>/</span>builders Latam
             </a>
           </div>
         </FadeIn>

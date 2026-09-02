@@ -5,6 +5,7 @@ import Footer from '../components/Footer.jsx'
 import ProgramaHero from '../components/programa/ProgramaHero.jsx'
 import FichaTecnica from '../components/programa/FichaTecnica.jsx'
 import BonusExclusivo from '../components/programa/BonusExclusivo.jsx'
+import RedAliados from '../components/programa/RedAliados.jsx'
 import RizomaBlock from '../components/programa/RizomaBlock.jsx'
 import PrecioRepetido from '../components/programa/PrecioRepetido.jsx'
 import NoEsParaTi from '../components/programa/NoEsParaTi.jsx'
@@ -82,6 +83,7 @@ export default function ProgramaPage() {
         <ProgramaHero programa={programa}/>
         <FichaTecnica programa={programa}/>
         <BonusExclusivo programa={programa}/>
+        <RedAliados/>
         <PrecioRepetido programa={programa}/>
         <RizomaBlock rizoma={programa.rizoma}/>
         <NoEsParaTi items={programa.noEsParaTi}/>

@@ -80,16 +80,21 @@ export default function Footer() {
                 style={{ color:'var(--fro-text-2)', textDecoration:'none', borderBottom:'1px solid var(--fro-line-2)' }}
               >Redesign Lab</a>.
             </p>
+            <a
+              href="mailto:biobusiness@redesignlab.org"
+              style={{ display:'inline-block', marginTop:'0.6rem', fontSize:'0.85rem', color:'var(--fro-text-2)', textDecoration:'none' }}
+            >
+              biobusiness@redesignlab.org
+            </a>
           </div>
 
           <nav aria-label="Navegación">
             <h4 className="fro-eyebrow" style={{ fontSize:'0.68rem', marginBottom:'1rem' }}>Explorar</h4>
             <ul style={{ listStyle:'none', display:'flex', flexDirection:'column', gap:'0.5rem' }}>
               {[
-                ['Programas', '/#programas'],
+                ['Profesionales', '/#profesionales'],
+                ['Empresas', '/#empresas'],
                 ['Comunidad', '/#comunidad'],
-                ['Diagnóstico', '/#diagnostico'],
-                ['Contacto', 'mailto:biobusiness@redesignlab.org'],
               ].map(([l,h]) => (
                 <li key={l}>
                   <a href={h} style={{ fontSize:'0.85rem', color:'var(--fro-text-2)', textDecoration:'none' }}>{l}</a>

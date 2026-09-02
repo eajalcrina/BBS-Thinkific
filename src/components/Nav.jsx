@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { trackCta } from '../lib/analytics.js'
 
 const LINKS = [
-  ['/#programas',   'Programas'],
-  ['/#comunidad',   'Comunidad'],
-  ['/#diagnostico', 'Diagnóstico'],
+  ['/#profesionales', 'Profesionales'],
+  ['/#empresas',      'Empresas'],
+  ['/#comunidad',     'Comunidad'],
 ]
 
 const Logo = () => (

@@ -45,6 +45,7 @@ export default function DiagnosticoEmpresasPage() {
     const pageTitle = 'Autodiagnóstico: ¿en qué momento está tu negocio? | Bio Business School'
     const pageDesc = 'Evalúa en 4 minutos en qué momento está tu negocio — de la marca al capital — y qué programa de Bio Business School te ayuda a avanzar.'
 
+    const prevTitle = document.title
     document.title = pageTitle
 
     const metaDesc = document.querySelector('meta[name="description"]')
@@ -70,7 +71,7 @@ export default function DiagnosticoEmpresasPage() {
     window.scrollTo(0, 0)
 
     return () => {
-      document.title = 'Bio Business School'
+      document.title = prevTitle
       if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
       if (canonicalLink && prevCanonical) canonicalLink.setAttribute('href', prevCanonical)
       if (ogUrl && prevOgUrl) ogUrl.setAttribute('content', prevOgUrl)

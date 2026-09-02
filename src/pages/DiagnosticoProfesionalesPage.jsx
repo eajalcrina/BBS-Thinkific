@@ -48,6 +48,7 @@ export default function DiagnosticoProfesionalesPage() {
     const pageTitle = 'Autodiagnóstico: ¿Qué tan preparado estás frente a la IA? | Bio Business School'
     const pageDesc = 'Descubre en 3 minutos qué tan preparado estás frente a la disrupción de la IA, y qué programa de Bio Business School es tu siguiente paso.'
 
+    const prevTitle = document.title
     document.title = pageTitle
 
     const metaDesc = document.querySelector('meta[name="description"]')
@@ -73,7 +74,7 @@ export default function DiagnosticoProfesionalesPage() {
     window.scrollTo(0, 0)
 
     return () => {
-      document.title = 'Bio Business School'
+      document.title = prevTitle
       if (metaDesc && prevDesc) metaDesc.setAttribute('content', prevDesc)
       if (canonicalLink && prevCanonical) canonicalLink.setAttribute('href', prevCanonical)
       if (ogUrl && prevOgUrl) ogUrl.setAttribute('content', prevOgUrl)

@@ -632,10 +632,16 @@ export default function PantallaTransicion({ mensajes, onComplete }) {
 }
 ```
 
-Note the `useEffect` dependency array gained `mensajes` — harmless for
-Profesionales (Step 3 below passes a `useState`-free plain constant
-array, stable across renders, same as before) and correct for Empresas
-(Task 4 does the same).
+Note the `useEffect` dependency array gained `mensajes` — this only
+stays harmless if every call site passes a referentially stable array
+(a module-level constant, not an inline literal recreated on every
+render). Step 3 below hoists one for Profesionales; Task 4 does the same
+for Empresas. **Do not** pass `mensajes={[...]}` as an inline array
+literal directly in JSX — an early version of this task did exactly
+that, and the final whole-branch review caught it as a real,
+triggerable regression: it reintroduces the same timer-reset bug the
+`onComplete` `useCallback` fix (below) was written to prevent, since a
+new array reference on every re-render retriggers the effect.
 
 - [ ] **Step 3: Update `DiagnosticoProfesionalesPage.jsx`'s call sites to pass the now-required props**
 
@@ -666,7 +672,40 @@ Replace with:
         )}
 ```
 
-Find:
+Find, near the top of the file, right after the `FASES` constant:
+
+```jsx
+const FASES = {
+  BIENVENIDA: 'bienvenida',
+  SEGMENTACION: 'segmentacion',
+  PREGUNTAS: 'preguntas',
+  CAPTURA: 'captura',
+  TRANSICION: 'transicion',
+  RESULTADO: 'resultado',
+}
+```
+
+Add a module-level constant directly after it (sibling to `FASES`, not
+inside the component — this is what gives it a stable reference across
+every re-render):
+
+```jsx
+// Constante de módulo — referencia estable entre renders. PantallaTransicion
+// depende de `mensajes` en su useEffect; un array literal inline en el JSX
+// de abajo se recrearía en cada re-render (ej. cuando `percentil` resuelve
+// en paralelo durante la transición, ver handleCaptura) y reiniciaría el
+// temporizador de 2.6s — el mismo bug que ya se corrigió una vez para
+// `onComplete` con useCallback, reintroducido por esta prop si no se hace
+// igual de estable.
+const MENSAJES_TRANSICION = [
+  'Evaluando tu criterio propio...',
+  'Analizando tu relación con el aprendizaje...',
+  'Calculando tu proyección de crecimiento...',
+  'Generando tu resultado...',
+]
+```
+
+Then find:
 
 ```jsx
         {fase === FASES.TRANSICION && <PantallaTransicion onComplete={handleTransicionComplete} />}
@@ -677,12 +716,7 @@ Replace with:
 ```jsx
         {fase === FASES.TRANSICION && (
           <PantallaTransicion
-            mensajes={[
-              'Evaluando tu criterio propio...',
-              'Analizando tu relación con el aprendizaje...',
-              'Calculando tu proyección de crecimiento...',
-              'Generando tu resultado...',
-            ]}
+            mensajes={MENSAJES_TRANSICION}
             onComplete={handleTransicionComplete}
           />
         )}
@@ -1116,6 +1150,18 @@ const FASES = {
 // puntuadas (Marca, Negocio, Capital) y la de sector al final.
 const TODAS_LAS_PREGUNTAS = [...QUESTIONS, SECTOR_QUESTION]
 
+// Constante de módulo — referencia estable entre renders. PantallaTransicion
+// depende de `mensajes` en su useEffect; un array literal inline en el JSX
+// de abajo se recrearía en cada re-render y reiniciaría el temporizador de
+// 2.6s (mismo bug ya corregido una vez en DiagnosticoProfesionalesPage.jsx —
+// ver su commit "fix(diagnostico): stabilize the mensajes array reference").
+const MENSAJES_TRANSICION = [
+  'Evaluando tu marca...',
+  'Analizando tu modelo de negocio...',
+  'Revisando tu preparación para capital...',
+  'Generando tu resultado...',
+]
+
 export default function DiagnosticoEmpresasPage() {
   const [fase, setFase] = useState(FASES.BIENVENIDA)
   const [respuestas, setRespuestas] = useState({})
@@ -1263,12 +1309,7 @@ export default function DiagnosticoEmpresasPage() {
 
         {fase === FASES.TRANSICION && (
           <PantallaTransicion
-            mensajes={[
-              'Evaluando tu marca...',
-              'Analizando tu modelo de negocio...',
-              'Revisando tu preparación para capital...',
-              'Generando tu resultado...',
-            ]}
+            mensajes={MENSAJES_TRANSICION}
             onComplete={handleTransicionComplete}
           />
         )}

@@ -9,15 +9,24 @@ gratuitos que el home promete (`DiagnosticoCTA.jsx`): *"¿Tienes un
 negocio? Evalúa en qué momento estás, de la marca al capital, y qué
 programa te ayuda a avanzar."* Mismo patrón arquitectónico que
 `Diagnóstico Profesionales` (subsistema 4a, ya en producción en esta
-rama): widget React propio, resultado enriquecido con percentil real, y
-captura de lead hacia `/api/lead`.
+rama): widget React propio, resultado enriquecido, y captura de lead
+hacia `/api/lead`.
+
+**Decisión de alcance (reemplaza la nota de §7 de un borrador anterior de
+este spec):** este diagnóstico **no incluye percentil**, ni agregado ni
+por dimensión — decisión explícita de Eddie. Con 3 dimensiones
+independientes, comparar contra otros usuarios decía menos que analizar
+en detalle las 3 dimensiones propias del negocio evaluado. En su lugar,
+el resultado profundiza en un análisis por dimensión (§6) en vez de una
+comparación externa. `/api/diagnostico-stats` (construido en 4a) no se
+toca ni se generaliza en este subsistema.
 
 ## 2. Alcance
 
 **Incluye:** el flujo completo de Diagnóstico Empresas — 10 preguntas (9
 puntuadas + 1 de sector), lógica de clasificación entre 4 resultados
 posibles (routeando a 4 programas distintos), resultado secundario
-condicional, percentil real, y captura de lead.
+condicional, análisis detallado de las 3 dimensiones, y captura de lead.
 
 **No incluye:** secuencias de email de nurture (mismo criterio que
 subsistema 4a). Tampoco incluye la reestructuración del home en 2
@@ -48,14 +57,13 @@ preguntarse como un filtro explícito al inicio.
         ▼
   PANTALLA DE TRANSICIÓN (~2.6s, texto progresivo)
         │
-        ├──► POST /api/lead  { form: 'bbs-diagnostico-empresas', data: {...} }
-        └──► GET /api/diagnostico-stats?tipo=empresas&score=<scoreTotal>
+        └──► POST /api/lead  { form: 'bbs-diagnostico-empresas', data: {...} }
         ▼
   PANTALLA DE RESULTADO
-        Resultado principal · % por dimensión (Marca/Negocio/Capital) ·
-        percentil (si hay suficientes datos) · diagnóstico · fortalezas ·
-        oportunidad · recomendación · CTA al programa · nota de
-        resultado secundario (si aplica)
+        Resultado principal · análisis detallado de las 3 dimensiones
+        (Marca/Negocio/Capital — % + lectura corta de cada una) ·
+        diagnóstico · fortalezas · oportunidad · recomendación · CTA al
+        programa · nota de resultado secundario (si aplica)
 ```
 
 **Componentes** (mismo patrón que 4a — reutiliza los componentes de
@@ -77,9 +85,9 @@ duplican):
   necesita, no se modifica).
 - Modificar: `src/App.jsx` — agregar la ruta `/diagnostico/empresas`.
 - Modificar: `api/_lib/lead-notify.js` — reemplazar el schema
-  placeholder de `bbs-diagnostico-empresas` (§8).
-- Modificar: `api/diagnostico-stats.js` — generalizar para soportar
-  `tipo=empresas` (§7).
+  placeholder de `bbs-diagnostico-empresas` (§7).
+- `api/diagnostico-stats.js` **no se toca** — este diagnóstico no usa
+  percentil (ver decisión de alcance en §1).
 
 ## 4. Banco de preguntas
 
@@ -210,11 +218,29 @@ que 4a):
 
 ## 6. Contenido de los 4 resultados
 
-Cada resultado muestra: nombre del resultado · % de las 3 dimensiones
-(Marca/Negocio/Capital, siempre las 3, incluso cuando el resultado es
-`industria`) · percentil (si hay datos suficientes, §7) · diagnóstico ·
-fortalezas · oportunidad · recomendación · CTA al programa · nota de
-resultado secundario si aplica (§5).
+Cada resultado muestra, en este orden: nombre del resultado · **análisis
+detallado de las 3 dimensiones** (Marca/Negocio/Capital, siempre las 3,
+incluso cuando el resultado es `industria`) · diagnóstico · fortalezas ·
+oportunidad · recomendación · CTA al programa · nota de resultado
+secundario si aplica (§5).
+
+### Análisis por dimensión
+
+En vez de un percentil externo, cada dimensión se muestra con su % (igual
+mecánica que 4a: `Math.round((score / 9) × 100)`) más una lectura corta
+propia, según en qué tercio cae el score de esa dimensión (0–9):
+
+| Rango | Nivel | Marca | Negocio | Capital |
+|---|---|---|---|---|
+| 0–3 | Brecha real | "Tu marca aún no comunica lo que te hace distinto." | "Tu modelo económico y operativo no está lo suficientemente definido." | "No estás preparado para hablar el idioma de un inversionista." |
+| 4–6 | En desarrollo | "Tienes una diferencia real, pero no está del todo afilada." | "Tienes estructura básica — falta consolidarla." | "Tienes elementos sueltos — falta armarlos en un caso convincente." |
+| 7–9 | Sólido | "Tu marca ya comunica tu diferencia con claridad." | "Tu ingeniería de negocio ya sostiene el propósito." | "Tu preparación para levantar capital ya es competitiva." |
+
+Las 3 lecturas se muestran siempre, independientemente de cuál dimensión
+sea el `resultado` principal — es lo que da la "vista completa del
+negocio" en vez de solo la brecha más urgente. El diagnóstico/fortalezas/
+oportunidad/recomendación de más abajo sí profundizan específicamente en
+la dimensión que resultó ser el `resultado`.
 
 ### Marca eco-genérica (`resultado: 'marca'`)
 - **Diagnóstico:** "Tu marca probablemente suena parecida a las cien que
@@ -291,50 +317,7 @@ cuando el resultado principal ya es `capital`):
 > está baja — Capital de Impacto podría ser tu segundo paso." — con
 > link al programa.
 
-## 7. Percentil real (`GET /api/diagnostico-stats`, generalizado)
-
-**Decisión de alcance:** a diferencia de Profesionales (que puntúa un
-solo eje 0–21/24), Empresas tiene 3 dimensiones independientes y el
-resultado principal depende de cuál es más baja, no de una suma. Calcular
-un percentil específico por dimensión requeriría que el endpoint lea una
-columna distinta según cuál dimensión sea la protagonista del resultado
-de cada usuario — una generalización bastante más compleja. Para este
-subsistema, el percentil compara el **`scoreTotal` agregado (0–27)**
-contra el de otros que ya tomaron este diagnóstico — responde "qué tan
-preparado está tu negocio en conjunto", no "qué tan preparado estás
-específicamente en tu brecha principal". Es una simplificación deliberada
-que Eddie debe confirmar al revisar este spec; si prefiere percentil
-por dimensión, es una extensión de este mismo endpoint más adelante, no
-un rediseño.
-
-**Generalización del endpoint** (ya existe para `tipo=profesionales`,
-construido en 4a):
-
-```js
-const TIPO_CONFIG = {
-  profesionales: {
-    tab: 'Diagnóstico Profesionales',
-    filterParam: 'segmento',  // query param requerido además de `score`
-    filterCol: 4,
-    scoreCol: 6,
-  },
-  empresas: {
-    tab: 'Diagnóstico Empresas',
-    filterParam: null,        // sin filtro de población — cuenta todo
-    filterCol: null,
-    scoreCol: 8,               // ver orden de columnas en §8
-  },
-}
-```
-
-`GET /api/diagnostico-stats?tipo=empresas&score=14` (sin `segmento`, ya
-que Empresas no tiene poblaciones separadas) → mismo contrato de
-respuesta que 4a: `{ percentil, muestraTotal }` o
-`{ insufficientData: true, muestraTotal }` por debajo de 20 respuestas.
-El contrato para `tipo=profesionales` no cambia — sigue exigiendo
-`segmento`.
-
-## 8. Payload hacia `/api/lead` y columnas del Sheet
+## 7. Payload hacia `/api/lead` y columnas del Sheet
 
 Reemplaza el schema placeholder de `bbs-diagnostico-empresas` en
 `api/_lib/lead-notify.js` (existe desde el subsistema 3, nunca usado en
@@ -366,25 +349,24 @@ esa fila de encabezados, igual que se hizo para Profesionales):
 
 `timestamp, nombre, email, whatsapp, sector, marcaScore, negocioScore, capitalScore, scoreTotal, scoreMax, resultado, secundario, pagina_origen`
 
-(`scoreCol` en `TIPO_CONFIG.empresas` de §7 apunta a `scoreTotal`, índice
-8 — 0-based, después de `timestamp`.)
+`scoreTotal`/`scoreMax` se guardan igual (útiles para análisis interno
+del equipo — ej. "preparación regenerativa promedio de los negocios que
+pasan por el diagnóstico" — aunque no se le muestren al usuario como
+percentil).
 
 **Validación** (mismo criterio de integridad que 4a — el endpoint es
-público y sin autenticación, y estos mismos datos se leen de vuelta para
-calcular un percentil real):
+público y sin autenticación):
 - `sector` debe ser `'general'` o `'industria'` — cualquier otro valor
   se guarda vacío.
 - `marcaScore`/`negocioScore`/`capitalScore` deben ser enteros en
   `[0, 9]` — fuera de eso, se guardan vacíos (igual que `sanitizeDiagnosticoResult`
   en 4a, adaptado a 3 columnas en vez de 1).
 - `scoreTotal` debe ser exactamente la suma de los 3 anteriores cuando
-  los 3 son válidos; si no coincide, se guarda vacío también (evita que
-  el percentil agregado quede inflado con un total que no corresponde a
-  las partes).
+  los 3 son válidos; si no coincide, se guarda vacío también.
 - `resultado` debe ser uno de `marca`/`negocio`/`capital`/`industria`.
 - `secundario` debe ser `capital` o cadena vacía.
 
-## 9. Integración con el resto del sitio
+## 8. Integración con el resto del sitio
 
 - Ruta: `/diagnostico/empresas`, lazy en `src/App.jsx`, mismo patrón que
   las demás rutas.
@@ -403,33 +385,33 @@ calcular un percentil real):
 - Diseño visual: mismos tokens `--fro-*`/`.fro-*` ya establecidos, sin
   componentes ni paleta nuevos.
 
-## 10. Manejo de errores
+## 9. Manejo de errores
 
 Mismo criterio que 4a: si `POST /api/lead` falla, el resultado se
 muestra igual (nunca se pierde el valor entregado al usuario por un
-problema del backend); si `GET /api/diagnostico-stats` falla o tarda, el
-resultado se muestra sin la línea de percentil, nunca bloqueando el
-resto de la pantalla.
+problema del backend) — no hay una segunda llamada de red de la cual
+degradar, ya que este diagnóstico no consulta `/api/diagnostico-stats`.
 
-## 11. Testing / verificación
+## 10. Testing / verificación
 
 Mismo patrón que 4a: `node:test` para la lógica pura de clasificación
 (`src/data/diagnosticoEmpresas.js` — cubriendo los 4 resultados, el
 desempate marca > negocio > capital, el umbral del secundario en
-`capitalScore <= 3`, y `sector === 'industria'` como override), para
-`buildEnvelope`'s nuevo case (sanitización de `sector`/scores/`resultado`/
-`secundario`), y para la generalización de `api/diagnostico-stats.js`
-(confirmar que el contrato de `tipo=profesionales` sigue exactamente
-igual — regresión — y que `tipo=empresas` funciona sin `segmento`).
-Verificación de UI: manual en navegador, sin framework de tests de
-componentes (mismo criterio que todo el proyecto).
+`capitalScore <= 3`, `sector === 'industria'` como override, y las 3
+lecturas por tercio de cada dimensión) y para `buildEnvelope`'s nuevo
+case (sanitización de `sector`/scores/`resultado`/`secundario`).
+`api/diagnostico-stats.js` no se toca — su suite existente de 4a no
+necesita cambios ni tests nuevos. Verificación de UI: manual en
+navegador, sin framework de tests de componentes (mismo criterio que
+todo el proyecto).
 
-## 12. Fuera de alcance
+## 11. Fuera de alcance
 
 - Secuencias de email de nurture.
 - Reestructuración del home en 2 bloques ("Transformando personas" /
   "Transformando empresas") — follow-up separado, después de que este
   subsistema esté implementado y revisado.
-- Percentil por dimensión (ver decisión de alcance en §7) — el agregado
-  es la versión 1; una versión por dimensión es una extensión futura si
-  hace falta más precisión.
+- Percentil, agregado o por dimensión — decisión explícita de Eddie de
+  no incluirlo en este diagnóstico (§1). Si se revisita en el futuro,
+  es una extensión de `/api/diagnostico-stats`, no un rediseño de este
+  subsistema.

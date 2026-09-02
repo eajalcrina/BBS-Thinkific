@@ -82,8 +82,8 @@ export default function ProgramaPage() {
         <ProgramaHero programa={programa}/>
         <FichaTecnica programa={programa}/>
         <BonusExclusivo programa={programa}/>
-        <RizomaBlock rizoma={programa.rizoma}/>
         <PrecioRepetido programa={programa}/>
+        <RizomaBlock rizoma={programa.rizoma}/>
         <NoEsParaTi items={programa.noEsParaTi}/>
         <NotaPertenencia/>
       </main>

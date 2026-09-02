@@ -75,7 +75,7 @@ export default function ProgramaCTA({ programa, dark = false }) {
 
   return (
     <div>
-      {programa.status === 'reserve' && (
+      {programa.precioDescuento && (
         <p className="fro-sm" style={{ marginBottom: '0.6rem', color: dark ? 'var(--fro-text-2)' : 'var(--fro-ink-2)' }}>
           Precio de lista: <span style={{ textDecoration: 'line-through' }}>
             S/ {programa.precioRegular} (~USD {programa.precioRegularUsd})

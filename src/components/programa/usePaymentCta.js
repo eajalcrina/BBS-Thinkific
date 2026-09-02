@@ -4,9 +4,11 @@ import { trackCta } from '../../lib/analytics.js'
 export function usePaymentCta(programa) {
   const [status, setStatus] = useState('idle') // idle | loading | sent | error
 
-  const label = programa.status === 'live'
+  const label = !programa.precioDescuento
     ? `Pagar ahora — S/ ${programa.precioRegular} (~USD ${programa.precioRegularUsd})`
-    : `Reserva tu cupo con 30% off — S/ ${programa.precioDescuento} (~USD ${programa.precioDescuentoUsd})`
+    : programa.status === 'live'
+      ? `Pagar ahora con ${programa.descuentoPct}% off — S/ ${programa.precioDescuento} (~USD ${programa.precioDescuentoUsd})`
+      : `Reserva tu cupo con ${programa.descuentoPct}% off — S/ ${programa.precioDescuento} (~USD ${programa.precioDescuentoUsd})`
 
   async function handleClick() {
     trackCta(`programa_${programa.slug}_pagar`, 'programa_cta', programa.mercadopagoUrl || 'pending')

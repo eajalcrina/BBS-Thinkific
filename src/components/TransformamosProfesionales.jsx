@@ -27,7 +27,7 @@ export default function TransformamosProfesionales() {
               className="fro-card fro-card-diagnostico"
               style={{ display:'block', padding:'2rem', height:'100%', textDecoration:'none' }}
             >
-              <span style={{ display:'inline-block', background:'#0A0A0A', color:'var(--fro-amber)', fontSize:'0.6rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.28rem 0.6rem', borderRadius:20, marginBottom:'1rem' }}>
+              <span style={{ display:'inline-block', background:'var(--fro-amber)', color:'#0A0A0A', fontSize:'0.62rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.3rem 0.65rem', borderRadius:20, marginBottom:'1rem' }}>
                 Autodiagnóstico gratuito
               </span>
               <h3 className="fro-h3" style={{ marginBottom:'0.9rem' }}>¿Dominas la IA, o la IA te está dominando a ti?</h3>
@@ -55,7 +55,7 @@ export default function TransformamosProfesionales() {
                   <div className="fro-sm" style={{ marginBottom:'0.6rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.68rem' }}>{p.audiencia}</div>
                   <h3 className="fro-h3" style={{ marginBottom:'0.6rem', fontSize:'1.05rem' }}>{p.titulo}</h3>
                   <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.notaCard}</p>
-                  <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginTop:'1.2rem' }}>
+                  <div style={{ display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'0.6rem', marginTop:'1.2rem' }}>
                     {p.tagHome ? <span className="fro-chip-outline">{p.tagHome}</span> : <span/>}
                     <span className="fro-card-cta" style={{ fontSize:'0.82rem', fontWeight:600 }}>Ver programa →</span>
                   </div>

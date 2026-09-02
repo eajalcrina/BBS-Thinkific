@@ -12,9 +12,9 @@ const PARTNERS = [
 
 export default function Endorsements() {
   return (
-    <section id="respaldan" className="fro-sec fro-bg-light fro-on-light">
+    <section id="respaldan" className="fro-bg-light fro-on-light" style={{ padding:'2.2rem 0' }}>
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1.4rem' }}>Docentes y speakers en</div></FadeIn>
+        <FadeIn><div className="fro-eyebrow" style={{ marginBottom:'1rem' }}>Docentes y speakers en</div></FadeIn>
       </div>
       <FadeIn delay={0.06}>
         <div className="fro-marquee">

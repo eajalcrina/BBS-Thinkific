@@ -13,7 +13,7 @@ export default function Hero() {
 
         <FadeIn delay={0.08}>
           <h1 className="fro-display" style={{ fontSize:'clamp(2.4rem, 6vw, 5.2rem)', maxWidth:920, marginBottom:'1.6rem' }}>
-            Transformamos América Latina con inteligencia <span style={{ fontStyle:'italic', color:'var(--fro-amber-50)' }}>territorial</span> y artificial.
+            Transformamos América Latina con inteligencia <span style={{ fontStyle:'italic', color:'var(--fro-amber)' }}>territorial</span> y artificial.
           </h1>
         </FadeIn>
 

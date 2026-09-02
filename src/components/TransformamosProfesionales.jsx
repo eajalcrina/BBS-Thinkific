@@ -34,7 +34,7 @@ export default function TransformamosProfesionales() {
               <p className="fro-body" style={{ marginBottom:'1.4rem' }}>
                 Antes de elegir un programa, descubre en qué nivel estás — una evaluación real, no un quiz de tres preguntas.
               </p>
-              <span className="fro-mark-amber fro-card-cta" style={{ fontSize:'0.88rem', fontWeight:700 }}>Haz tu autodiagnóstico →</span>
+              <span className="fro-card-cta" style={{ fontSize:'1.05rem', fontWeight:800, color:'var(--fro-amber)' }}>Empieza aquí →</span>
             </a>
           </FadeIn>
 
@@ -53,7 +53,7 @@ export default function TransformamosProfesionales() {
                     </span>
                   )}
                   <div className="fro-sm" style={{ marginBottom:'0.6rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.68rem' }}>{p.audiencia}</div>
-                  <h3 className="fro-h3" style={{ marginBottom:'0.6rem', fontSize:'1.05rem' }}>{p.titulo}</h3>
+                  <h3 className="fro-h3" style={{ marginBottom:'0.6rem', fontSize:'1.25rem' }}>{p.titulo}</h3>
                   <p className="fro-body" style={{ fontSize:'0.86rem', marginBottom:0 }}>{p.notaCard}</p>
                   <div style={{ display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'0.6rem', marginTop:'1.2rem' }}>
                     {p.tagHome ? <span className="fro-chip-outline">{p.tagHome}</span> : <span/>}

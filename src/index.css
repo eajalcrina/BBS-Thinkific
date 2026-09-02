@@ -180,16 +180,14 @@ section[id] { scroll-margin-top: 84px; }
 .fro-on-light .fro-card-live .fro-card-cta { color: #0A0A0A; }
 
 /* Diagnostic-tool cards (the free self-assessment, sitting beside plain
-   program cards in the "Transformamos" sections) — a soft amber wash
-   sets them apart as a different kind of thing (a tool, not a paid
-   program) without competing with .fro-card-live's stronger amber-fill
-   treatment reserved for "open for enrollment". */
-.fro-on-light .fro-card-diagnostico {
-  background: var(--fro-amber-08);
-  border-color: var(--fro-amber-25);
-  border-left: 4px solid var(--fro-amber);
-  box-shadow: 0 12px 32px rgba(255,200,0,0.14);
-}
+   program cards in the "Transformamos" sections) — permanently wears
+   the dark/amber-text treatment every card already gets on hover
+   (below), instead of a side-accent-border-plus-glow effect, which
+   read as generic templated-AI-design flourish rather than a choice
+   already native to this system. */
+.fro-on-light .fro-card-diagnostico { background: var(--fro-bg); border-color: var(--fro-bg); }
+.fro-on-light .fro-card-diagnostico .fro-h3 { color: var(--fro-text); }
+.fro-on-light .fro-card-diagnostico .fro-body { color: var(--fro-text-2); }
 
 /* Hover on a light card inverts it to the dark palette — black surface,
    amber/white text — instead of a glow around the card. Gated to devices
@@ -206,8 +204,13 @@ section[id] { scroll-margin-top: 84px; }
   .fro-on-light .fro-card:hover .fro-sm { color: var(--fro-amber); }
   .fro-on-light .fro-card:hover .fro-h3 { color: var(--fro-text); }
   .fro-on-light .fro-card:hover .fro-body { color: var(--fro-text-2); }
-  .fro-on-light .fro-card:hover .fro-chip-outline { border-color: var(--fro-amber); color: var(--fro-amber); }
+  .fro-on-light .fro-card:hover .fro-chip-outline { background: var(--fro-bg-white); border-color: var(--fro-bg-white); color: #0A0A0A; }
   .fro-on-light .fro-card:hover .fro-card-cta { color: var(--fro-amber); }
+  /* Live cards start amber, so their tag starts white (below) — on
+     hover the card still inverts to dark, so the tag inverts the
+     other way, back to amber. Same specificity as the rule above;
+     placed after it so this wins for .fro-card-live specifically. */
+  .fro-on-light .fro-card-live:hover .fro-chip-outline { background: var(--fro-amber); border-color: var(--fro-amber); color: #0A0A0A; }
 }
 
 .fro-on-light .fro-field {
@@ -228,13 +231,20 @@ section[id] { scroll-margin-top: 84px; }
   transition: color 0.25s, border-color 0.25s;
 }
 
+/* Filled, not outlined — a plain ink-outline pill read as too quiet to
+   count as "highlighted". Default: amber fill (for white/plain cards).
+   .fro-card-live flips it to a white fill (below), since amber-on-amber
+   would disappear; hover inverts each the other way (see the
+   .fro-card:hover block above). */
 .fro-chip-outline {
   display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0.32rem 0.8rem; border-radius: 20px;
-  border: 1.5px solid var(--fro-ink); color: var(--fro-ink);
+  border: 1.5px solid var(--fro-amber); background: var(--fro-amber); color: #0A0A0A;
   font-family: var(--finter); font-size: 0.72rem; font-weight: 700;
   letter-spacing: 0.02em;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s;
 }
+.fro-on-light .fro-card-live .fro-chip-outline { background: var(--fro-bg-white); border-color: var(--fro-bg-white); }
 
 .fro-card-cta { color: var(--fro-ink); }
 

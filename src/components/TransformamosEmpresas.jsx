@@ -34,7 +34,7 @@ export default function TransformamosEmpresas() {
               <p className="fro-body" style={{ marginBottom:'1.4rem' }}>
                 Este diagnóstico te da una radiografía honesta de tu negocio en minutos, como la vería un inversionista.
               </p>
-              <span className="fro-mark-amber fro-card-cta" style={{ fontSize:'0.88rem', fontWeight:700 }}>Evalúa tu negocio →</span>
+              <span className="fro-card-cta" style={{ fontSize:'1.05rem', fontWeight:800, color:'var(--fro-amber)' }}>Empieza aquí →</span>
             </a>
           </FadeIn>
 
@@ -53,7 +53,7 @@ export default function TransformamosEmpresas() {
                     </span>
                   )}
                   <div className="fro-sm" style={{ marginBottom:'0.5rem', textTransform:'uppercase', letterSpacing:'0.1em', fontSize:'0.66rem' }}>{p.audiencia}</div>
-                  <h3 className="fro-h3" style={{ marginBottom:'0.5rem', fontSize:'0.98rem' }}>{p.titulo}</h3>
+                  <h3 className="fro-h3" style={{ marginBottom:'0.5rem', fontSize:'1.12rem' }}>{p.titulo}</h3>
                   <p className="fro-body" style={{ fontSize:'0.82rem', marginBottom:0 }}>{p.notaCard}</p>
                   <div style={{ display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:'0.5rem', marginTop:'1rem' }}>
                     {p.tagHome ? <span className="fro-chip-outline">{p.tagHome}</span> : <span/>}

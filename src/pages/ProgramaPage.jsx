@@ -52,7 +52,7 @@ export default function ProgramaPage() {
       provider: { '@type': 'EducationalOrganization', name: 'Bio Business School' },
       offers: {
         '@type': 'Offer',
-        price: programa.status === 'live' ? programa.precioRegular : programa.precioDescuento,
+        price: programa.precioDescuento ?? programa.precioRegular,
         priceCurrency: 'PEN',
         availability: programa.status === 'live' ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
       },

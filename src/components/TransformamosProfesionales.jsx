@@ -3,7 +3,7 @@ import { trackCta } from '../lib/analytics.js'
 import { PROGRAMAS } from '../data/programas.js'
 
 const SLUGS = ['ia-nuevos-profesionales', 'ia-profesionales-senior']
-const PROGRAMAS_PROFESIONALES = SLUGS.map(slug => PROGRAMAS.find(p => p.slug === slug))
+const PROGRAMAS_PROFESIONALES = SLUGS.map(slug => PROGRAMAS.find(p => p.slug === slug)).filter(Boolean)
 
 export default function TransformamosProfesionales() {
   return (

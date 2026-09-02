@@ -3,7 +3,7 @@ import { trackCta } from '../lib/analytics.js'
 import { PROGRAMAS } from '../data/programas.js'
 
 const SLUGS = ['negocios-regenerativos', 'marcas-regenerativas', 'economia-circular-industria', 'capital-de-impacto']
-const PROGRAMAS_EMPRESAS = SLUGS.map(slug => PROGRAMAS.find(p => p.slug === slug))
+const PROGRAMAS_EMPRESAS = SLUGS.map(slug => PROGRAMAS.find(p => p.slug === slug)).filter(Boolean)
 
 export default function TransformamosEmpresas() {
   return (

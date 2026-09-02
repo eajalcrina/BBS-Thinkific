@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="fro-wrap">
         <FadeIn>
           <div className="fro-chip" style={{ marginBottom:'1.8rem' }}>
-            Formación especializada · Industrias de sistemas vivos · Perú, Colombia y LATAM
+            Plataforma de formación especializada
           </div>
         </FadeIn>
 
@@ -19,13 +19,13 @@ export default function Hero() {
 
         <FadeIn delay={0.14}>
           <p className="fro-lead" style={{ maxWidth:640, marginBottom:'1.2rem' }}>
-            Hola, somos Eddie y Lorenzo. Después de años trabajando e invirtiendo en industrias de sistemas vivos en la región, vimos algo claro: para ser más competitivos, hay que transformar dos cosas a la vez, a las personas y a las empresas. Por eso diseñamos programas 100% aplicativos, pensados para que cada participante salga con nuevas competencias y herramientas concretas para crecer y escalar negocios en la región.
+            <span className="fro-italic-amber">Hola, somos Eddie y Lorenzo.</span> Después de años trabajando e invirtiendo en industrias basadas en sistemas vivos en la región, vimos algo claro: para ser más competitivos, tenemos que transformar dos cosas a la vez, a las personas y a las empresas. Por eso diseñamos programas 100% aplicativos, pensados para que cada participante salga con nuevas competencias y herramientas concretas para crecer y escalar negocios en la región.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2}>
           <p className="fro-sm" style={{ maxWidth:600, marginBottom:'2.4rem' }}>
-            Son la destilación de nuestra experiencia como docentes y speakers en instituciones como MIT Professional Education, la Universidad de Chicago, CATIE e INCAE.
+            Los cursos han sido diseñados destilando nuestra experiencia como docentes y speakers en instituciones como MIT Professional Education, la Universidad de Chicago, CATIE e INCAE.
           </p>
         </FadeIn>
 

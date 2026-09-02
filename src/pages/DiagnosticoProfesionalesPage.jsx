@@ -144,7 +144,22 @@ export default function DiagnosticoProfesionalesPage() {
     <>
       <Nav />
       <main id="main" style={{ minHeight: '70vh' }}>
-        {fase === FASES.BIENVENIDA && <PantallaBienvenida onStart={handleStart} />}
+        {fase === FASES.BIENVENIDA && (
+          <PantallaBienvenida
+            eyebrow="AUTODIAGNÓSTICO GRATUITO · IA PARA PROFESIONALES"
+            titulo="¿Qué tan preparado estás frente a la disrupción de la IA?"
+            descripcion="No medimos si usas IA o no. Medimos si la estás usando para desarrollar criterio propio, o para dejar que piense por ti."
+            meta={
+              <>
+                8 preguntas · 3 minutos · Resultado inmediato con análisis por dimensión.
+                <br />
+                Tu email se pide antes del resultado, no antes de empezar.
+              </>
+            }
+            ctaTexto="Iniciar diagnóstico"
+            onStart={handleStart}
+          />
+        )}
 
         {fase === FASES.SEGMENTACION && (
           <PreguntaScreen
@@ -169,7 +184,17 @@ export default function DiagnosticoProfesionalesPage() {
 
         {fase === FASES.CAPTURA && <CapturaDatos onSubmit={handleCaptura} />}
 
-        {fase === FASES.TRANSICION && <PantallaTransicion onComplete={handleTransicionComplete} />}
+        {fase === FASES.TRANSICION && (
+          <PantallaTransicion
+            mensajes={[
+              'Evaluando tu criterio propio...',
+              'Analizando tu relación con el aprendizaje...',
+              'Calculando tu proyección de crecimiento...',
+              'Generando tu resultado...',
+            ]}
+            onComplete={handleTransicionComplete}
+          />
+        )}
 
         {fase === FASES.RESULTADO && resultado && (
           <PantallaResultado resultado={resultado} percentil={percentil} />

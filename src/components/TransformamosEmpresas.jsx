@@ -24,9 +24,12 @@ export default function TransformamosEmpresas() {
             <a
               href="/diagnostico/empresas"
               onClick={() => trackCta('diagnostico_empresas', 'home_transformamos_empresas', '/diagnostico/empresas')}
-              className="fro-card"
+              className="fro-card fro-card-diagnostico"
               style={{ display:'block', padding:'2rem', height:'100%', textDecoration:'none' }}
             >
+              <span style={{ display:'inline-block', background:'#0A0A0A', color:'var(--fro-amber)', fontSize:'0.6rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.28rem 0.6rem', borderRadius:20, marginBottom:'1rem' }}>
+                Autodiagnóstico gratuito
+              </span>
               <h3 className="fro-h3" style={{ marginBottom:'0.9rem' }}>Antes de salir a levantar capital, hay que saber qué fortalecer primero</h3>
               <p className="fro-body" style={{ marginBottom:'1.4rem' }}>
                 Este diagnóstico te da una radiografía honesta de tu negocio en minutos, como la vería un inversionista.

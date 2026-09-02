@@ -177,6 +177,13 @@ section[id] { scroll-margin-top: 84px; }
 .fro-on-light .fro-card-live .fro-chip-outline { border-color: #0A0A0A; color: #0A0A0A; }
 .fro-on-light .fro-card-live .fro-card-cta { color: #0A0A0A; }
 
+/* Diagnostic-tool cards (the free self-assessment, sitting beside plain
+   program cards in the "Transformamos" sections) — a soft amber wash
+   sets them apart as a different kind of thing (a tool, not a paid
+   program) without competing with .fro-card-live's stronger amber-fill
+   treatment reserved for "open for enrollment". */
+.fro-on-light .fro-card-diagnostico { background: var(--fro-amber-08); border-color: var(--fro-amber-25); }
+
 /* Hover on a light card inverts it to the dark palette — black surface,
    amber/white text — instead of a glow around the card. Gated to devices
    with a real pointer + true hover (mouse/trackpad): touchscreens fire a

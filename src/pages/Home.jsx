@@ -16,11 +16,11 @@ export default function Home() {
       <Nav/>
       <main id="main">
         <Hero/>
-        <Manifiesto/>
-        <TresEjes/>
         <Endorsements/>
+        <Manifiesto/>
         <TransformamosProfesionales/>
         <TransformamosEmpresas/>
+        <TresEjes/>
         <ComunidadBiobuilders/>
         <RespaldoInstitucional/>
       </main>

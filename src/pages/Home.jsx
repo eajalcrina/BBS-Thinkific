@@ -17,12 +17,12 @@ export default function Home() {
       <main id="main">
         <Hero/>
         <Manifiesto/>
+        <TresEjes/>
+        <Endorsements/>
         <DiagnosticoCTA/>
         <Programas/>
-        <TresEjes/>
         <ComunidadBiobuilders/>
         <RespaldoInstitucional/>
-        <Endorsements/>
       </main>
       <Footer/>
     </>

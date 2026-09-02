@@ -63,6 +63,42 @@ function sanitizeDiagnosticoResult(segmento, score, scoreMax) {
   }
 }
 
+const DIMENSION_SCORE_MAX_EMPRESAS = 9
+const SECTOR_VALUES = ['general', 'industria']
+const RESULTADO_VALUES_EMPRESAS = ['marca', 'negocio', 'capital', 'industria']
+const SECUNDARIO_VALUES = ['capital', '']
+
+function sanitizeDimensionScore(score) {
+  const n = Number(score)
+  return Number.isInteger(n) && n >= 0 && n <= DIMENSION_SCORE_MAX_EMPRESAS ? n : null
+}
+
+function sanitizeDiagnosticoEmpresasResult(data) {
+  const sector = SECTOR_VALUES.includes(data.sector) ? data.sector : ''
+
+  const marcaScore = sanitizeDimensionScore(data.marcaScore)
+  const negocioScore = sanitizeDimensionScore(data.negocioScore)
+  const capitalScore = sanitizeDimensionScore(data.capitalScore)
+  const dimensionesValidas = marcaScore !== null && negocioScore !== null && capitalScore !== null
+
+  const scoreTotalNum = Number(data.scoreTotal)
+  const scoreTotalValido = dimensionesValidas && scoreTotalNum === marcaScore + negocioScore + capitalScore
+
+  const resultado = RESULTADO_VALUES_EMPRESAS.includes(data.resultado) ? data.resultado : ''
+  const secundario = SECUNDARIO_VALUES.includes(data.secundario) ? data.secundario : ''
+
+  return {
+    sector,
+    marcaScore: dimensionesValidas ? marcaScore : '',
+    negocioScore: dimensionesValidas ? negocioScore : '',
+    capitalScore: dimensionesValidas ? capitalScore : '',
+    scoreTotal: scoreTotalValido ? scoreTotalNum : '',
+    scoreMax: scoreTotalValido ? 27 : '',
+    resultado,
+    secundario,
+  }
+}
+
 export function buildEnvelope(form, data) {
   data = sanitizeData(data)
   const ts = nowLima()
@@ -143,14 +179,23 @@ export function buildEnvelope(form, data) {
       }
     }
 
-    case 'bbs-diagnostico-empresas':
+    case 'bbs-diagnostico-empresas': {
+      const {
+        sector, marcaScore, negocioScore, capitalScore, scoreTotal, scoreMax, resultado, secundario,
+      } = sanitizeDiagnosticoEmpresasResult(data)
       return {
-        emailSubject: `Diagnóstico Empresas — ${data.nombre || 'sin nombre'}`,
+        emailSubject: `Diagnóstico Empresas — ${data.nombre || 'sin nombre'} — ${resultado || 'sin resultado'}`,
         emailFields: [
           ['Nombre', data.nombre],
           ['Email', data.email],
           ['WhatsApp', data.whatsapp],
-          ['Resultado', data.resultado],
+          ['Sector', sector],
+          ['Marca', marcaScore],
+          ['Negocio', negocioScore],
+          ['Capital', capitalScore],
+          ['Score total', `${scoreTotal}/${scoreMax}`],
+          ['Resultado', resultado],
+          ['Secundario', secundario],
           ['Página de origen', data.pagina_origen],
         ],
         sheetTab: 'Diagnóstico Empresas',
@@ -159,10 +204,18 @@ export function buildEnvelope(form, data) {
           data.nombre || '',
           data.email || '',
           data.whatsapp || '',
-          data.resultado || '',
+          sector,
+          marcaScore,
+          negocioScore,
+          capitalScore,
+          scoreTotal,
+          scoreMax,
+          resultado,
+          secundario,
           data.pagina_origen || '',
         ],
       }
+    }
 
     default:
       throw new Error(`buildEnvelope: unknown form "${form}"`)

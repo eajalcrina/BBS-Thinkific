@@ -137,14 +137,103 @@ test('buildEnvelope: bbs-diagnostico-profesionales rejects an unknown experienci
 
 test('buildEnvelope: bbs-diagnostico-empresas', () => {
   const env = buildEnvelope('bbs-diagnostico-empresas', {
-    nombre: 'Marca SAC',
-    email: 'contacto@marca.com',
-    whatsapp: '',
-    resultado: 'Nivel intermedio',
+    nombre: 'Rosa',
+    email: 'rosa@example.com',
+    whatsapp: '+51988777666',
+    sector: 'general',
+    marcaScore: 3,
+    negocioScore: 7,
+    capitalScore: 2,
+    scoreTotal: 12,
+    scoreMax: 27,
+    resultado: 'capital',
+    secundario: '',
     pagina_origen: '/diagnostico/empresas',
   })
-  assert.equal(env.emailSubject, 'Diagnóstico Empresas — Marca SAC')
+  assert.equal(env.emailSubject, 'Diagnóstico Empresas — Rosa — capital')
   assert.equal(env.sheetTab, 'Diagnóstico Empresas')
+  assert.deepEqual(env.sheetRow.slice(1), [
+    'Rosa',
+    'rosa@example.com',
+    '+51988777666',
+    'general',
+    3,
+    7,
+    2,
+    12,
+    27,
+    'capital',
+    '',
+    '/diagnostico/empresas',
+  ])
+})
+
+test('buildEnvelope: bbs-diagnostico-empresas rejects an unknown sector', () => {
+  const env = buildEnvelope('bbs-diagnostico-empresas', {
+    nombre: 'Rosa',
+    sector: 'no-es-un-sector-real',
+    marcaScore: 3,
+    negocioScore: 3,
+    capitalScore: 3,
+    scoreTotal: 9,
+    resultado: 'marca',
+    pagina_origen: '/diagnostico/empresas',
+  })
+  // índices de sheetRow: ts(0) nombre(1) email(2) whatsapp(3) sector(4)
+  // marcaScore(5) negocioScore(6) capitalScore(7) scoreTotal(8) scoreMax(9) resultado(10) secundario(11) pagina_origen(12)
+  assert.equal(env.sheetRow[4], '')
+})
+
+test('buildEnvelope: bbs-diagnostico-empresas rejects a dimension score outside 0-9', () => {
+  const env = buildEnvelope('bbs-diagnostico-empresas', {
+    nombre: 'Rosa',
+    sector: 'general',
+    marcaScore: 99,
+    negocioScore: 3,
+    capitalScore: 3,
+    scoreTotal: 105,
+    resultado: 'marca',
+    pagina_origen: '/diagnostico/empresas',
+  })
+  // sector sigue siendo válido de forma independiente — solo los scores se descartan
+  assert.equal(env.sheetRow[4], 'general')
+  assert.equal(env.sheetRow[5], '')
+  assert.equal(env.sheetRow[6], '')
+  assert.equal(env.sheetRow[7], '')
+  assert.equal(env.sheetRow[8], '')
+  assert.equal(env.sheetRow[9], '')
+})
+
+test('buildEnvelope: bbs-diagnostico-empresas rejects a scoreTotal that does not match the sum of the 3 dimensions', () => {
+  const env = buildEnvelope('bbs-diagnostico-empresas', {
+    nombre: 'Rosa',
+    sector: 'general',
+    marcaScore: 3,
+    negocioScore: 3,
+    capitalScore: 3,
+    scoreTotal: 999, // no es 3+3+3=9 — payload inconsistente
+    resultado: 'marca',
+    pagina_origen: '/diagnostico/empresas',
+  })
+  assert.equal(env.sheetRow[5], 3)
+  assert.equal(env.sheetRow[6], 3)
+  assert.equal(env.sheetRow[7], 3)
+  assert.equal(env.sheetRow[8], '') // scoreTotal descartado
+  assert.equal(env.sheetRow[9], '') // scoreMax también, ya que dependía de scoreTotal
+})
+
+test('buildEnvelope: bbs-diagnostico-empresas rejects an unknown resultado', () => {
+  const env = buildEnvelope('bbs-diagnostico-empresas', {
+    nombre: 'Rosa',
+    sector: 'general',
+    marcaScore: 3,
+    negocioScore: 3,
+    capitalScore: 3,
+    scoreTotal: 9,
+    resultado: 'no-es-un-resultado-real',
+    pagina_origen: '/diagnostico/empresas',
+  })
+  assert.equal(env.sheetRow[10], '')
 })
 
 test('buildEnvelope: throws on unknown form', () => {
@@ -239,4 +328,3 @@ test('getSheetValues: returns [] without throwing when GOOGLE_SHEET_ID is unset'
     if (original !== undefined) process.env.GOOGLE_SHEET_ID = original
   }
 })
-

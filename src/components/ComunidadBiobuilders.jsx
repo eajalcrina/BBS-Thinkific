@@ -9,15 +9,15 @@ export default function ComunidadBiobuilders() {
   return (
     <section id="comunidad" className="fro-sec" style={{ background:'var(--fro-bg)' }}>
       <div className="fro-wrap">
-        <FadeIn><div className="fro-eyebrow amber" style={{ marginBottom:'1.2rem' }}>Únete a los Biobuilders</div></FadeIn>
+        <FadeIn><div className="fro-eyebrow amber" style={{ marginBottom:'1.2rem' }}>Biobuilders</div></FadeIn>
         <FadeIn delay={0.08}>
           <h2 className="fro-h2" style={{ marginBottom:'1.4rem', maxWidth:760 }}>
-            La red que venimos construyendo, curando y haciendo crecer
+            Súmate a la comunidad
           </h2>
         </FadeIn>
         <FadeIn delay={0.14}>
           <p className="fro-lead" style={{ maxWidth:680, marginBottom:'2.2rem' }}>
-            No es un producto que se vende. Es la comunidad de quienes están comprometidos con transformar la región desde su expertise, sea el mundo corporativo, el emprendimiento o la inversión. Todo egresado de cualquiera de los 6 programas se suma automáticamente. Ahí compartimos noticias del sector, convocatorias de empleo, fuentes de financiamiento no reembolsable, y los primeros accesos a nuevos lanzamientos.
+            Súmate a la comunidad gratuita de profesionales que comparten nuestra visión de transformar América Latina y el Caribe, a través del desarrollo e inversión de industrias basadas en sistemas vivos. Recibe nuevas oportunidades de inversión, trabajo y financiamiento, entre otras.
           </p>
         </FadeIn>
         <FadeIn delay={0.2}>

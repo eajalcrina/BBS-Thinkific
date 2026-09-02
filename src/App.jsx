@@ -4,6 +4,7 @@ import Home from './pages/Home.jsx'
 
 const Privacy = lazy(() => import('./pages/Privacy.jsx'))
 const ProgramaPage = lazy(() => import('./pages/ProgramaPage.jsx'))
+const DiagnosticoProfesionalesPage = lazy(() => import('./pages/DiagnosticoProfesionalesPage.jsx'))
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/privacidad" element={<Privacy />} />
           <Route path="/programas/:slug" element={<ProgramaPage />} />
+          <Route path="/diagnostico/profesionales" element={<DiagnosticoProfesionalesPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

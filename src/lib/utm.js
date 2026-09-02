@@ -27,8 +27,9 @@ export function withUtm(url, { campaign, content }) {
 
 // Campañas definidas
 export const CAMPAIGNS = {
-  PLAYBOOK_DIGITAL:   'playbook_digital',
-  PLAYBOOK_IMPRESO:   'playbook_impreso',
-  COMMUNITY:          'community_whatsapp',
-  PROGRAMA_WHATSAPP:  'programa_whatsapp',
+  PLAYBOOK_DIGITAL:          'playbook_digital',
+  PLAYBOOK_IMPRESO:          'playbook_impreso',
+  COMMUNITY:                 'community_whatsapp',
+  PROGRAMA_WHATSAPP:         'programa_whatsapp',
+  DIAGNOSTICO_PROFESIONALES: 'diagnostico_profesionales',
 }

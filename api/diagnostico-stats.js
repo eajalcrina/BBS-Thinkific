@@ -18,32 +18,36 @@ export function createHandler(readValues = getSheetValues) {
     const tab = TAB_BY_TIPO[tipo]
     const scoreNum = Number(score)
 
-    if (!tab || !segmento || Number.isNaN(scoreNum)) {
+    if (!tab || !segmento || score === undefined || score === '' || Number.isNaN(scoreNum)) {
       return res.status(400).json({ error: 'Missing or invalid "tipo"/"segmento"/"score".' })
     }
 
-    let rows
+    // Todo lo que sigue nunca debe tirar un error duro — cualquier falla en
+    // la lectura o en el cómputo se degrada a "insufficientData" en vez de
+    // propagar una excepción o, peor, un percentil calculado sobre datos
+    // corruptos.
     try {
-      rows = await readValues(tab)
+      const rowsRaw = await readValues(tab)
+      const rows = Array.isArray(rowsRaw) ? rowsRaw : []
+
+      const scores = rows
+        .slice(1) // la primera fila son encabezados
+        .filter(row => row[SEGMENTO_COL] === segmento)
+        .map(row => Number(row[SCORE_COL]))
+        .filter(n => !Number.isNaN(n))
+
+      if (scores.length < MIN_SAMPLE_SIZE) {
+        return res.status(200).json({ insufficientData: true, muestraTotal: scores.length })
+      }
+
+      const menores = scores.filter(s => s < scoreNum).length
+      const percentil = Math.round((menores / scores.length) * 100)
+
+      return res.status(200).json({ percentil, muestraTotal: scores.length })
     } catch (err) {
-      console.error('[diagnostico-stats] readValues threw', err)
-      rows = []
+      console.error('[diagnostico-stats] failed to compute percentile', err)
+      return res.status(200).json({ insufficientData: true, muestraTotal: 0 })
     }
-
-    const scores = (rows || [])
-      .slice(1) // la primera fila son encabezados
-      .filter(row => row[SEGMENTO_COL] === segmento)
-      .map(row => Number(row[SCORE_COL]))
-      .filter(n => !Number.isNaN(n))
-
-    if (scores.length < MIN_SAMPLE_SIZE) {
-      return res.status(200).json({ insufficientData: true, muestraTotal: scores.length })
-    }
-
-    const menores = scores.filter(s => s < scoreNum).length
-    const percentil = Math.round((menores / scores.length) * 100)
-
-    return res.status(200).json({ percentil, muestraTotal: scores.length })
   }
 }
 

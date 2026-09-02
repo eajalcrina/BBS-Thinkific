@@ -73,6 +73,34 @@ test('computes a real percentile with 20+ matching rows, filtered by segmento', 
   assert.equal(res.body.percentil, 95) // beats 19 of 20 => round(19/20*100) = 95
 })
 
+test('exactly 19 matching rows is still insufficientData (boundary just below the threshold)', async () => {
+  const rows = [headerRow()]
+  for (let i = 0; i < 19; i++) rows.push(dataRow('junior', i))
+
+  const handler = createHandler(async () => rows)
+  const res = createMockRes()
+  await handler({ method: 'GET', query: { tipo: 'profesionales', segmento: 'junior', score: '10' } }, res)
+  assert.equal(res.statusCode, 200)
+  assert.equal(res.body.insufficientData, true)
+  assert.equal(res.body.muestraTotal, 19)
+})
+
+test('rejects an empty score with 400 instead of silently treating it as 0', async () => {
+  const handler = createHandler(async () => [])
+  const res = createMockRes()
+  await handler({ method: 'GET', query: { tipo: 'profesionales', segmento: 'junior', score: '' } }, res)
+  assert.equal(res.statusCode, 400)
+})
+
+test('degrades to insufficientData if readValues resolves with something other than an array', async () => {
+  const handler = createHandler(async () => null)
+  const res = createMockRes()
+  await handler({ method: 'GET', query: { tipo: 'profesionales', segmento: 'junior', score: '10' } }, res)
+  assert.equal(res.statusCode, 200)
+  assert.equal(res.body.insufficientData, true)
+  assert.equal(res.body.muestraTotal, 0)
+})
+
 test('never hard-errors when readValues throws — returns insufficientData instead', async () => {
   const handler = createHandler(async () => {
     throw new Error('Sheets down')

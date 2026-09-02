@@ -19,22 +19,22 @@ export default function TransformamosProfesionales() {
           </p>
         </FadeIn>
 
-        <div className="transf-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.6rem', alignItems:'start' }}>
+        <div className="transf-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.6rem', alignItems:'stretch' }}>
           <FadeIn delay={0.16}>
             <a
               href="/diagnostico/profesionales"
               onClick={() => trackCta('diagnostico_profesionales', 'home_transformamos_profesionales', '/diagnostico/profesionales')}
               className="fro-card fro-card-diagnostico"
-              style={{ display:'block', padding:'2rem', height:'100%', textDecoration:'none' }}
+              style={{ display:'flex', flexDirection:'column', padding:'2rem', height:'100%', textDecoration:'none' }}
             >
-              <span style={{ display:'inline-block', background:'var(--fro-amber)', color:'#0A0A0A', fontSize:'0.62rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.3rem 0.65rem', borderRadius:20, marginBottom:'1rem' }}>
+              <span style={{ display:'inline-block', alignSelf:'flex-start', background:'var(--fro-amber)', color:'#0A0A0A', fontSize:'0.62rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', padding:'0.3rem 0.65rem', borderRadius:20, marginBottom:'1rem' }}>
                 Autodiagnóstico gratuito
               </span>
               <h3 className="fro-h3" style={{ marginBottom:'0.9rem' }}>¿Dominas la IA, o la IA te está dominando a ti?</h3>
               <p className="fro-body" style={{ marginBottom:'1.4rem' }}>
                 Antes de elegir un programa, descubre en qué nivel estás — una evaluación real, no un quiz de tres preguntas.
               </p>
-              <span className="fro-card-cta" style={{ fontSize:'1.05rem', fontWeight:800, color:'var(--fro-amber)' }}>Empieza aquí →</span>
+              <span className="fro-card-cta" style={{ fontSize:'1.05rem', fontWeight:800, color:'var(--fro-amber)', marginTop:'auto' }}>Empieza aquí →</span>
             </a>
           </FadeIn>
 

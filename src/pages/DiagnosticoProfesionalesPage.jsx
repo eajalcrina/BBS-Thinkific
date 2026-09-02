@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import Nav from '../components/Nav.jsx'
 import Footer from '../components/Footer.jsx'
 import PantallaBienvenida from '../components/diagnostico/PantallaBienvenida.jsx'
@@ -89,9 +89,14 @@ export default function DiagnosticoProfesionalesPage() {
       .catch(() => {})
   }
 
-  function handleTransicionComplete() {
+  // useCallback con deps vacías: PantallaTransicion depende de esta
+  // referencia en su useEffect. Si `percentil` resuelve durante la
+  // transición (fetch en paralelo, ver handleCaptura), este componente
+  // re-renderiza — una función declarada normal se recrearía en cada
+  // render, reiniciando el temporizador de 2.6s en vez de dejarlo correr.
+  const handleTransicionComplete = useCallback(() => {
     setFase(FASES.RESULTADO)
-  }
+  }, [])
 
   return (
     <>
